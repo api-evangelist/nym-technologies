@@ -1,0 +1,59 @@
+openapi: 3.1.0
+info:
+  title: Node Status API Status Mixnodes API
+  description: ''
+  contact:
+    name: Nym Technologies SA
+  license:
+    name: Apache-2.0
+    identifier: Apache-2.0
+  version: 4.6.2
+tags:
+- name: Mixnodes
+paths:
+  /v2/mixnodes/stats:
+    get:
+      tags:
+      - Mixnodes
+      operationId: get_stats
+      parameters:
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DailyStats'
+components:
+  schemas:
+    DailyStats:
+      type: object
+      required:
+      - date_utc
+      - total_packets_received
+      - total_packets_sent
+      - total_packets_dropped
+      - total_stake
+      properties:
+        date_utc:
+          type: string
+        total_packets_dropped:
+          type: integer
+          format: int64
+        total_packets_received:
+          type: integer
+          format: int64
+        total_packets_sent:
+          type: integer
+          format: int64
+        total_stake:
+          type: integer
+          format: int64

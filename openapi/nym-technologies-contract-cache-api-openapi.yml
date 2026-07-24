@@ -1,0 +1,643 @@
+openapi: 3.1.0
+info:
+  title: Node Status API Status contract-cache API
+  description: ''
+  contact:
+    name: Nym Technologies SA
+  license:
+    name: Apache-2.0
+    identifier: Apache-2.0
+  version: 4.6.2
+tags:
+- name: contract-cache
+paths:
+  /v1/epoch/current:
+    get:
+      tags:
+      - contract-cache
+      operationId: get_current_epoch
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: 'null'
+                - $ref: '#/components/schemas/Interval'
+            application/yaml:
+              schema:
+                oneOf:
+                - type: 'null'
+                - $ref: '#/components/schemas/Interval'
+            application/bincode:
+              schema:
+                oneOf:
+                - type: 'null'
+                - $ref: '#/components/schemas/Interval'
+  /v1/epoch/key-rotation-info:
+    get:
+      tags:
+      - contract-cache
+      operationId: get_current_key_rotation_info
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyRotationInfoResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/KeyRotationInfoResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/KeyRotationInfoResponse'
+  /v1/epoch/reward_params:
+    get:
+      tags:
+      - contract-cache
+      operationId: get_interval_reward_params
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: 'null'
+                - $ref: '#/components/schemas/RewardingParams'
+            application/yaml:
+              schema:
+                oneOf:
+                - type: 'null'
+                - $ref: '#/components/schemas/RewardingParams'
+            application/bincode:
+              schema:
+                oneOf:
+                - type: 'null'
+                - $ref: '#/components/schemas/RewardingParams'
+  /v1/legacy/gateways:
+    get:
+      tags:
+      - contract-cache
+      operationId: get_legacy_gateways
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LegacyGatewaysResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/LegacyGatewaysResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/LegacyGatewaysResponse'
+  /v1/legacy/mixnodes:
+    get:
+      tags:
+      - contract-cache
+      operationId: get_legacy_mixnodes
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LegacyMixnodesResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/LegacyMixnodesResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/LegacyMixnodesResponse'
+components:
+  schemas:
+    MixNode:
+      type: object
+      description: Information provided by the node operator during bonding that are used to allow other entities to use the services of this node.
+      required:
+      - host
+      - mix_port
+      - verloc_port
+      - http_api_port
+      - sphinx_key
+      - identity_key
+      - version
+      properties:
+        host:
+          type: string
+          description: Network address of this mixnode, for example 1.1.1.1 or foo.mixnode.com
+        http_api_port:
+          type: integer
+          format: int32
+          description: Port used by this mixnode for its http(s) API
+          minimum: 0
+        identity_key:
+          $ref: '#/components/schemas/String'
+          description: Base58-encoded ed25519 EdDSA public key.
+        mix_port:
+          type: integer
+          format: int32
+          description: Port used by this mixnode for listening for mix packets.
+          minimum: 0
+        sphinx_key:
+          $ref: '#/components/schemas/String'
+          description: Base58-encoded x25519 public key used for sphinx key derivation.
+        verloc_port:
+          type: integer
+          format: int32
+          description: Port used by this mixnode for listening for verloc requests.
+          minimum: 0
+        version:
+          type: string
+          description: The self-reported semver version of this mixnode.
+    LegacyMixnodesResponse:
+      type: object
+      required:
+      - count
+      - nodes
+      properties:
+        count:
+          type: integer
+          minimum: 0
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/MixNodeDetails'
+    MixNodeDetails:
+      type: object
+      description: Full details associated with given mixnode.
+      required:
+      - bond_information
+      - rewarding_details
+      properties:
+        bond_information:
+          $ref: '#/components/schemas/MixNodeBond'
+          description: Basic bond information of this mixnode, such as owner address, original pledge, etc.
+        pending_changes:
+          $ref: '#/components/schemas/PendingMixNodeChanges'
+          description: Adjustments to the mixnode that are ought to happen during future epoch transitions.
+        rewarding_details:
+          $ref: '#/components/schemas/NodeRewarding'
+          description: Details used for computation of rewarding related data.
+    NodeCostParams:
+      type: object
+      description: 'The cost parameters, or the cost function, defined for the particular mixnode that influences
+
+        how the rewards should be split between the node operator and its delegators.'
+      required:
+      - profit_margin_percent
+      - interval_operating_cost
+      properties:
+        interval_operating_cost:
+          $ref: '#/components/schemas/CoinSchema'
+          description: Operating cost of the associated node per the entire interval.
+        profit_margin_percent:
+          type: string
+          description: The profit margin of the associated node, i.e. the desired percent of the reward to be distributed to the operator.
+    PendingMixNodeChanges:
+      type: object
+      properties:
+        cost_params_change:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/u32'
+        pledge_change:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/u32'
+    String:
+      type: string
+    GatewayBond:
+      type: object
+      description: Basic gateway information provided by the node operator.
+      required:
+      - pledge_amount
+      - owner
+      - block_height
+      - gateway
+      - proxy
+      properties:
+        block_height:
+          type: integer
+          format: int64
+          description: Block height at which this gateway has been bonded.
+          minimum: 0
+        gateway:
+          $ref: '#/components/schemas/Gateway'
+          description: Information provided by the operator for the purposes of bonding.
+        owner:
+          type: string
+          description: Address of the owner of this gateway.
+        pledge_amount:
+          $ref: '#/components/schemas/CoinSchema'
+          description: Original amount pledged by the operator of this node.
+        proxy:
+          type: string
+          description: 'Entity who bonded this gateway on behalf of the owner.
+
+            If exists, it''s most likely the address of the vesting contract.'
+    KeyRotationState:
+      type: object
+      required:
+      - validity_epochs
+      - initial_epoch_id
+      properties:
+        initial_epoch_id:
+          type: integer
+          format: int32
+          description: 'Records the initial epoch_id when the key rotation has been introduced (0 for fresh contracts).
+
+            It is used for determining when rotation is meant to advance.'
+          minimum: 0
+        validity_epochs:
+          type: integer
+          format: int32
+          description: Defines how long each key rotation is valid for (in terms of epochs)
+          minimum: 0
+    RewardedSetParams:
+      type: object
+      required:
+      - entry_gateways
+      - exit_gateways
+      - mixnodes
+      - standby
+      properties:
+        entry_gateways:
+          type: integer
+          format: int32
+          description: The expected number of nodes assigned entry gateway role (i.e. [`Role::EntryGateway`])
+          minimum: 0
+        exit_gateways:
+          type: integer
+          format: int32
+          description: The expected number of nodes assigned exit gateway role (i.e. [`Role::ExitGateway`])
+          minimum: 0
+        mixnodes:
+          type: integer
+          format: int32
+          description: The expected number of nodes assigned the 'mixnode' role, i.e. total of [`Role::Layer1`], [`Role::Layer2`] and [`Role::Layer3`].
+          minimum: 0
+        standby:
+          type: integer
+          format: int32
+          description: Number of nodes in the 'standby' set. (i.e. [`Role::Standby`])
+          minimum: 0
+    IntervalRewardParams:
+      type: object
+      description: Parameters required by the mix-mining reward distribution that do not change during an interval.
+      required:
+      - reward_pool
+      - staking_supply
+      - staking_supply_scale_factor
+      - epoch_reward_budget
+      - stake_saturation_point
+      - sybil_resistance
+      - active_set_work_factor
+      - interval_pool_emission
+      properties:
+        active_set_work_factor:
+          type: string
+          description: 'Current active set work factor.
+
+            It is not really expected to be changing very often.
+
+            As a matter of fact, unless there''s a very specific reason, it should remain constant.'
+        epoch_reward_budget:
+          type: string
+          description: 'Current value of the computed reward budget per epoch, per node.
+
+            It is expected to be constant throughout the interval.'
+        interval_pool_emission:
+          type: string
+          description: 'Current maximum interval pool emission.
+
+            Assuming all nodes in the rewarded set are fully saturated and have 100% performance,
+
+            this % of the reward pool would get distributed in rewards to all operators and its delegators.
+
+            It is not really expected to be changing very often.
+
+            As a matter of fact, unless there''s a very specific reason, it should remain constant.'
+        reward_pool:
+          type: string
+          description: 'Current value of the rewarding pool.
+
+            It is expected to be constant throughout the interval.'
+        stake_saturation_point:
+          type: string
+          description: 'Current value of the stake saturation point.
+
+            It is expected to be constant throughout the interval.'
+        staking_supply:
+          type: string
+          description: 'Current value of the staking supply.
+
+            It is expected to be constant throughout the interval.'
+        staking_supply_scale_factor:
+          type: string
+          description: 'Defines the percentage of stake needed to reach saturation for all of the nodes in the rewarded set.
+
+            Also known as `beta`.'
+        sybil_resistance:
+          type: string
+          description: 'Current value of the sybil resistance percent (`alpha`).
+
+            It is not really expected to be changing very often.
+
+            As a matter of fact, unless there''s a very specific reason, it should remain constant.'
+    LegacyGatewaysResponse:
+      type: object
+      required:
+      - count
+      - nodes
+      properties:
+        count:
+          type: integer
+          minimum: 0
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/LegacyGatewayBondWithId'
+    NodeRewarding:
+      type: object
+      required:
+      - cost_params
+      - operator
+      - delegates
+      - total_unit_reward
+      - unit_delegation
+      - last_rewarded_epoch
+      - unique_delegations
+      properties:
+        cost_params:
+          $ref: '#/components/schemas/NodeCostParams'
+          description: Information provided by the operator that influence the cost function.
+        delegates:
+          type: string
+          description: Total delegation and compounded reward earned by all node delegators.
+        last_rewarded_epoch:
+          $ref: '#/components/schemas/u32'
+          description: 'Marks the epoch when this node was last rewarded so that we wouldn''t accidentally attempt
+
+            to reward it multiple times in the same epoch.'
+        operator:
+          type: string
+          description: Total pledge and compounded reward earned by the node operator.
+        total_unit_reward:
+          type: string
+          description: Cumulative reward earned by the "unit delegation" since the block 0.
+        unique_delegations:
+          type: integer
+          format: int32
+          minimum: 0
+        unit_delegation:
+          type: string
+          description: Value of the theoretical "unit delegation" that has delegated to this node at block 0.
+    KeyRotationDetails:
+      type: object
+      required:
+      - key_rotation_state
+      - current_absolute_epoch_id
+      - current_epoch_start
+      - epoch_duration
+      properties:
+        current_absolute_epoch_id:
+          type: integer
+          format: int32
+          minimum: 0
+        current_epoch_start:
+          type: string
+        epoch_duration:
+          type: string
+        key_rotation_state:
+          $ref: '#/components/schemas/KeyRotationState'
+    Gateway:
+      type: object
+      description: Information provided by the node operator during bonding that are used to allow other entities to use the services of this node.
+      required:
+      - host
+      - mix_port
+      - clients_port
+      - location
+      - sphinx_key
+      - identity_key
+      - version
+      properties:
+        clients_port:
+          type: integer
+          format: int32
+          description: Port used by this gateway for listening for client requests.
+          minimum: 0
+        host:
+          type: string
+          description: Network address of this gateway, for example 1.1.1.1 or foo.gateway.com
+        identity_key:
+          type: string
+          description: Base58 encoded ed25519 EdDSA public key of the gateway used to derive shared keys with clients
+        location:
+          type: string
+          description: The physical, self-reported, location of this gateway.
+        mix_port:
+          type: integer
+          format: int32
+          description: Port used by this gateway for listening for mix packets.
+          minimum: 0
+        sphinx_key:
+          type: string
+          description: Base58-encoded x25519 public key used for sphinx key derivation.
+        version:
+          type: string
+          description: The self-reported semver version of this gateway.
+    KeyRotationProgressInfo:
+      type: object
+      required:
+      - current_key_rotation_id
+      - current_rotation_starting_epoch
+      - current_rotation_ending_epoch
+      properties:
+        current_key_rotation_id:
+          type: integer
+          format: int32
+          minimum: 0
+        current_rotation_ending_epoch:
+          type: integer
+          format: int32
+          minimum: 0
+        current_rotation_starting_epoch:
+          type: integer
+          format: int32
+          minimum: 0
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
+    u32:
+      type: integer
+      format: int32
+      minimum: 0
+    LegacyGatewayBondWithId:
+      allOf:
+      - $ref: '#/components/schemas/GatewayBond'
+      - type: object
+        required:
+        - node_id
+        properties:
+          node_id:
+            $ref: '#/components/schemas/u32'
+    Interval:
+      type: object
+      description: Specification of a rewarding interval.
+      required:
+      - id
+      - epochs_in_interval
+      - current_epoch_start
+      - current_epoch_id
+      - epoch_length
+      - total_elapsed_epochs
+      properties:
+        current_epoch_id:
+          type: integer
+          format: int32
+          description: Monotonously increasing id of the current epoch in this interval.
+          minimum: 0
+        current_epoch_start:
+          type: string
+          format: date-time
+          description: The timestamp indicating the start of the current rewarding epoch.
+        epoch_length:
+          type: string
+          description: The duration of all epochs in this interval.
+        epochs_in_interval:
+          type: integer
+          format: int32
+          description: Number of epochs in this interval.
+          minimum: 0
+        id:
+          type: integer
+          format: int32
+          description: Monotonously increasing id of this interval.
+          minimum: 0
+        total_elapsed_epochs:
+          type: integer
+          format: int32
+          description: The total amount of elapsed epochs since the first epoch of the first interval.
+          minimum: 0
+    CoinSchema:
+      type: object
+      title: Coin
+      required:
+      - denom
+      - amount
+      properties:
+        amount:
+          type: integer
+          minimum: 0
+        denom:
+          type: string
+    MixNodeBond:
+      type: object
+      description: Basic mixnode information provided by the node operator.
+      required:
+      - mix_id
+      - owner
+      - original_pledge
+      - mix_node
+      - bonding_height
+      - is_unbonding
+      properties:
+        bonding_height:
+          type: integer
+          format: int64
+          description: Block height at which this mixnode has been bonded.
+          minimum: 0
+        is_unbonding:
+          type: boolean
+          description: 'Flag to indicate whether this node is in the process of unbonding,
+
+            that will conclude upon the epoch finishing.'
+        mix_id:
+          $ref: '#/components/schemas/u32'
+          description: Unique id assigned to the bonded mixnode.
+        mix_node:
+          $ref: '#/components/schemas/MixNode'
+          description: Information provided by the operator for the purposes of bonding.
+        original_pledge:
+          $ref: '#/components/schemas/CoinSchema'
+          description: Original amount pledged by the operator of this node.
+        owner:
+          type: string
+          description: Address of the owner of this mixnode.
+        proxy:
+          type:
+          - string
+          - 'null'
+          description: 'Entity who bonded this mixnode on behalf of the owner.
+
+            If exists, it''s most likely the address of the vesting contract.'
+    RewardingParams:
+      type: object
+      description: Parameters used for reward calculation.
+      required:
+      - interval
+      - rewarded_set
+      properties:
+        interval:
+          $ref: '#/components/schemas/IntervalRewardParams'
+          description: Parameters that should remain unchanged throughout an interval.
+        rewarded_set:
+          $ref: '#/components/schemas/RewardedSetParams'
+    KeyRotationInfoResponse:
+      allOf:
+      - $ref: '#/components/schemas/KeyRotationDetails'
+      - type: object
+        required:
+        - progress
+        properties:
+          progress:
+            $ref: '#/components/schemas/KeyRotationProgressInfo'

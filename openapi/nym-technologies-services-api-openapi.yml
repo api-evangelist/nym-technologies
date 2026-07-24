@@ -1,0 +1,105 @@
+openapi: 3.1.0
+info:
+  title: Node Status API Status Services API
+  description: ''
+  contact:
+    name: Nym Technologies SA
+  license:
+    name: Apache-2.0
+    identifier: Apache-2.0
+  version: 4.6.2
+tags:
+- name: Services
+paths:
+  /v2/services:
+    get:
+      tags:
+      - Services
+      operationId: mixnodes
+      parameters:
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+      - name: wss
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: hostname
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: entry
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedResult_Service'
+components:
+  schemas:
+    PagedResult_Service:
+      type: object
+      required:
+      - page
+      - size
+      - total
+      - items
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            required:
+            - gateway_identity_key
+            - last_updated_utc
+            - routing_score
+            properties:
+              gateway_identity_key:
+                type: string
+              hostname:
+                type:
+                - string
+                - 'null'
+              ip_address:
+                type:
+                - string
+                - 'null'
+              last_successful_ping_utc:
+                type:
+                - string
+                - 'null'
+              last_updated_utc:
+                type: string
+              mixnet_websockets: {}
+              routing_score:
+                type: number
+                format: float
+              service_provider_client_id:
+                type:
+                - string
+                - 'null'
+        page:
+          type: integer
+          minimum: 0
+        size:
+          type: integer
+          minimum: 0
+        total:
+          type: integer
+          minimum: 0

@@ -1,0 +1,125 @@
+openapi: 3.1.0
+info:
+  title: Node Status API Status Unstable API
+  description: ''
+  contact:
+    name: Nym Technologies SA
+  license:
+    name: Apache-2.0
+    identifier: Apache-2.0
+  version: 4.6.2
+tags:
+- name: Unstable
+paths:
+  /v1/unstable/account/{address}:
+    get:
+      tags:
+      - Unstable
+      operationId: address
+      parameters:
+      - name: address
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NyxAccountDetails'
+components:
+  schemas:
+    NyxAccountDelegationRewardDetails:
+      type: object
+      required:
+      - node_id
+      - rewards
+      - amount_staked
+      - node_still_fully_bonded
+      properties:
+        amount_staked:
+          type: string
+        node_id:
+          $ref: '#/components/schemas/u32'
+        node_still_fully_bonded:
+          type: boolean
+        rewards:
+          $ref: '#/components/schemas/CoinSchema'
+    u32:
+      type: integer
+      format: int32
+      minimum: 0
+    NyxAccountDelegationDetails:
+      type: object
+      required:
+      - node_id
+      - delegated
+      - height
+      - node_bonded
+      properties:
+        delegated:
+          $ref: '#/components/schemas/CoinSchema'
+        height:
+          type: integer
+          format: int64
+          minimum: 0
+        node_bonded:
+          type: boolean
+        node_id:
+          $ref: '#/components/schemas/u32'
+        proxy:
+          type:
+          - string
+          - 'null'
+    NyxAccountDetails:
+      type: object
+      required:
+      - address
+      - balance
+      - total_value
+      - delegations
+      - accumulated_rewards
+      - total_delegations
+      - claimable_rewards
+      properties:
+        accumulated_rewards:
+          type: array
+          items:
+            $ref: '#/components/schemas/NyxAccountDelegationRewardDetails'
+          description: 'Shows rewards from delegations to **currently** bonded nodes.
+
+            Rewards from nodes that user delegated to, but were later unbonded,
+
+            are claimable, but not shown here.'
+        address:
+          type: string
+        balance:
+          $ref: '#/components/schemas/CoinSchema'
+        claimable_rewards:
+          $ref: '#/components/schemas/CoinSchema'
+        delegations:
+          type: array
+          items:
+            $ref: '#/components/schemas/NyxAccountDelegationDetails'
+        operator_rewards:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/CoinSchema'
+        total_delegations:
+          type: string
+        total_value:
+          $ref: '#/components/schemas/CoinSchema'
+    CoinSchema:
+      type: object
+      title: Coin
+      required:
+      - denom
+      - amount
+      properties:
+        amount:
+          type: integer
+          minimum: 0
+        denom:
+          type: string

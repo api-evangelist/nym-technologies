@@ -1,0 +1,318 @@
+openapi: 3.1.0
+info:
+  title: Node API Status API
+  description: ''
+  contact:
+    name: Nym Technologies SA
+  license:
+    name: Apache-2.0
+    identifier: Apache-2.0
+  version: 4.6.2
+tags:
+- name: Status
+paths:
+  /v2/status/build_information:
+    get:
+      tags:
+      - Status
+      operationId: build_information
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BinaryBuildInformationOwned'
+  /v2/status/health:
+    get:
+      tags:
+      - Status
+      operationId: health
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthInfo'
+  /v1/status/config-score-details:
+    get:
+      tags:
+      - Status
+      operationId: config_score_details
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfigScoreDataResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/ConfigScoreDataResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/ConfigScoreDataResponse'
+  /v1/status/submit-gateway-monitoring-results:
+    post:
+      tags:
+      - Status
+      operationId: submit_gateway_monitoring_results
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MonitorMessage'
+        required: true
+      responses:
+        '200':
+          description: ''
+        '400':
+          description: TBD
+          content:
+            text/plain:
+              schema:
+                type: string
+        '403':
+          description: TBD
+          content:
+            text/plain:
+              schema:
+                type: string
+        '500':
+          description: TBD
+          content:
+            text/plain:
+              schema:
+                type: string
+      deprecated: true
+  /v1/status/submit-node-monitoring-results:
+    post:
+      tags:
+      - Status
+      operationId: submit_node_monitoring_results
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MonitorMessage'
+        required: true
+      responses:
+        '200':
+          description: ''
+        '400':
+          description: TBD
+          content:
+            text/plain:
+              schema:
+                type: string
+        '403':
+          description: TBD
+          content:
+            text/plain:
+              schema:
+                type: string
+        '500':
+          description: TBD
+          content:
+            text/plain:
+              schema:
+                type: string
+      deprecated: true
+components:
+  schemas:
+    VersionScoreFormulaParams:
+      type: object
+      description: 'Given the formula of version_score = penalty ^ (versions_behind_factor ^ penalty_scaling)
+
+        define the relevant parameters'
+      required:
+      - penalty
+      - penalty_scaling
+      properties:
+        penalty:
+          type: number
+          format: double
+        penalty_scaling:
+          type: number
+          format: double
+    MonitorMessage:
+      type: object
+      required:
+      - results
+      - signature
+      - signer
+      - timestamp
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/NodeResult'
+        signature:
+          type: string
+        signer:
+          type: string
+        timestamp:
+          type: integer
+          format: int64
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
+    OutdatedVersionWeights:
+      type: object
+      description: Defines weights for calculating numbers of versions behind the current release.
+      required:
+      - major
+      - minor
+      - patch
+      - prerelease
+      properties:
+        major:
+          type: integer
+          format: int32
+          minimum: 0
+        minor:
+          type: integer
+          format: int32
+          minimum: 0
+        patch:
+          type: integer
+          format: int32
+          minimum: 0
+        prerelease:
+          type: integer
+          format: int32
+          minimum: 0
+    ConfigScoreDataResponse:
+      type: object
+      required:
+      - parameters
+      - version_history
+      properties:
+        parameters:
+          $ref: '#/components/schemas/ConfigScoreParams'
+        version_history:
+          type: array
+          items:
+            $ref: '#/components/schemas/HistoricalNymNodeVersionEntry'
+    ConfigScoreParams:
+      type: object
+      required:
+      - version_weights
+      - version_score_formula_params
+      properties:
+        version_score_formula_params:
+          $ref: '#/components/schemas/VersionScoreFormulaParams'
+          description: Defines the parameters of the formula for calculating the version score
+        version_weights:
+          $ref: '#/components/schemas/OutdatedVersionWeights'
+          description: Defines weights for calculating numbers of versions behind the current release.
+    HealthInfo:
+      type: object
+      required:
+      - uptime
+      properties:
+        uptime:
+          type: integer
+          format: int64
+    NodeResult:
+      type: object
+      required:
+      - node_id
+      - identity
+      - reliability
+      properties:
+        identity:
+          type: string
+        node_id:
+          type: integer
+          format: int32
+          minimum: 0
+        reliability:
+          type: integer
+          format: int32
+          minimum: 0
+    BinaryBuildInformationOwned:
+      type: object
+      required:
+      - binary_name
+      - build_timestamp
+      - build_version
+      - commit_sha
+      - commit_timestamp
+      - commit_branch
+      - rustc_version
+      - rustc_channel
+      - cargo_profile
+      properties:
+        binary_name:
+          type: string
+          description: Provides the name of the binary, i.e. the content of `CARGO_PKG_NAME` environmental variable.
+        build_timestamp:
+          type: string
+          description: Provides the build timestamp, for example `2021-02-23T20:14:46.558472672+00:00`.
+        build_version:
+          type: string
+          description: Provides the build version, for example `0.1.0-9-g46f83e1`.
+        cargo_profile:
+          type: string
+          description: Provides the cargo debug mode that was used for the build.
+        cargo_triple:
+          type: string
+          description: Provides the cargo target triple that was used for the build.
+        commit_branch:
+          type: string
+          description: Provides the name of the git branch that was used for the build, for example `master`.
+        commit_sha:
+          type: string
+          description: Provides the hash of the commit that was used for the build, for example `46f83e112520533338245862d366f6a02cef07d4`.
+        commit_timestamp:
+          type: string
+          description: Provides the timestamp of the commit that was used for the build, for example `2021-02-23T08:08:02-05:00`.
+        rustc_channel:
+          type: string
+          description: Provides the rustc channel that was used for the build, for example `nightly`.
+        rustc_version:
+          type: string
+          description: Provides the rustc version that was used for the build, for example `1.52.0-nightly`.
+    HistoricalNymNodeVersionEntry:
+      type: object
+      required:
+      - id
+      - version_information
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: The unique, ordered, id of this particular entry
+          minimum: 0
+        version_information:
+          $ref: '#/components/schemas/HistoricalNymNodeVersion'
+          description: Data associated with this particular version
+    HistoricalNymNodeVersion:
+      type: object
+      required:
+      - semver
+      - introduced_at_height
+      properties:
+        introduced_at_height:
+          type: integer
+          format: int64
+          description: Block height of when this version has been added to the contract
+          minimum: 0
+        semver:
+          type: string
+          description: 'Version of the nym node that is going to be used for determining the version score of a node.
+
+            note: value stored here is pre-validated `semver::Version`'

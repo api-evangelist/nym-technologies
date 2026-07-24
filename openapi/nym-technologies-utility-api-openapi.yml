@@ -1,0 +1,189 @@
+openapi: 3.1.0
+info:
+  title: Node Status API Status Utility API
+  description: ''
+  contact:
+    name: Nym Technologies SA
+  license:
+    name: Apache-2.0
+    identifier: Apache-2.0
+  version: 4.6.2
+tags:
+- name: Utility
+paths:
+  /v1/utility/mixnet-cache-timestamp:
+    get:
+      tags:
+      - Utility
+      summary: Return information on when the mixnet cache has last been refreshed.
+      operationId: mixnet_cache_timestamp
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MixnetContractCacheTimestampResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/MixnetContractCacheTimestampResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/MixnetContractCacheTimestampResponse'
+      security:
+      - auth_token: []
+  /v1/utility/node-annotations-cache-timestamp:
+    get:
+      tags:
+      - Utility
+      summary: Return information on when the mixnet cache has last been refreshed.
+      operationId: node_annotations_cache_timestamp
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeStatusCacheTimestampResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/NodeStatusCacheTimestampResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/NodeStatusCacheTimestampResponse'
+      security:
+      - auth_token: []
+  /v1/utility/refresh-mixnet-cache:
+    post:
+      tags:
+      - Utility
+      summary: 'Allow to request to refresh the cache of all mixnet nodes on the network.
+
+        Note that this endpoint enforces high global rate limiting and realistically
+
+        should not be used outside very special scenarios.'
+      operationId: refresh_mixnet_cache
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshMixnetContractCacheRequestBody'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefreshMixnetContractCacheResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/RefreshMixnetContractCacheResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/RefreshMixnetContractCacheResponse'
+      security:
+      - auth_token: []
+  /v1/utility/refresh-node-annotations-cache:
+    post:
+      tags:
+      - Utility
+      summary: 'Allow to request to refresh the cache of all mixnet nodes on the network.
+
+        Note that this endpoint enforces high global rate limiting and realistically
+
+        should not be used outside very special scenarios.'
+      operationId: refresh_node_annotations_cache
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshNodeStatusCacheRequestBody'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefreshNodeStatusCacheResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/RefreshNodeStatusCacheResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/RefreshNodeStatusCacheResponse'
+      security:
+      - auth_token: []
+components:
+  schemas:
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
+    NodeStatusCacheTimestampResponse:
+      type: object
+      required:
+      - timestamp
+      properties:
+        timestamp:
+          type: string
+    RefreshNodeStatusCacheRequestBody:
+      type: object
+    RefreshMixnetContractCacheResponse:
+      type: object
+      required:
+      - success
+      properties:
+        success:
+          type: boolean
+    MixnetContractCacheTimestampResponse:
+      type: object
+      required:
+      - timestamp
+      properties:
+        timestamp:
+          type: string
+    RefreshMixnetContractCacheRequestBody:
+      type: object
+    RefreshNodeStatusCacheResponse:
+      type: object
+      required:
+      - success
+      properties:
+        success:
+          type: boolean

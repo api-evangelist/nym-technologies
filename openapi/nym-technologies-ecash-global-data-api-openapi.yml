@@ -1,0 +1,216 @@
+openapi: 3.1.0
+info:
+  title: Node Status API Status Ecash Global Data API
+  description: ''
+  contact:
+    name: Nym Technologies SA
+  license:
+    name: Apache-2.0
+    identifier: Apache-2.0
+  version: 4.6.2
+tags:
+- name: Ecash Global Data
+paths:
+  /v1/ecash/aggregated-coin-indices-signatures:
+    get:
+      tags:
+      - Ecash Global Data
+      operationId: coin_indices_signatures
+      parameters:
+      - name: epoch_id
+        in: query
+        required: false
+        schema:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 0
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AggregatedCoinIndicesSignatureResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/AggregatedCoinIndicesSignatureResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/AggregatedCoinIndicesSignatureResponse'
+  /v1/ecash/aggregated-expiration-date-signatures:
+    get:
+      tags:
+      - Ecash Global Data
+      operationId: expiration_date_signatures
+      parameters:
+      - name: expiration_date
+        in: query
+        required: false
+        schema:
+          type:
+          - string
+          - 'null'
+      - name: epoch_id
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/u64'
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AggregatedExpirationDateSignatureResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/AggregatedExpirationDateSignatureResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/AggregatedExpirationDateSignatureResponse'
+  /v1/ecash/master-verification-key:
+    get:
+      tags:
+      - Ecash Global Data
+      operationId: master_verification_key
+      parameters:
+      - name: epoch_id
+        in: query
+        required: false
+        schema:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 0
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationKeyResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/VerificationKeyResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/VerificationKeyResponse'
+components:
+  schemas:
+    AggregatedExpirationDateSignatureResponse:
+      type: object
+      required:
+      - epoch_id
+      - expiration_date
+      - signatures
+      properties:
+        epoch_id:
+          type: integer
+          format: int64
+          minimum: 0
+        expiration_date:
+          type: string
+          example: '1970-01-01'
+        signatures:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnnotatedExpirationDateSignature'
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
+    Signature:
+      type: object
+      required:
+      - h
+      - s
+      properties:
+        h:
+          type: string
+        s:
+          type: string
+    AggregatedCoinIndicesSignatureResponse:
+      type: object
+      required:
+      - epoch_id
+      - signatures
+      properties:
+        epoch_id:
+          type: integer
+          format: int64
+          minimum: 0
+        signatures:
+          $ref: '#/components/schemas/Signature'
+    VerificationKeyAuth:
+      type: object
+      required:
+      - alpha
+      - beta_g1
+      - beta_g2
+      properties:
+        alpha:
+          type: string
+        beta_g1:
+          type: array
+          items:
+            type: string
+        beta_g2:
+          type: array
+          items:
+            type: string
+    VerificationKeyResponse:
+      type: object
+      required:
+      - key
+      properties:
+        key:
+          $ref: '#/components/schemas/VerificationKeyAuth'
+    u64:
+      type: integer
+      format: int64
+      minimum: 0
+    AnnotatedExpirationDateSignature:
+      type: object
+      required:
+      - signature
+      - expiration_timestamp
+      - spending_timestamp
+      properties:
+        expiration_timestamp:
+          type: integer
+          format: int32
+          minimum: 0
+        signature:
+          $ref: '#/components/schemas/Signature'
+        spending_timestamp:
+          type: integer
+          format: int32
+          minimum: 0

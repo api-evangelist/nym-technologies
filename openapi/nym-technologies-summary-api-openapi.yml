@@ -1,0 +1,143 @@
+openapi: 3.1.0
+info:
+  title: Node Status API Status Summary API
+  description: ''
+  contact:
+    name: Nym Technologies SA
+  license:
+    name: Apache-2.0
+    identifier: Apache-2.0
+  version: 4.6.2
+tags:
+- name: Summary
+paths:
+  /v2/summary:
+    get:
+      tags:
+      - Summary
+      operationId: summary
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkSummary'
+  /v2/summary/history:
+    get:
+      tags:
+      - Summary
+      operationId: summary_history
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SummaryHistory'
+components:
+  schemas:
+    GatewaySummary:
+      type: object
+      required:
+      - bonded
+      - historical
+      properties:
+        bonded:
+          $ref: '#/components/schemas/GatewaySummaryBonded'
+        historical:
+          $ref: '#/components/schemas/GatewaySummaryHistorical'
+    GatewaySummaryHistorical:
+      type: object
+      required:
+      - count
+      - last_updated_utc
+      properties:
+        count:
+          type: integer
+          format: int32
+        last_updated_utc:
+          type: string
+    MixnodeSummaryHistorical:
+      type: object
+      required:
+      - count
+      - last_updated_utc
+      properties:
+        count:
+          type: integer
+          format: int32
+        last_updated_utc:
+          type: string
+    GatewaySummaryBonded:
+      type: object
+      required:
+      - count
+      - entry
+      - exit
+      - last_updated_utc
+      properties:
+        count:
+          type: integer
+          format: int32
+        entry:
+          type: integer
+          format: int32
+        exit:
+          type: integer
+          format: int32
+        last_updated_utc:
+          type: string
+    MixingNodesSummary:
+      type: object
+      required:
+      - count
+      - self_described
+      - last_updated_utc
+      properties:
+        count:
+          type: integer
+          format: int32
+        last_updated_utc:
+          type: string
+        self_described:
+          type: integer
+          format: int32
+    SummaryHistory:
+      type: object
+      required:
+      - date
+      - value_json
+      - timestamp_utc
+      properties:
+        date:
+          type: string
+        timestamp_utc:
+          type: string
+        value_json: {}
+    NetworkSummary:
+      type: object
+      required:
+      - total_nodes
+      - mixnodes
+      - gateways
+      properties:
+        gateways:
+          $ref: '#/components/schemas/GatewaySummary'
+        mixnodes:
+          $ref: '#/components/schemas/MixnodeSummary'
+        total_nodes:
+          type: integer
+          format: int32
+    MixnodeSummary:
+      type: object
+      required:
+      - bonded
+      - historical
+      properties:
+        bonded:
+          $ref: '#/components/schemas/MixingNodesSummary'
+        historical:
+          $ref: '#/components/schemas/MixnodeSummaryHistorical'

@@ -1,0 +1,257 @@
+openapi: 3.1.0
+info:
+  title: Node Status API Status Unstable Nym Nodes v3 API
+  description: ''
+  contact:
+    name: Nym Technologies SA
+  license:
+    name: Apache-2.0
+    identifier: Apache-2.0
+  version: 4.6.2
+tags:
+- name: Unstable Nym Nodes v3
+paths:
+  /v3/unstable/nym-nodes/semi-skimmed:
+    get:
+      tags:
+      - Unstable Nym Nodes v3
+      summary: Return all Nym Nodes that are currently bonded.
+      operationId: v3_nodes_expanded
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCachedNodesExpandedV3ResponseSchema'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/PaginatedCachedNodesExpandedV3ResponseSchema'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/PaginatedCachedNodesExpandedV3ResponseSchema'
+components:
+  schemas:
+    BasicEntryInformation:
+      type: object
+      required:
+      - ws_port
+      properties:
+        hostname:
+          type:
+          - string
+          - 'null'
+        ws_port:
+          type: integer
+          format: int32
+          minimum: 0
+        wss_port:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+    SkimmedNodeV1:
+      type: object
+      required:
+      - node_id
+      - ed25519_identity_pubkey
+      - ip_addresses
+      - mix_port
+      - x25519_sphinx_pubkey
+      - role
+      - performance
+      properties:
+        ed25519_identity_pubkey:
+          type: string
+        entry:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/BasicEntryInformation'
+        ip_addresses:
+          type: array
+          items:
+            type: string
+        mix_port:
+          type: integer
+          format: int32
+          minimum: 0
+        node_id:
+          type: integer
+          format: int32
+          minimum: 0
+        performance:
+          type: string
+          description: Average node performance in last 24h period
+        role:
+          $ref: '#/components/schemas/NodeRole'
+        supported_roles:
+          $ref: '#/components/schemas/DeclaredRolesV1'
+        x25519_sphinx_pubkey:
+          type: string
+    LewesProtocolDetailsDataV1:
+      type: object
+      required:
+      - enabled
+      - control_port
+      - data_port
+      - x25519
+      - kem_keys
+      properties:
+        control_port:
+          type: integer
+          format: int32
+          description: 'LP TCP control address (default: 41264) for establishing LP sessions'
+          minimum: 0
+        data_port:
+          type: integer
+          format: int32
+          description: 'LP UDP data address (default: 51264) for Sphinx packets wrapped in LP'
+          minimum: 0
+        enabled:
+          type: boolean
+          description: 'Helper field that specifies whether the LP listener(s) is enabled on this node.
+
+            It is directly controlled by the node''s role (i.e. it is enabled if it supports ''entry'' mode)'
+        kem_keys:
+          type: object
+          description: 'Digests of the KEM keys available to this node alongside hashing algorithms used
+
+            for their computation.
+
+            note: digests are hex encoded'
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: string
+            propertyNames:
+              type: string
+              enum:
+              - blake3
+              - shake128
+              - shake256
+              - sha256
+          propertyNames:
+            type: string
+            enum:
+            - mlkem768
+            - mceliece
+        x25519:
+          type: string
+          description: LP public key
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
+    LewesProtocolDetailsV1:
+      type: object
+      required:
+      - content
+      - signature
+      properties:
+        content:
+          $ref: '#/components/schemas/LewesProtocolDetailsDataV1'
+        signature:
+          type: string
+    PaginatedCachedNodesExpandedV3ResponseSchema:
+      type: object
+      title: PaginatedCachedNodesExpandedV3ResponseSchema
+      required:
+      - refreshed_at
+      - nodes
+      properties:
+        nodes:
+          $ref: '#/components/schemas/SemiSkimmedNodeV3'
+        refreshed_at:
+          $ref: '#/components/schemas/OffsetDateTimeJsonSchemaWrapper'
+    NodeRole:
+      oneOf:
+      - type: object
+        required:
+        - Mixnode
+        properties:
+          Mixnode:
+            type: object
+            required:
+            - layer
+            properties:
+              layer:
+                type: integer
+                format: int32
+                minimum: 0
+      - type: string
+        enum:
+        - EntryGateway
+      - type: string
+        enum:
+        - ExitGateway
+      - type: string
+        enum:
+        - Standby
+      - type: string
+        enum:
+        - Inactive
+    OffsetDateTimeJsonSchemaWrapper:
+      type: string
+      format: date-time
+    SemiSkimmedNodeV3:
+      type: object
+      description: All the information required for sending packets between nodes (sphinx, noise, LP)
+      required:
+      - basic
+      - build_version
+      properties:
+        basic:
+          $ref: '#/components/schemas/SkimmedNodeV1'
+          description: Basic node information required for mixnet routing
+        build_version:
+          type: string
+          description: Build version of this node used as a hint in inferring the Ciphersuite compatibility
+        lp:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/LewesProtocolDetailsV1'
+            description: Information required for establishing an LP connection
+        noise_key:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/VersionedNoiseKeyV1'
+            description: Noise key of the node
+    DeclaredRolesV1:
+      type: object
+      required:
+      - mixnode
+      - entry
+      - exit_nr
+      - exit_ipr
+      properties:
+        entry:
+          type: boolean
+        exit_ipr:
+          type: boolean
+        exit_nr:
+          type: boolean
+        mixnode:
+          type: boolean
+    VersionedNoiseKeyV1:
+      type: object
+      required:
+      - supported_version
+      - x25519_pubkey
+      properties:
+        supported_version:
+          type: integer
+          format: int32
+          minimum: 0
+        x25519_pubkey:
+          type: string

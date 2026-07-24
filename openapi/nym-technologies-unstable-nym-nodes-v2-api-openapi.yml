@@ -1,0 +1,563 @@
+openapi: 3.1.0
+info:
+  title: Node Status API Status Unstable Nym Nodes v2 API
+  description: ''
+  contact:
+    name: Nym Technologies SA
+  license:
+    name: Apache-2.0
+    identifier: Apache-2.0
+  version: 4.6.2
+tags:
+- name: Unstable Nym Nodes v2
+paths:
+  /v2/unstable/nym-nodes/semi-skimmed:
+    get:
+      tags:
+      - Unstable Nym Nodes v2
+      summary: 'Return all Nym Nodes and optionally legacy mixnodes/gateways (if `no-legacy` flag is not used)
+
+        that are currently bonded.'
+      operationId: v2_nodes_expanded
+      parameters:
+      - name: role
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - type: string
+            enum:
+            - active-mixnode
+            - entry-gateway
+            - exit-gateway
+      - name: semver_compatibility
+        in: query
+        required: false
+        schema:
+          type:
+          - string
+          - 'null'
+      - name: no_legacy
+        in: query
+        required: false
+        schema:
+          type:
+          - boolean
+          - 'null'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+      - name: epoch_id
+        in: query
+        required: false
+        schema:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCachedNodesExpandedV2ResponseSchema'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/PaginatedCachedNodesExpandedV2ResponseSchema'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/PaginatedCachedNodesExpandedV2ResponseSchema'
+  /v2/unstable/nym-nodes/skimmed:
+    get:
+      tags:
+      - Unstable Nym Nodes v2
+      summary: 'Return all Nym Nodes and optionally legacy mixnodes/gateways (if `no-legacy` flag is not used)
+
+        that are currently bonded.'
+      operationId: v2_nodes_basic_all
+      parameters:
+      - name: role
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - type: string
+            enum:
+            - active-mixnode
+            - entry-gateway
+            - exit-gateway
+      - name: semver_compatibility
+        in: query
+        required: false
+        schema:
+          type:
+          - string
+          - 'null'
+      - name: no_legacy
+        in: query
+        required: false
+        schema:
+          type:
+          - boolean
+          - 'null'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+      - name: epoch_id
+        in: query
+        required: false
+        schema:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCachedNodesResponseSchema'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/PaginatedCachedNodesResponseSchema'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/PaginatedCachedNodesResponseSchema'
+  /v2/unstable/nym-nodes/skimmed/entry-gateways:
+    get:
+      tags:
+      - Unstable Nym Nodes v2
+      summary: 'Returns Nym Nodes and optionally legacy gateways (if `no-legacy` flag is not used)
+
+        that are currently bonded and support entry gateway role.'
+      operationId: v2_entry_gateways_basic_all
+      parameters:
+      - name: semver_compatibility
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: no_legacy
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: epoch_id
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: output
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCachedNodesResponseSchema'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/PaginatedCachedNodesResponseSchema'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/PaginatedCachedNodesResponseSchema'
+  /v2/unstable/nym-nodes/skimmed/exit-gateways:
+    get:
+      tags:
+      - Unstable Nym Nodes v2
+      summary: 'Returns Nym Nodes and optionally legacy gateways (if `no-legacy` flag is not used)
+
+        that are currently bonded and support exit gateway role.'
+      operationId: v2_exit_gateways_basic_all
+      parameters:
+      - name: semver_compatibility
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: no_legacy
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: epoch_id
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: output
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCachedNodesResponseSchema'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/PaginatedCachedNodesResponseSchema'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/PaginatedCachedNodesResponseSchema'
+  /v2/unstable/nym-nodes/skimmed/mixnodes/active:
+    get:
+      tags:
+      - Unstable Nym Nodes v2
+      summary: 'Returns Nym Nodes and optionally legacy mixnodes (if `no-legacy` flag is not used)
+
+        that are currently bonded and are in the active set with one of the mixing roles.'
+      operationId: v2_mixnodes_basic_active
+      parameters:
+      - name: semver_compatibility
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: no_legacy
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: epoch_id
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: output
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCachedNodesResponseSchema'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/PaginatedCachedNodesResponseSchema'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/PaginatedCachedNodesResponseSchema'
+  /v2/unstable/nym-nodes/skimmed/mixnodes/all:
+    get:
+      tags:
+      - Unstable Nym Nodes v2
+      summary: 'Returns Nym Nodes and optionally legacy mixnodes (if `no-legacy` flag is not used)
+
+        that are currently bonded and support mixing role.'
+      operationId: v2_mixnodes_basic_all
+      parameters:
+      - name: semver_compatibility
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: no_legacy
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: epoch_id
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: output
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCachedNodesResponseSchema'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/PaginatedCachedNodesResponseSchema'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/PaginatedCachedNodesResponseSchema'
+components:
+  schemas:
+    BasicEntryInformation:
+      type: object
+      required:
+      - ws_port
+      properties:
+        hostname:
+          type:
+          - string
+          - 'null'
+        ws_port:
+          type: integer
+          format: int32
+          minimum: 0
+        wss_port:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+    SkimmedNodeV1:
+      type: object
+      required:
+      - node_id
+      - ed25519_identity_pubkey
+      - ip_addresses
+      - mix_port
+      - x25519_sphinx_pubkey
+      - role
+      - performance
+      properties:
+        ed25519_identity_pubkey:
+          type: string
+        entry:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/BasicEntryInformation'
+        ip_addresses:
+          type: array
+          items:
+            type: string
+        mix_port:
+          type: integer
+          format: int32
+          minimum: 0
+        node_id:
+          type: integer
+          format: int32
+          minimum: 0
+        performance:
+          type: string
+          description: Average node performance in last 24h period
+        role:
+          $ref: '#/components/schemas/NodeRole'
+        supported_roles:
+          $ref: '#/components/schemas/DeclaredRolesV1'
+        x25519_sphinx_pubkey:
+          type: string
+    SemiSkimmedNodeV1:
+      type: object
+      required:
+      - basic
+      properties:
+        basic:
+          $ref: '#/components/schemas/SkimmedNodeV1'
+        x25519_noise_versioned_key:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/VersionedNoiseKeyV1'
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
+    NodeRole:
+      oneOf:
+      - type: object
+        required:
+        - Mixnode
+        properties:
+          Mixnode:
+            type: object
+            required:
+            - layer
+            properties:
+              layer:
+                type: integer
+                format: int32
+                minimum: 0
+      - type: string
+        enum:
+        - EntryGateway
+      - type: string
+        enum:
+        - ExitGateway
+      - type: string
+        enum:
+        - Standby
+      - type: string
+        enum:
+        - Inactive
+    PaginatedCachedNodesResponseSchema:
+      type: object
+      title: PaginatedCachedNodesResponse
+      required:
+      - refreshed_at
+      - nodes
+      properties:
+        nodes:
+          $ref: '#/components/schemas/SkimmedNodeV1'
+        refreshed_at:
+          $ref: '#/components/schemas/OffsetDateTimeJsonSchemaWrapper'
+    PaginatedCachedNodesExpandedV2ResponseSchema:
+      type: object
+      title: PaginatedCachedNodesExpandedV2ResponseSchema
+      required:
+      - refreshed_at
+      - nodes
+      properties:
+        nodes:
+          $ref: '#/components/schemas/SemiSkimmedNodeV1'
+        refreshed_at:
+          $ref: '#/components/schemas/OffsetDateTimeJsonSchemaWrapper'
+    DeclaredRolesV1:
+      type: object
+      required:
+      - mixnode
+      - entry
+      - exit_nr
+      - exit_ipr
+      properties:
+        entry:
+          type: boolean
+        exit_ipr:
+          type: boolean
+        exit_nr:
+          type: boolean
+        mixnode:
+          type: boolean
+    OffsetDateTimeJsonSchemaWrapper:
+      type: string
+      format: date-time
+    VersionedNoiseKeyV1:
+      type: object
+      required:
+      - supported_version
+      - x25519_pubkey
+      properties:
+        supported_version:
+          type: integer
+          format: int32
+          minimum: 0
+        x25519_pubkey:
+          type: string

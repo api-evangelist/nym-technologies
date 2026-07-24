@@ -1,0 +1,733 @@
+openapi: 3.1.0
+info:
+  title: Node Status API Status network API
+  description: ''
+  contact:
+    name: Nym Technologies SA
+  license:
+    name: Apache-2.0
+    identifier: Apache-2.0
+  version: 4.6.2
+tags:
+- name: network
+paths:
+  /v1/network/chain-blocks-status:
+    get:
+      tags:
+      - network
+      operationId: chain_blocks_status
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignedMessage'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/SignedMessage'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/SignedMessage'
+  /v1/network/chain-status:
+    get:
+      tags:
+      - network
+      operationId: chain_status
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChainStatusResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/ChainStatusResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/ChainStatusResponse'
+  /v1/network/details:
+    get:
+      tags:
+      - network
+      operationId: network_details
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkDetails'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/NetworkDetails'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/NetworkDetails'
+  /v1/network/nym-contracts:
+    get:
+      tags:
+      - network
+      operationId: nym_contracts
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  $ref: '#/components/schemas/ContractInformationContractVersion'
+                propertyNames:
+                  type: string
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties:
+                  $ref: '#/components/schemas/ContractInformationContractVersion'
+                propertyNames:
+                  type: string
+            application/bincode:
+              schema:
+                type: object
+                additionalProperties:
+                  $ref: '#/components/schemas/ContractInformationContractVersion'
+                propertyNames:
+                  type: string
+  /v1/network/nym-contracts-detailed:
+    get:
+      tags:
+      - network
+      operationId: nym_contracts_detailed
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  $ref: '#/components/schemas/ContractInformationBuildInformation'
+                propertyNames:
+                  type: string
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties:
+                  $ref: '#/components/schemas/ContractInformationBuildInformation'
+                propertyNames:
+                  type: string
+            application/bincode:
+              schema:
+                type: object
+                additionalProperties:
+                  $ref: '#/components/schemas/ContractInformationBuildInformation'
+                propertyNames:
+                  type: string
+  /v1/network/signers/status:
+    get:
+      tags:
+      - network
+      operationId: signers_status
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignedMessage'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/SignedMessage'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/SignedMessage'
+  /v1/network/signers/status-detailed:
+    get:
+      tags:
+      - network
+      operationId: signers_status_detailed
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignedMessage'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/SignedMessage'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/SignedMessage'
+components:
+  schemas:
+    ChainStatusResponse:
+      type: object
+      required:
+      - connected_nyxd
+      - status
+      properties:
+        connected_nyxd:
+          type: string
+        status:
+          $ref: '#/components/schemas/DetailedChainStatus'
+    BlockInfo:
+      type: object
+      required:
+      - block_id
+      - block
+      properties:
+        block:
+          $ref: '#/components/schemas/FullBlockInfo'
+        block_id:
+          $ref: '#/components/schemas/BlockId'
+    ContractInformationBuildInformation:
+      type: object
+      properties:
+        address:
+          type:
+          - string
+          - 'null'
+        details:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ContractBuildInformation'
+    AbciInfo:
+      type: object
+      required:
+      - data
+      - version
+      - app_version
+      - last_block_height
+      - last_block_app_hash
+      properties:
+        app_version:
+          type: integer
+          format: int64
+          description: The application protocol version.
+          minimum: 0
+        data:
+          type: string
+          description: Some arbitrary information.
+        last_block_app_hash:
+          type: string
+          description: The latest result of [`Commit`].
+        last_block_height:
+          type: integer
+          format: int64
+          description: The latest block for which the app has called [`Commit`].
+          minimum: 0
+        version:
+          type: string
+          description: The application software semantic version.
+    PartSetHeader:
+      type: object
+      description: Block parts header
+      required:
+      - total
+      - hash
+      properties:
+        hash:
+          type: string
+          description: Hash of the parts set header,
+        total:
+          type: integer
+          format: int32
+          description: Number of parts in this block
+          minimum: 0
+    HeaderVersion:
+      type: object
+      description: '`Version` contains the protocol version for the blockchain and the
+
+        application.
+
+
+        <https://github.com/tendermint/spec/blob/d46cd7f573a2c6a2399fcab2cde981330aa63f37/spec/core/data_structures.md#version>'
+      required:
+      - block
+      - app
+      properties:
+        app:
+          type: integer
+          format: int64
+          description: App version
+          minimum: 0
+        block:
+          type: integer
+          format: int64
+          description: Block version
+          minimum: 0
+    BlockHeader:
+      type: object
+      description: 'Block `Header` values contain metadata about the block and about the
+
+        consensus, as well as commitments to the data in the current block, the
+
+        previous block, and the results returned by the application.
+
+
+        <https://github.com/tendermint/spec/blob/d46cd7f573a2c6a2399fcab2cde981330aa63f37/spec/core/data_structures.md#header>'
+      required:
+      - version
+      - chain_id
+      - height
+      - time
+      - validators_hash
+      - next_validators_hash
+      - consensus_hash
+      - app_hash
+      - proposer_address
+      properties:
+        app_hash:
+          type: string
+          description: State after txs from the previous block
+        chain_id:
+          type: string
+          description: Chain ID
+        consensus_hash:
+          type: string
+          description: Consensus params for the current block
+        data_hash:
+          type:
+          - string
+          - 'null'
+          description: Merkle root of transaction hashes
+        evidence_hash:
+          type:
+          - string
+          - 'null'
+          description: Hash of evidence included in the block
+        height:
+          type: integer
+          format: int64
+          description: Current block height
+          minimum: 0
+        last_block_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/BlockId'
+            description: Previous block info
+        last_commit_hash:
+          type:
+          - string
+          - 'null'
+          description: Commit from validators from the last block
+        last_results_hash:
+          type:
+          - string
+          - 'null'
+          description: Root hash of all results from the txs from the previous block
+        next_validators_hash:
+          type: string
+          description: Validators for the next block
+        proposer_address:
+          type: string
+          description: Original proposer of the block
+        time:
+          type: string
+          description: Current timestamp
+        validators_hash:
+          type: string
+          description: Validators for the current block
+        version:
+          $ref: '#/components/schemas/HeaderVersion'
+          description: Header version
+    NymContracts:
+      type: object
+      properties:
+        coconut_dkg_contract_address:
+          type:
+          - string
+          - 'null'
+        ecash_contract_address:
+          type:
+          - string
+          - 'null'
+        group_contract_address:
+          type:
+          - string
+          - 'null'
+        mixnet_contract_address:
+          type:
+          - string
+          - 'null'
+        multisig_contract_address:
+          type:
+          - string
+          - 'null'
+        network_monitors_contract_address:
+          type:
+          - string
+          - 'null'
+        node_families_contract_address:
+          type:
+          - string
+          - 'null'
+        performance_contract_address:
+          type:
+          - string
+          - 'null'
+        vesting_contract_address:
+          type:
+          - string
+          - 'null'
+    FullBlockInfo:
+      type: object
+      required:
+      - header
+      properties:
+        header:
+          $ref: '#/components/schemas/BlockHeader'
+    DetailedChainStatus:
+      type: object
+      required:
+      - abci
+      - latest_block
+      properties:
+        abci:
+          $ref: '#/components/schemas/AbciInfo'
+        latest_block:
+          $ref: '#/components/schemas/BlockInfo'
+    ApiUrl:
+      type: object
+      required:
+      - url
+      properties:
+        front_hosts:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: 'Optional alternative equivalent hostnames. Each entry must parse as valid Host
+
+
+            see https://docs.rs/url/latest/url/enum.Host.html'
+        url:
+          type: string
+          description: 'Expects a string formatted Url
+
+
+            see https://docs.rs/url/latest/url/struct.Url.html'
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
+    NetworkDetails:
+      type: object
+      required:
+      - connected_nyxd
+      - network
+      properties:
+        connected_nyxd:
+          type: string
+        network:
+          $ref: '#/components/schemas/NymNetworkDetails'
+    ChainBlocksStatusResponseBody:
+      type: object
+      required:
+      - currentTime
+      - chainStatus
+      properties:
+        chainStatus:
+          $ref: '#/components/schemas/ChainStatus'
+        currentTime:
+          type: string
+        latestCachedBlock:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/DetailedChainStatus'
+    ChainDetails:
+      type: object
+      required:
+      - bech32_account_prefix
+      - mix_denom
+      - stake_denom
+      properties:
+        bech32_account_prefix:
+          type: string
+        mix_denom:
+          $ref: '#/components/schemas/DenomDetailsOwned'
+        stake_denom:
+          $ref: '#/components/schemas/DenomDetailsOwned'
+    DenomDetailsOwned:
+      type: object
+      required:
+      - base
+      - display
+      - display_exponent
+      properties:
+        base:
+          type: string
+        display:
+          type: string
+        display_exponent:
+          type: integer
+          format: int32
+          minimum: 0
+    NymNetworkDetails:
+      type: object
+      required:
+      - network_name
+      - chain_details
+      - endpoints
+      - contracts
+      properties:
+        chain_details:
+          $ref: '#/components/schemas/ChainDetails'
+        contracts:
+          $ref: '#/components/schemas/NymContracts'
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidatorDetails'
+        network_name:
+          type: string
+        nym_api_urls:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiUrl'
+        nym_vpn_api_url:
+          type:
+          - string
+          - 'null'
+        nym_vpn_api_urls:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiUrl'
+    ContractInformationContractVersion:
+      type: object
+      properties:
+        address:
+          type:
+          - string
+          - 'null'
+        details:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ContractVersionSchemaResponse'
+    ContractVersionSchemaResponse:
+      type: object
+      title: ContractVersion
+      required:
+      - contract
+      - version
+      properties:
+        contract:
+          type: string
+          description: 'contract is the crate name of the implementing contract, eg. `crate:cw20-base`
+
+            we will use other prefixes for other languages, and their standard global namespacing'
+        version:
+          type: string
+          description: 'version is any string that this implementation knows. It may be simple counter "1", "2".
+
+            or semantic version on release tags "v0.7.0", or some custom feature flag list.
+
+            the only code that needs to understand the version parsing is code that knows how to
+
+            migrate from the given contract (and is tied to its implementation somehow)'
+    BlockId:
+      type: object
+      description: 'Block identifiers which contain two distinct Merkle roots of the block,
+
+        as well as the number of parts in the block.
+
+
+        <https://github.com/tendermint/spec/blob/d46cd7f573a2c6a2399fcab2cde981330aa63f37/spec/core/data_structures.md#blockid>
+
+
+        Default implementation is an empty Id as defined by the Go implementation in
+
+        <https://github.com/tendermint/tendermint/blob/1635d1339c73ae6a82e062cd2dc7191b029efa14/types/block.go#L1204>.
+
+
+        If the Hash is empty in BlockId, the BlockId should be empty (encoded to None).
+
+        This is implemented outside of this struct. Use the Default trait to check for an empty BlockId.
+
+        See: <https://github.com/informalsystems/tendermint-rs/issues/663>'
+      required:
+      - hash
+      - part_set_header
+      properties:
+        hash:
+          type: string
+          description: 'The block''s main hash is the Merkle root of all the fields in the
+
+            block header.'
+        part_set_header:
+          $ref: '#/components/schemas/PartSetHeader'
+          description: 'Parts header (if available) is used for secure gossipping of the block
+
+            during consensus. It is the Merkle root of the complete serialized block
+
+            cut into parts.
+
+
+            PartSet is used to split a byteslice of data into parts (pieces) for
+
+            transmission. By splitting data into smaller parts and computing a
+
+            Merkle root hash on the list, you can verify that a part is
+
+            legitimately part of the complete data, and the part can be forwarded
+
+            to other peers before all the parts are known. In short, it''s a fast
+
+            way to propagate a large file over a gossip network.
+
+
+            <https://github.com/tendermint/tendermint/wiki/Block-Structure#partset>
+
+
+            PartSetHeader in protobuf is defined as never nil using the gogoproto
+
+            annotations. This does not translate to Rust, but we can indicate this
+
+            in the domain type.'
+    ContractBuildInformation:
+      type: object
+      required:
+      - build_timestamp
+      - build_version
+      - commit_sha
+      - commit_timestamp
+      - commit_branch
+      - rustc_version
+      properties:
+        build_timestamp:
+          type: string
+          description: Provides the build timestamp, for example `2021-02-23T20:14:46.558472672+00:00`.
+        build_version:
+          type: string
+          description: Provides the build version, for example `0.1.0-9-g46f83e1`.
+        cargo_debug:
+          type: string
+          description: Provides the cargo debug mode that was used for the build.
+        cargo_opt_level:
+          type: string
+          description: Provides the opt value set by cargo during the build
+        commit_branch:
+          type: string
+          description: Provides the name of the git branch that was used for the build, for example `master`.
+        commit_sha:
+          type: string
+          description: Provides the hash of the commit that was used for the build, for example `46f83e112520533338245862d366f6a02cef07d4`.
+        commit_timestamp:
+          type: string
+          description: Provides the timestamp of the commit that was used for the build, for example `2021-02-23T08:08:02-05:00`.
+        contract_name:
+          type: string
+          description: Provides the name of the binary, i.e. the content of `CARGO_PKG_NAME` environmental variable.
+        rustc_version:
+          type: string
+          description: Provides the rustc version that was used for the build, for example `1.52.0-nightly`.
+    ValidatorDetails:
+      type: object
+      required:
+      - nyxd_url
+      properties:
+        api_url:
+          type:
+          - string
+          - 'null'
+        nyxd_url:
+          type: string
+        websocket_url:
+          type:
+          - string
+          - 'null'
+    SignedMessage:
+      type: object
+      required:
+      - body
+      - signature
+      properties:
+        body:
+          $ref: '#/components/schemas/ChainBlocksStatusResponseBody'
+        signature:
+          type: string
+    ChainStatus:
+      oneOf:
+      - type: string
+        enum:
+        - synced
+      - type: string
+        enum:
+        - unknown
+      - type: object
+        required:
+        - stalled
+        properties:
+          stalled:
+            type: object
+            required:
+            - approximate_amount
+            properties:
+              approximate_amount:
+                type: string

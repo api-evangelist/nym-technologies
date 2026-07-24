@@ -1,0 +1,97 @@
+openapi: 3.1.0
+info:
+  title: Node Status API Status Sessions API
+  description: ''
+  contact:
+    name: Nym Technologies SA
+  license:
+    name: Apache-2.0
+    identifier: Apache-2.0
+  version: 4.6.2
+tags:
+- name: Sessions
+paths:
+  /v2/metrics/sessions:
+    get:
+      tags:
+      - Sessions
+      operationId: get_all_sessions
+      parameters:
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+      - name: node_id
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: day
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedResult_SessionStats'
+components:
+  schemas:
+    PagedResult_SessionStats:
+      type: object
+      required:
+      - page
+      - size
+      - total
+      - items
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            required:
+            - gateway_identity_key
+            - node_id
+            - day
+            - unique_active_clients
+            - session_started
+            properties:
+              day:
+                type: string
+                format: date
+              gateway_identity_key:
+                type: string
+              mixnet_sessions: {}
+              node_id:
+                type: integer
+                format: int32
+                minimum: 0
+              session_started:
+                type: integer
+                format: int64
+              unique_active_clients:
+                type: integer
+                format: int64
+              unknown_sessions: {}
+              users_hashes: {}
+              vpn_sessions: {}
+        page:
+          type: integer
+          minimum: 0
+        size:
+          type: integer
+          minimum: 0
+        total:
+          type: integer
+          minimum: 0

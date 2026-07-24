@@ -1,0 +1,790 @@
+openapi: 3.1.0
+info:
+  title: Node Status API Status dVPN Directory Cache API
+  description: ''
+  contact:
+    name: Nym Technologies SA
+  license:
+    name: Apache-2.0
+    identifier: Apache-2.0
+  version: 4.6.2
+tags:
+- name: dVPN Directory Cache
+paths:
+  /dvpn/v1/directory/gateways:
+    get:
+      tags:
+      - dVPN Directory Cache
+      summary: Gets available entry and exit gateways from the Nym network directory
+      operationId: getGateways
+      parameters:
+      - name: min_node_version
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DVpnGateway'
+  /dvpn/v1/directory/gateways/countries:
+    get:
+      tags:
+      - dVPN Directory Cache
+      summary: Gets available exit gateway countries as two-letter ISO country codes from the Nym network directory
+      operationId: getGatewayCountries
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /dvpn/v1/directory/gateways/country/{two_letter_country_code}:
+    get:
+      tags:
+      - dVPN Directory Cache
+      summary: Gets available gateways from the Nym network directory by country
+      operationId: getGatewaysByCountry
+      parameters:
+      - name: two_letter_country_code
+        in: path
+        required: true
+        schema:
+          type: string
+          maxLength: 2
+          minLength: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DVpnGateway'
+  /dvpn/v1/directory/gateways/entry:
+    get:
+      tags:
+      - dVPN Directory Cache
+      summary: Gets available entry gateways from the Nym network directory
+      operationId: getEntryGateways
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DVpnGateway'
+  /dvpn/v1/directory/gateways/entry/countries:
+    get:
+      tags:
+      - dVPN Directory Cache
+      summary: Gets available entry gateway countries as two-letter ISO country codes from the Nym network directory
+      operationId: getEntryGatewayCountries
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /dvpn/v1/directory/gateways/entry/country/{two_letter_country_code}:
+    get:
+      tags:
+      - dVPN Directory Cache
+      summary: Gets available entry gateways from the Nym network directory by country
+      operationId: getEntryGatewaysByCountry
+      parameters:
+      - name: two_letter_country_code
+        in: path
+        required: true
+        schema:
+          type: string
+          maxLength: 2
+          minLength: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DVpnGateway'
+  /dvpn/v1/directory/gateways/exit:
+    get:
+      tags:
+      - dVPN Directory Cache
+      summary: Gets available exit gateways from the Nym network directory
+      operationId: getExitGateways
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DVpnGateway'
+  /dvpn/v1/directory/gateways/exit/countries:
+    get:
+      tags:
+      - dVPN Directory Cache
+      summary: Gets available exit gateway countries as two-letter ISO country codes from the Nym network directory
+      operationId: getExitGatewayCountries
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /dvpn/v1/directory/gateways/exit/country/{two_letter_country_code}:
+    get:
+      tags:
+      - dVPN Directory Cache
+      summary: Gets available exit gateways from the Nym network directory by country
+      operationId: getExitGatewaysByCountry
+      parameters:
+      - name: two_letter_country_code
+        in: path
+        required: true
+        schema:
+          type: string
+          maxLength: 2
+          minLength: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DVpnGateway'
+components:
+  schemas:
+    BasicEntryInformation:
+      type: object
+      required:
+      - ws_port
+      properties:
+        hostname:
+          type:
+          - string
+          - 'null'
+        ws_port:
+          type: integer
+          format: int32
+          minimum: 0
+        wss_port:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+    Exit:
+      type: object
+      required:
+      - can_connect
+      - can_route_ip_v4
+      - can_route_ip_external_v4
+      - can_route_ip_v6
+      - can_route_ip_external_v6
+      properties:
+        can_connect:
+          type: boolean
+        can_route_ip_external_v4:
+          type: boolean
+        can_route_ip_external_v6:
+          type: boolean
+        can_route_ip_v4:
+          type: boolean
+        can_route_ip_v6:
+          type: boolean
+    WgProbeResults:
+      type: object
+      required:
+      - can_register
+      - can_handshake_v4
+      - can_resolve_dns_v4
+      - ping_hosts_performance_v4
+      - ping_ips_performance_v4
+      - can_handshake_v6
+      - can_resolve_dns_v6
+      - ping_hosts_performance_v6
+      - ping_ips_performance_v6
+      - download_duration_sec_v4
+      - downloaded_file_v4
+      - download_error_v4
+      - download_duration_sec_v6
+      - downloaded_file_v6
+      - download_error_v6
+      properties:
+        can_handshake:
+          type:
+          - boolean
+          - 'null'
+        can_handshake_v4:
+          type: boolean
+        can_handshake_v6:
+          type: boolean
+        can_query_metadata_v4:
+          type:
+          - boolean
+          - 'null'
+        can_register:
+          type: boolean
+        can_resolve_dns:
+          type:
+          - boolean
+          - 'null'
+        can_resolve_dns_v4:
+          type: boolean
+        can_resolve_dns_v6:
+          type: boolean
+        download_duration_milliseconds_v4:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 0
+        download_duration_milliseconds_v6:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 0
+        download_duration_sec_v4:
+          type: integer
+          format: int64
+          minimum: 0
+        download_duration_sec_v6:
+          type: integer
+          format: int64
+          minimum: 0
+        download_error_v4:
+          type: string
+        download_error_v6:
+          type: string
+        downloaded_file_size_bytes_v4:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 0
+        downloaded_file_size_bytes_v6:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 0
+        downloaded_file_v4:
+          type: string
+        downloaded_file_v6:
+          type: string
+        ping_hosts_performance:
+          type:
+          - number
+          - 'null'
+          format: float
+        ping_hosts_performance_v4:
+          type: number
+          format: float
+        ping_hosts_performance_v6:
+          type: number
+          format: float
+        ping_ips_performance:
+          type:
+          - number
+          - 'null'
+          format: float
+        ping_ips_performance_v4:
+          type: number
+          format: float
+        ping_ips_performance_v6:
+          type: number
+          format: float
+    AuthenticatorDetailsV1:
+      type: object
+      required:
+      - address
+      properties:
+        address:
+          type: string
+          description: address of the embedded authenticator
+    BridgeInformation:
+      type: object
+      required:
+      - version
+      - transports
+      properties:
+        transports:
+          type: array
+          items:
+            $ref: '#/components/schemas/BridgeParameters'
+        version:
+          type: string
+    DvpnProbeOutcome:
+      type: object
+      description: this structure is parsed on VPN API so it has some fields which must not be changed
+      required:
+      - as_entry
+      properties:
+        as_entry:
+          $ref: '#/components/schemas/Entry'
+        as_exit:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Exit'
+        lp:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/LpProbeResults'
+        socks5:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Socks5'
+        wg:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/WgProbeResults'
+    LewesProtocolDetailsDataV1:
+      type: object
+      required:
+      - enabled
+      - control_port
+      - data_port
+      - x25519
+      - kem_keys
+      properties:
+        control_port:
+          type: integer
+          format: int32
+          description: 'LP TCP control address (default: 41264) for establishing LP sessions'
+          minimum: 0
+        data_port:
+          type: integer
+          format: int32
+          description: 'LP UDP data address (default: 51264) for Sphinx packets wrapped in LP'
+          minimum: 0
+        enabled:
+          type: boolean
+          description: 'Helper field that specifies whether the LP listener(s) is enabled on this node.
+
+            It is directly controlled by the node''s role (i.e. it is enabled if it supports ''entry'' mode)'
+        kem_keys:
+          type: object
+          description: 'Digests of the KEM keys available to this node alongside hashing algorithms used
+
+            for their computation.
+
+            note: digests are hex encoded'
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: string
+            propertyNames:
+              type: string
+          propertyNames:
+            type: string
+        x25519:
+          type: string
+          description: LP public key
+    DvpnGwProbe:
+      type: object
+      description: gateway probe output returned on the API
+      required:
+      - last_updated_utc
+      - outcome
+      properties:
+        last_updated_utc:
+          type: string
+        outcome:
+          $ref: '#/components/schemas/DvpnProbeOutcome'
+    NodeFamilyInformation:
+      type: object
+      required:
+      - id
+      - name
+      - description
+      - family_stake
+      - members
+      properties:
+        description:
+          type: string
+        family_stake:
+          type: integer
+          minimum: 0
+        id:
+          type: integer
+          format: int32
+          minimum: 0
+        members:
+          type: integer
+          minimum: 0
+        name:
+          type: string
+    Location:
+      type: object
+      required:
+      - two_letter_iso_country_code
+      - latitude
+      - longitude
+      - city
+      - region
+      - org
+      - postal
+      - timezone
+      properties:
+        asn:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Asn'
+        city:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        org:
+          type: string
+        postal:
+          type: string
+        region:
+          type: string
+        timezone:
+          type: string
+        two_letter_iso_country_code:
+          type: string
+    Entry:
+      oneOf:
+      - $ref: '#/components/schemas/EntryTestResult'
+      - type: 'null'
+        default: null
+      - type: 'null'
+        default: null
+    BinaryBuildInformationOwned:
+      type: object
+      required:
+      - binary_name
+      - build_timestamp
+      - build_version
+      - commit_sha
+      - commit_timestamp
+      - commit_branch
+      - rustc_version
+      - rustc_channel
+      - cargo_profile
+      properties:
+        binary_name:
+          type: string
+          description: Provides the name of the binary, i.e. the content of `CARGO_PKG_NAME` environmental variable.
+        build_timestamp:
+          type: string
+          description: Provides the build timestamp, for example `2021-02-23T20:14:46.558472672+00:00`.
+        build_version:
+          type: string
+          description: Provides the build version, for example `0.1.0-9-g46f83e1`.
+        cargo_profile:
+          type: string
+          description: Provides the cargo debug mode that was used for the build.
+        cargo_triple:
+          type: string
+          description: Provides the cargo target triple that was used for the build.
+        commit_branch:
+          type: string
+          description: Provides the name of the git branch that was used for the build, for example `master`.
+        commit_sha:
+          type: string
+          description: Provides the hash of the commit that was used for the build, for example `46f83e112520533338245862d366f6a02cef07d4`.
+        commit_timestamp:
+          type: string
+          description: Provides the timestamp of the commit that was used for the build, for example `2021-02-23T08:08:02-05:00`.
+        rustc_channel:
+          type: string
+          description: Provides the rustc channel that was used for the build, for example `nightly`.
+        rustc_version:
+          type: string
+          description: Provides the rustc version that was used for the build, for example `1.52.0-nightly`.
+    Asn:
+      type: object
+      required:
+      - asn
+      - name
+      - domain
+      - route
+      - kind
+      properties:
+        asn:
+          type: string
+        domain:
+          type: string
+        kind:
+          $ref: '#/components/schemas/AsnKind'
+        name:
+          type: string
+        route:
+          type: string
+    LpProbeResults:
+      type: object
+      required:
+      - can_connect
+      - can_handshake
+      - can_register
+      properties:
+        can_connect:
+          type: boolean
+        can_handshake:
+          type: boolean
+        can_register:
+          type: boolean
+        error:
+          type:
+          - string
+          - 'null'
+    LewesProtocolDetailsV1:
+      type: object
+      required:
+      - content
+      - signature
+      properties:
+        content:
+          $ref: '#/components/schemas/LewesProtocolDetailsDataV1'
+        signature:
+          type: string
+    NodeRole:
+      oneOf:
+      - type: object
+        required:
+        - Mixnode
+        properties:
+          Mixnode:
+            type: object
+            required:
+            - layer
+            properties:
+              layer:
+                type: integer
+                format: int32
+                minimum: 0
+      - type: string
+        enum:
+        - EntryGateway
+      - type: string
+        enum:
+        - ExitGateway
+      - type: string
+        enum:
+        - Standby
+      - type: string
+        enum:
+        - Inactive
+    EntryTestResult:
+      type: object
+      required:
+      - can_connect
+      - can_route
+      properties:
+        can_connect:
+          type: boolean
+        can_route:
+          type: boolean
+    IpPacketRouterDetailsV1:
+      type: object
+      required:
+      - address
+      properties:
+        address:
+          type: string
+          description: address of the embedded ip packet router
+    QuicClientOptions:
+      type: object
+      required:
+      - addresses
+      - id_pubkey
+      properties:
+        addresses:
+          type: array
+          items:
+            type: string
+        host:
+          type:
+          - string
+          - 'null'
+        id_pubkey:
+          type: string
+    NodeStakeInformation:
+      type: object
+      required:
+      - total_stake
+      - total_delegations
+      - total_bond
+      - delegations
+      properties:
+        delegations:
+          type: integer
+          minimum: 0
+        total_bond:
+          type: integer
+          minimum: 0
+        total_delegations:
+          type: integer
+          minimum: 0
+        total_stake:
+          type: integer
+          minimum: 0
+    AsnKind:
+      type: string
+      enum:
+      - residential
+      - other
+    ScoreValue:
+      type: string
+      enum:
+      - offline
+      - low
+      - medium
+      - high
+    DVpnGateway:
+      type: object
+      required:
+      - identity_key
+      - name
+      - location
+      - ip_addresses
+      - mix_port
+      - role
+      - performance
+      - build_information
+      properties:
+        authenticator:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/AuthenticatorDetailsV1'
+        bridges:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/BridgeInformation'
+        build_information:
+          $ref: '#/components/schemas/BinaryBuildInformationOwned'
+        description:
+          type:
+          - string
+          - 'null'
+        entry:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/BasicEntryInformation'
+        family_data:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/NodeFamilyInformation'
+        identity_key:
+          type: string
+        ip_addresses:
+          type: array
+          items:
+            type: string
+        ip_packet_router:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/IpPacketRouterDetailsV1'
+        last_ports_check_utc:
+          type:
+          - string
+          - 'null'
+        last_probe:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/DvpnGwProbe'
+        lewes_protocol_details:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/LewesProtocolDetailsV1'
+        location:
+          $ref: '#/components/schemas/Location'
+        mix_port:
+          type: integer
+          format: int32
+          minimum: 0
+        name:
+          type: string
+        performance:
+          type: string
+        performance_v2:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/DVpnGatewayPerformance'
+        ports_check: {}
+        role:
+          $ref: '#/components/schemas/NodeRole'
+        staking_data:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/NodeStakeInformation'
+    Socks5:
+      type: object
+      required:
+      - can_proxy_https
+      - score
+      properties:
+        can_proxy_https:
+          type: boolean
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        score:
+          $ref: '#/components/schemas/ScoreValue'
+    DVpnGatewayPerformance:
+      type: object
+      required:
+      - last_updated_utc
+      - score
+      - mixnet_score
+      - load
+      - uptime_percentage_last_24_hours
+      properties:
+        last_updated_utc:
+          type: string
+        load:
+          $ref: '#/components/schemas/ScoreValue'
+        mixnet_score:
+          $ref: '#/components/schemas/ScoreValue'
+        score:
+          $ref: '#/components/schemas/ScoreValue'
+        uptime_percentage_last_24_hours:
+          type: number
+          format: float
+    BridgeParameters:
+      oneOf:
+      - type: object
+        required:
+        - args
+        - transport_type
+        properties:
+          args:
+            $ref: '#/components/schemas/QuicClientOptions'
+          transport_type:
+            type: string
+            enum:
+            - quic_plain

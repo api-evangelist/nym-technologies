@@ -1,0 +1,222 @@
+openapi: 3.1.0
+info:
+  title: Node Status API Status network-monitor-status API
+  description: ''
+  contact:
+    name: Nym Technologies SA
+  license:
+    name: Apache-2.0
+    identifier: Apache-2.0
+  version: 4.6.2
+tags:
+- name: network-monitor-status
+paths:
+  /v1/status/gateway/{identity}/core-status-count:
+    get:
+      tags:
+      - network-monitor-status
+      operationId: gateway_core_status_count
+      parameters:
+      - name: since
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: output
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/Output'
+      - name: identity
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayCoreStatusResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/GatewayCoreStatusResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/GatewayCoreStatusResponse'
+      deprecated: true
+  /v1/status/gateway/{identity}/history:
+    get:
+      tags:
+      - network-monitor-status
+      operationId: gateway_uptime_history
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      - name: identity
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayUptimeHistoryResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/GatewayUptimeHistoryResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/GatewayUptimeHistoryResponse'
+      deprecated: true
+  /v1/status/mixnode/{mix_id}/core-status-count:
+    get:
+      tags:
+      - network-monitor-status
+      operationId: mixnode_core_status_count
+      parameters:
+      - name: mix_id
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/u32'
+      - name: since
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: output
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MixnodeCoreStatusResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/MixnodeCoreStatusResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/MixnodeCoreStatusResponse'
+      deprecated: true
+  /v1/status/mixnode/{mix_id}/history:
+    get:
+      tags:
+      - network-monitor-status
+      operationId: mixnode_uptime_history
+      parameters:
+      - name: mix_id
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/u32'
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MixnodeUptimeHistoryResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/MixnodeUptimeHistoryResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/MixnodeUptimeHistoryResponse'
+      deprecated: true
+components:
+  schemas:
+    OldHistoricalUptimeResponse:
+      type: object
+      required:
+      - date
+      - uptime
+      properties:
+        date:
+          type: string
+        uptime:
+          type: integer
+          format: int32
+          minimum: 0
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
+    u32:
+      type: integer
+      format: int32
+      minimum: 0
+    MixnodeCoreStatusResponse:
+      type: object
+      required:
+      - mix_id
+      - count
+      properties:
+        count:
+          type: integer
+          format: int64
+        mix_id:
+          $ref: '#/components/schemas/u32'
+    GatewayCoreStatusResponse:
+      type: object
+      required:
+      - identity
+      - count
+      properties:
+        count:
+          type: integer
+          format: int64
+        identity:
+          type: string
+    MixnodeUptimeHistoryResponse:
+      type: object
+      required:
+      - mix_id
+      - identity
+      - history
+      properties:
+        history:
+          type: array
+          items:
+            $ref: '#/components/schemas/OldHistoricalUptimeResponse'
+        identity:
+          type: string
+        mix_id:
+          $ref: '#/components/schemas/u32'
+    GatewayUptimeHistoryResponse:
+      type: object
+      required:
+      - identity
+      - history
+      properties:
+        history:
+          type: array
+          items:
+            $ref: '#/components/schemas/OldHistoricalUptimeResponse'
+        identity:
+          type: string

@@ -1,0 +1,196 @@
+openapi: 3.1.0
+info:
+  title: Node Status API Status API
+  description: ''
+  contact:
+    name: Nym Technologies SA
+  license:
+    name: Apache-2.0
+    identifier: Apache-2.0
+  version: 4.6.2
+tags:
+- name: API Status
+paths:
+  /v1/api-status/build-information:
+    get:
+      tags:
+      - API Status
+      operationId: build_information
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BinaryBuildInformationOwned'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/BinaryBuildInformationOwned'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/BinaryBuildInformationOwned'
+  /v1/api-status/health:
+    get:
+      tags:
+      - API Status
+      operationId: health
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiHealthResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/ApiHealthResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/ApiHealthResponse'
+  /v1/api-status/signer-information:
+    get:
+      tags:
+      - API Status
+      operationId: signer_information
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignerInformationResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/SignerInformationResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/SignerInformationResponse'
+components:
+  schemas:
+    ApiStatus:
+      type: string
+      enum:
+      - up
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
+    SignerInformationResponse:
+      type: object
+      required:
+      - cosmos_address
+      - identity
+      - announce_address
+      properties:
+        announce_address:
+          type: string
+        cosmos_address:
+          type: string
+        identity:
+          type: string
+        verification_key:
+          type:
+          - string
+          - 'null'
+    BinaryBuildInformationOwned:
+      type: object
+      required:
+      - binary_name
+      - build_timestamp
+      - build_version
+      - commit_sha
+      - commit_timestamp
+      - commit_branch
+      - rustc_version
+      - rustc_channel
+      - cargo_profile
+      properties:
+        binary_name:
+          type: string
+          description: Provides the name of the binary, i.e. the content of `CARGO_PKG_NAME` environmental variable.
+        build_timestamp:
+          type: string
+          description: Provides the build timestamp, for example `2021-02-23T20:14:46.558472672+00:00`.
+        build_version:
+          type: string
+          description: Provides the build version, for example `0.1.0-9-g46f83e1`.
+        cargo_profile:
+          type: string
+          description: Provides the cargo debug mode that was used for the build.
+        cargo_triple:
+          type: string
+          description: Provides the cargo target triple that was used for the build.
+        commit_branch:
+          type: string
+          description: Provides the name of the git branch that was used for the build, for example `master`.
+        commit_sha:
+          type: string
+          description: Provides the hash of the commit that was used for the build, for example `46f83e112520533338245862d366f6a02cef07d4`.
+        commit_timestamp:
+          type: string
+          description: Provides the timestamp of the commit that was used for the build, for example `2021-02-23T08:08:02-05:00`.
+        rustc_channel:
+          type: string
+          description: Provides the rustc channel that was used for the build, for example `nightly`.
+        rustc_version:
+          type: string
+          description: Provides the rustc version that was used for the build, for example `1.52.0-nightly`.
+    ApiHealthResponse:
+      type: object
+      required:
+      - status
+      - uptime
+      properties:
+        chain_status:
+          $ref: '#/components/schemas/ChainStatus'
+        status:
+          $ref: '#/components/schemas/ApiStatus'
+        uptime:
+          type: integer
+          format: int64
+          minimum: 0
+    ChainStatus:
+      oneOf:
+      - type: string
+        enum:
+        - synced
+      - type: string
+        enum:
+        - unknown
+      - type: object
+        required:
+        - stalled
+        properties:
+          stalled:
+            type: object
+            required:
+            - approximate_amount
+            properties:
+              approximate_amount:
+                type: string

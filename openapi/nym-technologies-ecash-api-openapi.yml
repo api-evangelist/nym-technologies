@@ -1,0 +1,1079 @@
+openapi: 3.1.0
+info:
+  title: Node Status API Status Ecash API
+  description: ''
+  contact:
+    name: Nym Technologies SA
+  license:
+    name: Apache-2.0
+    identifier: Apache-2.0
+  version: 4.6.2
+tags:
+- name: Ecash
+paths:
+  /v1/ecash/batch-redeem-ecash-tickets:
+    post:
+      tags:
+      - Ecash
+      operationId: batch_redeem_tickets
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchRedeemTicketsBody'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EcashBatchTicketRedemptionResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/EcashBatchTicketRedemptionResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/EcashBatchTicketRedemptionResponse'
+        '400':
+          description: this nym-api is not an ecash signer in the current epoch
+          content:
+            text/plain:
+              schema:
+                type: string
+  /v1/ecash/blind-sign:
+    post:
+      tags:
+      - Ecash
+      operationId: post_blind_sign
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlindSignRequestBody'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlindedSignatureResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/BlindedSignatureResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/BlindedSignatureResponse'
+        '400':
+          description: this nym-api is not an ecash signer in the current epoch
+          content:
+            text/plain:
+              schema:
+                type: string
+  /v1/ecash/double-spending-filter-v1:
+    get:
+      tags:
+      - Ecash
+      operationId: double_spending_filter_v1
+      responses:
+        '500':
+          description: bloomfilters got disabled
+          content:
+            text/plain:
+              schema:
+                type: string
+      deprecated: true
+  /v1/ecash/issued-ticketbooks-challenge-commitment:
+    post:
+      tags:
+      - Ecash
+      operationId: issued_ticketbooks_challenge_commitment
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignedMessage'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignedMessage'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/SignedMessage'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/SignedMessage'
+        '400':
+          description: this nym-api is not an ecash signer in the current epoch
+          content:
+            text/plain:
+              schema:
+                type: string
+  /v1/ecash/issued-ticketbooks-count:
+    get:
+      tags:
+      - Ecash
+      summary: 'Returns number of issued ticketbooks for given dates.
+
+        Note: this endpoint will not be accurate for old dates'
+      operationId: issued_ticketbooks_count
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/Output'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssuedTicketbooksCountResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/IssuedTicketbooksCountResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/IssuedTicketbooksCountResponse'
+        '400':
+          description: this nym-api is not an ecash signer in the current epoch
+          content:
+            text/plain:
+              schema:
+                type: string
+  /v1/ecash/issued-ticketbooks-data:
+    post:
+      tags:
+      - Ecash
+      operationId: issued_ticketbooks_data
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignedMessage'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignedMessage'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/SignedMessage'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/SignedMessage'
+        '400':
+          description: this nym-api is not an ecash signer in the current epoch
+          content:
+            text/plain:
+              schema:
+                type: string
+  /v1/ecash/issued-ticketbooks-for-count/{expiration_date}:
+    get:
+      tags:
+      - Ecash
+      summary: 'Returns number of issued ticketbooks for particular expiration date.
+
+        Note: this endpoint will not be accurate for old dates'
+      operationId: issued_ticketbooks_for_count
+      parameters:
+      - name: expiration_date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssuedTicketbooksForCountResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/IssuedTicketbooksForCountResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/IssuedTicketbooksForCountResponse'
+        '400':
+          description: this nym-api is not an ecash signer in the current epoch
+          content:
+            text/plain:
+              schema:
+                type: string
+  /v1/ecash/issued-ticketbooks-for/{expiration_date}:
+    get:
+      tags:
+      - Ecash
+      operationId: issued_ticketbooks_for
+      parameters:
+      - name: expiration_date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignedMessage'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/SignedMessage'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/SignedMessage'
+        '400':
+          description: this nym-api is not an ecash signer in the current epoch
+          content:
+            text/plain:
+              schema:
+                type: string
+  /v1/ecash/issued-ticketbooks-on-count/{issuance_date}:
+    get:
+      tags:
+      - Ecash
+      summary: 'Returns number of issued ticketbooks on particular date.
+
+        Note: this endpoint will not be accurate for old dates'
+      operationId: issued_ticketbooks_on_count
+      parameters:
+      - name: issuance_date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssuedTicketbooksOnCountResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/IssuedTicketbooksOnCountResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/IssuedTicketbooksOnCountResponse'
+        '400':
+          description: this nym-api is not an ecash signer in the current epoch
+          content:
+            text/plain:
+              schema:
+                type: string
+  /v1/ecash/partial-coin-indices-signatures:
+    get:
+      tags:
+      - Ecash
+      operationId: partial_coin_indices_signatures
+      parameters:
+      - name: epoch_id
+        in: query
+        required: false
+        schema:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 0
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartialCoinIndicesSignatureResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/PartialCoinIndicesSignatureResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/PartialCoinIndicesSignatureResponse'
+        '400':
+          description: this nym-api is not an ecash signer in the current epoch
+          content:
+            text/plain:
+              schema:
+                type: string
+  /v1/ecash/partial-expiration-date-signatures:
+    get:
+      tags:
+      - Ecash
+      operationId: partial_expiration_date_signatures
+      parameters:
+      - name: expiration_date
+        in: query
+        required: false
+        schema:
+          type:
+          - string
+          - 'null'
+      - name: epoch_id
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/u64'
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartialExpirationDateSignatureResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/PartialExpirationDateSignatureResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/PartialExpirationDateSignatureResponse'
+        '400':
+          description: this nym-api is not an ecash signer in the current epoch
+          content:
+            text/plain:
+              schema:
+                type: string
+  /v1/ecash/signer-status:
+    get:
+      tags:
+      - Ecash
+      operationId: signer_status
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignedMessage'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/SignedMessage'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/SignedMessage'
+  /v1/ecash/verify-ecash-ticket:
+    post:
+      tags:
+      - Ecash
+      operationId: verify_ticket
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyEcashTicketBody'
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EcashTicketVerificationResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/EcashTicketVerificationResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/EcashTicketVerificationResponse'
+        '400':
+          description: this nym-api is not an ecash signer in the current epoch
+          content:
+            text/plain:
+              schema:
+                type: string
+components:
+  schemas:
+    PartialExpirationDateSignatureResponse:
+      type: object
+      required:
+      - epoch_id
+      - expiration_date
+      - signatures
+      properties:
+        epoch_id:
+          type: integer
+          format: int64
+          minimum: 0
+        expiration_date:
+          type: string
+          example: '1970-01-01'
+        signatures:
+          $ref: '#/components/schemas/AnnotatedExpirationDateSignature'
+    BlockInfo:
+      type: object
+      required:
+      - block_id
+      - block
+      properties:
+        block:
+          $ref: '#/components/schemas/FullBlockInfo'
+        block_id:
+          $ref: '#/components/schemas/BlockId'
+    VerifyEcashTicketBody:
+      type: object
+      required:
+      - credential
+      - gateway_cosmos_addr
+      properties:
+        credential:
+          type: string
+          description: The cryptographic material required for spending the underlying credential.
+        gateway_cosmos_addr:
+          type: string
+          description: Cosmos address of the sender of the credential
+    IssuedTicketbooksForCountResponse:
+      type: object
+      required:
+      - expirationDate
+      - total
+      - issued
+      properties:
+        expirationDate:
+          type: string
+          example: '1970-01-01'
+        issued:
+          type: array
+          items:
+            $ref: '#/components/schemas/IssuedTicketbooksForCount'
+        total:
+          type: integer
+          minimum: 0
+    IssuedTicketbooksOnCount:
+      type: object
+      required:
+      - expirationDate
+      - count
+      properties:
+        count:
+          type: integer
+          format: int32
+          minimum: 0
+        expirationDate:
+          type: string
+          example: '1970-01-01'
+    BatchRedeemTicketsBody:
+      type: object
+      required:
+      - digest
+      - included_serial_numbers
+      - proposal_id
+      - gateway_cosmos_addr
+      properties:
+        digest:
+          type: array
+          items:
+            type: integer
+            format: int32
+            minimum: 0
+        gateway_cosmos_addr:
+          type: string
+        included_serial_numbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/SerialNumberWrapper'
+        proposal_id:
+          type: integer
+          format: int64
+          minimum: 0
+    AbciInfo:
+      type: object
+      required:
+      - data
+      - version
+      - app_version
+      - last_block_height
+      - last_block_app_hash
+      properties:
+        app_version:
+          type: integer
+          format: int64
+          description: The application protocol version.
+          minimum: 0
+        data:
+          type: string
+          description: Some arbitrary information.
+        last_block_app_hash:
+          type: string
+          description: The latest result of [`Commit`].
+        last_block_height:
+          type: integer
+          format: int64
+          description: The latest block for which the app has called [`Commit`].
+          minimum: 0
+        version:
+          type: string
+          description: The application software semantic version.
+    SerialNumberWrapper:
+      type: array
+      items:
+        type: integer
+        format: int32
+        minimum: 0
+    IssuedTicketbooksCount:
+      type: object
+      required:
+      - issuanceDate
+      - expirationDate
+      - count
+      properties:
+        count:
+          type: integer
+          format: int32
+          minimum: 0
+        expirationDate:
+          type: string
+          example: '1970-01-01'
+        issuanceDate:
+          type: string
+          example: '1970-01-01'
+    u64:
+      type: integer
+      format: int64
+      minimum: 0
+    PartSetHeader:
+      type: object
+      description: Block parts header
+      required:
+      - total
+      - hash
+      properties:
+        hash:
+          type: string
+          description: Hash of the parts set header,
+        total:
+          type: integer
+          format: int32
+          description: Number of parts in this block
+          minimum: 0
+    HeaderVersion:
+      type: object
+      description: '`Version` contains the protocol version for the blockchain and the
+
+        application.
+
+
+        <https://github.com/tendermint/spec/blob/d46cd7f573a2c6a2399fcab2cde981330aa63f37/spec/core/data_structures.md#version>'
+      required:
+      - block
+      - app
+      properties:
+        app:
+          type: integer
+          format: int64
+          description: App version
+          minimum: 0
+        block:
+          type: integer
+          format: int64
+          description: Block version
+          minimum: 0
+    BlindedSignature:
+      type: object
+      required:
+      - h
+      - c
+      properties:
+        c:
+          type: string
+        h:
+          type: string
+    WithdrawalReqProof:
+      type: object
+      required:
+      - challenge
+      - response_opening
+      - response_openings
+      - response_attributes
+      properties:
+        challenge:
+          type: string
+        response_attributes:
+          type: array
+          items:
+            type: string
+        response_opening:
+          type: string
+        response_openings:
+          type: array
+          items:
+            type: string
+    EcashBatchTicketRedemptionResponse:
+      type: object
+      required:
+      - proposal_accepted
+      properties:
+        proposal_accepted:
+          type: boolean
+    BlockHeader:
+      type: object
+      description: 'Block `Header` values contain metadata about the block and about the
+
+        consensus, as well as commitments to the data in the current block, the
+
+        previous block, and the results returned by the application.
+
+
+        <https://github.com/tendermint/spec/blob/d46cd7f573a2c6a2399fcab2cde981330aa63f37/spec/core/data_structures.md#header>'
+      required:
+      - version
+      - chain_id
+      - height
+      - time
+      - validators_hash
+      - next_validators_hash
+      - consensus_hash
+      - app_hash
+      - proposer_address
+      properties:
+        app_hash:
+          type: string
+          description: State after txs from the previous block
+        chain_id:
+          type: string
+          description: Chain ID
+        consensus_hash:
+          type: string
+          description: Consensus params for the current block
+        data_hash:
+          type:
+          - string
+          - 'null'
+          description: Merkle root of transaction hashes
+        evidence_hash:
+          type:
+          - string
+          - 'null'
+          description: Hash of evidence included in the block
+        height:
+          type: integer
+          format: int64
+          description: Current block height
+          minimum: 0
+        last_block_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/BlockId'
+            description: Previous block info
+        last_commit_hash:
+          type:
+          - string
+          - 'null'
+          description: Commit from validators from the last block
+        last_results_hash:
+          type:
+          - string
+          - 'null'
+          description: Root hash of all results from the txs from the previous block
+        next_validators_hash:
+          type: string
+          description: Validators for the next block
+        proposer_address:
+          type: string
+          description: Original proposer of the block
+        time:
+          type: string
+          description: Current timestamp
+        validators_hash:
+          type: string
+          description: Validators for the current block
+        version:
+          $ref: '#/components/schemas/HeaderVersion'
+          description: Header version
+    FullBlockInfo:
+      type: object
+      required:
+      - header
+      properties:
+        header:
+          $ref: '#/components/schemas/BlockHeader'
+    AnnotatedExpirationDateSignature:
+      type: object
+      required:
+      - signature
+      - expiration_timestamp
+      - spending_timestamp
+      properties:
+        expiration_timestamp:
+          type: integer
+          format: int32
+          minimum: 0
+        signature:
+          $ref: '#/components/schemas/Signature'
+        spending_timestamp:
+          type: integer
+          format: int32
+          minimum: 0
+    DetailedChainStatus:
+      type: object
+      required:
+      - abci
+      - latest_block
+      properties:
+        abci:
+          $ref: '#/components/schemas/AbciInfo'
+        latest_block:
+          $ref: '#/components/schemas/BlockInfo'
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
+    PublicKeyUser:
+      type: object
+      required:
+      - pk
+      properties:
+        pk:
+          type: string
+    IssuedTicketbooksForCount:
+      type: object
+      required:
+      - issuanceDate
+      - count
+      properties:
+        count:
+          type: integer
+          format: int32
+          minimum: 0
+        issuanceDate:
+          type: string
+          example: '1970-01-01'
+    EcashTicketVerificationResult:
+      oneOf:
+      - type: object
+        required:
+        - Ok
+        properties:
+          Ok:
+            default: null
+      - type: string
+        enum:
+        - EcashTicketVerificationRejection
+      description: Used exclusively as part of OpenAPI docs
+    IssuedTicketbooksCountResponse:
+      type: object
+      required:
+      - issued
+      properties:
+        issued:
+          type: array
+          items:
+            $ref: '#/components/schemas/IssuedTicketbooksCount'
+    ChainBlocksStatusResponseBody:
+      type: object
+      required:
+      - currentTime
+      - chainStatus
+      properties:
+        chainStatus:
+          $ref: '#/components/schemas/ChainStatus'
+        currentTime:
+          type: string
+        latestCachedBlock:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/DetailedChainStatus'
+    WithdrawalRequest:
+      type: object
+      required:
+      - joined_commitment_hash
+      - joined_commitment
+      - private_attributes_commitments
+      - zk_proof
+      properties:
+        joined_commitment:
+          type: string
+        joined_commitment_hash:
+          type: string
+        private_attributes_commitments:
+          type: array
+          items:
+            type: string
+        zk_proof:
+          $ref: '#/components/schemas/WithdrawalReqProof'
+    BlindSignRequestBody:
+      type: object
+      required:
+      - inner_sign_request
+      - deposit_id
+      - signature
+      - ecash_pubkey
+      - expiration_date
+      - ticketbook_type
+      properties:
+        deposit_id:
+          type: integer
+          format: int32
+          description: the id of the associated deposit
+          minimum: 0
+        ecash_pubkey:
+          $ref: '#/components/schemas/PublicKeyUser'
+        expiration_date:
+          type: string
+          example: '1970-01-01'
+        inner_sign_request:
+          $ref: '#/components/schemas/WithdrawalRequest'
+        signature:
+          type: string
+          description: Signature on the inner sign request and the tx hash
+        ticketbook_type:
+          type: string
+    AnnotatedCoinIndexSignature:
+      type: object
+      required:
+      - signature
+      - index
+      properties:
+        index:
+          type: integer
+          format: int64
+          minimum: 0
+        signature:
+          $ref: '#/components/schemas/Signature'
+    Signature:
+      type: object
+      required:
+      - h
+      - s
+      properties:
+        h:
+          type: string
+        s:
+          type: string
+    EcashTicketVerificationResponse:
+      type: object
+      required:
+      - verified
+      properties:
+        verified:
+          $ref: '#/components/schemas/EcashTicketVerificationResult'
+    BlindedSignatureResponse:
+      type: object
+      required:
+      - blinded_signature
+      properties:
+        blinded_signature:
+          $ref: '#/components/schemas/BlindedSignature'
+    BlockId:
+      type: object
+      description: 'Block identifiers which contain two distinct Merkle roots of the block,
+
+        as well as the number of parts in the block.
+
+
+        <https://github.com/tendermint/spec/blob/d46cd7f573a2c6a2399fcab2cde981330aa63f37/spec/core/data_structures.md#blockid>
+
+
+        Default implementation is an empty Id as defined by the Go implementation in
+
+        <https://github.com/tendermint/tendermint/blob/1635d1339c73ae6a82e062cd2dc7191b029efa14/types/block.go#L1204>.
+
+
+        If the Hash is empty in BlockId, the BlockId should be empty (encoded to None).
+
+        This is implemented outside of this struct. Use the Default trait to check for an empty BlockId.
+
+        See: <https://github.com/informalsystems/tendermint-rs/issues/663>'
+      required:
+      - hash
+      - part_set_header
+      properties:
+        hash:
+          type: string
+          description: 'The block''s main hash is the Merkle root of all the fields in the
+
+            block header.'
+        part_set_header:
+          $ref: '#/components/schemas/PartSetHeader'
+          description: 'Parts header (if available) is used for secure gossipping of the block
+
+            during consensus. It is the Merkle root of the complete serialized block
+
+            cut into parts.
+
+
+            PartSet is used to split a byteslice of data into parts (pieces) for
+
+            transmission. By splitting data into smaller parts and computing a
+
+            Merkle root hash on the list, you can verify that a part is
+
+            legitimately part of the complete data, and the part can be forwarded
+
+            to other peers before all the parts are known. In short, it''s a fast
+
+            way to propagate a large file over a gossip network.
+
+
+            <https://github.com/tendermint/tendermint/wiki/Block-Structure#partset>
+
+
+            PartSetHeader in protobuf is defined as never nil using the gogoproto
+
+            annotations. This does not translate to Rust, but we can indicate this
+
+            in the domain type.'
+    IssuedTicketbooksOnCountResponse:
+      type: object
+      required:
+      - issuanceDate
+      - total
+      - issued
+      properties:
+        issuanceDate:
+          type: string
+          example: '1970-01-01'
+        issued:
+          type: array
+          items:
+            $ref: '#/components/schemas/IssuedTicketbooksOnCount'
+        total:
+          type: integer
+          minimum: 0
+    PartialCoinIndicesSignatureResponse:
+      type: object
+      required:
+      - epoch_id
+      - signatures
+      properties:
+        epoch_id:
+          type: integer
+          format: int64
+          minimum: 0
+        signatures:
+          $ref: '#/components/schemas/AnnotatedCoinIndexSignature'
+    SignedMessage:
+      type: object
+      required:
+      - body
+      - signature
+      properties:
+        body:
+          $ref: '#/components/schemas/ChainBlocksStatusResponseBody'
+        signature:
+          type: string
+    ChainStatus:
+      oneOf:
+      - type: string
+        enum:
+        - synced
+      - type: string
+        enum:
+        - unknown
+      - type: object
+        required:
+        - stalled
+        properties:
+          stalled:
+            type: object
+            required:
+            - approximate_amount
+            properties:
+              approximate_amount:
+                type: string

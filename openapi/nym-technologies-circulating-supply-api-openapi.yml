@@ -1,0 +1,133 @@
+openapi: 3.1.0
+info:
+  title: Node Status API Status circulating-supply API
+  description: ''
+  contact:
+    name: Nym Technologies SA
+  license:
+    name: Apache-2.0
+    identifier: Apache-2.0
+  version: 4.6.2
+tags:
+- name: circulating-supply
+paths:
+  /v1/circulating-supply:
+    get:
+      tags:
+      - circulating-supply
+      operationId: get_full_circulating_supply
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CirculatingSupplyResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/CirculatingSupplyResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/CirculatingSupplyResponse'
+  /v1/circulating-supply/circulating-supply-value:
+    get:
+      tags:
+      - circulating-supply
+      operationId: get_circulating_supply
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: number
+                format: double
+            application/yaml:
+              schema:
+                type: number
+                format: double
+            application/bincode:
+              schema:
+                type: number
+                format: double
+  /v1/circulating-supply/total-supply-value:
+    get:
+      tags:
+      - circulating-supply
+      operationId: get_total_supply
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: number
+                format: double
+            application/yaml:
+              schema:
+                type: number
+                format: double
+            application/bincode:
+              schema:
+                type: number
+                format: double
+components:
+  schemas:
+    CirculatingSupplyResponse:
+      type: object
+      required:
+      - total_supply
+      - mixmining_reserve
+      - vesting_tokens
+      - circulating_supply
+      properties:
+        circulating_supply:
+          $ref: '#/components/schemas/CoinSchema'
+        mixmining_reserve:
+          $ref: '#/components/schemas/CoinSchema'
+        total_supply:
+          $ref: '#/components/schemas/CoinSchema'
+        vesting_tokens:
+          $ref: '#/components/schemas/CoinSchema'
+    CoinSchema:
+      type: object
+      title: Coin
+      required:
+      - denom
+      - amount
+      properties:
+        amount:
+          type: integer
+          minimum: 0
+        denom:
+          type: string
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode

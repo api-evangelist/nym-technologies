@@ -1,0 +1,342 @@
+openapi: 3.1.0
+info:
+  title: Node Status API Status Node Families API
+  description: ''
+  contact:
+    name: Nym Technologies SA
+  license:
+    name: Apache-2.0
+    identifier: Apache-2.0
+  version: 4.6.2
+tags:
+- name: Node Families
+paths:
+  /v1/node-families:
+    get:
+      tags:
+      - Node Families
+      operationId: get_families
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/OutputV2'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse_NodeFamily'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse_NodeFamily'
+  /v1/node-families/by-node/{node_id}:
+    get:
+      tags:
+      - Node Families
+      operationId: get_family_for_node
+      parameters:
+      - name: node_id
+        in: path
+        description: Identifier of the member node
+        required: true
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/OutputV2'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeFamilyForNodeResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/NodeFamilyForNodeResponse'
+  /v1/node-families/{family_id}:
+    get:
+      tags:
+      - Node Families
+      operationId: get_family_by_id
+      parameters:
+      - name: family_id
+        in: path
+        description: Identifier of the family
+        required: true
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/OutputV2'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeFamilyResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/NodeFamilyResponse'
+components:
+  schemas:
+    NodeFamilyForNodeResponse:
+      type: object
+      description: 'Response wrapper for endpoints that look up the family a given node
+
+        belongs to. `family` is `None` when the node is not currently a member of
+
+        any cached family.'
+      required:
+      - node_id
+      properties:
+        family:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/NodeFamily'
+            description: The family this node belongs to, if any.
+        node_id:
+          $ref: '#/components/schemas/u32'
+          description: The node the lookup was performed for.
+    NodeStakeInformation:
+      type: object
+      description: Per-node stake snapshot derived from the mixnet contract's rewarding state.
+      required:
+      - stake
+      - bond
+      - delegations
+      - delegators
+      properties:
+        bond:
+          $ref: '#/components/schemas/CoinSchema'
+          description: Operator pledge component of `stake`.
+        delegations:
+          $ref: '#/components/schemas/CoinSchema'
+          description: Delegations component of `stake`.
+        delegators:
+          type: integer
+          description: Number of unique delegators backing this node.
+          minimum: 0
+        stake:
+          $ref: '#/components/schemas/CoinSchema'
+          description: Operator bond + all delegations, with accrued rewards applied.
+    NodeFamilyMember:
+      type: object
+      description: Family member view as exposed by the nym-api node-families endpoints.
+      required:
+      - node_id
+      - joined_at
+      properties:
+        joined_at:
+          type: string
+          description: Block-time at which the node joined the family.
+        node_id:
+          $ref: '#/components/schemas/u32'
+        stake_information:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/NodeStakeInformation'
+            description: 'Stake/bond/delegation snapshot; `None` if the node was not in the
+
+              mixnet-contract cache at refresh time.'
+    u32:
+      type: integer
+      format: int32
+      minimum: 0
+    NodeFamilyResponse:
+      type: object
+      description: 'Response wrapper for endpoints that look up a single family. `family` is
+
+        `None` when the lookup did not match (rather than returning a 404).'
+      properties:
+        family:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/NodeFamily'
+    PaginatedResponse_NodeFamily:
+      type: object
+      required:
+      - pagination
+      - data
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            description: 'Family view as exposed by the nym-api node-families endpoints, carrying
+
+              current members, pending invitations and aggregated stats.'
+            required:
+            - id
+            - name
+            - description
+            - owner
+            - average_node_age
+            - created_at
+            - members
+            - pending_invitations
+            properties:
+              average_node_age:
+                type: string
+                description: Average age of members.
+              created_at:
+                type: string
+                description: Block-time the family was created.
+              description:
+                type: string
+                description: Free-form family description.
+              id:
+                type: integer
+                format: int32
+                description: Unique family identifier assigned by the contract.
+                minimum: 0
+              members:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NodeFamilyMember'
+                description: Current members of the family.
+              name:
+                type: string
+                description: Display name (canonical form — see `normalise_family_name`).
+              owner:
+                type: string
+                description: Owner address (cosmos `Addr` rendered as a string).
+              pending_invitations:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PendingFamilyInvitation'
+                description: Outstanding invitations issued by the family owner.
+              total_stake:
+                oneOf:
+                - type: 'null'
+                - $ref: '#/components/schemas/CoinSchema'
+                  description: Sum of member stakes; `None` when no member has reportable stake.
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    PendingFamilyInvitation:
+      type: object
+      description: Pending family invitation as exposed by the nym-api node-families endpoints.
+      required:
+      - node_id
+      - expires_at
+      properties:
+        expires_at:
+          type: string
+          description: Block-time after which the invitation can no longer be accepted.
+        node_id:
+          $ref: '#/components/schemas/u32'
+          description: Node the invitation is addressed to.
+    NodeFamily:
+      type: object
+      description: 'Family view as exposed by the nym-api node-families endpoints, carrying
+
+        current members, pending invitations and aggregated stats.'
+      required:
+      - id
+      - name
+      - description
+      - owner
+      - average_node_age
+      - created_at
+      - members
+      - pending_invitations
+      properties:
+        average_node_age:
+          type: string
+          description: Average age of members.
+        created_at:
+          type: string
+          description: Block-time the family was created.
+        description:
+          type: string
+          description: Free-form family description.
+        id:
+          type: integer
+          format: int32
+          description: Unique family identifier assigned by the contract.
+          minimum: 0
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/NodeFamilyMember'
+          description: Current members of the family.
+        name:
+          type: string
+          description: Display name (canonical form — see `normalise_family_name`).
+        owner:
+          type: string
+          description: Owner address (cosmos `Addr` rendered as a string).
+        pending_invitations:
+          type: array
+          items:
+            $ref: '#/components/schemas/PendingFamilyInvitation'
+          description: Outstanding invitations issued by the family owner.
+        total_stake:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/CoinSchema'
+            description: Sum of member stakes; `None` when no member has reportable stake.
+    CoinSchema:
+      type: object
+      title: Coin
+      required:
+      - denom
+      - amount
+      properties:
+        amount:
+          type: integer
+          minimum: 0
+        denom:
+          type: string
+    Pagination:
+      type: object
+      required:
+      - total
+      - page
+      - size
+      properties:
+        page:
+          type: integer
+          format: int32
+          minimum: 0
+        size:
+          type: integer
+          minimum: 0
+        total:
+          type: integer
+          minimum: 0
+    OutputV2:
+      type: string
+      enum:
+      - json
+      - yaml

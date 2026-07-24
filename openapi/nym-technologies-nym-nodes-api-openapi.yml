@@ -1,0 +1,1742 @@
+openapi: 3.1.0
+info:
+  title: Node Status API Status Nym Nodes API
+  description: ''
+  contact:
+    name: Nym Technologies SA
+  license:
+    name: Apache-2.0
+    identifier: Apache-2.0
+  version: 4.6.2
+tags:
+- name: Nym Nodes
+paths:
+  /v1/nym-nodes/annotation/{node_id}:
+    get:
+      tags:
+      - Nym Nodes
+      operationId: get_node_annotation
+      parameters:
+      - name: node_id
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/u32'
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnnotationResponseV1'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/AnnotationResponseV1'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/AnnotationResponseV1'
+  /v1/nym-nodes/bonded:
+    get:
+      tags:
+      - Nym Nodes
+      operationId: get_bonded_nodes
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/Output'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse_NymNodeDetails'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse_NymNodeDetails'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse_NymNodeDetails'
+  /v1/nym-nodes/described:
+    get:
+      tags:
+      - Nym Nodes
+      operationId: get_described_nodes
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/Output'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse_NymNodeDescriptionV1'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse_NymNodeDescriptionV1'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse_NymNodeDescriptionV1'
+      deprecated: true
+  /v1/nym-nodes/historical-performance/{node_id}:
+    get:
+      tags:
+      - Nym Nodes
+      operationId: get_historical_performance
+      parameters:
+      - name: date
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: output
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/Output'
+      - name: node_id
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/u32'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeDatePerformanceResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/NodeDatePerformanceResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/NodeDatePerformanceResponse'
+  /v1/nym-nodes/noise:
+    get:
+      tags:
+      - Nym Nodes
+      operationId: nodes_noise
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/Output'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse_NoiseDetails'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse_NoiseDetails'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse_NoiseDetails'
+  /v1/nym-nodes/performance-history/{node_id}:
+    get:
+      tags:
+      - Nym Nodes
+      operationId: get_node_performance_history
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/Output'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: node_id
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/u32'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerformanceHistoryResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/PerformanceHistoryResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/PerformanceHistoryResponse'
+  /v1/nym-nodes/performance/{node_id}:
+    get:
+      tags:
+      - Nym Nodes
+      operationId: get_current_node_performance
+      parameters:
+      - name: node_id
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/u32'
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodePerformanceResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/NodePerformanceResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/NodePerformanceResponse'
+  /v1/nym-nodes/refresh-described:
+    post:
+      tags:
+      - Nym Nodes
+      operationId: refresh_described
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NodeRefreshBody'
+        required: true
+      responses: {}
+  /v1/nym-nodes/rewarded-set:
+    get:
+      tags:
+      - Nym Nodes
+      operationId: rewarded_set
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RewardedSetResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/RewardedSetResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/RewardedSetResponse'
+  /v1/nym-nodes/stake-saturation/{node_id}:
+    get:
+      tags:
+      - Nym Nodes
+      operationId: get_node_stake_saturation
+      parameters:
+      - name: node_id
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/u32'
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Output'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StakeSaturationResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/StakeSaturationResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/StakeSaturationResponse'
+  /v1/nym-nodes/uptime-history/{node_id}:
+    get:
+      tags:
+      - Nym Nodes
+      operationId: get_node_uptime_history
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/Output'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: node_id
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/u32'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerformanceHistoryResponse'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/PerformanceHistoryResponse'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/PerformanceHistoryResponse'
+  /v2/nym-nodes/annotation/{node_id}:
+    get:
+      tags:
+      - Nym Nodes
+      operationId: v2_get_node_annotation
+      parameters:
+      - name: node_id
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/u32'
+      - name: output
+        in: query
+        required: false
+        schema:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/OutputV2'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnnotationResponseV2'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/AnnotationResponseV2'
+  /v2/nym-nodes/described:
+    get:
+      tags:
+      - Nym Nodes
+      operationId: v2_get_described_nodes
+      parameters:
+      - name: output
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/Output'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse_NymNodeDescriptionV2'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse_NymNodeDescriptionV2'
+            application/bincode:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse_NymNodeDescriptionV2'
+  /v3/nym-nodes/stress-testing/batch-submit:
+    post:
+      tags:
+      - Nym Nodes
+      summary: Accept a batch of stress-test results from an authorised network monitor orchestrator.
+      description: "The batch is rejected unless all of the following hold:\n- the submission timestamp is within a short staleness window of the current time,\n- the signer's key is currently registered in the network-monitors contract,\n- the submission timestamp is strictly greater than the signer's previous accepted submission\n  (timestamp-based replay protection, so orchestrators don't need to keep a nonce counter),\n- the signature on the body verifies against the signer's key.\n\nIndividual result entries that fail per-entry validation (non-mixnode role, performance score\noutside `[0.0, 1.0]`) are logged as errors and dropped, but do not fail the batch."
+      operationId: batch_submit_stress_testing_results
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignedMessage'
+        required: true
+      responses:
+        '200':
+          description: the submitted batch has been accepted and stored
+        '400':
+          description: the submitted request is stale or replayed
+        '401':
+          description: the submitted request was unauthorised or failed integrity check
+  /v3/nym-nodes/stress-testing/known-monitors/{identity_key}:
+    get:
+      tags:
+      - Nym Nodes
+      summary: 'Report whether the given identity key is currently recognised by this nym-api as an
+
+        authorised network monitor orchestrator.'
+      description: 'Intended for orchestrators to self-check after (re)announcing their key on-chain - a
+
+        successful response with `authorised: true` means this nym-api has picked up the chain change
+
+        and is ready to accept stress-test submissions signed by that key.'
+      operationId: known_network_monitor
+      parameters:
+      - name: identity_key
+        in: path
+        description: base58-encoded ed25519 identity key of the queried network monitor
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KnownNetworkMonitorResponse'
+        '400':
+          description: the provided identity key is not a valid base58-encoded ed25519 public key
+components:
+  schemas:
+    NodeAnnotationV2:
+      type: object
+      required:
+      - detailed_performance
+      properties:
+        chain_interaction_capabilities:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ChainInteractionCapabilitiesDetailed'
+        current_role:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/DisplayRole'
+        detailed_performance:
+          $ref: '#/components/schemas/DetailedNodePerformanceV2'
+    HostKeysV1:
+      type: object
+      required:
+      - ed25519
+      - x25519
+      - current_x25519_sphinx_key
+      properties:
+        current_x25519_sphinx_key:
+          $ref: '#/components/schemas/SphinxKeyV1'
+        ed25519:
+          type: string
+        pre_announced_x25519_sphinx_key:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SphinxKeyV1'
+        x25519:
+          type: string
+          deprecated: true
+        x25519_versioned_noise:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/VersionedNoiseKeyV1'
+    NymNode:
+      type: object
+      description: Information provided by the node operator during bonding that are used to allow other entities to use the services of this node.
+      required:
+      - host
+      - identity_key
+      properties:
+        custom_http_port:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          description: 'Allow specifying custom port for accessing the http, and thus self-described, api
+
+            of this node for the capabilities discovery.'
+          minimum: 0
+        host:
+          type: string
+          description: 'Network address of this nym-node, for example 1.1.1.1 or foo.mixnode.com
+
+            that is used to discover other capabilities of this node.'
+        identity_key:
+          type: string
+          description: Base58-encoded ed25519 EdDSA public key.
+    AnnotationResponseV1:
+      type: object
+      required:
+      - node_id
+      properties:
+        annotation:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/NodeAnnotationV1'
+        node_id:
+          type: integer
+          format: int32
+          minimum: 0
+    NodeRefreshBody:
+      type: object
+      required:
+      - node_identity
+      - request_timestamp
+      - signature
+      properties:
+        node_identity:
+          type: string
+        request_timestamp:
+          type: integer
+          format: int64
+        signature:
+          type: string
+    BlockInfo:
+      type: object
+      required:
+      - block_id
+      - block
+      properties:
+        block:
+          $ref: '#/components/schemas/FullBlockInfo'
+        block_id:
+          $ref: '#/components/schemas/BlockId'
+    NodeCostParams:
+      type: object
+      description: 'The cost parameters, or the cost function, defined for the particular mixnode that influences
+
+        how the rewards should be split between the node operator and its delegators.'
+      required:
+      - profit_margin_percent
+      - interval_operating_cost
+      properties:
+        interval_operating_cost:
+          $ref: '#/components/schemas/CoinSchema'
+          description: Operating cost of the associated node per the entire interval.
+        profit_margin_percent:
+          type: string
+          description: The profit margin of the associated node, i.e. the desired percent of the reward to be distributed to the operator.
+    DetailedNodePerformanceV1:
+      type: object
+      required:
+      - performance_score
+      - routing_score
+      - config_score
+      properties:
+        config_score:
+          $ref: '#/components/schemas/ConfigScoreV1'
+        performance_score:
+          type: number
+          format: double
+          description: routing_score * config_score
+        routing_score:
+          $ref: '#/components/schemas/RoutingScore'
+    NymNodeAuxiliaryDetailsV1:
+      type: object
+      properties:
+        accepted_operator_terms_and_conditions:
+          type: boolean
+          description: 'Specifies whether this node operator has agreed to the terms and conditions
+
+            as defined at <https://nymtech.net/terms-and-conditions/operators/v1.0.0>'
+        announce_ports:
+          $ref: '#/components/schemas/AnnouncePortsV1'
+        location:
+          type:
+          - string
+          - 'null'
+          description: Optional ISO 3166 alpha-2 two-letter country code of the node's **physical** location
+          example: PL
+    NodeDatePerformanceResponse:
+      type: object
+      required:
+      - node_id
+      - date
+      properties:
+        date:
+          type: string
+          example: '1970-01-01'
+        node_id:
+          type: integer
+          format: int32
+          minimum: 0
+        performance:
+          type:
+          - number
+          - 'null'
+          format: double
+    AbciInfo:
+      type: object
+      required:
+      - data
+      - version
+      - app_version
+      - last_block_height
+      - last_block_app_hash
+      properties:
+        app_version:
+          type: integer
+          format: int64
+          description: The application protocol version.
+          minimum: 0
+        data:
+          type: string
+          description: Some arbitrary information.
+        last_block_app_hash:
+          type: string
+          description: The latest result of [`Commit`].
+        last_block_height:
+          type: integer
+          format: int64
+          description: The latest block for which the app has called [`Commit`].
+          minimum: 0
+        version:
+          type: string
+          description: The application software semantic version.
+    PaginatedResponse_HistoricalPerformanceResponse:
+      type: object
+      required:
+      - pagination
+      - data
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            required:
+            - date
+            - performance
+            properties:
+              date:
+                type: string
+                example: '1970-01-01'
+              performance:
+                type: number
+                format: double
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    AuthenticatorDetailsV1:
+      type: object
+      required:
+      - address
+      properties:
+        address:
+          type: string
+          description: address of the embedded authenticator
+    OffsetDateTimeJsonSchemaWrapper:
+      type: string
+      format: date-time
+    HostInformationV1:
+      type: object
+      required:
+      - ip_address
+      - keys
+      properties:
+        hostname:
+          type:
+          - string
+          - 'null'
+        ip_address:
+          type: array
+          items:
+            type: string
+        keys:
+          $ref: '#/components/schemas/HostKeysV1'
+    PaginatedResponse_NoiseDetails:
+      type: object
+      required:
+      - pagination
+      - data
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            required:
+            - key
+            - mixnet_port
+            - ip_addresses
+            properties:
+              ip_addresses:
+                type: array
+                items:
+                  type: string
+              key:
+                $ref: '#/components/schemas/VersionedNoiseKeyV1'
+              mixnet_port:
+                type: integer
+                format: int32
+                minimum: 0
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    VersionedNoiseKeyV1:
+      type: object
+      required:
+      - supported_version
+      - x25519_pubkey
+      properties:
+        supported_version:
+          type: integer
+          format: int32
+          minimum: 0
+        x25519_pubkey:
+          type: string
+    DescribedNodeTypeV1:
+      type: string
+      enum:
+      - legacy_mixnode
+      - legacy_gateway
+      - nym_node
+    NymNodeDataV2:
+      type: object
+      required:
+      - host_information
+      - build_information
+      - mixnet_websockets
+      properties:
+        authenticator:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/AuthenticatorDetailsV1'
+        auxiliary_details:
+          $ref: '#/components/schemas/NymNodeAuxiliaryDetailsV1'
+        build_information:
+          $ref: '#/components/schemas/BinaryBuildInformationOwned'
+        declared_role:
+          $ref: '#/components/schemas/DeclaredRolesV1'
+        host_information:
+          $ref: '#/components/schemas/HostInformationV1'
+        ip_packet_router:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/IpPacketRouterDetailsV1'
+        last_polled:
+          $ref: '#/components/schemas/OffsetDateTimeJsonSchemaWrapper'
+        lewes_protocol:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/LewesProtocolDetailsV1'
+        mixnet_websockets:
+          $ref: '#/components/schemas/WebSocketsV1'
+        network_requester:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/NetworkRequesterDetailsV1'
+        wireguard:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/WireguardDetailsV1'
+    PartSetHeader:
+      type: object
+      description: Block parts header
+      required:
+      - total
+      - hash
+      properties:
+        hash:
+          type: string
+          description: Hash of the parts set header,
+        total:
+          type: integer
+          format: int32
+          description: Number of parts in this block
+          minimum: 0
+    LewesProtocolDetailsDataV1:
+      type: object
+      required:
+      - enabled
+      - control_port
+      - data_port
+      - x25519
+      - kem_keys
+      properties:
+        control_port:
+          type: integer
+          format: int32
+          description: 'LP TCP control address (default: 41264) for establishing LP sessions'
+          minimum: 0
+        data_port:
+          type: integer
+          format: int32
+          description: 'LP UDP data address (default: 51264) for Sphinx packets wrapped in LP'
+          minimum: 0
+        enabled:
+          type: boolean
+          description: 'Helper field that specifies whether the LP listener(s) is enabled on this node.
+
+            It is directly controlled by the node''s role (i.e. it is enabled if it supports ''entry'' mode)'
+        kem_keys:
+          type: object
+          description: 'Digests of the KEM keys available to this node alongside hashing algorithms used
+
+            for their computation.
+
+            note: digests are hex encoded'
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: string
+            propertyNames:
+              type: string
+              enum:
+              - blake3
+              - shake128
+              - shake256
+              - sha256
+          propertyNames:
+            type: string
+            enum:
+            - mlkem768
+            - mceliece
+        x25519:
+          type: string
+          description: LP public key
+    HeaderVersion:
+      type: object
+      description: '`Version` contains the protocol version for the blockchain and the
+
+        application.
+
+
+        <https://github.com/tendermint/spec/blob/d46cd7f573a2c6a2399fcab2cde981330aa63f37/spec/core/data_structures.md#version>'
+      required:
+      - block
+      - app
+      properties:
+        app:
+          type: integer
+          format: int64
+          description: App version
+          minimum: 0
+        block:
+          type: integer
+          format: int64
+          description: Block version
+          minimum: 0
+    DetailedNodePerformanceV2:
+      type: object
+      required:
+      - performance_score
+      - routing_score
+      - config_score
+      - stress_testing_score
+      properties:
+        config_score:
+          $ref: '#/components/schemas/ConfigScoreV2'
+        performance_score:
+          type: number
+          format: double
+          description: 'routing_score * config_score
+
+            or
+
+            routing_score * config_score * stress_testing_score, if enabled'
+        routing_score:
+          $ref: '#/components/schemas/RoutingScore'
+        stress_testing_score:
+          $ref: '#/components/schemas/StressTestingScore'
+    PerformanceHistoryResponse:
+      type: object
+      required:
+      - node_id
+      - history
+      properties:
+        history:
+          $ref: '#/components/schemas/PaginatedResponse_HistoricalPerformanceResponse'
+        node_id:
+          type: integer
+          format: int32
+          minimum: 0
+    NetworkRequesterDetailsV1:
+      type: object
+      required:
+      - address
+      - uses_exit_policy
+      properties:
+        address:
+          type: string
+          description: address of the embedded network requester
+        uses_exit_policy:
+          type: boolean
+          description: flag indicating whether this network requester uses the exit policy rather than the deprecated allow list
+    StakeSaturationResponse:
+      type: object
+      required:
+      - saturation
+      - uncapped_saturation
+      - as_at
+      properties:
+        as_at:
+          type: integer
+          format: int64
+        saturation:
+          type: string
+        uncapped_saturation:
+          type: string
+    RewardedSetResponse:
+      type: object
+      required:
+      - entry_gateways
+      - exit_gateways
+      - layer1
+      - layer2
+      - layer3
+      - standby
+      properties:
+        entry_gateways:
+          type: array
+          items:
+            $ref: '#/components/schemas/u32'
+        epoch_id:
+          type: integer
+          format: int32
+          minimum: 0
+        exit_gateways:
+          type: array
+          items:
+            $ref: '#/components/schemas/u32'
+        layer1:
+          type: array
+          items:
+            $ref: '#/components/schemas/u32'
+        layer2:
+          type: array
+          items:
+            $ref: '#/components/schemas/u32'
+        layer3:
+          type: array
+          items:
+            $ref: '#/components/schemas/u32'
+        standby:
+          type: array
+          items:
+            $ref: '#/components/schemas/u32'
+    ConfigScoreV1:
+      type: object
+      required:
+      - score
+      - self_described_api_available
+      - accepted_terms_and_conditions
+      - runs_nym_node_binary
+      properties:
+        accepted_terms_and_conditions:
+          type: boolean
+        runs_nym_node_binary:
+          type: boolean
+        score:
+          type: number
+          format: double
+          description: Total score after taking all the criteria into consideration
+        self_described_api_available:
+          type: boolean
+        versions_behind:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+    BlockHeader:
+      type: object
+      description: 'Block `Header` values contain metadata about the block and about the
+
+        consensus, as well as commitments to the data in the current block, the
+
+        previous block, and the results returned by the application.
+
+
+        <https://github.com/tendermint/spec/blob/d46cd7f573a2c6a2399fcab2cde981330aa63f37/spec/core/data_structures.md#header>'
+      required:
+      - version
+      - chain_id
+      - height
+      - time
+      - validators_hash
+      - next_validators_hash
+      - consensus_hash
+      - app_hash
+      - proposer_address
+      properties:
+        app_hash:
+          type: string
+          description: State after txs from the previous block
+        chain_id:
+          type: string
+          description: Chain ID
+        consensus_hash:
+          type: string
+          description: Consensus params for the current block
+        data_hash:
+          type:
+          - string
+          - 'null'
+          description: Merkle root of transaction hashes
+        evidence_hash:
+          type:
+          - string
+          - 'null'
+          description: Hash of evidence included in the block
+        height:
+          type: integer
+          format: int64
+          description: Current block height
+          minimum: 0
+        last_block_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/BlockId'
+            description: Previous block info
+        last_commit_hash:
+          type:
+          - string
+          - 'null'
+          description: Commit from validators from the last block
+        last_results_hash:
+          type:
+          - string
+          - 'null'
+          description: Root hash of all results from the txs from the previous block
+        next_validators_hash:
+          type: string
+          description: Validators for the next block
+        proposer_address:
+          type: string
+          description: Original proposer of the block
+        time:
+          type: string
+          description: Current timestamp
+        validators_hash:
+          type: string
+          description: Validators for the current block
+        version:
+          $ref: '#/components/schemas/HeaderVersion'
+          description: Header version
+    BinaryBuildInformationOwned:
+      type: object
+      required:
+      - binary_name
+      - build_timestamp
+      - build_version
+      - commit_sha
+      - commit_timestamp
+      - commit_branch
+      - rustc_version
+      - rustc_channel
+      - cargo_profile
+      properties:
+        binary_name:
+          type: string
+          description: Provides the name of the binary, i.e. the content of `CARGO_PKG_NAME` environmental variable.
+        build_timestamp:
+          type: string
+          description: Provides the build timestamp, for example `2021-02-23T20:14:46.558472672+00:00`.
+        build_version:
+          type: string
+          description: Provides the build version, for example `0.1.0-9-g46f83e1`.
+        cargo_profile:
+          type: string
+          description: Provides the cargo debug mode that was used for the build.
+        cargo_triple:
+          type: string
+          description: Provides the cargo target triple that was used for the build.
+        commit_branch:
+          type: string
+          description: Provides the name of the git branch that was used for the build, for example `master`.
+        commit_sha:
+          type: string
+          description: Provides the hash of the commit that was used for the build, for example `46f83e112520533338245862d366f6a02cef07d4`.
+        commit_timestamp:
+          type: string
+          description: Provides the timestamp of the commit that was used for the build, for example `2021-02-23T08:08:02-05:00`.
+        rustc_channel:
+          type: string
+          description: Provides the rustc channel that was used for the build, for example `nightly`.
+        rustc_version:
+          type: string
+          description: Provides the rustc version that was used for the build, for example `1.52.0-nightly`.
+    DeclaredRolesV1:
+      type: object
+      required:
+      - mixnode
+      - entry
+      - exit_nr
+      - exit_ipr
+      properties:
+        entry:
+          type: boolean
+        exit_ipr:
+          type: boolean
+        exit_nr:
+          type: boolean
+        mixnode:
+          type: boolean
+    NodeRewarding:
+      type: object
+      required:
+      - cost_params
+      - operator
+      - delegates
+      - total_unit_reward
+      - unit_delegation
+      - last_rewarded_epoch
+      - unique_delegations
+      properties:
+        cost_params:
+          $ref: '#/components/schemas/NodeCostParams'
+          description: Information provided by the operator that influence the cost function.
+        delegates:
+          type: string
+          description: Total delegation and compounded reward earned by all node delegators.
+        last_rewarded_epoch:
+          $ref: '#/components/schemas/u32'
+          description: 'Marks the epoch when this node was last rewarded so that we wouldn''t accidentally attempt
+
+            to reward it multiple times in the same epoch.'
+        operator:
+          type: string
+          description: Total pledge and compounded reward earned by the node operator.
+        total_unit_reward:
+          type: string
+          description: Cumulative reward earned by the "unit delegation" since the block 0.
+        unique_delegations:
+          type: integer
+          format: int32
+          minimum: 0
+        unit_delegation:
+          type: string
+          description: Value of the theoretical "unit delegation" that has delegated to this node at block 0.
+    FullBlockInfo:
+      type: object
+      required:
+      - header
+      properties:
+        header:
+          $ref: '#/components/schemas/BlockHeader'
+    DetailedChainStatus:
+      type: object
+      required:
+      - abci
+      - latest_block
+      properties:
+        abci:
+          $ref: '#/components/schemas/AbciInfo'
+        latest_block:
+          $ref: '#/components/schemas/BlockInfo'
+    StressTestingScore:
+      type: object
+      required:
+      - score
+      - was_reachable
+      properties:
+        score:
+          type: number
+          format: double
+        was_reachable:
+          type: boolean
+          description: 'Distinguishes a genuine zero score (node was tested and scored 0) from
+
+            "node was unreachable" (no successful sample was collected). Consumers may use
+
+            this to decide whether to penalise the node or treat the score as missing.'
+    NodePerformanceResponse:
+      type: object
+      required:
+      - node_id
+      properties:
+        node_id:
+          type: integer
+          format: int32
+          minimum: 0
+        performance:
+          type:
+          - number
+          - 'null'
+          format: double
+    AnnouncePortsV1:
+      type: object
+      properties:
+        mix_port:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+        verloc_port:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
+    LewesProtocolDetailsV1:
+      type: object
+      required:
+      - content
+      - signature
+      properties:
+        content:
+          $ref: '#/components/schemas/LewesProtocolDetailsDataV1'
+        signature:
+          type: string
+    KnownNetworkMonitorResponse:
+      type: object
+      description: 'Response body for `GET /v3/nym-nodes/stress-testing/known-monitors/{identity_key}`,
+
+        used by orchestrators to check whether this nym-api currently recognises their key.'
+      required:
+      - identity_key
+      - authorised
+      properties:
+        authorised:
+          type: boolean
+          description: 'Whether the queried identity key is currently recognised by this nym-api
+
+            as an authorised network monitor permitted to submit stress testing results.'
+        identity_key:
+          type: string
+          description: The ed25519 identity key that was queried (base58-encoded on the wire).
+    ChainInteractionCapabilitiesDetailed:
+      type: object
+      required:
+      - on_chain_balance
+      - is_feegrant_grantee
+      properties:
+        is_feegrant_grantee:
+          type: boolean
+        on_chain_balance:
+          $ref: '#/components/schemas/CoinSchema'
+    AnnotationResponseV2:
+      type: object
+      required:
+      - node_id
+      properties:
+        annotation:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/NodeAnnotationV2'
+        node_id:
+          type: integer
+          format: int32
+          minimum: 0
+    u32:
+      type: integer
+      format: int32
+      minimum: 0
+    WireguardDetailsV1:
+      type: object
+      required:
+      - port
+      - public_key
+      properties:
+        metadata_port:
+          type: integer
+          format: int32
+          minimum: 0
+        port:
+          type: integer
+          format: int32
+          minimum: 0
+        public_key:
+          type: string
+        tunnel_port:
+          type: integer
+          format: int32
+          minimum: 0
+    WebSocketsV1:
+      type: object
+      required:
+      - ws_port
+      properties:
+        ws_port:
+          type: integer
+          format: int32
+          minimum: 0
+        wss_port:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+    ChainBlocksStatusResponseBody:
+      type: object
+      required:
+      - currentTime
+      - chainStatus
+      properties:
+        chainStatus:
+          $ref: '#/components/schemas/ChainStatus'
+        currentTime:
+          type: string
+        latestCachedBlock:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/DetailedChainStatus'
+    CoinSchema:
+      type: object
+      title: Coin
+      required:
+      - denom
+      - amount
+      properties:
+        amount:
+          type: integer
+          minimum: 0
+        denom:
+          type: string
+    DisplayRole:
+      type: string
+      enum:
+      - entryGateway
+      - layer1
+      - layer2
+      - layer3
+      - exitGateway
+      - standby
+    PendingNodeChanges:
+      type: object
+      properties:
+        cost_params_change:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+        pledge_change:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+    OutputV2:
+      type: string
+      enum:
+      - json
+      - yaml
+    PaginatedResponse_NymNodeDescriptionV1:
+      type: object
+      required:
+      - pagination
+      - data
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            required:
+            - node_id
+            - contract_node_type
+            - description
+            properties:
+              contract_node_type:
+                $ref: '#/components/schemas/DescribedNodeTypeV1'
+              description:
+                $ref: '#/components/schemas/NymNodeDataV1'
+              node_id:
+                type: integer
+                format: int32
+                minimum: 0
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    ConfigScoreV2:
+      type: object
+      required:
+      - score
+      - self_described_api_available
+      - accepted_terms_and_conditions
+      - runs_nym_node_binary
+      - chain_interaction_capabilities
+      properties:
+        accepted_terms_and_conditions:
+          type: boolean
+        chain_interaction_capabilities:
+          $ref: '#/components/schemas/ChainInteractionCapabilities'
+          description: Describes the node is capable of sending chain/contract transactions
+        runs_nym_node_binary:
+          type: boolean
+        score:
+          type: number
+          format: double
+          description: Total score after taking all the criteria into consideration
+        self_described_api_available:
+          type: boolean
+        versions_behind:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+    PaginatedResponse_NymNodeDetails:
+      type: object
+      required:
+      - pagination
+      - data
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            description: Full details associated with given node.
+            required:
+            - bond_information
+            - rewarding_details
+            - pending_changes
+            properties:
+              bond_information:
+                $ref: '#/components/schemas/NymNodeBond'
+                description: Basic bond information of this node, such as owner address, original pledge, etc.
+              pending_changes:
+                $ref: '#/components/schemas/PendingNodeChanges'
+                description: Adjustments to the node that are scheduled to happen during future epoch/interval transitions.
+              rewarding_details:
+                $ref: '#/components/schemas/NodeRewarding'
+                description: Details used for computation of rewarding related data.
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    IpPacketRouterDetailsV1:
+      type: object
+      required:
+      - address
+      properties:
+        address:
+          type: string
+          description: address of the embedded ip packet router
+    NymNodeBond:
+      type: object
+      required:
+      - node_id
+      - owner
+      - original_pledge
+      - bonding_height
+      - is_unbonding
+      - node
+      properties:
+        bonding_height:
+          type: integer
+          format: int64
+          description: Block height at which this nym-node has been bonded.
+          minimum: 0
+        is_unbonding:
+          type: boolean
+          description: 'Flag to indicate whether this node is in the process of unbonding,
+
+            that will conclude upon the epoch finishing.'
+        node:
+          $ref: '#/components/schemas/NymNode'
+          description: Information provided by the operator for the purposes of bonding.
+        node_id:
+          type: integer
+          format: int32
+          description: Unique id assigned to the bonded node.
+          minimum: 0
+        original_pledge:
+          $ref: '#/components/schemas/CoinSchema'
+          description: Original amount pledged by the operator of this node.
+        owner:
+          type: string
+          description: Address of the owner of this nym-node.
+    ChainInteractionCapabilities:
+      type: object
+      required:
+      - has_sufficient_tokens
+      - is_fee_grant_grantee
+      properties:
+        has_sufficient_tokens:
+          type: boolean
+        is_fee_grant_grantee:
+          type: boolean
+    RoutingScore:
+      type: object
+      required:
+      - score
+      properties:
+        score:
+          type: number
+          format: double
+          description: Total score after taking all the criteria into consideration
+    NymNodeDataV1:
+      type: object
+      required:
+      - host_information
+      - build_information
+      - mixnet_websockets
+      properties:
+        authenticator:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/AuthenticatorDetailsV1'
+        auxiliary_details:
+          $ref: '#/components/schemas/NymNodeAuxiliaryDetailsV1'
+        build_information:
+          $ref: '#/components/schemas/BinaryBuildInformationOwned'
+        declared_role:
+          $ref: '#/components/schemas/DeclaredRolesV1'
+        host_information:
+          $ref: '#/components/schemas/HostInformationV1'
+        ip_packet_router:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/IpPacketRouterDetailsV1'
+        last_polled:
+          $ref: '#/components/schemas/OffsetDateTimeJsonSchemaWrapper'
+        mixnet_websockets:
+          $ref: '#/components/schemas/WebSocketsV1'
+        network_requester:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/NetworkRequesterDetailsV1'
+        wireguard:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/WireguardDetailsV1'
+    BlockId:
+      type: object
+      description: 'Block identifiers which contain two distinct Merkle roots of the block,
+
+        as well as the number of parts in the block.
+
+
+        <https://github.com/tendermint/spec/blob/d46cd7f573a2c6a2399fcab2cde981330aa63f37/spec/core/data_structures.md#blockid>
+
+
+        Default implementation is an empty Id as defined by the Go implementation in
+
+        <https://github.com/tendermint/tendermint/blob/1635d1339c73ae6a82e062cd2dc7191b029efa14/types/block.go#L1204>.
+
+
+        If the Hash is empty in BlockId, the BlockId should be empty (encoded to None).
+
+        This is implemented outside of this struct. Use the Default trait to check for an empty BlockId.
+
+        See: <https://github.com/informalsystems/tendermint-rs/issues/663>'
+      required:
+      - hash
+      - part_set_header
+      properties:
+        hash:
+          type: string
+          description: 'The block''s main hash is the Merkle root of all the fields in the
+
+            block header.'
+        part_set_header:
+          $ref: '#/components/schemas/PartSetHeader'
+          description: 'Parts header (if available) is used for secure gossipping of the block
+
+            during consensus. It is the Merkle root of the complete serialized block
+
+            cut into parts.
+
+
+            PartSet is used to split a byteslice of data into parts (pieces) for
+
+            transmission. By splitting data into smaller parts and computing a
+
+            Merkle root hash on the list, you can verify that a part is
+
+            legitimately part of the complete data, and the part can be forwarded
+
+            to other peers before all the parts are known. In short, it''s a fast
+
+            way to propagate a large file over a gossip network.
+
+
+            <https://github.com/tendermint/tendermint/wiki/Block-Structure#partset>
+
+
+            PartSetHeader in protobuf is defined as never nil using the gogoproto
+
+            annotations. This does not translate to Rust, but we can indicate this
+
+            in the domain type.'
+    PaginatedResponse_NymNodeDescriptionV2:
+      type: object
+      required:
+      - pagination
+      - data
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            required:
+            - node_id
+            - contract_node_type
+            - description
+            properties:
+              contract_node_type:
+                $ref: '#/components/schemas/DescribedNodeTypeV1'
+              description:
+                $ref: '#/components/schemas/NymNodeDataV2'
+              node_id:
+                type: integer
+                format: int32
+                minimum: 0
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    SphinxKeyV1:
+      type: object
+      required:
+      - rotation_id
+      - public_key
+      properties:
+        public_key:
+          type: string
+        rotation_id:
+          type: integer
+          format: int32
+          minimum: 0
+    Pagination:
+      type: object
+      required:
+      - total
+      - page
+      - size
+      properties:
+        page:
+          type: integer
+          format: int32
+          minimum: 0
+        size:
+          type: integer
+          minimum: 0
+        total:
+          type: integer
+          minimum: 0
+    NodeAnnotationV1:
+      type: object
+      required:
+      - last_24h_performance
+      - detailed_performance
+      properties:
+        current_role:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/DisplayRole'
+        detailed_performance:
+          $ref: '#/components/schemas/DetailedNodePerformanceV1'
+        last_24h_performance:
+          type: string
+    SignedMessage:
+      type: object
+      required:
+      - body
+      - signature
+      properties:
+        body:
+          $ref: '#/components/schemas/ChainBlocksStatusResponseBody'
+        signature:
+          type: string
+    ChainStatus:
+      oneOf:
+      - type: string
+        enum:
+        - synced
+      - type: string
+        enum:
+        - unknown
+      - type: object
+        required:
+        - stalled
+        properties:
+          stalled:
+            type: object
+            required:
+            - approximate_amount
+            properties:
+              approximate_amount:
+                type: string
