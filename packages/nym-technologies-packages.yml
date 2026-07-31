@@ -1,0 +1,52 @@
+generated: '2026-07-20'
+method: searched
+source: https://www.npmjs.com/org/nymproject + https://crates.io/crates/nym-sdk + https://nym.com/docs/developers
+packages:
+- language: javascript
+  registry: npm
+  name: "@nymproject/sdk"
+  version: 1.4.1
+  url: https://www.npmjs.com/package/@nymproject/sdk
+  install: npm install @nymproject/sdk
+  description: The Nym SDK for TypeScript — create apps that send traffic through the Nym mixnet.
+  official: true
+- language: javascript
+  registry: npm
+  name: "@nymproject/sdk-full-fat"
+  version: 1.4.1
+  url: https://www.npmjs.com/package/@nymproject/sdk-full-fat
+  install: npm install @nymproject/sdk-full-fat
+  description: Nym TypeScript SDK bundled with inline WASM/worker blobs (ESM).
+  official: true
+- language: javascript
+  registry: npm
+  name: "@nymproject/contract-clients"
+  version: 1.4.1
+  url: https://www.npmjs.com/package/@nymproject/contract-clients
+  install: npm install @nymproject/contract-clients
+  description: Read-only query and signing clients for the Nyx (Cosmos) smart contracts.
+  official: true
+- language: javascript
+  registry: npm
+  name: "@nymproject/mix-fetch"
+  version: 2.0.0
+  url: https://www.npmjs.com/package/@nymproject/mix-fetch
+  install: npm install @nymproject/mix-fetch
+  description: Drop-in fetch() replacement that routes HTTP/HTTPS requests through the mixnet.
+  official: true
+- language: javascript
+  registry: npm
+  name: "@nymproject/node-tester"
+  version: 1.3.1
+  url: https://www.npmjs.com/package/@nymproject/node-tester
+  install: npm install @nymproject/node-tester
+  description: WASM library to test whether a Nym node routes packets correctly.
+  official: true
+- language: rust
+  registry: crates.io
+  name: nym-sdk
+  version: 1.21.2
+  url: https://crates.io/crates/nym-sdk
+  install: cargo add nym-sdk
+  description: Nym's Rust SDK — async mixnet client with AsyncRead/AsyncWrite streams over the mixnet.
+  official: true

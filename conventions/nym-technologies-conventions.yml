@@ -1,0 +1,36 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/nym-technologies-nym-api-openapi.json + https://nym.com/docs/apis/introduction
+authentication:
+  style: none-public-read
+  detail: See authentication/nym-technologies-authentication.yml — public unauthenticated read API; ecash POSTs carry ed25519 integrity checks.
+idempotency:
+  supported: false
+  detail: >-
+    No Idempotency-Key contract. GET endpoints are naturally idempotent;
+    ecash POST operations are protocol-level and guarded against replay via a
+    stale/replayed check (400) rather than an idempotency key.
+pagination:
+  style: page-number
+  params: [page, per_page]
+  detail: List endpoints accept page and per_page query parameters.
+filtering:
+  params: [since, epoch_id, role, semver_compatibility, no_legacy, output]
+  detail: >-
+    Assorted endpoints support filtering by epoch, node role, semver
+    compatibility, and a no_legacy toggle; output selects response encoding on
+    some endpoints.
+versioning:
+  style: uri-path
+  detail: /v1/ path prefix; legacy operations under /v1/legacy.
+error_envelope:
+  format: plain-descriptive
+  detail: See errors/nym-technologies-problem-types.yml. Not RFC 9457.
+rate_limit_signaling:
+  documented: false
+tracing:
+  request_id_header: none-documented
+cross_links:
+  errors: errors/nym-technologies-problem-types.yml
+  lifecycle: lifecycle/nym-technologies-lifecycle.yml
+  authentication: authentication/nym-technologies-authentication.yml

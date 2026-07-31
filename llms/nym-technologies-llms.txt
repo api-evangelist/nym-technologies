@@ -1,0 +1,37 @@
+# Nym Technologies
+
+> Nym Technologies SA builds Nym, open-source decentralized privacy infrastructure. Its flagship product NymVPN is a decentralized VPN built on the Nym mixnet — a multi-layer network of mix nodes that protects metadata, not just IP addresses, using the Sphinx packet format, cover traffic, and zero-knowledge ecash (zk-nyms). Nym publishes public infrastructure APIs plus Rust and TypeScript SDKs for routing traffic through the mixnet.
+
+## APIs
+
+- [Nym API](https://nym.com/docs/apis/introduction): Public validator / nym-api for querying mixnet infrastructure — bonded/described nodes, legacy mixnodes and gateways, node families, epochs, reward params, NYM supply, ecash signatures, chain and signer status. Base URL https://validator.nymtech.net/api
+- [Node Status API](https://nym.com/docs/apis/introduction): Live node status, performance, and uptime telemetry. Base URL https://mainnet-node-status-api.nymtech.cc
+
+## Specs
+
+- [Nym API OpenAPI 3.1](https://validator.nymtech.net/api-docs/openapi.json)
+- [Node Status API OpenAPI 3.1](https://mainnet-node-status-api.nymtech.cc/api-docs/openapi.json)
+
+## SDKs and packages
+
+- [Rust SDK (nym-sdk)](https://crates.io/crates/nym-sdk): async mixnet client with AsyncRead/AsyncWrite streams
+- [TypeScript SDK (@nymproject/sdk)](https://www.npmjs.com/package/@nymproject/sdk): browser-side mixnet client
+- [@nymproject/mix-fetch](https://www.npmjs.com/package/@nymproject/mix-fetch): drop-in fetch() over the mixnet
+- [@nymproject/contract-clients](https://www.npmjs.com/package/@nymproject/contract-clients): Nyx smart-contract clients
+- [@nymproject/node-tester](https://www.npmjs.com/package/@nymproject/node-tester): WASM node routing tester
+
+## Docs
+
+- [Developer docs](https://nym.com/docs/developers)
+- [Network architecture](https://nym.com/docs/network)
+- [Operators](https://nym.com/docs/operators/introduction)
+- [GitHub (nymtech)](https://github.com/nymtech)
+- [Blog](https://nym.com/blog)
+
+## Operations and trust
+
+- [Status page](https://status.nymtech.net/status/mainnet)
+- [Releases / changelog](https://github.com/nymtech/nym/releases)
+- [Trust Center — independent audits](https://nym.com/trust-center/independently-audited)
+- [Vulnerability disclosure & bug bounty](https://nym.com/vdp-bbp)
+- [Pricing](https://nym.com/pricing)

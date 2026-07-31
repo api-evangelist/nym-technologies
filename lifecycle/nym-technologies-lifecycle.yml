@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: searched
+source: https://nym.com/docs/apis/introduction + https://status.nymtech.net/status/mainnet + openapi
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://nym.com/docs/apis/introduction
+  notes: >-
+    Endpoints are namespaced under /v1/. Superseded legacy node/gateway
+    endpoints are retained under /v1/legacy/* rather than removed, giving a
+    soft-deprecation path.
+deprecation:
+  policy_url: https://nym.com/docs/apis/introduction
+  sunset_header: false
+  notes: >-
+    No formal RFC 8594 Sunset/Deprecation-header policy is documented. Legacy
+    operations are segregated under /v1/legacy (e.g. /v1/legacy/mixnodes,
+    /v1/legacy/gateways) signalling deprecated-but-supported status.
+deprecated_operations:
+- openapi/nym-technologies-nym-api-openapi.json#/v1/legacy/mixnodes
+- openapi/nym-technologies-nym-api-openapi.json#/v1/legacy/gateways
+status_page: https://status.nymtech.net/status/mainnet
+releases: https://github.com/nymtech/nym/releases

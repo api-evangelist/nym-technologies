@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/nym-technologies-nym-api-openapi.json + https://nym.com/docs/apis/introduction
+summary:
+  types: [none]
+  api_key_in: []
+  oauth2_flows: []
+  model: public-read
+notes: >-
+  The Nym API (validator / nym-api) and Node Status API declare no OpenAPI
+  securitySchemes — they are public, unauthenticated read APIs for querying Nym
+  mixnet infrastructure. A handful of POST endpoints under /v1/ecash (blind-sign,
+  batch-redeem-ecash-tickets, verify-ecash-ticket) are protocol operations that
+  carry their own cryptographic integrity checks rather than API keys or OAuth:
+  requests are verified against ed25519 identity keys and rejected as
+  unauthorised (401) on failed integrity checks, or as stale/replayed (400).
+  There is no developer API key or OAuth token surface. Authentication for the
+  NymVPN product itself is handled out of band via anonymous zk-nym ecash
+  credentials, not via these query APIs.
+schemes: []
+integrity:
+  mechanism: ed25519-identity-key-signature
+  evidence:
+  - 401 responses read "the submitted request was unauthorised or failed integrity check"
+  - 400 responses read "the submitted request is stale or replayed"

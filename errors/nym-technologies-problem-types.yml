@@ -1,0 +1,31 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/nym-technologies-nym-api-openapi.json (4xx/5xx responses)
+format: plain
+notes: >-
+  Responses are not RFC 9457 application/problem+json; the Nym API returns a
+  descriptive error body with the HTTP status. Derived from the response
+  descriptions declared across the 88 Nym API operations.
+problems:
+- status: 400
+  title: Bad request
+  meaning: >-
+    Malformed or invalid input — e.g. the provided identity key is not a valid
+    base58-encoded ed25519 key, or the submitted request is stale or replayed.
+  remediation: Validate identity keys as base58 ed25519 and ensure request freshness (nonce/timestamp) before retrying.
+- status: 401
+  title: Unauthorised / integrity check failed
+  meaning: The submitted request was unauthorised or failed its cryptographic integrity check.
+  remediation: Re-sign the request with the correct ed25519 identity key.
+- status: 403
+  title: Forbidden
+  meaning: The caller is not permitted to perform the requested operation.
+- status: 500
+  title: Internal server error
+  meaning: >-
+    Server-side failure — includes transient conditions such as bloom filters
+    being disabled (double-spending filter unavailable).
+  remediation: Retry later; if persistent, report via https://nym.com/vdp-bbp or the Nym forum.
+- status: 501
+  title: Not implemented
+  meaning: The requested endpoint or capability is not implemented on this API instance.

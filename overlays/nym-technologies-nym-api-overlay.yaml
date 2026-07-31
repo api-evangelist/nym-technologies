@@ -1,0 +1,13 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Nym API
+  version: 1.0.0
+extends: openapi/nym-technologies-nym-api-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: nym-technologies
+    x-apievangelist-category: [privacy, mixnet, blockchain, infrastructure]
+    x-apievangelist-access: public-read
+    x-apievangelist-status-page: https://status.nymtech.net/status/mainnet
+    x-apievangelist-docs: https://nym.com/docs/apis/introduction

@@ -1,0 +1,46 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/nym-technologies-nym-api-openapi.json
+notes: >-
+  No official hosted/remote MCP server was found for Nym as of the generated
+  date. This is a DERIVED candidate tool surface mapping a representative subset
+  of the public Nym API read operations to MCP tools, for querying Nym mixnet
+  infrastructure. Each tool maps to a real operationId in the Nym API OpenAPI.
+server:
+  name: nym-technologies
+  transport: http
+tools:
+- name: get_api_health
+  description: Report Nym API health.
+  source_operation: openapi/nym-technologies-nym-api-openapi.json#health
+- name: get_bonded_nodes
+  description: List currently bonded Nym nodes.
+  source_operation: openapi/nym-technologies-nym-api-openapi.json#get_bonded_nodes
+- name: get_described_nodes
+  description: List Nym nodes with their self-described metadata.
+  source_operation: openapi/nym-technologies-nym-api-openapi.json#get_described_nodes
+- name: get_rewarded_set
+  description: Get the current rewarded set of nodes.
+  source_operation: openapi/nym-technologies-nym-api-openapi.json#rewarded_set
+- name: get_node_families
+  description: List node families.
+  source_operation: openapi/nym-technologies-nym-api-openapi.json#get_families
+- name: get_current_epoch
+  description: Get the current rewarding epoch.
+  source_operation: openapi/nym-technologies-nym-api-openapi.json#get_current_epoch
+- name: get_reward_params
+  description: Get the current interval reward parameters.
+  source_operation: openapi/nym-technologies-nym-api-openapi.json#get_interval_reward_params
+- name: get_circulating_supply
+  description: Get NYM circulating supply.
+  source_operation: openapi/nym-technologies-nym-api-openapi.json#get_full_circulating_supply
+- name: get_network_details
+  description: Get Nym network details.
+  source_operation: openapi/nym-technologies-nym-api-openapi.json#network_details
+- name: get_chain_status
+  description: Get Nyx chain status.
+  source_operation: openapi/nym-technologies-nym-api-openapi.json#chain_status
+- name: get_node_performance
+  description: Get current performance for a node by node_id.
+  source_operation: openapi/nym-technologies-nym-api-openapi.json#get_current_node_performance

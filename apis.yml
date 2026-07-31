@@ -1,9 +1,31 @@
 aid: nym-technologies
 name: Nym Technologies
-description: Nym Technologies is a company surfaced as a portfolio company of a16z, polychain and added
-  to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Nym Technologies SA builds Nym, an open-source decentralized privacy
+  infrastructure. Its flagship product NymVPN is a decentralized VPN built on the
+  Nym mixnet, a multi-layer network of mix nodes that shuffles and delays packets
+  to protect metadata (who talks to whom, when, and from where), not just IP
+  addresses, using the Sphinx packet format, cover traffic, and zero-knowledge
+  ecash (zk-nyms) for anonymous, unlinkable payments. The network is incentivized
+  by the NYM token on the Nyx (Cosmos SDK) blockchain. Nym publishes a public Nym
+  API (validator / nym-api) and a Node Status API for querying mixnodes, gateways,
+  ecash signatures, epochs, rewards and network status, plus Rust and TypeScript
+  SDKs (mix-fetch, mix-tunnel, mix-dns, mix-websocket) for routing arbitrary
+  traffic through the mixnet.
 url: https://raw.githubusercontent.com/api-evangelist/nym-technologies/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://nym.com/docs/images/Nym_meta_Image.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -11,12 +33,266 @@ x-backed-by:
 - polychain
 x-tier: stub
 x-tier-reason: portfolio-lead
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 20
+  pass: local-v1
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- Privacy
+- VPN
+- Mixnet
+- Cryptography
+- Decentralized
+- Networking
+- Web3
+- Blockchain
+- Anonymity
+- Zero Knowledge
+- Security
+apis:
+- aid: nym-technologies:nym-technologies-api-status-api
+  name: Nym Technologies API Status API
+  description: The API Status API from Nym Technologies — 3 operation(s) for api status.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - API Status
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-api-status-api-openapi.yml
+- aid: nym-technologies:nym-technologies-circulating-supply-api
+  name: Nym Technologies circulating-supply API
+  description: >-
+    The circulating-supply API from Nym Technologies — 3 operation(s) for circulating-supply.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - circulating-supply
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-circulating-supply-api-openapi.yml
+- aid: nym-technologies:nym-technologies-contract-cache-api
+  name: Nym Technologies contract-cache API
+  description: The contract-cache API from Nym Technologies — 5 operation(s) for contract-cache.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - contract-cache
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-contract-cache-api-openapi.yml
+- aid: nym-technologies:nym-technologies-dvpn-directory-cache-api
+  name: Nym Technologies dVPN Directory Cache API
+  description: >-
+    The dVPN Directory Cache API from Nym Technologies — 9 operation(s) for dvpn directory cache.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - dVPN Directory Cache
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-dvpn-directory-cache-api-openapi.yml
+- aid: nym-technologies:nym-technologies-ecash-api
+  name: Nym Technologies Ecash API
+  description: The Ecash API from Nym Technologies — 13 operation(s) for ecash.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - Ecash
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-ecash-api-openapi.yml
+- aid: nym-technologies:nym-technologies-ecash-global-data-api
+  name: Nym Technologies Ecash Global Data API
+  description: The Ecash Global Data API from Nym Technologies — 3 operation(s) for ecash global data.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - Ecash Global Data
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-ecash-global-data-api-openapi.yml
+- aid: nym-technologies:nym-technologies-gateways-api
+  name: Nym Technologies Gateways API
+  description: The Gateways API from Nym Technologies — 3 operation(s) for gateways.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - Gateways
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-gateways-api-openapi.yml
+- aid: nym-technologies:nym-technologies-mixnodes-api
+  name: Nym Technologies Mixnodes API
+  description: The Mixnodes API from Nym Technologies — 1 operation(s) for mixnodes.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - Mixnodes
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-mixnodes-api-openapi.yml
+- aid: nym-technologies:nym-technologies-network-api
+  name: Nym Technologies network API
+  description: The network API from Nym Technologies — 7 operation(s) for network.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - network
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-network-api-openapi.yml
+- aid: nym-technologies:nym-technologies-network-monitor-status-api
+  name: Nym Technologies network-monitor-status API
+  description: >-
+    The network-monitor-status API from Nym Technologies — 4 operation(s) for network-monitor-status.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - network-monitor-status
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-network-monitor-status-api-openapi.yml
+- aid: nym-technologies:nym-technologies-node-families-api
+  name: Nym Technologies Node Families API
+  description: The Node Families API from Nym Technologies — 3 operation(s) for node families.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - Node Families
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-node-families-api-openapi.yml
+- aid: nym-technologies:nym-technologies-nym-explorer-api
+  name: Nym Technologies Nym Explorer API
+  description: The Nym Explorer API from Nym Technologies — 2 operation(s) for nym explorer.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - Nym Explorer
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-nym-explorer-api-openapi.yml
+- aid: nym-technologies:nym-technologies-nym-nodes-api
+  name: Nym Technologies Nym Nodes API
+  description: The Nym Nodes API from Nym Technologies — 15 operation(s) for nym nodes.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - Nym Nodes
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-nym-nodes-api-openapi.yml
+- aid: nym-technologies:nym-technologies-services-api
+  name: Nym Technologies Services API
+  description: The Services API from Nym Technologies — 1 operation(s) for services.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - Services
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-services-api-openapi.yml
+- aid: nym-technologies:nym-technologies-sessions-api
+  name: Nym Technologies Sessions API
+  description: The Sessions API from Nym Technologies — 1 operation(s) for sessions.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-sessions-api-openapi.yml
+- aid: nym-technologies:nym-technologies-status-api
+  name: Nym Technologies Status API
+  description: The Status API from Nym Technologies — 5 operation(s) for status.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - Status
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-status-api-openapi.yml
+- aid: nym-technologies:nym-technologies-summary-api
+  name: Nym Technologies Summary API
+  description: The Summary API from Nym Technologies — 2 operation(s) for summary.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - Summary
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-summary-api-openapi.yml
+- aid: nym-technologies:nym-technologies-unstable-api
+  name: Nym Technologies Unstable API
+  description: The Unstable API from Nym Technologies — 1 operation(s) for unstable.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - Unstable
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-unstable-api-openapi.yml
+- aid: nym-technologies:nym-technologies-unstable-do-not-use-api
+  name: Nym Technologies UNSTABLE - DO **NOT** USE API
+  description: >-
+    The UNSTABLE - DO **NOT** USE API from Nym Technologies — 4 operation(s) for unstable - do **not**
+    use.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - UNSTABLE - DO **NOT** USE
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-unstable-do-not-use-api-openapi.yml
+- aid: nym-technologies:nym-technologies-unstable-nym-nodes-api
+  name: Nym Technologies Unstable Nym Nodes API
+  description: >-
+    The Unstable Nym Nodes API from Nym Technologies — 13 operation(s) for unstable nym nodes.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - Unstable Nym Nodes
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-unstable-nym-nodes-api-openapi.yml
+- aid: nym-technologies:nym-technologies-unstable-nym-nodes-v2-api
+  name: Nym Technologies Unstable Nym Nodes v2 API
+  description: >-
+    The Unstable Nym Nodes v2 API from Nym Technologies — 6 operation(s) for unstable nym nodes v2.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - Unstable Nym Nodes v2
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-unstable-nym-nodes-v2-api-openapi.yml
+- aid: nym-technologies:nym-technologies-unstable-nym-nodes-v3-api
+  name: Nym Technologies Unstable Nym Nodes v3 API
+  description: >-
+    The Unstable Nym Nodes v3 API from Nym Technologies — 1 operation(s) for unstable nym nodes v3.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - Unstable Nym Nodes v3
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-unstable-nym-nodes-v3-api-openapi.yml
+- aid: nym-technologies:nym-technologies-utility-api
+  name: Nym Technologies Utility API
+  description: The Utility API from Nym Technologies — 4 operation(s) for utility.
+  humanURL: https://nym.com/docs/apis/introduction
+  baseURL: https://validator.nymtech.net/api
+  tags:
+  - Utility
+  properties:
+  - type: OpenAPI
+    url: openapi/nym-technologies-utility-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -24,4 +300,70 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://nymtech.net
+  url: https://nym.com
+- type: DeveloperPortal
+  url: https://nym.com/docs
+- type: Documentation
+  url: https://nym.com/docs/developers
+- type: APIReference
+  url: https://nym.com/docs/apis/introduction
+- type: GettingStarted
+  url: https://nym.com/docs/developers
+- type: GitHubOrganization
+  url: https://github.com/nymtech
+- type: Blog
+  url: https://nym.com/blog
+- type: Pricing
+  url: https://nym.com/pricing
+- type: Support
+  url: https://support.nym.com
+- type: Community
+  url: https://forum.nym.com
+- type: StatusPage
+  url: https://status.nymtech.net/status/mainnet
+- type: Roadmap
+  url: https://trello.com/b/qVhBo3e2/nymvpn-public-roadmap
+- type: SignUp
+  url: https://nym.com/account/login
+- type: TermsOfService
+  url: https://nym.com/vpn-terms
+- type: PrivacyPolicy
+  url: https://nym.com/vpn-privacy-statement
+- type: TrustCenter
+  url: https://nym.com/trust-center
+- type: Compliance
+  url: https://nym.com/trust-center/independently-audited
+- type: Security
+  url: https://nym.com/vdp-bbp
+- type: VulnerabilityDisclosure
+  url: security/nym-technologies-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/nym-technologies-domain-security.yml
+- type: Packages
+  url: packages/nym-technologies-packages.yml
+- type: SDKs
+  url: packages/nym-technologies-packages.yml
+- type: Authentication
+  url: authentication/nym-technologies-authentication.yml
+- type: Conventions
+  url: conventions/nym-technologies-conventions.yml
+- type: ErrorCatalog
+  url: errors/nym-technologies-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/nym-technologies-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/nym-technologies-lifecycle.yml
+- type: Conformance
+  url: conformance/nym-technologies-conformance.yml
+- type: ChangeLog
+  url: changelog/nym-technologies-changelog.yml
+- type: DataModel
+  url: data-model/nym-technologies-data-model.yml
+- type: MCPServer
+  url: mcp/nym-technologies-mcp.yml
+- type: LLMsTxt
+  url: llms/nym-technologies-llms.txt
+- type: WellKnown
+  url: well-known/nym-technologies-well-known.yml
+- type: AgentSkill
+  url: skills/_index.yml

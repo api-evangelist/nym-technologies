@@ -1,0 +1,43 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/nym-technologies-nym-api-openapi.json (schemas + id-reference fields)
+entities:
+- name: NymNode
+  key: node_id
+  description: A bonded Nym node (mix node, gateway, or entry/exit) participating in the mixnet.
+  relationships:
+  - {type: belongs_to, target: NodeFamily, via: family_id}
+  - {type: has_one, target: NodeAnnotation, via: node_id}
+- name: NodeFamily
+  key: family_id
+  description: A named grouping of Nym nodes.
+  relationships:
+  - {type: has_many, target: NymNode, via: family_id}
+- name: LegacyMixnode
+  key: mix_id
+  description: Deprecated legacy mixnode representation retained under /v1/legacy.
+- name: LegacyGateway
+  key: identity_key
+  description: Deprecated legacy gateway representation retained under /v1/legacy.
+- name: Epoch
+  key: epoch_id
+  description: A rewarding epoch/interval with reward parameters and key-rotation info.
+  relationships:
+  - {type: has_one, target: RewardParams, via: epoch_id}
+- name: EcashTicketbook
+  key: expiration_date
+  description: Issued zk-nym ecash ticketbook used for anonymous, unlinkable payment credentials.
+  relationships:
+  - {type: has_many, target: EcashSignature, via: expiration_date}
+- name: EcashSignature
+  key: null
+  description: Aggregated/partial coin-index and expiration-date signatures over ecash ticketbooks.
+- name: CirculatingSupply
+  key: null
+  description: NYM token circulating and total supply values.
+- name: ChainStatus
+  key: null
+  description: Nyx (Cosmos) chain and block status, contract details, and signer status.
+notes: >-
+  Identifiers observed as query parameters and schema keys: node_id, family_id,
+  mix_id, identity_key, epoch_id, expiration_date, issuance_date, monitor_run_id.

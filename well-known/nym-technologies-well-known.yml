@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: searched
+source: live probes of /.well-known/* on Nym hosts
+hosts:
+- host: https://nym.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://validator.nymtech.net
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+- host: https://mainnet-node-status-api.nymtech.cc
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+notes: >-
+  No /.well-known discovery documents are published on any Nym host as of the
+  probe date. This is expected: Nym's public APIs are unauthenticated read APIs
+  and OIDC/OAuth discovery does not apply. Empty is a valid result.

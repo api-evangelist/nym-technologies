@@ -1,0 +1,19 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/nymtech/nym/releases
+scheme: calendar-codenamed-binaries + semver-wallet
+current_version: nym-binaries-v2026.13-ziller
+notes: >-
+  Nym ships two parallel release trains from the nymtech/nym monorepo: codenamed
+  calendar-versioned "Nym Binaries" (nodes, nym-api, clients) and semver-versioned
+  Nym Wallet releases. Recent window captured below; the live releases page is the
+  source of truth.
+entries:
+- {version: nym-binaries-v2026.13-ziller, date: '2026-07-07', type: release, highlights: Nym Binaries v2026.13 (ziller)}
+- {version: nym-wallet-v1.2.23, date: '2026-07-01', type: release, highlights: Nym Wallet v1.2.23}
+- {version: nym-binaries-v2026.12-yaroslavsky, date: '2026-06-23', type: release, highlights: Nym Binaries v2026.12 (yaroslavsky)}
+- {version: nym-wallet-v1.2.22, date: '2026-06-16', type: release, highlights: Nym Wallet v1.2.22}
+- {version: nym-wallet-v1.2.21, date: '2026-06-09', type: release, highlights: Nym Wallet v1.2.21}
+- {version: nym-binaries-v2026.11-xynomizithra, date: '2026-06-09', type: release, highlights: Nym Binaries v2026.11 (xynomizithra)}
+- {version: nym-binaries-v2026.10-waterloo, date: '2026-05-27', type: release, highlights: Nym Binaries v2026.10 (waterloo)}
+- {version: nym-wallet-v1.2.20, date: '2026-05-06', type: release, highlights: Nym Wallet v1.2.20}

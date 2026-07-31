@@ -1,0 +1,24 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/nym-technologies-nym-api-openapi.json + https://nym.com/trust-center
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: Nym API and Node Status API both publish OpenAPI 3.1.0 documents.
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 securitySchemes declared; APIs are public read.
+- id: openid-connect
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors are returned as plain descriptive bodies, not application/problem+json.
+- id: pagination
+  conforms: true
+  evidence: List endpoints expose page / per_page query parameters.
+- id: rfc8594-sunset
+  conforms: false
+  evidence: No Sunset/Deprecation header contract documented; legacy endpoints are namespaced under /v1/legacy instead.
+- id: gdpr
+  conforms: true
+  evidence: Nym publishes GDPR-aligned privacy statements and is independently audited (Cure53, Oak Security).
