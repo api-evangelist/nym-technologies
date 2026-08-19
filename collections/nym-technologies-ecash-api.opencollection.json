@@ -1,0 +1,288 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Node Status API Status Ecash API",
+    "version": "4.6.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ecash",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "batch_redeem_tickets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/ecash/batch-redeem-ecash-tickets",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "post_blind_sign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/ecash/blind-sign",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "double_spending_filter_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/ecash/double-spending-filter-v1"
+          }
+        },
+        {
+          "info": {
+            "name": "issued_ticketbooks_challenge_commitment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/ecash/issued-ticketbooks-challenge-commitment",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Returns number of issued ticketbooks for given dates.\nNote: this endpoint will not be accurate for old dates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/ecash/issued-ticketbooks-count",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns number of issued ticketbooks for given dates.\nNote: this endpoint will not be accurate for old dates"
+        },
+        {
+          "info": {
+            "name": "issued_ticketbooks_data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/ecash/issued-ticketbooks-data",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Returns number of issued ticketbooks for particular expiration date.\nNote: this endpoint will not be accurate for old dates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/ecash/issued-ticketbooks-for-count/:expiration_date",
+            "params": [
+              {
+                "name": "expiration_date",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns number of issued ticketbooks for particular expiration date.\nNote: this endpoint will not be accurate for old dates"
+        },
+        {
+          "info": {
+            "name": "issued_ticketbooks_for",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/ecash/issued-ticketbooks-for/:expiration_date",
+            "params": [
+              {
+                "name": "expiration_date",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Returns number of issued ticketbooks on particular date.\nNote: this endpoint will not be accurate for old dates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/ecash/issued-ticketbooks-on-count/:issuance_date",
+            "params": [
+              {
+                "name": "issuance_date",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns number of issued ticketbooks on particular date.\nNote: this endpoint will not be accurate for old dates"
+        },
+        {
+          "info": {
+            "name": "partial_coin_indices_signatures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/ecash/partial-coin-indices-signatures",
+            "params": [
+              {
+                "name": "epoch_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "partial_expiration_date_signatures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/ecash/partial-expiration-date-signatures",
+            "params": [
+              {
+                "name": "expiration_date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "epoch_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "signer_status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/ecash/signer-status",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "verify_ticket",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/ecash/verify-ecash-ticket",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

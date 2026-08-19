@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Node Status API Status Mixnodes API",
+    "version": "4.6.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Mixnodes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get_stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/mixnodes/stats",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

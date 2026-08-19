@@ -1,0 +1,115 @@
+{
+  "item": [
+    {
+      "id": "4a78cb0c-4aaf-44bf-a17b-e1d581683ca6",
+      "name": "Unstable Nym Nodes v3",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5d81ce78-0ccc-40a5-aa85-1c928e761bec",
+          "name": "Return all Nym Nodes that are currently bonded.",
+          "request": {
+            "name": "Return all Nym Nodes that are currently bonded.",
+            "description": {},
+            "url": {
+              "path": [
+                "v3",
+                "unstable",
+                "nym-nodes",
+                "semi-skimmed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c6e94f5-4b6c-4ada-a5b3-5e2a6ef00e51",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "unstable",
+                    "nym-nodes",
+                    "semi-skimmed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"refreshed_at\": \"1974-03-12T13:41:45.921Z\",\n  \"nodes\": {\n    \"basic\": {\n      \"node_id\": 2816,\n      \"ed25519_identity_pubkey\": \"string\",\n      \"ip_addresses\": [\n        \"string\",\n        \"string\"\n      ],\n      \"mix_port\": 4439,\n      \"x25519_sphinx_pubkey\": \"string\",\n      \"role\": {\n        \"Mixnode\": {\n          \"layer\": 8281\n        }\n      },\n      \"performance\": \"string\",\n      \"entry\": null,\n      \"supported_roles\": {\n        \"mixnode\": true,\n        \"entry\": true,\n        \"exit_nr\": false,\n        \"exit_ipr\": true\n      }\n    },\n    \"build_version\": \"string\",\n    \"lp\": null,\n    \"noise_key\": null\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c0c4a6b1-489b-44d0-a3b0-1ff725352181",
+    "name": "Node Status API Status Unstable Nym Nodes v3 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Nym Technologies SA",
+      "type": "text/plain"
+    }
+  }
+}

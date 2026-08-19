@@ -1,0 +1,437 @@
+{
+  "item": [
+    {
+      "id": "74ff3af1-35cb-4f40-a466-a00854922df9",
+      "name": "contract-cache",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4f5613a9-b811-41ad-a59a-92432f74c27a",
+          "name": "get current epoch",
+          "request": {
+            "name": "get current epoch",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "epoch",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4173ba70-fb07-4a12-88fe-9bb4a4b74adc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "epoch",
+                    "current"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10f9e456-09b3-4ee1-91fd-11312d30ad49",
+          "name": "get current key rotation info",
+          "request": {
+            "name": "get current key rotation info",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "epoch",
+                "key-rotation-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "182db115-fb22-420e-9d1e-92c98f167d31",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "epoch",
+                    "key-rotation-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"current_absolute_epoch_id\": 4437,\n  \"current_epoch_start\": \"string\",\n  \"epoch_duration\": \"string\",\n  \"key_rotation_state\": {\n    \"validity_epochs\": 7015,\n    \"initial_epoch_id\": 1944\n  },\n  \"progress\": {\n    \"current_key_rotation_id\": 2291,\n    \"current_rotation_starting_epoch\": 1601,\n    \"current_rotation_ending_epoch\": 2417\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ddc47ab3-42b3-4860-ad0f-0385560a4a2d",
+          "name": "get interval reward params",
+          "request": {
+            "name": "get interval reward params",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "epoch",
+                "reward_params"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "76d58bbb-8912-4346-bf5c-e704ec45147c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "epoch",
+                    "reward_params"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "29c747de-dbc2-4977-8969-f8d03e997444",
+          "name": "get legacy gateways",
+          "request": {
+            "name": "get legacy gateways",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "legacy",
+                "gateways"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ad5629da-d390-4e90-b5fe-3546ae070e57",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "legacy",
+                    "gateways"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 8870,\n  \"nodes\": [\n    {\n      \"block_height\": 4610,\n      \"gateway\": {\n        \"host\": \"string\",\n        \"mix_port\": 2000,\n        \"clients_port\": 9914,\n        \"location\": \"string\",\n        \"sphinx_key\": \"string\",\n        \"identity_key\": \"string\",\n        \"version\": \"string\"\n      },\n      \"node_id\": 1970,\n      \"owner\": \"string\",\n      \"pledge_amount\": {\n        \"denom\": \"string\",\n        \"amount\": 8829\n      },\n      \"proxy\": \"string\"\n    },\n    {\n      \"block_height\": 2373,\n      \"gateway\": {\n        \"host\": \"string\",\n        \"mix_port\": 4478,\n        \"clients_port\": 8334,\n        \"location\": \"string\",\n        \"sphinx_key\": \"string\",\n        \"identity_key\": \"string\",\n        \"version\": \"string\"\n      },\n      \"node_id\": 4561,\n      \"owner\": \"string\",\n      \"pledge_amount\": {\n        \"denom\": \"string\",\n        \"amount\": 4958\n      },\n      \"proxy\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d041add8-0ef3-466f-8633-75b7032d3299",
+          "name": "get legacy mixnodes",
+          "request": {
+            "name": "get legacy mixnodes",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "legacy",
+                "mixnodes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "011bb950-b575-434e-a5c5-0163a0ed27b1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "legacy",
+                    "mixnodes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 6542,\n  \"nodes\": [\n    {\n      \"bond_information\": {\n        \"mix_id\": 2927,\n        \"owner\": \"string\",\n        \"original_pledge\": {\n          \"denom\": \"string\",\n          \"amount\": 8962\n        },\n        \"mix_node\": {\n          \"host\": \"string\",\n          \"mix_port\": 6020,\n          \"verloc_port\": 5198,\n          \"http_api_port\": 1857,\n          \"sphinx_key\": \"string\",\n          \"identity_key\": \"string\",\n          \"version\": \"string\"\n        },\n        \"bonding_height\": 9440,\n        \"is_unbonding\": false,\n        \"proxy\": \"string\"\n      },\n      \"rewarding_details\": {\n        \"cost_params\": {\n          \"profit_margin_percent\": \"string\",\n          \"interval_operating_cost\": {\n            \"denom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"operator\": \"string\",\n        \"delegates\": \"string\",\n        \"total_unit_reward\": \"string\",\n        \"unit_delegation\": \"string\",\n        \"last_rewarded_epoch\": 6089,\n        \"unique_delegations\": 4527\n      },\n      \"pending_changes\": {\n        \"cost_params_change\": null,\n        \"pledge_change\": null\n      }\n    },\n    {\n      \"bond_information\": {\n        \"mix_id\": 8861,\n        \"owner\": \"string\",\n        \"original_pledge\": {\n          \"denom\": \"string\",\n          \"amount\": 6229\n        },\n        \"mix_node\": {\n          \"host\": \"string\",\n          \"mix_port\": 9281,\n          \"verloc_port\": 2359,\n          \"http_api_port\": 7869,\n          \"sphinx_key\": \"string\",\n          \"identity_key\": \"string\",\n          \"version\": \"string\"\n        },\n        \"bonding_height\": 6160,\n        \"is_unbonding\": true,\n        \"proxy\": \"string\"\n      },\n      \"rewarding_details\": {\n        \"cost_params\": {\n          \"profit_margin_percent\": \"string\",\n          \"interval_operating_cost\": {\n            \"denom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"operator\": \"string\",\n        \"delegates\": \"string\",\n        \"total_unit_reward\": \"string\",\n        \"unit_delegation\": \"string\",\n        \"last_rewarded_epoch\": 8174,\n        \"unique_delegations\": 5418\n      },\n      \"pending_changes\": {\n        \"cost_params_change\": null,\n        \"pledge_change\": null\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e0a312a2-afb0-420e-a4cc-1848c4a910dd",
+    "name": "Node Status API Status contract-cache API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Nym Technologies SA",
+      "type": "text/plain"
+    }
+  }
+}

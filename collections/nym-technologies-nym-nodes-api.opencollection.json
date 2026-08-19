@@ -1,0 +1,370 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Node Status API Status Nym Nodes API",
+    "version": "4.6.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Nym Nodes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get_node_annotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/nym-nodes/annotation/:node_id",
+            "params": [
+              {
+                "name": "node_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_bonded_nodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/nym-nodes/bonded",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_described_nodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/nym-nodes/described",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_historical_performance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/nym-nodes/historical-performance/:node_id",
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "node_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "nodes_noise",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/nym-nodes/noise",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_node_performance_history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/nym-nodes/performance-history/:node_id",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "node_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_current_node_performance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/nym-nodes/performance/:node_id",
+            "params": [
+              {
+                "name": "node_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "refresh_described",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/nym-nodes/refresh-described",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "rewarded_set",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/nym-nodes/rewarded-set",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_node_stake_saturation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/nym-nodes/stake-saturation/:node_id",
+            "params": [
+              {
+                "name": "node_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_node_uptime_history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/nym-nodes/uptime-history/:node_id",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "node_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "v2_get_node_annotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/nym-nodes/annotation/:node_id",
+            "params": [
+              {
+                "name": "node_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "v2_get_described_nodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/nym-nodes/described",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Accept a batch of stress-test results from an authorised network monitor orchestrator.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/nym-nodes/stress-testing/batch-submit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The batch is rejected unless all of the following hold:\n- the submission timestamp is within a short staleness window of the current time,\n- the signer's key is currently registered in the network-monitors contract,\n- the submission timestamp is strictly greater than the signer's previous accepted submission\n  (timestamp-based replay protection, so orchestrators don't need to keep a nonce counter),\n- the signature on the body verifies against the signer's key.\n\nIndividual result entries that fai"
+        },
+        {
+          "info": {
+            "name": "Report whether the given identity key is currently recognised by this nym-api as an\nauthorised network monitor orchestrator.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/nym-nodes/stress-testing/known-monitors/:identity_key",
+            "params": [
+              {
+                "name": "identity_key",
+                "value": "",
+                "type": "path",
+                "description": "base58-encoded ed25519 identity key of the queried network monitor"
+              }
+            ]
+          },
+          "docs": "Intended for orchestrators to self-check after (re)announcing their key on-chain - a\nsuccessful response with `authorised: true` means this nym-api has picked up the chain change\nand is ready to accept stress-test submissions signed by that key."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

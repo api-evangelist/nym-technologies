@@ -1,0 +1,468 @@
+{
+  "item": [
+    {
+      "id": "b5b0e4cc-efc0-492b-b406-abb542b8e5fb",
+      "name": "UNSTABLE - DO **NOT** USE",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "357c053f-4ff9-42f9-adb8-520b3aafb935",
+          "name": "gateway test results",
+          "request": {
+            "name": "gateway test results",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "status",
+                "gateways",
+                "unstable",
+                ":identity",
+                "test-results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identity",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "55ce11e6-6ce5-4731-a249-1203ee0d12d0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "status",
+                    "gateways",
+                    "unstable",
+                    ":identity",
+                    "test-results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "yaml"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"total\": 6248,\n    \"page\": 8701,\n    \"size\": 7786\n  },\n  \"data\": [\n    {\n      \"monitor_run_id\": 2220,\n      \"timestamp\": 510,\n      \"test_routes\": {\n        \"gateway\": {\n          \"identity_key\": \"string\",\n          \"node_id\": 9843\n        },\n        \"layer1\": {\n          \"identity_key\": \"string\",\n          \"node_id\": 1242\n        },\n        \"layer2\": {\n          \"identity_key\": \"string\",\n          \"node_id\": 7958\n        },\n        \"layer3\": {\n          \"identity_key\": \"string\",\n          \"node_id\": 1003\n        }\n      },\n      \"overall_reliability_for_all_routes_in_monitor_run\": 2666\n    },\n    {\n      \"monitor_run_id\": 7525,\n      \"timestamp\": 4462,\n      \"test_routes\": {\n        \"gateway\": {\n          \"identity_key\": \"string\",\n          \"node_id\": 6864\n        },\n        \"layer1\": {\n          \"identity_key\": \"string\",\n          \"node_id\": 3373\n        },\n        \"layer2\": {\n          \"identity_key\": \"string\",\n          \"node_id\": 282\n        },\n        \"layer3\": {\n          \"identity_key\": \"string\",\n          \"node_id\": 2319\n        }\n      },\n      \"overall_reliability_for_all_routes_in_monitor_run\": 7953\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "540bb2e6-912e-40b1-b4f6-7ce7e6acc624",
+          "name": "mixnode test results",
+          "request": {
+            "name": "mixnode test results",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "status",
+                "mixnodes",
+                "unstable",
+                ":mix_id",
+                "test-results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "mix_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a1bf544-16bb-4459-a93d-c27c3a9ebc4f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "status",
+                    "mixnodes",
+                    "unstable",
+                    ":mix_id",
+                    "test-results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "yaml"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "mix_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"total\": 6248,\n    \"page\": 8701,\n    \"size\": 7786\n  },\n  \"data\": [\n    {\n      \"monitor_run_id\": 2220,\n      \"timestamp\": 510,\n      \"test_routes\": {\n        \"gateway\": {\n          \"identity_key\": \"string\",\n          \"node_id\": 9843\n        },\n        \"layer1\": {\n          \"identity_key\": \"string\",\n          \"node_id\": 1242\n        },\n        \"layer2\": {\n          \"identity_key\": \"string\",\n          \"node_id\": 7958\n        },\n        \"layer3\": {\n          \"identity_key\": \"string\",\n          \"node_id\": 1003\n        }\n      },\n      \"overall_reliability_for_all_routes_in_monitor_run\": 2666\n    },\n    {\n      \"monitor_run_id\": 7525,\n      \"timestamp\": 4462,\n      \"test_routes\": {\n        \"gateway\": {\n          \"identity_key\": \"string\",\n          \"node_id\": 6864\n        },\n        \"layer1\": {\n          \"identity_key\": \"string\",\n          \"node_id\": 3373\n        },\n        \"layer2\": {\n          \"identity_key\": \"string\",\n          \"node_id\": 282\n        },\n        \"layer3\": {\n          \"identity_key\": \"string\",\n          \"node_id\": 2319\n        }\n      },\n      \"overall_reliability_for_all_routes_in_monitor_run\": 7953\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c92b4c74-e151-4abc-9715-d1e28f3e634f",
+          "name": "latest monitor run report",
+          "request": {
+            "name": "latest monitor run report",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "status",
+                "network-monitor",
+                "unstable",
+                "run",
+                "latest",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d82e700-3a86-42d1-82d4-3d5e5a054c68",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "status",
+                    "network-monitor",
+                    "unstable",
+                    "run",
+                    "latest",
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"monitor_run_id\": 537,\n  \"network_reliability\": 8076.821377430497,\n  \"total_sent\": 2358,\n  \"total_received\": 3030,\n  \"mixnode_results\": {\n    \"key_0\": 9971\n  },\n  \"gateway_results\": {\n    \"key_0\": 632\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ae11c91d-59c4-4e31-92aa-88943705a22a",
+          "name": "monitor run report",
+          "request": {
+            "name": "monitor run report",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "status",
+                "network-monitor",
+                "unstable",
+                "run",
+                ":monitor_run_id",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "monitor_run_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6fba8df-f3a8-4ef8-87fc-4b43a6a424c6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "status",
+                    "network-monitor",
+                    "unstable",
+                    "run",
+                    ":monitor_run_id",
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "monitor_run_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"monitor_run_id\": 537,\n  \"network_reliability\": 8076.821377430497,\n  \"total_sent\": 2358,\n  \"total_received\": 3030,\n  \"mixnode_results\": {\n    \"key_0\": 9971\n  },\n  \"gateway_results\": {\n    \"key_0\": 632\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e560a7b0-31c2-4490-9f18-139875d23d55",
+    "name": "Node Status API Status UNSTABLE - DO **NOT** USE API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Nym Technologies SA",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,394 @@
+{
+  "item": [
+    {
+      "id": "4df33d38-d9bd-4eec-9085-930bd14ec81b",
+      "name": "Utility",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "64c6faaa-841c-4804-80d2-c243f7bd3ef4",
+          "name": "Return information on when the mixnet cache has last been refreshed.",
+          "request": {
+            "name": "Return information on when the mixnet cache has last been refreshed.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "utility",
+                "mixnet-cache-timestamp"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "f196486f-f1b5-4037-ae2a-d0e2a0b1925b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "utility",
+                    "mixnet-cache-timestamp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2efa86ec-b269-4968-804f-1446ad539f26",
+          "name": "Return information on when the mixnet cache has last been refreshed.",
+          "request": {
+            "name": "Return information on when the mixnet cache has last been refreshed.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "utility",
+                "node-annotations-cache-timestamp"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "a5dc4fad-e3cb-48b0-b89f-b1d362fcbacf",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "utility",
+                    "node-annotations-cache-timestamp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe500829-f463-41be-a916-02288f58582c",
+          "name": "Allow to request to refresh the cache of all mixnet nodes on the network.\nNote that this endpoint enforces high global rate limiting and realistically\nshould not be used outside very special scenarios.",
+          "request": {
+            "name": "Allow to request to refresh the cache of all mixnet nodes on the network.\nNote that this endpoint enforces high global rate limiting and realistically\nshould not be used outside very special scenarios.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "utility",
+                "refresh-mixnet-cache"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5f27253a-a0a6-4d5f-b4fb-c121666dc73d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "utility",
+                    "refresh-mixnet-cache"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "29998069-f89e-4fd0-8bbb-b87467bf0c59",
+          "name": "Allow to request to refresh the cache of all mixnet nodes on the network.\nNote that this endpoint enforces high global rate limiting and realistically\nshould not be used outside very special scenarios.",
+          "request": {
+            "name": "Allow to request to refresh the cache of all mixnet nodes on the network.\nNote that this endpoint enforces high global rate limiting and realistically\nshould not be used outside very special scenarios.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "utility",
+                "refresh-node-annotations-cache"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8edc4661-3296-4457-8aa7-b005a19c07be",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "utility",
+                    "refresh-node-annotations-cache"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9579db6b-38d6-4e1f-8870-c015eaef4b99",
+    "name": "Node Status API Status Utility API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Nym Technologies SA",
+      "type": "text/plain"
+    }
+  }
+}

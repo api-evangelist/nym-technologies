@@ -1,0 +1,1591 @@
+{
+  "item": [
+    {
+      "id": "9003aab7-e5cd-4d3f-8aa4-7553961a25ee",
+      "name": "Nym Nodes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "482ad6b8-a664-4135-98b4-80f25333d09a",
+          "name": "get node annotation",
+          "request": {
+            "name": "get node annotation",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "nym-nodes",
+                "annotation",
+                ":node_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "node_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "50ffd963-a1e0-4721-9325-8a11b19e5c31",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "nym-nodes",
+                    "annotation",
+                    ":node_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "node_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"node_id\": 1272,\n  \"annotation\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89c70936-2fe5-4aad-aed9-2afdbd06a263",
+          "name": "get bonded nodes",
+          "request": {
+            "name": "get bonded nodes",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "nym-nodes",
+                "bonded"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a4dcffc3-40ea-4781-ab4b-94e66e992564",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "nym-nodes",
+                    "bonded"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "yaml"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"total\": 8957,\n    \"page\": 9679,\n    \"size\": 3845\n  },\n  \"data\": [\n    {\n      \"bond_information\": {\n        \"node_id\": 7186,\n        \"owner\": \"string\",\n        \"original_pledge\": {\n          \"denom\": \"string\",\n          \"amount\": 1973\n        },\n        \"bonding_height\": 3069,\n        \"is_unbonding\": false,\n        \"node\": {\n          \"host\": \"string\",\n          \"identity_key\": \"string\",\n          \"custom_http_port\": 2621\n        }\n      },\n      \"rewarding_details\": {\n        \"cost_params\": {\n          \"profit_margin_percent\": \"string\",\n          \"interval_operating_cost\": {\n            \"denom\": \"string\",\n            \"amount\": 5750\n          }\n        },\n        \"operator\": \"string\",\n        \"delegates\": \"string\",\n        \"total_unit_reward\": \"string\",\n        \"unit_delegation\": \"string\",\n        \"last_rewarded_epoch\": 4735,\n        \"unique_delegations\": 735\n      },\n      \"pending_changes\": {\n        \"cost_params_change\": 4353,\n        \"pledge_change\": 2314\n      }\n    },\n    {\n      \"bond_information\": {\n        \"node_id\": 6084,\n        \"owner\": \"string\",\n        \"original_pledge\": {\n          \"denom\": \"string\",\n          \"amount\": 5499\n        },\n        \"bonding_height\": 3261,\n        \"is_unbonding\": false,\n        \"node\": {\n          \"host\": \"string\",\n          \"identity_key\": \"string\",\n          \"custom_http_port\": 526\n        }\n      },\n      \"rewarding_details\": {\n        \"cost_params\": {\n          \"profit_margin_percent\": \"string\",\n          \"interval_operating_cost\": {\n            \"denom\": \"string\",\n            \"amount\": 5967\n          }\n        },\n        \"operator\": \"string\",\n        \"delegates\": \"string\",\n        \"total_unit_reward\": \"string\",\n        \"unit_delegation\": \"string\",\n        \"last_rewarded_epoch\": 6593,\n        \"unique_delegations\": 3945\n      },\n      \"pending_changes\": {\n        \"cost_params_change\": 5044,\n        \"pledge_change\": 5145\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ecf5cf5b-938f-44f6-8991-e57c8185df4c",
+          "name": "get described nodes",
+          "request": {
+            "name": "get described nodes",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "nym-nodes",
+                "described"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e3813b06-0760-44fa-8e72-120463a59acf",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "nym-nodes",
+                    "described"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "yaml"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"total\": 5025,\n    \"page\": 7932,\n    \"size\": 8411\n  },\n  \"data\": [\n    {\n      \"node_id\": 7236,\n      \"contract_node_type\": \"legacy_mixnode\",\n      \"description\": {\n        \"host_information\": {\n          \"ip_address\": [\n            \"string\",\n            \"string\"\n          ],\n          \"keys\": {\n            \"ed25519\": \"string\",\n            \"x25519\": \"string\",\n            \"current_x25519_sphinx_key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"pre_announced_x25519_sphinx_key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"x25519_versioned_noise\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"hostname\": \"string\"\n        },\n        \"build_information\": {\n          \"binary_name\": \"string\",\n          \"build_timestamp\": \"string\",\n          \"build_version\": \"string\",\n          \"commit_sha\": \"string\",\n          \"commit_timestamp\": \"string\",\n          \"commit_branch\": \"string\",\n          \"rustc_version\": \"string\",\n          \"rustc_channel\": \"string\",\n          \"cargo_profile\": \"string\",\n          \"cargo_triple\": \"string\"\n        },\n        \"mixnet_websockets\": {\n          \"ws_port\": 7528,\n          \"wss_port\": 385\n        },\n        \"authenticator\": null,\n        \"auxiliary_details\": {\n          \"accepted_operator_terms_and_conditions\": true,\n          \"announce_ports\": {\n            \"mix_port\": 4735,\n            \"verloc_port\": 2035\n          },\n          \"location\": \"PL\"\n        },\n        \"declared_role\": {\n          \"mixnode\": false,\n          \"entry\": true,\n          \"exit_nr\": true,\n          \"exit_ipr\": false\n        },\n        \"ip_packet_router\": null,\n        \"last_polled\": \"1973-04-20T13:52:30.393Z\",\n        \"network_requester\": null,\n        \"wireguard\": null\n      }\n    },\n    {\n      \"node_id\": 456,\n      \"contract_node_type\": \"legacy_mixnode\",\n      \"description\": {\n        \"host_information\": {\n          \"ip_address\": [\n            \"string\",\n            \"string\"\n          ],\n          \"keys\": {\n            \"ed25519\": \"string\",\n            \"x25519\": \"string\",\n            \"current_x25519_sphinx_key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"pre_announced_x25519_sphinx_key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"x25519_versioned_noise\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"hostname\": \"string\"\n        },\n        \"build_information\": {\n          \"binary_name\": \"string\",\n          \"build_timestamp\": \"string\",\n          \"build_version\": \"string\",\n          \"commit_sha\": \"string\",\n          \"commit_timestamp\": \"string\",\n          \"commit_branch\": \"string\",\n          \"rustc_version\": \"string\",\n          \"rustc_channel\": \"string\",\n          \"cargo_profile\": \"string\",\n          \"cargo_triple\": \"string\"\n        },\n        \"mixnet_websockets\": {\n          \"ws_port\": 1442,\n          \"wss_port\": 282\n        },\n        \"authenticator\": null,\n        \"auxiliary_details\": {\n          \"accepted_operator_terms_and_conditions\": true,\n          \"announce_ports\": {\n            \"mix_port\": 4991,\n            \"verloc_port\": 7691\n          },\n          \"location\": \"PL\"\n        },\n        \"declared_role\": {\n          \"mixnode\": false,\n          \"entry\": false,\n          \"exit_nr\": true,\n          \"exit_ipr\": false\n        },\n        \"ip_packet_router\": null,\n        \"last_polled\": \"1999-04-14T04:47:24.547Z\",\n        \"network_requester\": null,\n        \"wireguard\": null\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b22aa6ea-1d2b-4508-8434-8107a78a73f1",
+          "name": "get historical performance",
+          "request": {
+            "name": "get historical performance",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "nym-nodes",
+                "historical-performance",
+                ":node_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "node_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ecdfefea-aa20-4cb6-af45-16a800fedd02",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "nym-nodes",
+                    "historical-performance",
+                    ":node_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "output",
+                      "value": "yaml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "node_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"node_id\": 1301,\n  \"date\": \"1970-01-01\",\n  \"performance\": 8079.279433396645\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85a5c78f-286e-4985-9143-e1b7afca643b",
+          "name": "nodes noise",
+          "request": {
+            "name": "nodes noise",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "nym-nodes",
+                "noise"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "23a22358-d0d6-476d-a043-0924ac47c05a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "nym-nodes",
+                    "noise"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "yaml"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"total\": 573,\n    \"page\": 7659,\n    \"size\": 7740\n  },\n  \"data\": [\n    {\n      \"key\": {\n        \"supported_version\": 8562,\n        \"x25519_pubkey\": \"string\"\n      },\n      \"mixnet_port\": 9012,\n      \"ip_addresses\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"key\": {\n        \"supported_version\": 3092,\n        \"x25519_pubkey\": \"string\"\n      },\n      \"mixnet_port\": 9212,\n      \"ip_addresses\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0886d003-46d5-4d81-a0f9-b8cf6294d151",
+          "name": "get node performance history",
+          "request": {
+            "name": "get node performance history",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "nym-nodes",
+                "performance-history",
+                ":node_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "node_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ff4aa15f-3733-405a-9f85-ee1fa2cbab91",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "nym-nodes",
+                    "performance-history",
+                    ":node_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "yaml"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "node_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"node_id\": 6269,\n  \"history\": {\n    \"pagination\": {\n      \"total\": 3865,\n      \"page\": 3406,\n      \"size\": 751\n    },\n    \"data\": [\n      {\n        \"date\": \"1970-01-01\",\n        \"performance\": 5242.824030554538\n      },\n      {\n        \"date\": \"1970-01-01\",\n        \"performance\": 8019.366530991815\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9bd883f7-f7ea-40a0-926d-d79921a43a22",
+          "name": "get current node performance",
+          "request": {
+            "name": "get current node performance",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "nym-nodes",
+                "performance",
+                ":node_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "node_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3c41e9a0-0946-4808-9b8c-1c0de8e1db7f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "nym-nodes",
+                    "performance",
+                    ":node_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "node_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"node_id\": 9549,\n  \"performance\": 3794.2573749391872\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4299651f-c742-4fa9-8210-9344554ee5a0",
+          "name": "refresh described",
+          "request": {
+            "name": "refresh described",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "nym-nodes",
+                "refresh-described"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"node_identity\": \"<string>\",\n  \"request_timestamp\": \"<long>\",\n  \"signature\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0b09018-8f31-42d3-832b-e353009f9538",
+          "name": "rewarded set",
+          "request": {
+            "name": "rewarded set",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "nym-nodes",
+                "rewarded-set"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13c50286-7b9c-4222-b4e4-6565590afc65",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "nym-nodes",
+                    "rewarded-set"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entry_gateways\": [\n    5105,\n    1378\n  ],\n  \"exit_gateways\": [\n    4221,\n    1008\n  ],\n  \"layer1\": [\n    1265,\n    4050\n  ],\n  \"layer2\": [\n    7334,\n    8390\n  ],\n  \"layer3\": [\n    5549,\n    9541\n  ],\n  \"standby\": [\n    370,\n    7034\n  ],\n  \"epoch_id\": 7655\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46eab3ed-933b-42b2-99c6-afce945360ae",
+          "name": "get node stake saturation",
+          "request": {
+            "name": "get node stake saturation",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "nym-nodes",
+                "stake-saturation",
+                ":node_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "node_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4d69fe51-2004-4104-b6e8-d88c3b74a04d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "nym-nodes",
+                    "stake-saturation",
+                    ":node_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "node_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"saturation\": \"string\",\n  \"uncapped_saturation\": \"string\",\n  \"as_at\": 9956\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b29c958f-443c-48fa-95f1-a52a43fa8c8b",
+          "name": "get node uptime history",
+          "request": {
+            "name": "get node uptime history",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "nym-nodes",
+                "uptime-history",
+                ":node_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "node_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "33e61b5b-5e1e-401f-9372-8d8c2192994c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "nym-nodes",
+                    "uptime-history",
+                    ":node_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "yaml"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "node_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"node_id\": 6269,\n  \"history\": {\n    \"pagination\": {\n      \"total\": 3865,\n      \"page\": 3406,\n      \"size\": 751\n    },\n    \"data\": [\n      {\n        \"date\": \"1970-01-01\",\n        \"performance\": 5242.824030554538\n      },\n      {\n        \"date\": \"1970-01-01\",\n        \"performance\": 8019.366530991815\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a9cd53d-8f55-4688-ad34-ece181a5f2b7",
+          "name": "v2 get node annotation",
+          "request": {
+            "name": "v2 get node annotation",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "nym-nodes",
+                "annotation",
+                ":node_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "node_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "097b5cd2-8432-4ed0-8701-bf9d921196d9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "nym-nodes",
+                    "annotation",
+                    ":node_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "node_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"node_id\": 1272,\n  \"annotation\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bedc78ae-d54b-4a84-b972-e4282b9f8515",
+          "name": "v2 get described nodes",
+          "request": {
+            "name": "v2 get described nodes",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "nym-nodes",
+                "described"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b40ccca-9745-47eb-bd0c-e35c45d34cf2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "nym-nodes",
+                    "described"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "yaml"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"total\": 3036,\n    \"page\": 2670,\n    \"size\": 2476\n  },\n  \"data\": [\n    {\n      \"node_id\": 4138,\n      \"contract_node_type\": \"legacy_mixnode\",\n      \"description\": {\n        \"host_information\": {\n          \"ip_address\": [\n            \"string\",\n            \"string\"\n          ],\n          \"keys\": {\n            \"ed25519\": \"string\",\n            \"x25519\": \"string\",\n            \"current_x25519_sphinx_key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"pre_announced_x25519_sphinx_key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"x25519_versioned_noise\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"hostname\": \"string\"\n        },\n        \"build_information\": {\n          \"binary_name\": \"string\",\n          \"build_timestamp\": \"string\",\n          \"build_version\": \"string\",\n          \"commit_sha\": \"string\",\n          \"commit_timestamp\": \"string\",\n          \"commit_branch\": \"string\",\n          \"rustc_version\": \"string\",\n          \"rustc_channel\": \"string\",\n          \"cargo_profile\": \"string\",\n          \"cargo_triple\": \"string\"\n        },\n        \"mixnet_websockets\": {\n          \"ws_port\": 5445,\n          \"wss_port\": 8604\n        },\n        \"authenticator\": null,\n        \"auxiliary_details\": {\n          \"accepted_operator_terms_and_conditions\": true,\n          \"announce_ports\": {\n            \"mix_port\": 9132,\n            \"verloc_port\": 1801\n          },\n          \"location\": \"PL\"\n        },\n        \"declared_role\": {\n          \"mixnode\": true,\n          \"entry\": false,\n          \"exit_nr\": false,\n          \"exit_ipr\": false\n        },\n        \"ip_packet_router\": null,\n        \"last_polled\": \"1996-08-11T16:56:43.211Z\",\n        \"lewes_protocol\": null,\n        \"network_requester\": null,\n        \"wireguard\": null\n      }\n    },\n    {\n      \"node_id\": 8210,\n      \"contract_node_type\": \"legacy_mixnode\",\n      \"description\": {\n        \"host_information\": {\n          \"ip_address\": [\n            \"string\",\n            \"string\"\n          ],\n          \"keys\": {\n            \"ed25519\": \"string\",\n            \"x25519\": \"string\",\n            \"current_x25519_sphinx_key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"pre_announced_x25519_sphinx_key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"x25519_versioned_noise\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"hostname\": \"string\"\n        },\n        \"build_information\": {\n          \"binary_name\": \"string\",\n          \"build_timestamp\": \"string\",\n          \"build_version\": \"string\",\n          \"commit_sha\": \"string\",\n          \"commit_timestamp\": \"string\",\n          \"commit_branch\": \"string\",\n          \"rustc_version\": \"string\",\n          \"rustc_channel\": \"string\",\n          \"cargo_profile\": \"string\",\n          \"cargo_triple\": \"string\"\n        },\n        \"mixnet_websockets\": {\n          \"ws_port\": 3744,\n          \"wss_port\": 4754\n        },\n        \"authenticator\": null,\n        \"auxiliary_details\": {\n          \"accepted_operator_terms_and_conditions\": false,\n          \"announce_ports\": {\n            \"mix_port\": 3959,\n            \"verloc_port\": 2042\n          },\n          \"location\": \"PL\"\n        },\n        \"declared_role\": {\n          \"mixnode\": true,\n          \"entry\": false,\n          \"exit_nr\": false,\n          \"exit_ipr\": false\n        },\n        \"ip_packet_router\": null,\n        \"last_polled\": \"1973-11-20T07:40:14.497Z\",\n        \"lewes_protocol\": null,\n        \"network_requester\": null,\n        \"wireguard\": null\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9cd771dc-6a64-4db3-a451-d0d6bd99a2e9",
+          "name": "Accept a batch of stress-test results from an authorised network monitor orchestrator.",
+          "request": {
+            "name": "Accept a batch of stress-test results from an authorised network monitor orchestrator.",
+            "description": {
+              "content": "The batch is rejected unless all of the following hold:\n- the submission timestamp is within a short staleness window of the current time,\n- the signer's key is currently registered in the network-monitors contract,\n- the submission timestamp is strictly greater than the signer's previous accepted submission\n  (timestamp-based replay protection, so orchestrators don't need to keep a nonce counter),\n- the signature on the body verifies against the signer's key.\n\nIndividual result entries that fail per-entry validation (non-mixnode role, performance score\noutside `[0.0, 1.0]`) are logged as errors and dropped, but do not fail the batch.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "nym-nodes",
+                "stress-testing",
+                "batch-submit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"body\": {\n    \"currentTime\": \"<string>\",\n    \"chainStatus\": \"<string>\",\n    \"latestCachedBlock\": \"<null>\"\n  },\n  \"signature\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "52015e40-c07c-4daf-9c7f-57a3812de582",
+              "name": "the submitted batch has been accepted and stored",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "nym-nodes",
+                    "stress-testing",
+                    "batch-submit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": {\n    \"currentTime\": \"string\",\n    \"chainStatus\": \"synced\",\n    \"latestCachedBlock\": null\n  },\n  \"signature\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "21014849-6345-43ff-8a71-23bdce47322a",
+              "name": "the submitted request is stale or replayed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "nym-nodes",
+                    "stress-testing",
+                    "batch-submit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": {\n    \"currentTime\": \"string\",\n    \"chainStatus\": \"synced\",\n    \"latestCachedBlock\": null\n  },\n  \"signature\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0c3a21fa-8dbf-4f32-b255-e6366d5b927f",
+              "name": "the submitted request was unauthorised or failed integrity check",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "nym-nodes",
+                    "stress-testing",
+                    "batch-submit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": {\n    \"currentTime\": \"string\",\n    \"chainStatus\": \"synced\",\n    \"latestCachedBlock\": null\n  },\n  \"signature\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "47b8c0d4-9883-4d01-ae6e-5d4b44893fef",
+          "name": "Report whether the given identity key is currently recognised by this nym-api as an\nauthorised network monitor orchestrator.",
+          "request": {
+            "name": "Report whether the given identity key is currently recognised by this nym-api as an\nauthorised network monitor orchestrator.",
+            "description": {
+              "content": "Intended for orchestrators to self-check after (re)announcing their key on-chain - a\nsuccessful response with `authorised: true` means this nym-api has picked up the chain change\nand is ready to accept stress-test submissions signed by that key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "nym-nodes",
+                "stress-testing",
+                "known-monitors",
+                ":identity_key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identity_key",
+                  "description": "(Required) base58-encoded ed25519 identity key of the queried network monitor"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "96d3d1e6-4903-47bb-97d8-6ea484503105",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "nym-nodes",
+                    "stress-testing",
+                    "known-monitors",
+                    ":identity_key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity_key",
+                      "description": "(Required) base58-encoded ed25519 identity key of the queried network monitor"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity_key\": \"string\",\n  \"authorised\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce033b1e-4713-4d20-a438-cad25c13de5e",
+              "name": "the provided identity key is not a valid base58-encoded ed25519 public key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "nym-nodes",
+                    "stress-testing",
+                    "known-monitors",
+                    ":identity_key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity_key",
+                      "description": "(Required) base58-encoded ed25519 identity key of the queried network monitor"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3b3e4526-d88d-4dfa-9a81-f4d9e713eda0",
+    "name": "Node Status API Status Nym Nodes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Nym Technologies SA",
+      "type": "text/plain"
+    }
+  }
+}

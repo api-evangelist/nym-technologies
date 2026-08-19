@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Node Status API Status Node Families API",
+    "version": "4.6.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Node Families",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get_families",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/node-families",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_family_for_node",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/node-families/by-node/:node_id",
+            "params": [
+              {
+                "name": "node_id",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the member node"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_family_by_id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/node-families/:family_id",
+            "params": [
+              {
+                "name": "family_id",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the family"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

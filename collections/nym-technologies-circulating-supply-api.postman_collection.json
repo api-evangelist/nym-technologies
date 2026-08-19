@@ -1,0 +1,273 @@
+{
+  "item": [
+    {
+      "id": "23a97a00-60e6-401d-94af-4e877cf3a559",
+      "name": "circulating-supply",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3aca2b93-40ca-4ac7-b8dc-32d3aa0832ef",
+          "name": "get full circulating supply",
+          "request": {
+            "name": "get full circulating supply",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "circulating-supply"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "15e2a559-4edc-4689-8dcf-4d94b8fcfa54",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "circulating-supply"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_supply\": {\n    \"denom\": \"string\",\n    \"amount\": 2139\n  },\n  \"mixmining_reserve\": {\n    \"denom\": \"string\",\n    \"amount\": 1387\n  },\n  \"vesting_tokens\": {\n    \"denom\": \"string\",\n    \"amount\": 7225\n  },\n  \"circulating_supply\": {\n    \"denom\": \"string\",\n    \"amount\": 1668\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5278dce7-5767-41fd-ab6a-2d6194455b51",
+          "name": "get circulating supply",
+          "request": {
+            "name": "get circulating supply",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "circulating-supply",
+                "circulating-supply-value"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "810529c8-b6b4-467e-8d6d-2d70f0ccac50",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "circulating-supply",
+                    "circulating-supply-value"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "7319.91586195101",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7cd6dc9-1330-4507-8813-c388e4a01960",
+          "name": "get total supply",
+          "request": {
+            "name": "get total supply",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "circulating-supply",
+                "total-supply-value"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba040489-403f-4fb5-8190-949dad7eeade",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "circulating-supply",
+                    "total-supply-value"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "7319.91586195101",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f0170458-95b9-40c0-8f59-fa5aa8a39de8",
+    "name": "Node Status API Status circulating-supply API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Nym Technologies SA",
+      "type": "text/plain"
+    }
+  }
+}

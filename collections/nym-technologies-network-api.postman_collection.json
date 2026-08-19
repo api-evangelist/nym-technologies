@@ -1,0 +1,603 @@
+{
+  "item": [
+    {
+      "id": "853d3b3a-e25c-4699-8252-da90227ff968",
+      "name": "network",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f51e3a06-b99c-4a00-a778-bc8520935ff2",
+          "name": "chain blocks status",
+          "request": {
+            "name": "chain blocks status",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "network",
+                "chain-blocks-status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b0cef10-dea6-43dc-8aca-fe837473e762",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "network",
+                    "chain-blocks-status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"body\": {\n    \"currentTime\": \"string\",\n    \"chainStatus\": \"synced\",\n    \"latestCachedBlock\": null\n  },\n  \"signature\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "add601ea-dbcb-41bb-9c2c-4f3eedf4177e",
+          "name": "chain status",
+          "request": {
+            "name": "chain status",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "network",
+                "chain-status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d0d3a2bf-607d-49cb-b1f5-c6e31e0e1d87",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "network",
+                    "chain-status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"connected_nyxd\": \"string\",\n  \"status\": {\n    \"abci\": {\n      \"data\": \"string\",\n      \"version\": \"string\",\n      \"app_version\": 5848,\n      \"last_block_height\": 953,\n      \"last_block_app_hash\": \"string\"\n    },\n    \"latest_block\": {\n      \"block_id\": {\n        \"hash\": \"string\",\n        \"part_set_header\": {\n          \"total\": 1674,\n          \"hash\": \"string\"\n        }\n      },\n      \"block\": {\n        \"header\": {\n          \"version\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain_id\": \"string\",\n          \"height\": 4411,\n          \"time\": \"string\",\n          \"validators_hash\": \"string\",\n          \"next_validators_hash\": \"string\",\n          \"consensus_hash\": \"string\",\n          \"app_hash\": \"string\",\n          \"proposer_address\": \"string\",\n          \"data_hash\": \"string\",\n          \"evidence_hash\": \"string\",\n          \"last_block_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_commit_hash\": \"string\",\n          \"last_results_hash\": \"string\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2dc208fa-2171-4965-80b7-20c19f8e8dfd",
+          "name": "network details",
+          "request": {
+            "name": "network details",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "network",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d792fd61-dcce-46e8-abfe-459ec4aa2732",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "network",
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"connected_nyxd\": \"string\",\n  \"network\": {\n    \"network_name\": \"string\",\n    \"chain_details\": {\n      \"bech32_account_prefix\": \"string\",\n      \"mix_denom\": {\n        \"base\": \"string\",\n        \"display\": \"string\",\n        \"display_exponent\": 5761\n      },\n      \"stake_denom\": {\n        \"base\": \"string\",\n        \"display\": \"string\",\n        \"display_exponent\": 1377\n      }\n    },\n    \"endpoints\": [\n      {\n        \"nyxd_url\": \"string\",\n        \"api_url\": \"string\",\n        \"websocket_url\": \"string\"\n      },\n      {\n        \"nyxd_url\": \"string\",\n        \"api_url\": \"string\",\n        \"websocket_url\": \"string\"\n      }\n    ],\n    \"contracts\": {\n      \"coconut_dkg_contract_address\": \"string\",\n      \"ecash_contract_address\": \"string\",\n      \"group_contract_address\": \"string\",\n      \"mixnet_contract_address\": \"string\",\n      \"multisig_contract_address\": \"string\",\n      \"network_monitors_contract_address\": \"string\",\n      \"node_families_contract_address\": \"string\",\n      \"performance_contract_address\": \"string\",\n      \"vesting_contract_address\": \"string\"\n    },\n    \"nym_api_urls\": [\n      {\n        \"url\": \"string\",\n        \"front_hosts\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"url\": \"string\",\n        \"front_hosts\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"nym_vpn_api_url\": \"string\",\n    \"nym_vpn_api_urls\": [\n      {\n        \"url\": \"string\",\n        \"front_hosts\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"url\": \"string\",\n        \"front_hosts\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67a5ceaa-e8df-4d97-b8d6-ec2e01a333ee",
+          "name": "nym contracts",
+          "request": {
+            "name": "nym contracts",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "network",
+                "nym-contracts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "313ee24b-1cc4-49d9-a938-e5e69f19ac3b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "network",
+                    "nym-contracts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": {\n    \"address\": \"string\",\n    \"details\": null\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "161fe195-9fad-4b14-8683-cdd8b6ee3cab",
+          "name": "nym contracts detailed",
+          "request": {
+            "name": "nym contracts detailed",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "network",
+                "nym-contracts-detailed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7d1df75-2ef6-4c7a-ad95-7e4b9ee6ac75",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "network",
+                    "nym-contracts-detailed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": {\n    \"address\": \"string\",\n    \"details\": null\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "474b8689-d17a-4c67-9f5b-afa9803be156",
+          "name": "signers status",
+          "request": {
+            "name": "signers status",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "network",
+                "signers",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "325a6361-ef44-4703-a57a-d7077ed78f9b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "network",
+                    "signers",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"body\": {\n    \"currentTime\": \"string\",\n    \"chainStatus\": \"synced\",\n    \"latestCachedBlock\": null\n  },\n  \"signature\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83927624-b4b9-4ac5-aa63-4fd118dc452d",
+          "name": "signers status detailed",
+          "request": {
+            "name": "signers status detailed",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "network",
+                "signers",
+                "status-detailed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7a9ccbe6-c596-48c4-9365-b491814af03c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "network",
+                    "signers",
+                    "status-detailed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"body\": {\n    \"currentTime\": \"string\",\n    \"chainStatus\": \"synced\",\n    \"latestCachedBlock\": null\n  },\n  \"signature\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "84c186b0-b5c7-4019-a44f-fa8c39d35c34",
+    "name": "Node Status API Status network API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Nym Technologies SA",
+      "type": "text/plain"
+    }
+  }
+}

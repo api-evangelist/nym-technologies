@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Node Status API Status Utility API",
+    "version": "4.6.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Utility",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return information on when the mixnet cache has last been refreshed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/utility/mixnet-cache-timestamp",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return information on when the mixnet cache has last been refreshed."
+        },
+        {
+          "info": {
+            "name": "Return information on when the mixnet cache has last been refreshed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/utility/node-annotations-cache-timestamp",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return information on when the mixnet cache has last been refreshed."
+        },
+        {
+          "info": {
+            "name": "Allow to request to refresh the cache of all mixnet nodes on the network.\nNote that this endpoint enforces high global rate limiting and realistically\nshould not be used outside very special scenarios.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/utility/refresh-mixnet-cache",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Allow to request to refresh the cache of all mixnet nodes on the network.\nNote that this endpoint enforces high global rate limiting and realistically\nshould not be used outside very special scenarios."
+        },
+        {
+          "info": {
+            "name": "Allow to request to refresh the cache of all mixnet nodes on the network.\nNote that this endpoint enforces high global rate limiting and realistically\nshould not be used outside very special scenarios.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/utility/refresh-node-annotations-cache",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Allow to request to refresh the cache of all mixnet nodes on the network.\nNote that this endpoint enforces high global rate limiting and realistically\nshould not be used outside very special scenarios."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

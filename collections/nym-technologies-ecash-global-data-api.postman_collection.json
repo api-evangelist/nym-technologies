@@ -1,0 +1,311 @@
+{
+  "item": [
+    {
+      "id": "abb97659-5943-4634-ac9a-149ecda74c50",
+      "name": "Ecash Global Data",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d5561454-c396-4225-b07f-2612da8f4138",
+          "name": "coin indices signatures",
+          "request": {
+            "name": "coin indices signatures",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "ecash",
+                "aggregated-coin-indices-signatures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "epoch_id",
+                  "value": "<integer,null-int64>"
+                },
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3793adf0-87c2-404e-b1ae-89a911024e4f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "aggregated-coin-indices-signatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "epoch_id",
+                      "value": "<integer,null-int64>"
+                    },
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"epoch_id\": 3070,\n  \"signatures\": {\n    \"h\": \"string\",\n    \"s\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7965006f-48f8-4a1e-8d74-7730188598f0",
+          "name": "expiration date signatures",
+          "request": {
+            "name": "expiration date signatures",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "ecash",
+                "aggregated-expiration-date-signatures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expiration_date",
+                  "value": "<string,null>"
+                },
+                {
+                  "disabled": false,
+                  "key": "epoch_id",
+                  "value": "<null>"
+                },
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8d98d2dd-8cd3-4636-8eed-244184adb327",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "aggregated-expiration-date-signatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expiration_date",
+                      "value": "<string,null>"
+                    },
+                    {
+                      "key": "epoch_id",
+                      "value": "<null>"
+                    },
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"epoch_id\": 6510,\n  \"expiration_date\": \"1970-01-01\",\n  \"signatures\": [\n    {\n      \"signature\": {\n        \"h\": \"string\",\n        \"s\": \"string\"\n      },\n      \"expiration_timestamp\": 5870,\n      \"spending_timestamp\": 7114\n    },\n    {\n      \"signature\": {\n        \"h\": \"string\",\n        \"s\": \"string\"\n      },\n      \"expiration_timestamp\": 4358,\n      \"spending_timestamp\": 2493\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "47fe28d4-1806-4587-a24d-f2ad7ef7cbcd",
+          "name": "master verification key",
+          "request": {
+            "name": "master verification key",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "ecash",
+                "master-verification-key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "epoch_id",
+                  "value": "<integer,null-int64>"
+                },
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "40280fa8-9215-4c42-8b7a-74cf9a89b329",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "master-verification-key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "epoch_id",
+                      "value": "<integer,null-int64>"
+                    },
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key\": {\n    \"alpha\": \"string\",\n    \"beta_g1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"beta_g2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7ab99801-904a-44b7-b998-6931fa9a1397",
+    "name": "Node Status API Status Ecash Global Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Nym Technologies SA",
+      "type": "text/plain"
+    }
+  }
+}

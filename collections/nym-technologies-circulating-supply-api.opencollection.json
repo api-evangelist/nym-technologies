@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Node Status API Status circulating-supply API",
+    "version": "4.6.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "circulating-supply",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get_full_circulating_supply",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/circulating-supply",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_circulating_supply",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/circulating-supply/circulating-supply-value",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_total_supply",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/circulating-supply/total-supply-value",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

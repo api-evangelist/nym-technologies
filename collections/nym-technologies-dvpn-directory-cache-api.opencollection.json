@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Node Status API Status dVPN Directory Cache API",
+    "version": "4.6.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "dVPN Directory Cache",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets available entry and exit gateways from the Nym network directory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dvpn/v1/directory/gateways",
+            "params": [
+              {
+                "name": "min_node_version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets available entry and exit gateways from the Nym network directory"
+        },
+        {
+          "info": {
+            "name": "Gets available exit gateway countries as two-letter ISO country codes from the Nym network directory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dvpn/v1/directory/gateways/countries"
+          },
+          "docs": "Gets available exit gateway countries as two-letter ISO country codes from the Nym network directory"
+        },
+        {
+          "info": {
+            "name": "Gets available gateways from the Nym network directory by country",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dvpn/v1/directory/gateways/country/:two_letter_country_code",
+            "params": [
+              {
+                "name": "two_letter_country_code",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets available gateways from the Nym network directory by country"
+        },
+        {
+          "info": {
+            "name": "Gets available entry gateways from the Nym network directory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dvpn/v1/directory/gateways/entry"
+          },
+          "docs": "Gets available entry gateways from the Nym network directory"
+        },
+        {
+          "info": {
+            "name": "Gets available entry gateway countries as two-letter ISO country codes from the Nym network directory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dvpn/v1/directory/gateways/entry/countries"
+          },
+          "docs": "Gets available entry gateway countries as two-letter ISO country codes from the Nym network directory"
+        },
+        {
+          "info": {
+            "name": "Gets available entry gateways from the Nym network directory by country",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dvpn/v1/directory/gateways/entry/country/:two_letter_country_code",
+            "params": [
+              {
+                "name": "two_letter_country_code",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets available entry gateways from the Nym network directory by country"
+        },
+        {
+          "info": {
+            "name": "Gets available exit gateways from the Nym network directory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dvpn/v1/directory/gateways/exit"
+          },
+          "docs": "Gets available exit gateways from the Nym network directory"
+        },
+        {
+          "info": {
+            "name": "Gets available exit gateway countries as two-letter ISO country codes from the Nym network directory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dvpn/v1/directory/gateways/exit/countries"
+          },
+          "docs": "Gets available exit gateway countries as two-letter ISO country codes from the Nym network directory"
+        },
+        {
+          "info": {
+            "name": "Gets available exit gateways from the Nym network directory by country",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dvpn/v1/directory/gateways/exit/country/:two_letter_country_code",
+            "params": [
+              {
+                "name": "two_letter_country_code",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets available exit gateways from the Nym network directory by country"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

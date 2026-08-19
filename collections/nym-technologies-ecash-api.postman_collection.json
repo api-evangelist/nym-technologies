@@ -1,0 +1,1812 @@
+{
+  "item": [
+    {
+      "id": "6dd17392-55ae-46e1-95af-6c13c32d67e8",
+      "name": "Ecash",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5123266d-91f8-41ed-974b-54b124fe6511",
+          "name": "batch redeem tickets",
+          "request": {
+            "name": "batch redeem tickets",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "ecash",
+                "batch-redeem-ecash-tickets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"digest\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"included_serial_numbers\": [\n    [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  ],\n  \"proposal_id\": \"<long>\",\n  \"gateway_cosmos_addr\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4d989d5d-c9e4-4a29-9872-c1e651ce7ce6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "batch-redeem-ecash-tickets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"digest\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"included_serial_numbers\": [\n    [\n      7045,\n      7718\n    ],\n    [\n      2824,\n      4672\n    ]\n  ],\n  \"proposal_id\": \"<long>\",\n  \"gateway_cosmos_addr\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"proposal_accepted\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3c8fc13-9463-45f7-9644-30e64adcb44c",
+              "name": "this nym-api is not an ecash signer in the current epoch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "batch-redeem-ecash-tickets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"digest\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"included_serial_numbers\": [\n    [\n      7045,\n      7718\n    ],\n    [\n      2824,\n      4672\n    ]\n  ],\n  \"proposal_id\": \"<long>\",\n  \"gateway_cosmos_addr\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a46325b-cebb-4c4c-9daa-2a64909b239f",
+          "name": "post blind sign",
+          "request": {
+            "name": "post blind sign",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "ecash",
+                "blind-sign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"inner_sign_request\": {\n    \"joined_commitment_hash\": \"<string>\",\n    \"joined_commitment\": \"<string>\",\n    \"private_attributes_commitments\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"zk_proof\": {\n      \"challenge\": \"<string>\",\n      \"response_opening\": \"<string>\",\n      \"response_openings\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"response_attributes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"deposit_id\": \"<integer>\",\n  \"signature\": \"<string>\",\n  \"ecash_pubkey\": {\n    \"pk\": \"<string>\"\n  },\n  \"expiration_date\": \"<string>\",\n  \"ticketbook_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d0128406-81c2-4a4d-8839-b760e201d96a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "blind-sign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inner_sign_request\": {\n    \"joined_commitment_hash\": \"string\",\n    \"joined_commitment\": \"string\",\n    \"private_attributes_commitments\": [\n      \"string\",\n      \"string\"\n    ],\n    \"zk_proof\": {\n      \"challenge\": \"string\",\n      \"response_opening\": \"string\",\n      \"response_openings\": [\n        \"string\",\n        \"string\"\n      ],\n      \"response_attributes\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"deposit_id\": \"<integer>\",\n  \"signature\": \"<string>\",\n  \"ecash_pubkey\": {\n    \"pk\": \"string\"\n  },\n  \"expiration_date\": \"1970-01-01\",\n  \"ticketbook_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"blinded_signature\": {\n    \"h\": \"string\",\n    \"c\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ff49016-1629-49ee-b52e-c3cd930d3c2d",
+              "name": "this nym-api is not an ecash signer in the current epoch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "blind-sign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inner_sign_request\": {\n    \"joined_commitment_hash\": \"string\",\n    \"joined_commitment\": \"string\",\n    \"private_attributes_commitments\": [\n      \"string\",\n      \"string\"\n    ],\n    \"zk_proof\": {\n      \"challenge\": \"string\",\n      \"response_opening\": \"string\",\n      \"response_openings\": [\n        \"string\",\n        \"string\"\n      ],\n      \"response_attributes\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"deposit_id\": \"<integer>\",\n  \"signature\": \"<string>\",\n  \"ecash_pubkey\": {\n    \"pk\": \"string\"\n  },\n  \"expiration_date\": \"1970-01-01\",\n  \"ticketbook_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68c45b2c-6199-4dfc-8ad8-13d4b1f9d6a0",
+          "name": "double spending filter v1",
+          "request": {
+            "name": "double spending filter v1",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "ecash",
+                "double-spending-filter-v1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "56e5b440-fc90-435e-a9ba-11adbab5b3f4",
+              "name": "bloomfilters got disabled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "double-spending-filter-v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ee1b40a-e9f4-41f9-8301-e544e6ef8638",
+          "name": "issued ticketbooks challenge commitment",
+          "request": {
+            "name": "issued ticketbooks challenge commitment",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "ecash",
+                "issued-ticketbooks-challenge-commitment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"body\": {\n    \"currentTime\": \"<string>\",\n    \"chainStatus\": \"<string>\",\n    \"latestCachedBlock\": \"<null>\"\n  },\n  \"signature\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9bf71583-aea2-4b2d-9d42-0f4d25438422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "issued-ticketbooks-challenge-commitment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": {\n    \"currentTime\": \"string\",\n    \"chainStatus\": \"synced\",\n    \"latestCachedBlock\": null\n  },\n  \"signature\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"body\": {\n    \"currentTime\": \"string\",\n    \"chainStatus\": \"synced\",\n    \"latestCachedBlock\": null\n  },\n  \"signature\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67783b90-56ab-4c39-bfb8-83f2d7762124",
+              "name": "this nym-api is not an ecash signer in the current epoch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "issued-ticketbooks-challenge-commitment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": {\n    \"currentTime\": \"string\",\n    \"chainStatus\": \"synced\",\n    \"latestCachedBlock\": null\n  },\n  \"signature\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c2e55b1-e363-470d-8931-7e0cd09fdcf5",
+          "name": "Returns number of issued ticketbooks for given dates.\nNote: this endpoint will not be accurate for old dates",
+          "request": {
+            "name": "Returns number of issued ticketbooks for given dates.\nNote: this endpoint will not be accurate for old dates",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "ecash",
+                "issued-ticketbooks-count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "603fbd49-6be5-41a6-878b-c69a17a2f6b8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "issued-ticketbooks-count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "json"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"issued\": [\n    {\n      \"issuanceDate\": \"1970-01-01\",\n      \"expirationDate\": \"1970-01-01\",\n      \"count\": 1510\n    },\n    {\n      \"issuanceDate\": \"1970-01-01\",\n      \"expirationDate\": \"1970-01-01\",\n      \"count\": 9273\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e045fad2-700f-45de-9320-fae9ad61d1f8",
+              "name": "this nym-api is not an ecash signer in the current epoch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "issued-ticketbooks-count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "json"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "addadefe-f55f-42c6-8063-e7524194dfcf",
+          "name": "issued ticketbooks data",
+          "request": {
+            "name": "issued ticketbooks data",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "ecash",
+                "issued-ticketbooks-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"body\": {\n    \"currentTime\": \"<string>\",\n    \"chainStatus\": \"<string>\",\n    \"latestCachedBlock\": \"<null>\"\n  },\n  \"signature\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "804a6131-e4a1-4661-b0e0-2575448ef7e2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "issued-ticketbooks-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": {\n    \"currentTime\": \"string\",\n    \"chainStatus\": \"synced\",\n    \"latestCachedBlock\": null\n  },\n  \"signature\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"body\": {\n    \"currentTime\": \"string\",\n    \"chainStatus\": \"synced\",\n    \"latestCachedBlock\": null\n  },\n  \"signature\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa970f5c-d964-4ff2-b3d1-c870d2485cce",
+              "name": "this nym-api is not an ecash signer in the current epoch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "issued-ticketbooks-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": {\n    \"currentTime\": \"string\",\n    \"chainStatus\": \"synced\",\n    \"latestCachedBlock\": null\n  },\n  \"signature\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ed8fd84-b4f4-4546-975f-4662e6d625ad",
+          "name": "Returns number of issued ticketbooks for particular expiration date.\nNote: this endpoint will not be accurate for old dates",
+          "request": {
+            "name": "Returns number of issued ticketbooks for particular expiration date.\nNote: this endpoint will not be accurate for old dates",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "ecash",
+                "issued-ticketbooks-for-count",
+                ":expiration_date"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "expiration_date",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f6fcfd82-c2f2-487f-af2b-32c0a7f23764",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "issued-ticketbooks-for-count",
+                    ":expiration_date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "expiration_date",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"expirationDate\": \"1970-01-01\",\n  \"total\": 8109,\n  \"issued\": [\n    {\n      \"issuanceDate\": \"1970-01-01\",\n      \"count\": 1514\n    },\n    {\n      \"issuanceDate\": \"1970-01-01\",\n      \"count\": 9948\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d0f0495-81f7-43e9-8cea-15dd37c4cbf1",
+              "name": "this nym-api is not an ecash signer in the current epoch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "issued-ticketbooks-for-count",
+                    ":expiration_date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "expiration_date",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84aceafa-ead4-4ff1-99b7-5c710e799c2c",
+          "name": "issued ticketbooks for",
+          "request": {
+            "name": "issued ticketbooks for",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "ecash",
+                "issued-ticketbooks-for",
+                ":expiration_date"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "expiration_date",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a530319a-430f-4d68-9b12-1d81e37e38a6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "issued-ticketbooks-for",
+                    ":expiration_date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "expiration_date",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"body\": {\n    \"currentTime\": \"string\",\n    \"chainStatus\": \"synced\",\n    \"latestCachedBlock\": null\n  },\n  \"signature\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b8d248e-18be-4ca9-ae68-fc7219b3ad1f",
+              "name": "this nym-api is not an ecash signer in the current epoch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "issued-ticketbooks-for",
+                    ":expiration_date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "expiration_date",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a39a03cc-002d-48ea-b11a-ede063c2fb8a",
+          "name": "Returns number of issued ticketbooks on particular date.\nNote: this endpoint will not be accurate for old dates",
+          "request": {
+            "name": "Returns number of issued ticketbooks on particular date.\nNote: this endpoint will not be accurate for old dates",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "ecash",
+                "issued-ticketbooks-on-count",
+                ":issuance_date"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "issuance_date",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd873706-1455-4823-97ac-64e48ea5e011",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "issued-ticketbooks-on-count",
+                    ":issuance_date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "issuance_date",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"issuanceDate\": \"1970-01-01\",\n  \"total\": 1962,\n  \"issued\": [\n    {\n      \"expirationDate\": \"1970-01-01\",\n      \"count\": 7328\n    },\n    {\n      \"expirationDate\": \"1970-01-01\",\n      \"count\": 8920\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8429bd09-1771-4291-856f-24b21e59416e",
+              "name": "this nym-api is not an ecash signer in the current epoch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "issued-ticketbooks-on-count",
+                    ":issuance_date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "issuance_date",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a667837-7346-49dd-bcd9-f7cc1ea1889c",
+          "name": "partial coin indices signatures",
+          "request": {
+            "name": "partial coin indices signatures",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "ecash",
+                "partial-coin-indices-signatures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "epoch_id",
+                  "value": "<integer,null-int64>"
+                },
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "90fef090-f557-4f8b-90c0-1c9e0b68d56b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "partial-coin-indices-signatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "epoch_id",
+                      "value": "<integer,null-int64>"
+                    },
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"epoch_id\": 6609,\n  \"signatures\": {\n    \"signature\": {\n      \"h\": \"string\",\n      \"s\": \"string\"\n    },\n    \"index\": 9285\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15ab529c-41a4-4e08-84cf-e813447a640f",
+              "name": "this nym-api is not an ecash signer in the current epoch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "partial-coin-indices-signatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "epoch_id",
+                      "value": "<integer,null-int64>"
+                    },
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e18bdda8-8cc2-405d-b7f6-c96ce660128c",
+          "name": "partial expiration date signatures",
+          "request": {
+            "name": "partial expiration date signatures",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "ecash",
+                "partial-expiration-date-signatures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expiration_date",
+                  "value": "<string,null>"
+                },
+                {
+                  "disabled": false,
+                  "key": "epoch_id",
+                  "value": "<null>"
+                },
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "deef9ab7-efa7-4c8c-946e-032ecd7a0fa9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "partial-expiration-date-signatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expiration_date",
+                      "value": "<string,null>"
+                    },
+                    {
+                      "key": "epoch_id",
+                      "value": "<null>"
+                    },
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"epoch_id\": 2252,\n  \"expiration_date\": \"1970-01-01\",\n  \"signatures\": {\n    \"signature\": {\n      \"h\": \"string\",\n      \"s\": \"string\"\n    },\n    \"expiration_timestamp\": 4766,\n    \"spending_timestamp\": 2094\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51493984-d735-4706-96ee-14effda058a2",
+              "name": "this nym-api is not an ecash signer in the current epoch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "partial-expiration-date-signatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expiration_date",
+                      "value": "<string,null>"
+                    },
+                    {
+                      "key": "epoch_id",
+                      "value": "<null>"
+                    },
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64e259f1-d0f3-4d7b-9a34-eb8f98c0b742",
+          "name": "signer status",
+          "request": {
+            "name": "signer status",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "ecash",
+                "signer-status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "90021e23-e6e6-4861-bbc9-c407f02310b6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "signer-status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"body\": {\n    \"currentTime\": \"string\",\n    \"chainStatus\": \"synced\",\n    \"latestCachedBlock\": null\n  },\n  \"signature\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2f9a243-e9f7-44a9-bf39-def064ca5c1f",
+          "name": "verify ticket",
+          "request": {
+            "name": "verify ticket",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "ecash",
+                "verify-ecash-ticket"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"credential\": \"<string>\",\n  \"gateway_cosmos_addr\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "27900a6f-ce23-4bb2-8cfa-914b6f863703",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "verify-ecash-ticket"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"credential\": \"<string>\",\n  \"gateway_cosmos_addr\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"verified\": {\n    \"Ok\": null\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48cce33b-0d7d-4419-8312-5cbf6cd4a17a",
+              "name": "this nym-api is not an ecash signer in the current epoch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ecash",
+                    "verify-ecash-ticket"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"credential\": \"<string>\",\n  \"gateway_cosmos_addr\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0243356c-773c-441b-9179-f0e2db3ba3bf",
+    "name": "Node Status API Status Ecash API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Nym Technologies SA",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Node Status API Status Summary API",
+    "version": "4.6.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Summary",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/summary"
+          }
+        },
+        {
+          "info": {
+            "name": "summary_history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/summary/history"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

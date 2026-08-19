@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Node Status API Status network-monitor-status API",
+    "version": "4.6.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "network-monitor-status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "gateway_core_status_count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/status/gateway/:identity/core-status-count",
+            "params": [
+              {
+                "name": "since",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "identity",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "gateway_uptime_history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/status/gateway/:identity/history",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "identity",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "mixnode_core_status_count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/status/mixnode/:mix_id/core-status-count",
+            "params": [
+              {
+                "name": "mix_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "mixnode_uptime_history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/status/mixnode/:mix_id/history",
+            "params": [
+              {
+                "name": "mix_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,170 @@
+{
+  "item": [
+    {
+      "id": "3a22de3d-443e-429b-93a9-37da1cdb0a17",
+      "name": "Summary",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "740e6a2e-f3b9-4493-9760-18cfb4652671",
+          "name": "summary",
+          "request": {
+            "name": "summary",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d66c24c-baa2-4827-acbd-84cdd16567ba",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_nodes\": 3911,\n  \"mixnodes\": {\n    \"bonded\": {\n      \"count\": 7864,\n      \"self_described\": 1698,\n      \"last_updated_utc\": \"string\"\n    },\n    \"historical\": {\n      \"count\": 7040,\n      \"last_updated_utc\": \"string\"\n    }\n  },\n  \"gateways\": {\n    \"bonded\": {\n      \"count\": 261,\n      \"entry\": 5036,\n      \"exit\": 2197,\n      \"last_updated_utc\": \"string\"\n    },\n    \"historical\": {\n      \"count\": 6381,\n      \"last_updated_utc\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c252cf47-7f8a-425e-81f2-3f02145a9468",
+          "name": "summary history",
+          "request": {
+            "name": "summary history",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "summary",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8f33f35c-983b-4b9a-87e6-e0d991bcd3c1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "summary",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"date\": \"string\",\n    \"value_json\": \"\",\n    \"timestamp_utc\": \"string\"\n  },\n  {\n    \"date\": \"string\",\n    \"value_json\": \"\",\n    \"timestamp_utc\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c37c08ea-f88f-475e-b987-60cf0e40f5e5",
+    "name": "Node Status API Status Summary API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Nym Technologies SA",
+      "type": "text/plain"
+    }
+  }
+}

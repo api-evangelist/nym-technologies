@@ -1,0 +1,830 @@
+{
+  "item": [
+    {
+      "id": "126fde21-3178-4f91-83b3-c185170542a2",
+      "name": "Unstable Nym Nodes v2",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4546c8f4-e033-4006-9d42-efba670b8363",
+          "name": "Return all Nym Nodes and optionally legacy mixnodes/gateways (if `no-legacy` flag is not used)\nthat are currently bonded.",
+          "request": {
+            "name": "Return all Nym Nodes and optionally legacy mixnodes/gateways (if `no-legacy` flag is not used)\nthat are currently bonded.",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "unstable",
+                "nym-nodes",
+                "semi-skimmed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "role",
+                  "value": "<null>"
+                },
+                {
+                  "disabled": false,
+                  "key": "semver_compatibility",
+                  "value": "<string,null>"
+                },
+                {
+                  "disabled": false,
+                  "key": "no_legacy",
+                  "value": "<boolean,null>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer,null-int32>"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer,null-int32>"
+                },
+                {
+                  "disabled": false,
+                  "key": "epoch_id",
+                  "value": "<integer,null-int32>"
+                },
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "48160372-03ae-4069-989d-97ac768479ac",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "unstable",
+                    "nym-nodes",
+                    "semi-skimmed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "role",
+                      "value": "<null>"
+                    },
+                    {
+                      "key": "semver_compatibility",
+                      "value": "<string,null>"
+                    },
+                    {
+                      "key": "no_legacy",
+                      "value": "<boolean,null>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer,null-int32>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer,null-int32>"
+                    },
+                    {
+                      "key": "epoch_id",
+                      "value": "<integer,null-int32>"
+                    },
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"refreshed_at\": \"1976-04-29T09:43:42.962Z\",\n  \"nodes\": {\n    \"basic\": {\n      \"node_id\": 729,\n      \"ed25519_identity_pubkey\": \"string\",\n      \"ip_addresses\": [\n        \"string\",\n        \"string\"\n      ],\n      \"mix_port\": 1673,\n      \"x25519_sphinx_pubkey\": \"string\",\n      \"role\": {\n        \"Mixnode\": {\n          \"layer\": 4433\n        }\n      },\n      \"performance\": \"string\",\n      \"entry\": null,\n      \"supported_roles\": {\n        \"mixnode\": true,\n        \"entry\": false,\n        \"exit_nr\": false,\n        \"exit_ipr\": true\n      }\n    },\n    \"x25519_noise_versioned_key\": null\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7679d53b-fd83-4038-8da8-8d3eef8b1949",
+          "name": "Return all Nym Nodes and optionally legacy mixnodes/gateways (if `no-legacy` flag is not used)\nthat are currently bonded.",
+          "request": {
+            "name": "Return all Nym Nodes and optionally legacy mixnodes/gateways (if `no-legacy` flag is not used)\nthat are currently bonded.",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "unstable",
+                "nym-nodes",
+                "skimmed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "role",
+                  "value": "<null>"
+                },
+                {
+                  "disabled": false,
+                  "key": "semver_compatibility",
+                  "value": "<string,null>"
+                },
+                {
+                  "disabled": false,
+                  "key": "no_legacy",
+                  "value": "<boolean,null>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer,null-int32>"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer,null-int32>"
+                },
+                {
+                  "disabled": false,
+                  "key": "epoch_id",
+                  "value": "<integer,null-int32>"
+                },
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9b02ea84-ab9b-4e34-8597-58b1b2bfe728",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "unstable",
+                    "nym-nodes",
+                    "skimmed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "role",
+                      "value": "<null>"
+                    },
+                    {
+                      "key": "semver_compatibility",
+                      "value": "<string,null>"
+                    },
+                    {
+                      "key": "no_legacy",
+                      "value": "<boolean,null>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer,null-int32>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer,null-int32>"
+                    },
+                    {
+                      "key": "epoch_id",
+                      "value": "<integer,null-int32>"
+                    },
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"refreshed_at\": \"2004-11-13T03:55:37.876Z\",\n  \"nodes\": {\n    \"node_id\": 8528,\n    \"ed25519_identity_pubkey\": \"string\",\n    \"ip_addresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"mix_port\": 9941,\n    \"x25519_sphinx_pubkey\": \"string\",\n    \"role\": {\n      \"Mixnode\": {\n        \"layer\": 7008\n      }\n    },\n    \"performance\": \"string\",\n    \"entry\": null,\n    \"supported_roles\": {\n      \"mixnode\": true,\n      \"entry\": true,\n      \"exit_nr\": false,\n      \"exit_ipr\": false\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "227fe324-7bb7-49cb-82cb-efc5ad31887e",
+          "name": "Returns Nym Nodes and optionally legacy gateways (if `no-legacy` flag is not used)\nthat are currently bonded and support entry gateway role.",
+          "request": {
+            "name": "Returns Nym Nodes and optionally legacy gateways (if `no-legacy` flag is not used)\nthat are currently bonded and support entry gateway role.",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "unstable",
+                "nym-nodes",
+                "skimmed",
+                "entry-gateways"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "semver_compatibility",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "no_legacy",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "epoch_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0bc7db21-5157-4036-b9e6-8e106891eac3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "unstable",
+                    "nym-nodes",
+                    "skimmed",
+                    "entry-gateways"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "semver_compatibility",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "no_legacy",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "epoch_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "output",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"refreshed_at\": \"2004-11-13T03:55:37.876Z\",\n  \"nodes\": {\n    \"node_id\": 8528,\n    \"ed25519_identity_pubkey\": \"string\",\n    \"ip_addresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"mix_port\": 9941,\n    \"x25519_sphinx_pubkey\": \"string\",\n    \"role\": {\n      \"Mixnode\": {\n        \"layer\": 7008\n      }\n    },\n    \"performance\": \"string\",\n    \"entry\": null,\n    \"supported_roles\": {\n      \"mixnode\": true,\n      \"entry\": true,\n      \"exit_nr\": false,\n      \"exit_ipr\": false\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ec6d9e7-9e38-43e1-85b6-eb332bda8138",
+          "name": "Returns Nym Nodes and optionally legacy gateways (if `no-legacy` flag is not used)\nthat are currently bonded and support exit gateway role.",
+          "request": {
+            "name": "Returns Nym Nodes and optionally legacy gateways (if `no-legacy` flag is not used)\nthat are currently bonded and support exit gateway role.",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "unstable",
+                "nym-nodes",
+                "skimmed",
+                "exit-gateways"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "semver_compatibility",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "no_legacy",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "epoch_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cda84b6e-5530-47fa-b370-1c25d9c12699",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "unstable",
+                    "nym-nodes",
+                    "skimmed",
+                    "exit-gateways"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "semver_compatibility",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "no_legacy",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "epoch_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "output",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"refreshed_at\": \"2004-11-13T03:55:37.876Z\",\n  \"nodes\": {\n    \"node_id\": 8528,\n    \"ed25519_identity_pubkey\": \"string\",\n    \"ip_addresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"mix_port\": 9941,\n    \"x25519_sphinx_pubkey\": \"string\",\n    \"role\": {\n      \"Mixnode\": {\n        \"layer\": 7008\n      }\n    },\n    \"performance\": \"string\",\n    \"entry\": null,\n    \"supported_roles\": {\n      \"mixnode\": true,\n      \"entry\": true,\n      \"exit_nr\": false,\n      \"exit_ipr\": false\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "760d0ede-7ec6-487c-b2d3-6c7e97b6abbb",
+          "name": "Returns Nym Nodes and optionally legacy mixnodes (if `no-legacy` flag is not used)\nthat are currently bonded and are in the active set with one of the mixing roles.",
+          "request": {
+            "name": "Returns Nym Nodes and optionally legacy mixnodes (if `no-legacy` flag is not used)\nthat are currently bonded and are in the active set with one of the mixing roles.",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "unstable",
+                "nym-nodes",
+                "skimmed",
+                "mixnodes",
+                "active"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "semver_compatibility",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "no_legacy",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "epoch_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bd1c141d-6984-44b7-b481-2e6b78e506eb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "unstable",
+                    "nym-nodes",
+                    "skimmed",
+                    "mixnodes",
+                    "active"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "semver_compatibility",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "no_legacy",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "epoch_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "output",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"refreshed_at\": \"2004-11-13T03:55:37.876Z\",\n  \"nodes\": {\n    \"node_id\": 8528,\n    \"ed25519_identity_pubkey\": \"string\",\n    \"ip_addresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"mix_port\": 9941,\n    \"x25519_sphinx_pubkey\": \"string\",\n    \"role\": {\n      \"Mixnode\": {\n        \"layer\": 7008\n      }\n    },\n    \"performance\": \"string\",\n    \"entry\": null,\n    \"supported_roles\": {\n      \"mixnode\": true,\n      \"entry\": true,\n      \"exit_nr\": false,\n      \"exit_ipr\": false\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa65dfa9-31ca-43ee-a110-20d2d1d90cb5",
+          "name": "Returns Nym Nodes and optionally legacy mixnodes (if `no-legacy` flag is not used)\nthat are currently bonded and support mixing role.",
+          "request": {
+            "name": "Returns Nym Nodes and optionally legacy mixnodes (if `no-legacy` flag is not used)\nthat are currently bonded and support mixing role.",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "unstable",
+                "nym-nodes",
+                "skimmed",
+                "mixnodes",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "semver_compatibility",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "no_legacy",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "epoch_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d89b9e57-c865-4b44-9036-c8849683d16a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "unstable",
+                    "nym-nodes",
+                    "skimmed",
+                    "mixnodes",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "semver_compatibility",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "no_legacy",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "epoch_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "output",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"refreshed_at\": \"2004-11-13T03:55:37.876Z\",\n  \"nodes\": {\n    \"node_id\": 8528,\n    \"ed25519_identity_pubkey\": \"string\",\n    \"ip_addresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"mix_port\": 9941,\n    \"x25519_sphinx_pubkey\": \"string\",\n    \"role\": {\n      \"Mixnode\": {\n        \"layer\": 7008\n      }\n    },\n    \"performance\": \"string\",\n    \"entry\": null,\n    \"supported_roles\": {\n      \"mixnode\": true,\n      \"entry\": true,\n      \"exit_nr\": false,\n      \"exit_ipr\": false\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "65112506-c75a-4358-9d0a-b7b384228c1a",
+    "name": "Node Status API Status Unstable Nym Nodes v2 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Nym Technologies SA",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "item": [
+    {
+      "id": "062cc2eb-8f4d-48e8-87b6-aa55016f0b38",
+      "name": "Sessions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "267a543e-cbfc-419e-88b4-b54eb8296ada",
+          "name": "get all sessions",
+          "request": {
+            "name": "get all sessions",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "metrics",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "node_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "day",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd15c274-a451-4444-b62b-64295ea97444",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "metrics",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "node_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "day",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 8956,\n  \"size\": 4052,\n  \"total\": 6351,\n  \"items\": [\n    {\n      \"gateway_identity_key\": \"string\",\n      \"node_id\": 2838,\n      \"day\": \"1973-09-11\",\n      \"unique_active_clients\": 5599,\n      \"session_started\": 1181,\n      \"mixnet_sessions\": \"\",\n      \"unknown_sessions\": \"\",\n      \"users_hashes\": \"\",\n      \"vpn_sessions\": \"\"\n    },\n    {\n      \"gateway_identity_key\": \"string\",\n      \"node_id\": 1328,\n      \"day\": \"2021-10-18\",\n      \"unique_active_clients\": 130,\n      \"session_started\": 7202,\n      \"mixnet_sessions\": \"\",\n      \"unknown_sessions\": \"\",\n      \"users_hashes\": \"\",\n      \"vpn_sessions\": \"\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "83d23ee2-d855-41df-a73e-dba67035f167",
+    "name": "Node Status API Status Sessions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Nym Technologies SA",
+      "type": "text/plain"
+    }
+  }
+}

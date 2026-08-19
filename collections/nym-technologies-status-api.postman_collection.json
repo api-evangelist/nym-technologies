@@ -1,0 +1,693 @@
+{
+  "item": [
+    {
+      "id": "6eee9092-b07a-454d-a4ec-92faee0a8e02",
+      "name": "Status",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b941638e-5351-4eb8-ac7f-e6b12975459a",
+          "name": "build information",
+          "request": {
+            "name": "build information",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "status",
+                "build_information"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "69dd6f3c-f2af-4abf-a154-6193339d4376",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "status",
+                    "build_information"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"binary_name\": \"string\",\n  \"build_timestamp\": \"string\",\n  \"build_version\": \"string\",\n  \"commit_sha\": \"string\",\n  \"commit_timestamp\": \"string\",\n  \"commit_branch\": \"string\",\n  \"rustc_version\": \"string\",\n  \"rustc_channel\": \"string\",\n  \"cargo_profile\": \"string\",\n  \"cargo_triple\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62592cf7-cfab-4e48-87fb-f830dac7a2c9",
+          "name": "health",
+          "request": {
+            "name": "health",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "status",
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "008893fd-7e22-48f7-852c-279b64a2ee21",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "status",
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uptime\": 6355\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a4344a9-3d42-4005-acf5-43053d17e299",
+          "name": "config score details",
+          "request": {
+            "name": "config score details",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "status",
+                "config-score-details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e5d01a0c-610a-441f-a00f-df43086605a4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "status",
+                    "config-score-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"parameters\": {\n    \"version_weights\": {\n      \"major\": 4635,\n      \"minor\": 4622,\n      \"patch\": 1556,\n      \"prerelease\": 9589\n    },\n    \"version_score_formula_params\": {\n      \"penalty\": 8527.266427775914,\n      \"penalty_scaling\": 1922.8826571779\n    }\n  },\n  \"version_history\": [\n    {\n      \"id\": 514,\n      \"version_information\": {\n        \"semver\": \"string\",\n        \"introduced_at_height\": 1818\n      }\n    },\n    {\n      \"id\": 6585,\n      \"version_information\": {\n        \"semver\": \"string\",\n        \"introduced_at_height\": 513\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf170e6f-9bf7-4e60-b9bd-7e96616d2838",
+          "name": "submit gateway monitoring results",
+          "request": {
+            "name": "submit gateway monitoring results",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "status",
+                "submit-gateway-monitoring-results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"results\": [\n    {\n      \"node_id\": \"<integer>\",\n      \"identity\": \"<string>\",\n      \"reliability\": \"<integer>\"\n    },\n    {\n      \"node_id\": \"<integer>\",\n      \"identity\": \"<string>\",\n      \"reliability\": \"<integer>\"\n    }\n  ],\n  \"signature\": \"<string>\",\n  \"signer\": \"<string>\",\n  \"timestamp\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c8db020a-f7b9-4853-86b6-a3e621e10d8f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "status",
+                    "submit-gateway-monitoring-results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"results\": [\n    {\n      \"node_id\": 1868,\n      \"identity\": \"string\",\n      \"reliability\": 4817\n    },\n    {\n      \"node_id\": 3667,\n      \"identity\": \"string\",\n      \"reliability\": 9214\n    }\n  ],\n  \"signature\": \"<string>\",\n  \"signer\": \"<string>\",\n  \"timestamp\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6df9c72f-996e-49af-a176-b121099ffd0b",
+              "name": "TBD",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "status",
+                    "submit-gateway-monitoring-results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"results\": [\n    {\n      \"node_id\": 1868,\n      \"identity\": \"string\",\n      \"reliability\": 4817\n    },\n    {\n      \"node_id\": 3667,\n      \"identity\": \"string\",\n      \"reliability\": 9214\n    }\n  ],\n  \"signature\": \"<string>\",\n  \"signer\": \"<string>\",\n  \"timestamp\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9473f1f3-a267-468a-95cf-e2eb2d2e7b92",
+              "name": "TBD",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "status",
+                    "submit-gateway-monitoring-results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"results\": [\n    {\n      \"node_id\": 1868,\n      \"identity\": \"string\",\n      \"reliability\": 4817\n    },\n    {\n      \"node_id\": 3667,\n      \"identity\": \"string\",\n      \"reliability\": 9214\n    }\n  ],\n  \"signature\": \"<string>\",\n  \"signer\": \"<string>\",\n  \"timestamp\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6681805a-01af-4032-aa68-881e36178429",
+              "name": "TBD",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "status",
+                    "submit-gateway-monitoring-results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"results\": [\n    {\n      \"node_id\": 1868,\n      \"identity\": \"string\",\n      \"reliability\": 4817\n    },\n    {\n      \"node_id\": 3667,\n      \"identity\": \"string\",\n      \"reliability\": 9214\n    }\n  ],\n  \"signature\": \"<string>\",\n  \"signer\": \"<string>\",\n  \"timestamp\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f009df32-74e0-4be4-a13e-8e5f611a05e8",
+          "name": "submit node monitoring results",
+          "request": {
+            "name": "submit node monitoring results",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "status",
+                "submit-node-monitoring-results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"results\": [\n    {\n      \"node_id\": \"<integer>\",\n      \"identity\": \"<string>\",\n      \"reliability\": \"<integer>\"\n    },\n    {\n      \"node_id\": \"<integer>\",\n      \"identity\": \"<string>\",\n      \"reliability\": \"<integer>\"\n    }\n  ],\n  \"signature\": \"<string>\",\n  \"signer\": \"<string>\",\n  \"timestamp\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2f56a309-a6b0-4bf5-bfe1-46f3ea6a79c6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "status",
+                    "submit-node-monitoring-results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"results\": [\n    {\n      \"node_id\": 1868,\n      \"identity\": \"string\",\n      \"reliability\": 4817\n    },\n    {\n      \"node_id\": 3667,\n      \"identity\": \"string\",\n      \"reliability\": 9214\n    }\n  ],\n  \"signature\": \"<string>\",\n  \"signer\": \"<string>\",\n  \"timestamp\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "de16577b-a3d4-438c-9692-e1ce7ab45c63",
+              "name": "TBD",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "status",
+                    "submit-node-monitoring-results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"results\": [\n    {\n      \"node_id\": 1868,\n      \"identity\": \"string\",\n      \"reliability\": 4817\n    },\n    {\n      \"node_id\": 3667,\n      \"identity\": \"string\",\n      \"reliability\": 9214\n    }\n  ],\n  \"signature\": \"<string>\",\n  \"signer\": \"<string>\",\n  \"timestamp\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "38fa6e71-4c94-4330-be8a-dd8c56565390",
+              "name": "TBD",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "status",
+                    "submit-node-monitoring-results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"results\": [\n    {\n      \"node_id\": 1868,\n      \"identity\": \"string\",\n      \"reliability\": 4817\n    },\n    {\n      \"node_id\": 3667,\n      \"identity\": \"string\",\n      \"reliability\": 9214\n    }\n  ],\n  \"signature\": \"<string>\",\n  \"signer\": \"<string>\",\n  \"timestamp\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8814be9f-5130-4650-bce8-b2e8a4aa5340",
+              "name": "TBD",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "status",
+                    "submit-node-monitoring-results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"results\": [\n    {\n      \"node_id\": 1868,\n      \"identity\": \"string\",\n      \"reliability\": 4817\n    },\n    {\n      \"node_id\": 3667,\n      \"identity\": \"string\",\n      \"reliability\": 9214\n    }\n  ],\n  \"signature\": \"<string>\",\n  \"signer\": \"<string>\",\n  \"timestamp\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e55c15b7-febf-416c-ad05-6147e10bfb5b",
+    "name": "Node API Status API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Nym Technologies SA",
+      "type": "text/plain"
+    }
+  }
+}

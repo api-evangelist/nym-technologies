@@ -1,0 +1,454 @@
+{
+  "item": [
+    {
+      "id": "fbce480c-305c-4407-bcab-0389ab7c0825",
+      "name": "network-monitor-status",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a3d75246-6997-4ba1-8fbb-ffb82c0bc047",
+          "name": "gateway core status count",
+          "request": {
+            "name": "gateway core status count",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "status",
+                "gateway",
+                ":identity",
+                "core-status-count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identity",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4dc6c31c-e1bb-489c-b367-bb5b61309ed1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "status",
+                    "gateway",
+                    ":identity",
+                    "core-status-count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "output",
+                      "value": "bincode"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": \"string\",\n  \"count\": 6890\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66c21bed-abcb-41a9-89b8-f5b6f1445b6c",
+          "name": "gateway uptime history",
+          "request": {
+            "name": "gateway uptime history",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "status",
+                "gateway",
+                ":identity",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identity",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "afb3f46c-5322-49b0-b6cb-be12aaf48304",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "status",
+                    "gateway",
+                    ":identity",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": \"string\",\n  \"history\": [\n    {\n      \"date\": \"string\",\n      \"uptime\": 5271\n    },\n    {\n      \"date\": \"string\",\n      \"uptime\": 75\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a6a947b-acf0-463b-a277-152fa07a80a0",
+          "name": "mixnode core status count",
+          "request": {
+            "name": "mixnode core status count",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "status",
+                "mixnode",
+                ":mix_id",
+                "core-status-count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "mix_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "472571ae-d8b8-4a03-92d7-e96b4cf0498c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "status",
+                    "mixnode",
+                    ":mix_id",
+                    "core-status-count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "output",
+                      "value": "bincode"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "mix_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"mix_id\": 6999,\n  \"count\": 1137\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de45e44d-c53d-4451-8fe0-0534d699ffd8",
+          "name": "mixnode uptime history",
+          "request": {
+            "name": "mixnode uptime history",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "status",
+                "mixnode",
+                ":mix_id",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "mix_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "508db2ec-178b-4ecf-b9c5-1183f52ce162",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "status",
+                    "mixnode",
+                    ":mix_id",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "mix_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"mix_id\": 780,\n  \"identity\": \"string\",\n  \"history\": [\n    {\n      \"date\": \"string\",\n      \"uptime\": 3057\n    },\n    {\n      \"date\": \"string\",\n      \"uptime\": 8558\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e13bf1aa-5810-4bf8-b812-26b70ef3c319",
+    "name": "Node Status API Status network-monitor-status API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Nym Technologies SA",
+      "type": "text/plain"
+    }
+  }
+}

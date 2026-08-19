@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Node Status API Status Unstable Nym Nodes v3 API",
+    "version": "4.6.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Unstable Nym Nodes v3",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return all Nym Nodes that are currently bonded.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/unstable/nym-nodes/semi-skimmed",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return all Nym Nodes that are currently bonded."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

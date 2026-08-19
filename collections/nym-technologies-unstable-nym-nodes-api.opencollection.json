@@ -1,0 +1,568 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Node Status API Status Unstable Nym Nodes API",
+    "version": "4.6.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Unstable Nym Nodes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "nodes_by_addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/unstable/nym-nodes/by-addresses",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "nodes_detailed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/unstable/nym-nodes/full-fat",
+            "params": [
+              {
+                "name": "role",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "semver_compatibility",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "no_legacy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "epoch_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Deprecated query that gets ALL gateways",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/unstable/nym-nodes/gateways/skimmed",
+            "params": [
+              {
+                "name": "semver_compatibility",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "no_legacy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "epoch_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Deprecated query that gets ALL gateways"
+        },
+        {
+          "info": {
+            "name": "Deprecated query that gets ACTIVE-ONLY mixnodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/unstable/nym-nodes/mixnodes/skimmed",
+            "params": [
+              {
+                "name": "semver_compatibility",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "no_legacy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "epoch_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Deprecated query that gets ACTIVE-ONLY mixnodes"
+        },
+        {
+          "info": {
+            "name": "nodes_expanded",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/unstable/nym-nodes/semi-skimmed",
+            "params": [
+              {
+                "name": "role",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "semver_compatibility",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "no_legacy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "epoch_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Return all Nym Nodes and optionally legacy mixnodes/gateways (if `no-legacy` flag is not used)\nthat are currently bonded.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/unstable/nym-nodes/skimmed",
+            "params": [
+              {
+                "name": "role",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "semver_compatibility",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "no_legacy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "epoch_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return all Nym Nodes and optionally legacy mixnodes/gateways (if `no-legacy` flag is not used)\nthat are currently bonded."
+        },
+        {
+          "info": {
+            "name": "Return Nym Nodes and optionally legacy mixnodes/gateways (if `no-legacy` flag is not used)\nthat are currently bonded and are in the **active set**",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/unstable/nym-nodes/skimmed/active",
+            "params": [
+              {
+                "name": "semver_compatibility",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "no_legacy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "epoch_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return Nym Nodes and optionally legacy mixnodes/gateways (if `no-legacy` flag is not used)\nthat are currently bonded and are in the **active set**"
+        },
+        {
+          "info": {
+            "name": "Returns Nym Nodes and optionally legacy gateways (if `no-legacy` flag is not used)\nthat are currently bonded and are in the active set with the entry role.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/unstable/nym-nodes/skimmed/entry-gateways/active",
+            "params": [
+              {
+                "name": "semver_compatibility",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "no_legacy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "epoch_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns Nym Nodes and optionally legacy gateways (if `no-legacy` flag is not used)\nthat are currently bonded and are in the active set with the entry role."
+        },
+        {
+          "info": {
+            "name": "Returns Nym Nodes and optionally legacy gateways (if `no-legacy` flag is not used)\nthat are currently bonded and support entry gateway role.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/unstable/nym-nodes/skimmed/entry-gateways/all",
+            "params": [
+              {
+                "name": "semver_compatibility",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "no_legacy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "epoch_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns Nym Nodes and optionally legacy gateways (if `no-legacy` flag is not used)\nthat are currently bonded and support entry gateway role."
+        },
+        {
+          "info": {
+            "name": "Returns Nym Nodes and optionally legacy gateways (if `no-legacy` flag is not used)\nthat are currently bonded and are in the active set with the exit role.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/unstable/nym-nodes/skimmed/exit-gateways/active",
+            "params": [
+              {
+                "name": "semver_compatibility",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "no_legacy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "epoch_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns Nym Nodes and optionally legacy gateways (if `no-legacy` flag is not used)\nthat are currently bonded and are in the active set with the exit role."
+        },
+        {
+          "info": {
+            "name": "Returns Nym Nodes and optionally legacy gateways (if `no-legacy` flag is not used)\nthat are currently bonded and support exit gateway role.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/unstable/nym-nodes/skimmed/exit-gateways/all",
+            "params": [
+              {
+                "name": "semver_compatibility",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "no_legacy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "epoch_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns Nym Nodes and optionally legacy gateways (if `no-legacy` flag is not used)\nthat are currently bonded and support exit gateway role."
+        },
+        {
+          "info": {
+            "name": "Returns Nym Nodes and optionally legacy mixnodes (if `no-legacy` flag is not used)\nthat are currently bonded and are in the active set with one of the mixing roles.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/unstable/nym-nodes/skimmed/mixnodes/active",
+            "params": [
+              {
+                "name": "semver_compatibility",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "no_legacy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "epoch_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns Nym Nodes and optionally legacy mixnodes (if `no-legacy` flag is not used)\nthat are currently bonded and are in the active set with one of the mixing roles."
+        },
+        {
+          "info": {
+            "name": "Returns Nym Nodes and optionally legacy mixnodes (if `no-legacy` flag is not used)\nthat are currently bonded and support mixing role.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/unstable/nym-nodes/skimmed/mixnodes/all",
+            "params": [
+              {
+                "name": "semver_compatibility",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "no_legacy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "epoch_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns Nym Nodes and optionally legacy mixnodes (if `no-legacy` flag is not used)\nthat are currently bonded and support mixing role."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

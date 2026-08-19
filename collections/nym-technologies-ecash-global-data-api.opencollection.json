@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Node Status API Status Ecash Global Data API",
+    "version": "4.6.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ecash Global Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "coin_indices_signatures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/ecash/aggregated-coin-indices-signatures",
+            "params": [
+              {
+                "name": "epoch_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "expiration_date_signatures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/ecash/aggregated-expiration-date-signatures",
+            "params": [
+              {
+                "name": "expiration_date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "epoch_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "master_verification_key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/ecash/master-verification-key",
+            "params": [
+              {
+                "name": "epoch_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

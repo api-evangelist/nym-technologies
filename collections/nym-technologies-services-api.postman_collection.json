@@ -1,0 +1,147 @@
+{
+  "item": [
+    {
+      "id": "d5953f8b-e596-448e-aaa6-a791d95e4671",
+      "name": "Services",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7e5ea2af-5a89-47e3-9349-17487c90d2c7",
+          "name": "mixnodes",
+          "request": {
+            "name": "mixnodes",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "wss",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "hostname",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "entry",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c03c31e3-984d-4b56-938e-e69dca2f9e5a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "wss",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hostname",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "entry",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 4186,\n  \"size\": 8089,\n  \"total\": 374,\n  \"items\": [\n    {\n      \"gateway_identity_key\": \"string\",\n      \"last_updated_utc\": \"string\",\n      \"routing_score\": 9008.441630205254,\n      \"hostname\": \"string\",\n      \"ip_address\": \"string\",\n      \"last_successful_ping_utc\": \"string\",\n      \"mixnet_websockets\": \"\",\n      \"service_provider_client_id\": \"string\"\n    },\n    {\n      \"gateway_identity_key\": \"string\",\n      \"last_updated_utc\": \"string\",\n      \"routing_score\": 4537.204310972721,\n      \"hostname\": \"string\",\n      \"ip_address\": \"string\",\n      \"last_successful_ping_utc\": \"string\",\n      \"mixnet_websockets\": \"\",\n      \"service_provider_client_id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "dd264308-75a2-40d1-8742-62110d5dc0a8",
+    "name": "Node Status API Status Services API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Nym Technologies SA",
+      "type": "text/plain"
+    }
+  }
+}

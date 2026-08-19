@@ -1,0 +1,212 @@
+{
+  "item": [
+    {
+      "id": "1f65dbca-96f8-48d4-a7e8-b437996a7768",
+      "name": "Nym Explorer",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a2459d6e-5c9c-4acc-aeaa-2c080f2356e1",
+          "name": "nym nodes",
+          "request": {
+            "name": "nym nodes",
+            "description": {},
+            "url": {
+              "path": [
+                "explorer",
+                "v3",
+                "nym-nodes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ad20a063-839f-4e34-927f-9e7b301d8c8b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "explorer",
+                    "v3",
+                    "nym-nodes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 7156,\n  \"size\": 1414,\n  \"total\": 6477,\n  \"items\": [\n    {\n      \"node_id\": 874,\n      \"identity_key\": \"string\",\n      \"uptime\": 2683.0664699227846,\n      \"total_stake\": \"string\",\n      \"original_pledge\": 4645,\n      \"bonded\": true,\n      \"node_type\": \"legacy_mixnode\",\n      \"ip_address\": \"string\",\n      \"accepted_tnc\": true,\n      \"self_description\": {\n        \"host_information\": {\n          \"ip_address\": [\n            \"string\",\n            \"string\"\n          ],\n          \"keys\": {\n            \"ed25519\": \"string\",\n            \"x25519\": \"string\",\n            \"current_x25519_sphinx_key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"pre_announced_x25519_sphinx_key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"x25519_versioned_noise\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"hostname\": \"string\"\n        },\n        \"build_information\": {\n          \"binary_name\": \"string\",\n          \"build_timestamp\": \"string\",\n          \"build_version\": \"string\",\n          \"commit_sha\": \"string\",\n          \"commit_timestamp\": \"string\",\n          \"commit_branch\": \"string\",\n          \"rustc_version\": \"string\",\n          \"rustc_channel\": \"string\",\n          \"cargo_profile\": \"string\",\n          \"cargo_triple\": \"string\"\n        },\n        \"mixnet_websockets\": {\n          \"ws_port\": 8465,\n          \"wss_port\": 7980\n        },\n        \"authenticator\": null,\n        \"auxiliary_details\": {\n          \"accepted_operator_terms_and_conditions\": false,\n          \"announce_ports\": {\n            \"mix_port\": 9303,\n            \"verloc_port\": 7791\n          },\n          \"location\": \"PL\"\n        },\n        \"declared_role\": {\n          \"mixnode\": false,\n          \"entry\": false,\n          \"exit_nr\": true,\n          \"exit_ipr\": true\n        },\n        \"ip_packet_router\": null,\n        \"last_polled\": \"1971-12-29T14:12:43.409Z\",\n        \"lewes_protocol\": null,\n        \"network_requester\": null,\n        \"wireguard\": null\n      },\n      \"description\": {\n        \"moniker\": \"string\",\n        \"website\": \"string\",\n        \"security_contact\": \"string\",\n        \"details\": \"string\"\n      },\n      \"bonding_address\": \"string\",\n      \"family_data\": null,\n      \"geoip\": null,\n      \"rewarding_details\": null\n    },\n    {\n      \"node_id\": 7344,\n      \"identity_key\": \"string\",\n      \"uptime\": 3648.4954820747616,\n      \"total_stake\": \"string\",\n      \"original_pledge\": 2683,\n      \"bonded\": false,\n      \"node_type\": \"legacy_gateway\",\n      \"ip_address\": \"string\",\n      \"accepted_tnc\": false,\n      \"self_description\": {\n        \"host_information\": {\n          \"ip_address\": [\n            \"string\",\n            \"string\"\n          ],\n          \"keys\": {\n            \"ed25519\": \"string\",\n            \"x25519\": \"string\",\n            \"current_x25519_sphinx_key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"pre_announced_x25519_sphinx_key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"x25519_versioned_noise\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"hostname\": \"string\"\n        },\n        \"build_information\": {\n          \"binary_name\": \"string\",\n          \"build_timestamp\": \"string\",\n          \"build_version\": \"string\",\n          \"commit_sha\": \"string\",\n          \"commit_timestamp\": \"string\",\n          \"commit_branch\": \"string\",\n          \"rustc_version\": \"string\",\n          \"rustc_channel\": \"string\",\n          \"cargo_profile\": \"string\",\n          \"cargo_triple\": \"string\"\n        },\n        \"mixnet_websockets\": {\n          \"ws_port\": 2537,\n          \"wss_port\": 1738\n        },\n        \"authenticator\": null,\n        \"auxiliary_details\": {\n          \"accepted_operator_terms_and_conditions\": false,\n          \"announce_ports\": {\n            \"mix_port\": 6707,\n            \"verloc_port\": 5233\n          },\n          \"location\": \"PL\"\n        },\n        \"declared_role\": {\n          \"mixnode\": false,\n          \"entry\": true,\n          \"exit_nr\": true,\n          \"exit_ipr\": true\n        },\n        \"ip_packet_router\": null,\n        \"last_polled\": \"1970-03-30T18:18:10.063Z\",\n        \"lewes_protocol\": null,\n        \"network_requester\": null,\n        \"wireguard\": null\n      },\n      \"description\": {\n        \"moniker\": \"string\",\n        \"website\": \"string\",\n        \"security_contact\": \"string\",\n        \"details\": \"string\"\n      },\n      \"bonding_address\": \"string\",\n      \"family_data\": null,\n      \"geoip\": null,\n      \"rewarding_details\": null\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5f15f79-8785-4f76-a91c-c70068cff8c3",
+          "name": "node delegations",
+          "request": {
+            "name": "node delegations",
+            "description": {},
+            "url": {
+              "path": [
+                "explorer",
+                "v3",
+                "nym-nodes",
+                ":node_id",
+                "delegations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "node_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f780bbdd-e6f2-484b-a15b-d712794d8ddc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "explorer",
+                    "v3",
+                    "nym-nodes",
+                    ":node_id",
+                    "delegations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "node_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"amount\": {\n    \"denom\": \"string\",\n    \"amount\": \"string\"\n  },\n  \"cumulative_reward_ratio\": \"string\",\n  \"block_height\": 7540,\n  \"owner\": \"string\",\n  \"proxy\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "58bb9853-1bed-4133-b80d-60fae4d24888",
+    "name": "Node Status API Status Nym Explorer API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Nym Technologies SA",
+      "type": "text/plain"
+    }
+  }
+}

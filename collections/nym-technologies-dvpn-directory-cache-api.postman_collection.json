@@ -1,0 +1,769 @@
+{
+  "item": [
+    {
+      "id": "cf9dcb6c-5357-495e-bf57-baf7b694e91c",
+      "name": "dVPN Directory Cache",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "32955c02-e460-45fb-a30e-9e609d789be4",
+          "name": "Gets available entry and exit gateways from the Nym network directory",
+          "request": {
+            "name": "Gets available entry and exit gateways from the Nym network directory",
+            "description": {},
+            "url": {
+              "path": [
+                "dvpn",
+                "v1",
+                "directory",
+                "gateways"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "min_node_version",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "adcd2ad2-60ea-4775-ab7a-e90e5ceaffcd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dvpn",
+                    "v1",
+                    "directory",
+                    "gateways"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "min_node_version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"identity_key\": \"string\",\n    \"name\": \"string\",\n    \"location\": {\n      \"two_letter_iso_country_code\": \"string\",\n      \"latitude\": 636.4123598644644,\n      \"longitude\": 5071.162237572848,\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"org\": \"string\",\n      \"postal\": \"string\",\n      \"timezone\": \"string\",\n      \"asn\": null\n    },\n    \"ip_addresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"mix_port\": 376,\n    \"role\": {\n      \"Mixnode\": {\n        \"layer\": 421\n      }\n    },\n    \"performance\": \"string\",\n    \"build_information\": {\n      \"binary_name\": \"string\",\n      \"build_timestamp\": \"string\",\n      \"build_version\": \"string\",\n      \"commit_sha\": \"string\",\n      \"commit_timestamp\": \"string\",\n      \"commit_branch\": \"string\",\n      \"rustc_version\": \"string\",\n      \"rustc_channel\": \"string\",\n      \"cargo_profile\": \"string\",\n      \"cargo_triple\": \"string\"\n    },\n    \"authenticator\": null,\n    \"bridges\": null,\n    \"description\": \"string\",\n    \"entry\": null,\n    \"family_data\": null,\n    \"ip_packet_router\": null,\n    \"last_ports_check_utc\": \"string\",\n    \"last_probe\": null,\n    \"lewes_protocol_details\": null,\n    \"performance_v2\": null,\n    \"ports_check\": \"\",\n    \"staking_data\": null\n  },\n  {\n    \"identity_key\": \"string\",\n    \"name\": \"string\",\n    \"location\": {\n      \"two_letter_iso_country_code\": \"string\",\n      \"latitude\": 6402.72670733903,\n      \"longitude\": 9401.774167016481,\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"org\": \"string\",\n      \"postal\": \"string\",\n      \"timezone\": \"string\",\n      \"asn\": null\n    },\n    \"ip_addresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"mix_port\": 6514,\n    \"role\": {\n      \"Mixnode\": {\n        \"layer\": 2972\n      }\n    },\n    \"performance\": \"string\",\n    \"build_information\": {\n      \"binary_name\": \"string\",\n      \"build_timestamp\": \"string\",\n      \"build_version\": \"string\",\n      \"commit_sha\": \"string\",\n      \"commit_timestamp\": \"string\",\n      \"commit_branch\": \"string\",\n      \"rustc_version\": \"string\",\n      \"rustc_channel\": \"string\",\n      \"cargo_profile\": \"string\",\n      \"cargo_triple\": \"string\"\n    },\n    \"authenticator\": null,\n    \"bridges\": null,\n    \"description\": \"string\",\n    \"entry\": null,\n    \"family_data\": null,\n    \"ip_packet_router\": null,\n    \"last_ports_check_utc\": \"string\",\n    \"last_probe\": null,\n    \"lewes_protocol_details\": null,\n    \"performance_v2\": null,\n    \"ports_check\": \"\",\n    \"staking_data\": null\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e106cdd5-ba0c-46c7-bc89-88a1f8223592",
+          "name": "Gets available exit gateway countries as two-letter ISO country codes from the Nym network directory",
+          "request": {
+            "name": "Gets available exit gateway countries as two-letter ISO country codes from the Nym network directory",
+            "description": {},
+            "url": {
+              "path": [
+                "dvpn",
+                "v1",
+                "directory",
+                "gateways",
+                "countries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8a3f23ed-539a-4cab-ad4a-38ea4e72f31a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dvpn",
+                    "v1",
+                    "directory",
+                    "gateways",
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fac77929-0be9-4ca9-8ef4-493f1cf43025",
+          "name": "Gets available gateways from the Nym network directory by country",
+          "request": {
+            "name": "Gets available gateways from the Nym network directory by country",
+            "description": {},
+            "url": {
+              "path": [
+                "dvpn",
+                "v1",
+                "directory",
+                "gateways",
+                "country",
+                ":two_letter_country_code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "two_letter_country_code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "81d62de8-4abc-4fc1-93cb-9c1c7ae57491",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dvpn",
+                    "v1",
+                    "directory",
+                    "gateways",
+                    "country",
+                    ":two_letter_country_code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "two_letter_country_code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"identity_key\": \"string\",\n    \"name\": \"string\",\n    \"location\": {\n      \"two_letter_iso_country_code\": \"string\",\n      \"latitude\": 636.4123598644644,\n      \"longitude\": 5071.162237572848,\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"org\": \"string\",\n      \"postal\": \"string\",\n      \"timezone\": \"string\",\n      \"asn\": null\n    },\n    \"ip_addresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"mix_port\": 376,\n    \"role\": {\n      \"Mixnode\": {\n        \"layer\": 421\n      }\n    },\n    \"performance\": \"string\",\n    \"build_information\": {\n      \"binary_name\": \"string\",\n      \"build_timestamp\": \"string\",\n      \"build_version\": \"string\",\n      \"commit_sha\": \"string\",\n      \"commit_timestamp\": \"string\",\n      \"commit_branch\": \"string\",\n      \"rustc_version\": \"string\",\n      \"rustc_channel\": \"string\",\n      \"cargo_profile\": \"string\",\n      \"cargo_triple\": \"string\"\n    },\n    \"authenticator\": null,\n    \"bridges\": null,\n    \"description\": \"string\",\n    \"entry\": null,\n    \"family_data\": null,\n    \"ip_packet_router\": null,\n    \"last_ports_check_utc\": \"string\",\n    \"last_probe\": null,\n    \"lewes_protocol_details\": null,\n    \"performance_v2\": null,\n    \"ports_check\": \"\",\n    \"staking_data\": null\n  },\n  {\n    \"identity_key\": \"string\",\n    \"name\": \"string\",\n    \"location\": {\n      \"two_letter_iso_country_code\": \"string\",\n      \"latitude\": 6402.72670733903,\n      \"longitude\": 9401.774167016481,\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"org\": \"string\",\n      \"postal\": \"string\",\n      \"timezone\": \"string\",\n      \"asn\": null\n    },\n    \"ip_addresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"mix_port\": 6514,\n    \"role\": {\n      \"Mixnode\": {\n        \"layer\": 2972\n      }\n    },\n    \"performance\": \"string\",\n    \"build_information\": {\n      \"binary_name\": \"string\",\n      \"build_timestamp\": \"string\",\n      \"build_version\": \"string\",\n      \"commit_sha\": \"string\",\n      \"commit_timestamp\": \"string\",\n      \"commit_branch\": \"string\",\n      \"rustc_version\": \"string\",\n      \"rustc_channel\": \"string\",\n      \"cargo_profile\": \"string\",\n      \"cargo_triple\": \"string\"\n    },\n    \"authenticator\": null,\n    \"bridges\": null,\n    \"description\": \"string\",\n    \"entry\": null,\n    \"family_data\": null,\n    \"ip_packet_router\": null,\n    \"last_ports_check_utc\": \"string\",\n    \"last_probe\": null,\n    \"lewes_protocol_details\": null,\n    \"performance_v2\": null,\n    \"ports_check\": \"\",\n    \"staking_data\": null\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b63a130-37af-4514-8413-5784a6a02927",
+          "name": "Gets available entry gateways from the Nym network directory",
+          "request": {
+            "name": "Gets available entry gateways from the Nym network directory",
+            "description": {},
+            "url": {
+              "path": [
+                "dvpn",
+                "v1",
+                "directory",
+                "gateways",
+                "entry"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b5af0b21-7559-46b8-8486-e9d1be81afa9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dvpn",
+                    "v1",
+                    "directory",
+                    "gateways",
+                    "entry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"identity_key\": \"string\",\n    \"name\": \"string\",\n    \"location\": {\n      \"two_letter_iso_country_code\": \"string\",\n      \"latitude\": 636.4123598644644,\n      \"longitude\": 5071.162237572848,\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"org\": \"string\",\n      \"postal\": \"string\",\n      \"timezone\": \"string\",\n      \"asn\": null\n    },\n    \"ip_addresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"mix_port\": 376,\n    \"role\": {\n      \"Mixnode\": {\n        \"layer\": 421\n      }\n    },\n    \"performance\": \"string\",\n    \"build_information\": {\n      \"binary_name\": \"string\",\n      \"build_timestamp\": \"string\",\n      \"build_version\": \"string\",\n      \"commit_sha\": \"string\",\n      \"commit_timestamp\": \"string\",\n      \"commit_branch\": \"string\",\n      \"rustc_version\": \"string\",\n      \"rustc_channel\": \"string\",\n      \"cargo_profile\": \"string\",\n      \"cargo_triple\": \"string\"\n    },\n    \"authenticator\": null,\n    \"bridges\": null,\n    \"description\": \"string\",\n    \"entry\": null,\n    \"family_data\": null,\n    \"ip_packet_router\": null,\n    \"last_ports_check_utc\": \"string\",\n    \"last_probe\": null,\n    \"lewes_protocol_details\": null,\n    \"performance_v2\": null,\n    \"ports_check\": \"\",\n    \"staking_data\": null\n  },\n  {\n    \"identity_key\": \"string\",\n    \"name\": \"string\",\n    \"location\": {\n      \"two_letter_iso_country_code\": \"string\",\n      \"latitude\": 6402.72670733903,\n      \"longitude\": 9401.774167016481,\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"org\": \"string\",\n      \"postal\": \"string\",\n      \"timezone\": \"string\",\n      \"asn\": null\n    },\n    \"ip_addresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"mix_port\": 6514,\n    \"role\": {\n      \"Mixnode\": {\n        \"layer\": 2972\n      }\n    },\n    \"performance\": \"string\",\n    \"build_information\": {\n      \"binary_name\": \"string\",\n      \"build_timestamp\": \"string\",\n      \"build_version\": \"string\",\n      \"commit_sha\": \"string\",\n      \"commit_timestamp\": \"string\",\n      \"commit_branch\": \"string\",\n      \"rustc_version\": \"string\",\n      \"rustc_channel\": \"string\",\n      \"cargo_profile\": \"string\",\n      \"cargo_triple\": \"string\"\n    },\n    \"authenticator\": null,\n    \"bridges\": null,\n    \"description\": \"string\",\n    \"entry\": null,\n    \"family_data\": null,\n    \"ip_packet_router\": null,\n    \"last_ports_check_utc\": \"string\",\n    \"last_probe\": null,\n    \"lewes_protocol_details\": null,\n    \"performance_v2\": null,\n    \"ports_check\": \"\",\n    \"staking_data\": null\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0553da23-9845-48c3-997e-4287cd5a8f89",
+          "name": "Gets available entry gateway countries as two-letter ISO country codes from the Nym network directory",
+          "request": {
+            "name": "Gets available entry gateway countries as two-letter ISO country codes from the Nym network directory",
+            "description": {},
+            "url": {
+              "path": [
+                "dvpn",
+                "v1",
+                "directory",
+                "gateways",
+                "entry",
+                "countries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a2fc960b-2b67-4ebc-bb47-acac8a036de7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dvpn",
+                    "v1",
+                    "directory",
+                    "gateways",
+                    "entry",
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ed9b5d5-294f-4968-9210-c8e48e8d91f4",
+          "name": "Gets available entry gateways from the Nym network directory by country",
+          "request": {
+            "name": "Gets available entry gateways from the Nym network directory by country",
+            "description": {},
+            "url": {
+              "path": [
+                "dvpn",
+                "v1",
+                "directory",
+                "gateways",
+                "entry",
+                "country",
+                ":two_letter_country_code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "two_letter_country_code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "75b3880d-7d0b-4909-92d7-f5316a5e7ec8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dvpn",
+                    "v1",
+                    "directory",
+                    "gateways",
+                    "entry",
+                    "country",
+                    ":two_letter_country_code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "two_letter_country_code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"identity_key\": \"string\",\n    \"name\": \"string\",\n    \"location\": {\n      \"two_letter_iso_country_code\": \"string\",\n      \"latitude\": 636.4123598644644,\n      \"longitude\": 5071.162237572848,\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"org\": \"string\",\n      \"postal\": \"string\",\n      \"timezone\": \"string\",\n      \"asn\": null\n    },\n    \"ip_addresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"mix_port\": 376,\n    \"role\": {\n      \"Mixnode\": {\n        \"layer\": 421\n      }\n    },\n    \"performance\": \"string\",\n    \"build_information\": {\n      \"binary_name\": \"string\",\n      \"build_timestamp\": \"string\",\n      \"build_version\": \"string\",\n      \"commit_sha\": \"string\",\n      \"commit_timestamp\": \"string\",\n      \"commit_branch\": \"string\",\n      \"rustc_version\": \"string\",\n      \"rustc_channel\": \"string\",\n      \"cargo_profile\": \"string\",\n      \"cargo_triple\": \"string\"\n    },\n    \"authenticator\": null,\n    \"bridges\": null,\n    \"description\": \"string\",\n    \"entry\": null,\n    \"family_data\": null,\n    \"ip_packet_router\": null,\n    \"last_ports_check_utc\": \"string\",\n    \"last_probe\": null,\n    \"lewes_protocol_details\": null,\n    \"performance_v2\": null,\n    \"ports_check\": \"\",\n    \"staking_data\": null\n  },\n  {\n    \"identity_key\": \"string\",\n    \"name\": \"string\",\n    \"location\": {\n      \"two_letter_iso_country_code\": \"string\",\n      \"latitude\": 6402.72670733903,\n      \"longitude\": 9401.774167016481,\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"org\": \"string\",\n      \"postal\": \"string\",\n      \"timezone\": \"string\",\n      \"asn\": null\n    },\n    \"ip_addresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"mix_port\": 6514,\n    \"role\": {\n      \"Mixnode\": {\n        \"layer\": 2972\n      }\n    },\n    \"performance\": \"string\",\n    \"build_information\": {\n      \"binary_name\": \"string\",\n      \"build_timestamp\": \"string\",\n      \"build_version\": \"string\",\n      \"commit_sha\": \"string\",\n      \"commit_timestamp\": \"string\",\n      \"commit_branch\": \"string\",\n      \"rustc_version\": \"string\",\n      \"rustc_channel\": \"string\",\n      \"cargo_profile\": \"string\",\n      \"cargo_triple\": \"string\"\n    },\n    \"authenticator\": null,\n    \"bridges\": null,\n    \"description\": \"string\",\n    \"entry\": null,\n    \"family_data\": null,\n    \"ip_packet_router\": null,\n    \"last_ports_check_utc\": \"string\",\n    \"last_probe\": null,\n    \"lewes_protocol_details\": null,\n    \"performance_v2\": null,\n    \"ports_check\": \"\",\n    \"staking_data\": null\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cca23108-ac03-47d8-b992-d5e683bb4187",
+          "name": "Gets available exit gateways from the Nym network directory",
+          "request": {
+            "name": "Gets available exit gateways from the Nym network directory",
+            "description": {},
+            "url": {
+              "path": [
+                "dvpn",
+                "v1",
+                "directory",
+                "gateways",
+                "exit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c2cae88c-7f32-4b5f-89fc-1ca1bbdc6a3f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dvpn",
+                    "v1",
+                    "directory",
+                    "gateways",
+                    "exit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"identity_key\": \"string\",\n    \"name\": \"string\",\n    \"location\": {\n      \"two_letter_iso_country_code\": \"string\",\n      \"latitude\": 636.4123598644644,\n      \"longitude\": 5071.162237572848,\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"org\": \"string\",\n      \"postal\": \"string\",\n      \"timezone\": \"string\",\n      \"asn\": null\n    },\n    \"ip_addresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"mix_port\": 376,\n    \"role\": {\n      \"Mixnode\": {\n        \"layer\": 421\n      }\n    },\n    \"performance\": \"string\",\n    \"build_information\": {\n      \"binary_name\": \"string\",\n      \"build_timestamp\": \"string\",\n      \"build_version\": \"string\",\n      \"commit_sha\": \"string\",\n      \"commit_timestamp\": \"string\",\n      \"commit_branch\": \"string\",\n      \"rustc_version\": \"string\",\n      \"rustc_channel\": \"string\",\n      \"cargo_profile\": \"string\",\n      \"cargo_triple\": \"string\"\n    },\n    \"authenticator\": null,\n    \"bridges\": null,\n    \"description\": \"string\",\n    \"entry\": null,\n    \"family_data\": null,\n    \"ip_packet_router\": null,\n    \"last_ports_check_utc\": \"string\",\n    \"last_probe\": null,\n    \"lewes_protocol_details\": null,\n    \"performance_v2\": null,\n    \"ports_check\": \"\",\n    \"staking_data\": null\n  },\n  {\n    \"identity_key\": \"string\",\n    \"name\": \"string\",\n    \"location\": {\n      \"two_letter_iso_country_code\": \"string\",\n      \"latitude\": 6402.72670733903,\n      \"longitude\": 9401.774167016481,\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"org\": \"string\",\n      \"postal\": \"string\",\n      \"timezone\": \"string\",\n      \"asn\": null\n    },\n    \"ip_addresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"mix_port\": 6514,\n    \"role\": {\n      \"Mixnode\": {\n        \"layer\": 2972\n      }\n    },\n    \"performance\": \"string\",\n    \"build_information\": {\n      \"binary_name\": \"string\",\n      \"build_timestamp\": \"string\",\n      \"build_version\": \"string\",\n      \"commit_sha\": \"string\",\n      \"commit_timestamp\": \"string\",\n      \"commit_branch\": \"string\",\n      \"rustc_version\": \"string\",\n      \"rustc_channel\": \"string\",\n      \"cargo_profile\": \"string\",\n      \"cargo_triple\": \"string\"\n    },\n    \"authenticator\": null,\n    \"bridges\": null,\n    \"description\": \"string\",\n    \"entry\": null,\n    \"family_data\": null,\n    \"ip_packet_router\": null,\n    \"last_ports_check_utc\": \"string\",\n    \"last_probe\": null,\n    \"lewes_protocol_details\": null,\n    \"performance_v2\": null,\n    \"ports_check\": \"\",\n    \"staking_data\": null\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f333f29-6a05-4aff-bfa5-721c7d84b972",
+          "name": "Gets available exit gateway countries as two-letter ISO country codes from the Nym network directory",
+          "request": {
+            "name": "Gets available exit gateway countries as two-letter ISO country codes from the Nym network directory",
+            "description": {},
+            "url": {
+              "path": [
+                "dvpn",
+                "v1",
+                "directory",
+                "gateways",
+                "exit",
+                "countries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7a477ba5-0974-4344-aeea-9c9b770c37bc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dvpn",
+                    "v1",
+                    "directory",
+                    "gateways",
+                    "exit",
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "846360e4-6fd6-41d6-89fe-ec1a3c4b620b",
+          "name": "Gets available exit gateways from the Nym network directory by country",
+          "request": {
+            "name": "Gets available exit gateways from the Nym network directory by country",
+            "description": {},
+            "url": {
+              "path": [
+                "dvpn",
+                "v1",
+                "directory",
+                "gateways",
+                "exit",
+                "country",
+                ":two_letter_country_code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "two_letter_country_code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "efa7d6c8-349d-4112-b691-a4b1bcbe7ae4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dvpn",
+                    "v1",
+                    "directory",
+                    "gateways",
+                    "exit",
+                    "country",
+                    ":two_letter_country_code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "two_letter_country_code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"identity_key\": \"string\",\n    \"name\": \"string\",\n    \"location\": {\n      \"two_letter_iso_country_code\": \"string\",\n      \"latitude\": 636.4123598644644,\n      \"longitude\": 5071.162237572848,\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"org\": \"string\",\n      \"postal\": \"string\",\n      \"timezone\": \"string\",\n      \"asn\": null\n    },\n    \"ip_addresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"mix_port\": 376,\n    \"role\": {\n      \"Mixnode\": {\n        \"layer\": 421\n      }\n    },\n    \"performance\": \"string\",\n    \"build_information\": {\n      \"binary_name\": \"string\",\n      \"build_timestamp\": \"string\",\n      \"build_version\": \"string\",\n      \"commit_sha\": \"string\",\n      \"commit_timestamp\": \"string\",\n      \"commit_branch\": \"string\",\n      \"rustc_version\": \"string\",\n      \"rustc_channel\": \"string\",\n      \"cargo_profile\": \"string\",\n      \"cargo_triple\": \"string\"\n    },\n    \"authenticator\": null,\n    \"bridges\": null,\n    \"description\": \"string\",\n    \"entry\": null,\n    \"family_data\": null,\n    \"ip_packet_router\": null,\n    \"last_ports_check_utc\": \"string\",\n    \"last_probe\": null,\n    \"lewes_protocol_details\": null,\n    \"performance_v2\": null,\n    \"ports_check\": \"\",\n    \"staking_data\": null\n  },\n  {\n    \"identity_key\": \"string\",\n    \"name\": \"string\",\n    \"location\": {\n      \"two_letter_iso_country_code\": \"string\",\n      \"latitude\": 6402.72670733903,\n      \"longitude\": 9401.774167016481,\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"org\": \"string\",\n      \"postal\": \"string\",\n      \"timezone\": \"string\",\n      \"asn\": null\n    },\n    \"ip_addresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"mix_port\": 6514,\n    \"role\": {\n      \"Mixnode\": {\n        \"layer\": 2972\n      }\n    },\n    \"performance\": \"string\",\n    \"build_information\": {\n      \"binary_name\": \"string\",\n      \"build_timestamp\": \"string\",\n      \"build_version\": \"string\",\n      \"commit_sha\": \"string\",\n      \"commit_timestamp\": \"string\",\n      \"commit_branch\": \"string\",\n      \"rustc_version\": \"string\",\n      \"rustc_channel\": \"string\",\n      \"cargo_profile\": \"string\",\n      \"cargo_triple\": \"string\"\n    },\n    \"authenticator\": null,\n    \"bridges\": null,\n    \"description\": \"string\",\n    \"entry\": null,\n    \"family_data\": null,\n    \"ip_packet_router\": null,\n    \"last_ports_check_utc\": \"string\",\n    \"last_probe\": null,\n    \"lewes_protocol_details\": null,\n    \"performance_v2\": null,\n    \"ports_check\": \"\",\n    \"staking_data\": null\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ee9bbb98-f989-4b33-b63c-e6b53148d076",
+    "name": "Node Status API Status dVPN Directory Cache API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Nym Technologies SA",
+      "type": "text/plain"
+    }
+  }
+}

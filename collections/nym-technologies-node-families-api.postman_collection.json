@@ -1,0 +1,325 @@
+{
+  "item": [
+    {
+      "id": "1ac2f0a7-5a85-493c-aed0-1b5344a27142",
+      "name": "Node Families",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c1a9333d-8f71-4ffb-9518-45274f7494b0",
+          "name": "get families",
+          "request": {
+            "name": "get families",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "node-families"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94476a8d-fa05-44f9-bd34-80031f99b1ab",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "node-families"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "json"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"total\": 2574,\n    \"page\": 3843,\n    \"size\": 7400\n  },\n  \"data\": [\n    {\n      \"id\": 414,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"owner\": \"string\",\n      \"average_node_age\": \"string\",\n      \"created_at\": \"string\",\n      \"members\": [\n        {\n          \"node_id\": 5384,\n          \"joined_at\": \"string\",\n          \"stake_information\": null\n        },\n        {\n          \"node_id\": 2464,\n          \"joined_at\": \"string\",\n          \"stake_information\": null\n        }\n      ],\n      \"pending_invitations\": [\n        {\n          \"node_id\": 1916,\n          \"expires_at\": \"string\"\n        },\n        {\n          \"node_id\": 5513,\n          \"expires_at\": \"string\"\n        }\n      ],\n      \"total_stake\": null\n    },\n    {\n      \"id\": 8804,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"owner\": \"string\",\n      \"average_node_age\": \"string\",\n      \"created_at\": \"string\",\n      \"members\": [\n        {\n          \"node_id\": 9013,\n          \"joined_at\": \"string\",\n          \"stake_information\": null\n        },\n        {\n          \"node_id\": 5020,\n          \"joined_at\": \"string\",\n          \"stake_information\": null\n        }\n      ],\n      \"pending_invitations\": [\n        {\n          \"node_id\": 4996,\n          \"expires_at\": \"string\"\n        },\n        {\n          \"node_id\": 6922,\n          \"expires_at\": \"string\"\n        }\n      ],\n      \"total_stake\": null\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fdb27b05-56ab-4f0f-a6b3-35adec498b35",
+          "name": "get family for node",
+          "request": {
+            "name": "get family for node",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "node-families",
+                "by-node",
+                ":node_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "node_id",
+                  "description": "(Required) Identifier of the member node"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d776229a-a125-453b-9a62-c05a6ccdd3fa",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "node-families",
+                    "by-node",
+                    ":node_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "node_id",
+                      "description": "(Required) Identifier of the member node"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"node_id\": 2071,\n  \"family\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82fbde96-de0a-4dac-8347-6f4416b37f9b",
+          "name": "get family by id",
+          "request": {
+            "name": "get family by id",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "node-families",
+                ":family_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output",
+                  "value": "<null>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "family_id",
+                  "description": "(Required) Identifier of the family"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0458b8fd-273e-4d63-b2cd-75191032a989",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "node-families",
+                    ":family_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output",
+                      "value": "<null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "family_id",
+                      "description": "(Required) Identifier of the family"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"family\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "00adcff2-d1f0-4b0b-8f09-0b76aac8e377",
+    "name": "Node Status API Status Node Families API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Nym Technologies SA",
+      "type": "text/plain"
+    }
+  }
+}

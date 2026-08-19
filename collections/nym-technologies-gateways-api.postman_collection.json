@@ -1,0 +1,296 @@
+{
+  "item": [
+    {
+      "id": "2613d95a-8446-4630-9017-a3ed51fafa35",
+      "name": "Gateways",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cbddec67-b735-4f74-954f-c0a16fa8c38b",
+          "name": "gateways",
+          "request": {
+            "name": "gateways",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "gateways"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14f5b4a6-d652-4b1a-b2b5-81bad869086c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "gateways"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 556,\n  \"size\": 4647,\n  \"total\": 6068,\n  \"items\": [\n    {\n      \"gateway_identity_key\": \"string\",\n      \"bonded\": true,\n      \"performance\": 1007,\n      \"description\": {\n        \"moniker\": \"string\",\n        \"website\": \"string\",\n        \"security_contact\": \"string\",\n        \"details\": \"string\"\n      },\n      \"last_updated_utc\": \"string\",\n      \"routing_score\": 9900.467311914681,\n      \"config_score\": 4018,\n      \"bridges\": \"\",\n      \"explorer_pretty_bond\": \"\",\n      \"last_ports_check_utc\": \"string\",\n      \"last_probe_log\": \"string\",\n      \"last_probe_result\": \"\",\n      \"last_testrun_utc\": \"string\",\n      \"ports_check\": \"\",\n      \"self_described\": \"\"\n    },\n    {\n      \"gateway_identity_key\": \"string\",\n      \"bonded\": false,\n      \"performance\": 7961,\n      \"description\": {\n        \"moniker\": \"string\",\n        \"website\": \"string\",\n        \"security_contact\": \"string\",\n        \"details\": \"string\"\n      },\n      \"last_updated_utc\": \"string\",\n      \"routing_score\": 5661.453126595581,\n      \"config_score\": 714,\n      \"bridges\": \"\",\n      \"explorer_pretty_bond\": \"\",\n      \"last_ports_check_utc\": \"string\",\n      \"last_probe_log\": \"string\",\n      \"last_probe_result\": \"\",\n      \"last_testrun_utc\": \"string\",\n      \"ports_check\": \"\",\n      \"self_described\": \"\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53f51a3a-622e-4eda-880c-f64ef1dd5458",
+          "name": "gateways skinny",
+          "request": {
+            "name": "gateways skinny",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "gateways",
+                "skinny"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "251fddbc-2662-4796-be48-7b0bd9766768",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "gateways",
+                    "skinny"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 7260,\n  \"size\": 8220,\n  \"total\": 7293,\n  \"items\": [\n    {\n      \"gateway_identity_key\": \"string\",\n      \"last_updated_utc\": \"string\",\n      \"routing_score\": 8803.02675147115,\n      \"config_score\": 5333,\n      \"performance\": 7829,\n      \"explorer_pretty_bond\": \"\",\n      \"last_ports_check_utc\": \"string\",\n      \"last_probe_result\": \"\",\n      \"last_testrun_utc\": \"string\",\n      \"ports_check\": \"\",\n      \"self_described\": \"\"\n    },\n    {\n      \"gateway_identity_key\": \"string\",\n      \"last_updated_utc\": \"string\",\n      \"routing_score\": 2164.974086497994,\n      \"config_score\": 5400,\n      \"performance\": 2720,\n      \"explorer_pretty_bond\": \"\",\n      \"last_ports_check_utc\": \"string\",\n      \"last_probe_result\": \"\",\n      \"last_testrun_utc\": \"string\",\n      \"ports_check\": \"\",\n      \"self_described\": \"\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "151d54f8-de94-4063-91f2-3ec9a49ca3f8",
+          "name": "get gateway",
+          "request": {
+            "name": "get gateway",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "gateways",
+                ":identity_key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identity_key",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c9617122-a1a5-4f01-878f-15b743e72e5c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "gateways",
+                    ":identity_key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity_key",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"gateway_identity_key\": \"string\",\n  \"bonded\": true,\n  \"performance\": 3667,\n  \"description\": {\n    \"moniker\": \"string\",\n    \"website\": \"string\",\n    \"security_contact\": \"string\",\n    \"details\": \"string\"\n  },\n  \"last_updated_utc\": \"string\",\n  \"routing_score\": 8929.447896655076,\n  \"config_score\": 4048,\n  \"bridges\": \"\",\n  \"explorer_pretty_bond\": \"\",\n  \"last_ports_check_utc\": \"string\",\n  \"last_probe_log\": \"string\",\n  \"last_probe_result\": \"\",\n  \"last_testrun_utc\": \"string\",\n  \"ports_check\": \"\",\n  \"self_described\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6cb72b2e-915f-4029-8f45-d2513c50cfb7",
+    "name": "Node Status API Status Gateways API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Nym Technologies SA",
+      "type": "text/plain"
+    }
+  }
+}

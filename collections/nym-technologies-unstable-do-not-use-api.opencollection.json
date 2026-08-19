@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Node Status API Status UNSTABLE - DO **NOT** USE API",
+    "version": "4.6.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "UNSTABLE - DO **NOT** USE",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "gateway_test_results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/status/gateways/unstable/:identity/test-results",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "identity",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "mixnode_test_results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/status/mixnodes/unstable/:mix_id/test-results",
+            "params": [
+              {
+                "name": "mix_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "latest_monitor_run_report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/status/network-monitor/unstable/run/latest/details",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "monitor_run_report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/status/network-monitor/unstable/run/:monitor_run_id/details",
+            "params": [
+              {
+                "name": "output",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "monitor_run_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

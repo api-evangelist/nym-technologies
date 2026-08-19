@@ -1,0 +1,113 @@
+{
+  "item": [
+    {
+      "id": "a1e90213-2626-46d6-9512-86ab89304fa5",
+      "name": "Mixnodes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d8818d77-c852-4a3a-83eb-8d0dc0b01070",
+          "name": "get stats",
+          "request": {
+            "name": "get stats",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "mixnodes",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cfb21ab0-a545-4866-ac04-a4e9170f231d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "mixnodes",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"date_utc\": \"string\",\n    \"total_packets_received\": 9075,\n    \"total_packets_sent\": 9123,\n    \"total_packets_dropped\": 8067,\n    \"total_stake\": 766\n  },\n  {\n    \"date_utc\": \"string\",\n    \"total_packets_received\": 2537,\n    \"total_packets_sent\": 6810,\n    \"total_packets_dropped\": 5162,\n    \"total_stake\": 2147\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "342338ab-bba5-421c-b793-e6a7117ec8df",
+    "name": "Node Status API Status Mixnodes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Nym Technologies SA",
+      "type": "text/plain"
+    }
+  }
+}
