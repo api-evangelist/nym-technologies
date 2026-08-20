@@ -72,6 +72,8 @@ apis:
   humanURL: https://nym.com/docs/apis/introduction
   baseURL: https://validator.nymtech.net/api
   tags:
+  - Circulating Supply
+  tags_raw:
   - circulating-supply
   properties:
   - type: OpenAPI
@@ -143,6 +145,8 @@ apis:
   humanURL: https://nym.com/docs/apis/introduction
   baseURL: https://validator.nymtech.net/api
   tags:
+  - Network
+  tags_raw:
   - network
   properties:
   - type: OpenAPI
