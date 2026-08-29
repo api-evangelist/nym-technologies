@@ -13,6 +13,18 @@ description: >-
   SDKs (mix-fetch, mix-tunnel, mix-dns, mix-websocket) for routing arbitrary
   traffic through the mixnet.
 url: https://raw.githubusercontent.com/api-evangelist/nym-technologies/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: unknown
