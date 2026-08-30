@@ -84,7 +84,7 @@ apis:
   humanURL: https://nym.com/docs/apis/introduction
   baseURL: https://validator.nymtech.net/api
   tags:
-  - Circulating Supply
+  - circulating-supply
   tags_raw:
   - circulating-supply
   properties:
