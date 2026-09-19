@@ -157,7 +157,7 @@ apis:
   humanURL: https://nym.com/docs/apis/introduction
   baseURL: https://validator.nymtech.net/api
   tags:
-  - Network
+  - Networks
   tags_raw:
   - network
   properties:
