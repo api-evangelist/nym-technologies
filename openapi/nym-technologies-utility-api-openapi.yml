@@ -1,13 +1,18 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Node Status API Status Utility API
+  title: Nym Utility API
   description: ''
   contact:
     name: Nym Technologies SA
   license:
-    name: Apache-2.0
-    identifier: Apache-2.0
-  version: 4.6.2
+    name: GPL-3.0
+    identifier: GPL-3.0
+  version: 1.1.83
+servers:
+- url: /
+  description: Default (direct nym-api)
+- url: /api
+  description: Main Nym Api Server
 tags:
 - name: Utility
 paths:
@@ -15,7 +20,7 @@ paths:
     get:
       tags:
       - Utility
-      summary: Return information on when the mixnet cache has last been refreshed.
+      summary: Return information on when the mixnet cache has last been refreshed
       operationId: mixnet_cache_timestamp
       parameters:
       - name: output
@@ -44,7 +49,7 @@ paths:
     get:
       tags:
       - Utility
-      summary: Return information on when the mixnet cache has last been refreshed.
+      summary: Return information on when the mixnet cache has last been refreshed
       operationId: node_annotations_cache_timestamp
       parameters:
       - name: output
@@ -73,11 +78,7 @@ paths:
     post:
       tags:
       - Utility
-      summary: 'Allow to request to refresh the cache of all mixnet nodes on the network.
-
-        Note that this endpoint enforces high global rate limiting and realistically
-
-        should not be used outside very special scenarios.'
+      summary: Allow to request to refresh the cache of all mixnet nodes on the network.
       operationId: refresh_mixnet_cache
       parameters:
       - name: output
@@ -112,11 +113,7 @@ paths:
     post:
       tags:
       - Utility
-      summary: 'Allow to request to refresh the cache of all mixnet nodes on the network.
-
-        Note that this endpoint enforces high global rate limiting and realistically
-
-        should not be used outside very special scenarios.'
+      summary: Allow to request to refresh the cache of all mixnet nodes on the network.
       operationId: refresh_node_annotations_cache
       parameters:
       - name: output
@@ -149,12 +146,6 @@ paths:
       - auth_token: []
 components:
   schemas:
-    Output:
-      type: string
-      enum:
-      - json
-      - yaml
-      - bincode
     NodeStatusCacheTimestampResponse:
       type: object
       required:
@@ -162,8 +153,12 @@ components:
       properties:
         timestamp:
           type: string
-    RefreshNodeStatusCacheRequestBody:
-      type: object
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
     RefreshMixnetContractCacheResponse:
       type: object
       required:
@@ -171,6 +166,8 @@ components:
       properties:
         success:
           type: boolean
+    RefreshNodeStatusCacheRequestBody:
+      type: object
     MixnetContractCacheTimestampResponse:
       type: object
       required:

@@ -1,13 +1,18 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Node Status API Status Unstable API
+  title: Nym Unstable API
   description: ''
   contact:
     name: Nym Technologies SA
   license:
-    name: Apache-2.0
-    identifier: Apache-2.0
-  version: 4.6.2
+    name: GPL-3.0
+    identifier: GPL-3.0
+  version: 1.1.83
+servers:
+- url: /
+  description: Default (direct nym-api)
+- url: /api
+  description: Main Nym Api Server
 tags:
 - name: Unstable
 paths:
@@ -29,28 +34,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NyxAccountDetails'
+      summary: Address
+      x-summary-source: derived
 components:
   schemas:
-    NyxAccountDelegationRewardDetails:
-      type: object
-      required:
-      - node_id
-      - rewards
-      - amount_staked
-      - node_still_fully_bonded
-      properties:
-        amount_staked:
-          type: string
-        node_id:
-          $ref: '#/components/schemas/u32'
-        node_still_fully_bonded:
-          type: boolean
-        rewards:
-          $ref: '#/components/schemas/CoinSchema'
-    u32:
-      type: integer
-      format: int32
-      minimum: 0
     NyxAccountDelegationDetails:
       type: object
       required:
@@ -73,6 +60,22 @@ components:
           type:
           - string
           - 'null'
+    NyxAccountDelegationRewardDetails:
+      type: object
+      required:
+      - node_id
+      - rewards
+      - amount_staked
+      - node_still_fully_bonded
+      properties:
+        amount_staked:
+          type: string
+        node_id:
+          $ref: '#/components/schemas/u32'
+        node_still_fully_bonded:
+          type: boolean
+        rewards:
+          $ref: '#/components/schemas/CoinSchema'
     NyxAccountDetails:
       type: object
       required:
@@ -123,3 +126,7 @@ components:
           minimum: 0
         denom:
           type: string
+    u32:
+      type: integer
+      format: int32
+      minimum: 0

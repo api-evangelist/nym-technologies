@@ -1,13 +1,18 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Node Status API Status Unstable Nym Nodes API
+  title: Unstable Nym Nodes API
   description: ''
   contact:
     name: Nym Technologies SA
   license:
-    name: Apache-2.0
-    identifier: Apache-2.0
-  version: 4.6.2
+    name: GPL-3.0
+    identifier: GPL-3.0
+  version: 1.1.83
+servers:
+- url: /
+  description: Default (direct nym-api)
+- url: /api
+  description: Main Nym Api Server
 tags:
 - name: Unstable Nym Nodes
 paths:
@@ -43,6 +48,8 @@ paths:
             application/bincode:
               schema:
                 $ref: '#/components/schemas/NodesByAddressesResponse'
+      summary: Nodes by addresses
+      x-summary-source: derived
   /v1/unstable/nym-nodes/full-fat:
     get:
       tags:
@@ -111,6 +118,8 @@ paths:
       responses:
         '501':
           description: ''
+      summary: Nodes detailed
+      x-summary-source: derived
   /v1/unstable/nym-nodes/gateways/skimmed:
     get:
       tags:
@@ -293,13 +302,13 @@ paths:
       responses:
         '501':
           description: ''
+      summary: Nodes expanded
+      x-summary-source: derived
   /v1/unstable/nym-nodes/skimmed:
     get:
       tags:
       - Unstable Nym Nodes
-      summary: 'Return all Nym Nodes and optionally legacy mixnodes/gateways (if `no-legacy` flag is not used)
-
-        that are currently bonded.'
+      summary: Return all Nym Nodes and optionally legacy mixnodes/gateways (if `no-legacy`…
       operationId: nodes_basic_all
       parameters:
       - name: role
@@ -379,9 +388,7 @@ paths:
     get:
       tags:
       - Unstable Nym Nodes
-      summary: 'Return Nym Nodes and optionally legacy mixnodes/gateways (if `no-legacy` flag is not used)
-
-        that are currently bonded and are in the **active set**'
+      summary: Return Nym Nodes and optionally legacy mixnodes/gateways (if `no-legacy` flag…
       operationId: nodes_basic_active
       parameters:
       - name: semver_compatibility
@@ -438,9 +445,7 @@ paths:
     get:
       tags:
       - Unstable Nym Nodes
-      summary: 'Returns Nym Nodes and optionally legacy gateways (if `no-legacy` flag is not used)
-
-        that are currently bonded and are in the active set with the entry role.'
+      summary: Returns Nym Nodes and optionally legacy gateways (if `no-legacy` flag is not…
       operationId: entry_gateways_basic_active
       parameters:
       - name: semver_compatibility
@@ -497,9 +502,7 @@ paths:
     get:
       tags:
       - Unstable Nym Nodes
-      summary: 'Returns Nym Nodes and optionally legacy gateways (if `no-legacy` flag is not used)
-
-        that are currently bonded and support entry gateway role.'
+      summary: Returns Nym Nodes and optionally legacy gateways (if `no-legacy` flag is not…
       operationId: entry_gateways_basic_all
       parameters:
       - name: semver_compatibility
@@ -556,9 +559,7 @@ paths:
     get:
       tags:
       - Unstable Nym Nodes
-      summary: 'Returns Nym Nodes and optionally legacy gateways (if `no-legacy` flag is not used)
-
-        that are currently bonded and are in the active set with the exit role.'
+      summary: Returns Nym Nodes and optionally legacy gateways (if `no-legacy` flag is not…
       operationId: exit_gateways_basic_active
       parameters:
       - name: semver_compatibility
@@ -615,9 +616,7 @@ paths:
     get:
       tags:
       - Unstable Nym Nodes
-      summary: 'Returns Nym Nodes and optionally legacy gateways (if `no-legacy` flag is not used)
-
-        that are currently bonded and support exit gateway role.'
+      summary: Returns Nym Nodes and optionally legacy gateways (if `no-legacy` flag is not…
       operationId: exit_gateways_basic_all
       parameters:
       - name: semver_compatibility
@@ -674,9 +673,7 @@ paths:
     get:
       tags:
       - Unstable Nym Nodes
-      summary: 'Returns Nym Nodes and optionally legacy mixnodes (if `no-legacy` flag is not used)
-
-        that are currently bonded and are in the active set with one of the mixing roles.'
+      summary: Returns Nym Nodes and optionally legacy mixnodes (if `no-legacy` flag is not…
       operationId: mixnodes_basic_active
       parameters:
       - name: semver_compatibility
@@ -733,9 +730,7 @@ paths:
     get:
       tags:
       - Unstable Nym Nodes
-      summary: 'Returns Nym Nodes and optionally legacy mixnodes (if `no-legacy` flag is not used)
-
-        that are currently bonded and support mixing role.'
+      summary: Returns Nym Nodes and optionally legacy mixnodes (if `no-legacy` flag is not…
       operationId: mixnodes_basic_all
       parameters:
       - name: semver_compatibility
@@ -790,6 +785,22 @@ paths:
       deprecated: true
 components:
   schemas:
+    DeclaredRolesV1:
+      type: object
+      required:
+      - mixnode
+      - entry
+      - exit_nr
+      - exit_ipr
+      properties:
+        entry:
+          type: boolean
+        exit_ipr:
+          type: boolean
+        exit_nr:
+          type: boolean
+        mixnode:
+          type: boolean
     BasicEntryInformation:
       type: object
       required:
@@ -809,6 +820,77 @@ components:
           - 'null'
           format: int32
           minimum: 0
+    NodesByAddressesRequestBody:
+      type: object
+      required:
+      - addresses
+      properties:
+        addresses:
+          type: array
+          items:
+            type: string
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
+    NodeRole:
+      oneOf:
+      - type: object
+        required:
+        - Mixnode
+        properties:
+          Mixnode:
+            type: object
+            required:
+            - layer
+            properties:
+              layer:
+                type: integer
+                format: int32
+                minimum: 0
+      - type: string
+        enum:
+        - EntryGateway
+      - type: string
+        enum:
+        - ExitGateway
+      - type: string
+        enum:
+        - Standby
+      - type: string
+        enum:
+        - Inactive
+    PaginatedCachedNodesResponseSchema:
+      type: object
+      title: PaginatedCachedNodesResponse
+      required:
+      - refreshed_at
+      - nodes
+      properties:
+        nodes:
+          $ref: '#/components/schemas/SkimmedNodeV1'
+        refreshed_at:
+          $ref: '#/components/schemas/OffsetDateTimeJsonSchemaWrapper'
+    OffsetDateTimeJsonSchemaWrapper:
+      type: string
+      format: date-time
+    NodesByAddressesResponse:
+      type: object
+      required:
+      - existence
+      properties:
+        existence:
+          type: object
+          additionalProperties:
+            type:
+            - integer
+            - 'null'
+            format: int32
+            minimum: 0
+          propertyNames:
+            type: string
     SkimmedNodeV1:
       type: object
       required:
@@ -895,90 +977,3 @@ components:
                 type: string
         refreshed_at:
           $ref: '#/components/schemas/OffsetDateTimeJsonSchemaWrapper'
-    Output:
-      type: string
-      enum:
-      - json
-      - yaml
-      - bincode
-    NodeRole:
-      oneOf:
-      - type: object
-        required:
-        - Mixnode
-        properties:
-          Mixnode:
-            type: object
-            required:
-            - layer
-            properties:
-              layer:
-                type: integer
-                format: int32
-                minimum: 0
-      - type: string
-        enum:
-        - EntryGateway
-      - type: string
-        enum:
-        - ExitGateway
-      - type: string
-        enum:
-        - Standby
-      - type: string
-        enum:
-        - Inactive
-    PaginatedCachedNodesResponseSchema:
-      type: object
-      title: PaginatedCachedNodesResponse
-      required:
-      - refreshed_at
-      - nodes
-      properties:
-        nodes:
-          $ref: '#/components/schemas/SkimmedNodeV1'
-        refreshed_at:
-          $ref: '#/components/schemas/OffsetDateTimeJsonSchemaWrapper'
-    NodesByAddressesResponse:
-      type: object
-      required:
-      - existence
-      properties:
-        existence:
-          type: object
-          additionalProperties:
-            type:
-            - integer
-            - 'null'
-            format: int32
-            minimum: 0
-          propertyNames:
-            type: string
-    NodesByAddressesRequestBody:
-      type: object
-      required:
-      - addresses
-      properties:
-        addresses:
-          type: array
-          items:
-            type: string
-    DeclaredRolesV1:
-      type: object
-      required:
-      - mixnode
-      - entry
-      - exit_nr
-      - exit_ipr
-      properties:
-        entry:
-          type: boolean
-        exit_ipr:
-          type: boolean
-        exit_nr:
-          type: boolean
-        mixnode:
-          type: boolean
-    OffsetDateTimeJsonSchemaWrapper:
-      type: string
-      format: date-time

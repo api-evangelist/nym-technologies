@@ -1,13 +1,18 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Node Status API Status Unstable Nym Nodes v3 API
+  title: Unstable Nym Nodes v3 API
   description: ''
   contact:
     name: Nym Technologies SA
   license:
-    name: Apache-2.0
-    identifier: Apache-2.0
-  version: 4.6.2
+    name: GPL-3.0
+    identifier: GPL-3.0
+  version: 1.1.83
+servers:
+- url: /
+  description: Default (direct nym-api)
+- url: /api
+  description: Main Nym Api Server
 tags:
 - name: Unstable Nym Nodes v3
 paths:
@@ -15,7 +20,7 @@ paths:
     get:
       tags:
       - Unstable Nym Nodes v3
-      summary: Return all Nym Nodes that are currently bonded.
+      summary: Return all Nym Nodes that are currently bonded
       operationId: v3_nodes_expanded
       parameters:
       - name: output
@@ -40,6 +45,22 @@ paths:
                 $ref: '#/components/schemas/PaginatedCachedNodesExpandedV3ResponseSchema'
 components:
   schemas:
+    DeclaredRolesV1:
+      type: object
+      required:
+      - mixnode
+      - entry
+      - exit_nr
+      - exit_ipr
+      properties:
+        entry:
+          type: boolean
+        exit_ipr:
+          type: boolean
+        exit_nr:
+          type: boolean
+        mixnode:
+          type: boolean
     BasicEntryInformation:
       type: object
       required:
@@ -59,6 +80,98 @@ components:
           - 'null'
           format: int32
           minimum: 0
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
+    NodeRole:
+      oneOf:
+      - type: object
+        required:
+        - Mixnode
+        properties:
+          Mixnode:
+            type: object
+            required:
+            - layer
+            properties:
+              layer:
+                type: integer
+                format: int32
+                minimum: 0
+      - type: string
+        enum:
+        - EntryGateway
+      - type: string
+        enum:
+        - ExitGateway
+      - type: string
+        enum:
+        - Standby
+      - type: string
+        enum:
+        - Inactive
+    PaginatedCachedNodesExpandedV3ResponseSchema:
+      type: object
+      title: PaginatedCachedNodesExpandedV3ResponseSchema
+      required:
+      - refreshed_at
+      - nodes
+      properties:
+        nodes:
+          $ref: '#/components/schemas/SemiSkimmedNodeV3'
+        refreshed_at:
+          $ref: '#/components/schemas/OffsetDateTimeJsonSchemaWrapper'
+    VersionedNoiseKeyV1:
+      type: object
+      required:
+      - supported_version
+      - x25519_pubkey
+      properties:
+        supported_version:
+          type: integer
+          format: int32
+          minimum: 0
+        x25519_pubkey:
+          type: string
+    SemiSkimmedNodeV3:
+      type: object
+      description: All the information required for sending packets between nodes (sphinx, noise, LP)
+      required:
+      - basic
+      - build_version
+      properties:
+        basic:
+          $ref: '#/components/schemas/SkimmedNodeV1'
+          description: Basic node information required for mixnet routing
+        build_version:
+          type: string
+          description: Build version of this node used as a hint in inferring the Ciphersuite compatibility
+        lp:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/LewesProtocolDetailsV1'
+            description: Information required for establishing an LP connection
+        noise_key:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/VersionedNoiseKeyV1'
+            description: Noise key of the node
+    LewesProtocolDetailsV1:
+      type: object
+      required:
+      - content
+      - signature
+      properties:
+        content:
+          $ref: '#/components/schemas/LewesProtocolDetailsDataV1'
+        signature:
+          type: string
+    OffsetDateTimeJsonSchemaWrapper:
+      type: string
+      format: date-time
     SkimmedNodeV1:
       type: object
       required:
@@ -147,111 +260,3 @@ components:
         x25519:
           type: string
           description: LP public key
-    Output:
-      type: string
-      enum:
-      - json
-      - yaml
-      - bincode
-    LewesProtocolDetailsV1:
-      type: object
-      required:
-      - content
-      - signature
-      properties:
-        content:
-          $ref: '#/components/schemas/LewesProtocolDetailsDataV1'
-        signature:
-          type: string
-    PaginatedCachedNodesExpandedV3ResponseSchema:
-      type: object
-      title: PaginatedCachedNodesExpandedV3ResponseSchema
-      required:
-      - refreshed_at
-      - nodes
-      properties:
-        nodes:
-          $ref: '#/components/schemas/SemiSkimmedNodeV3'
-        refreshed_at:
-          $ref: '#/components/schemas/OffsetDateTimeJsonSchemaWrapper'
-    NodeRole:
-      oneOf:
-      - type: object
-        required:
-        - Mixnode
-        properties:
-          Mixnode:
-            type: object
-            required:
-            - layer
-            properties:
-              layer:
-                type: integer
-                format: int32
-                minimum: 0
-      - type: string
-        enum:
-        - EntryGateway
-      - type: string
-        enum:
-        - ExitGateway
-      - type: string
-        enum:
-        - Standby
-      - type: string
-        enum:
-        - Inactive
-    OffsetDateTimeJsonSchemaWrapper:
-      type: string
-      format: date-time
-    SemiSkimmedNodeV3:
-      type: object
-      description: All the information required for sending packets between nodes (sphinx, noise, LP)
-      required:
-      - basic
-      - build_version
-      properties:
-        basic:
-          $ref: '#/components/schemas/SkimmedNodeV1'
-          description: Basic node information required for mixnet routing
-        build_version:
-          type: string
-          description: Build version of this node used as a hint in inferring the Ciphersuite compatibility
-        lp:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/LewesProtocolDetailsV1'
-            description: Information required for establishing an LP connection
-        noise_key:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/VersionedNoiseKeyV1'
-            description: Noise key of the node
-    DeclaredRolesV1:
-      type: object
-      required:
-      - mixnode
-      - entry
-      - exit_nr
-      - exit_ipr
-      properties:
-        entry:
-          type: boolean
-        exit_ipr:
-          type: boolean
-        exit_nr:
-          type: boolean
-        mixnode:
-          type: boolean
-    VersionedNoiseKeyV1:
-      type: object
-      required:
-      - supported_version
-      - x25519_pubkey
-      properties:
-        supported_version:
-          type: integer
-          format: int32
-          minimum: 0
-        x25519_pubkey:
-          type: string

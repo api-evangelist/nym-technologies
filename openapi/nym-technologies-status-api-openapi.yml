@@ -1,13 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Node API Status API
-  description: ''
+  title: Nym Technologies Status API
   contact:
     name: Nym Technologies SA
-  license:
-    name: Apache-2.0
-    identifier: Apache-2.0
-  version: 4.6.2
+  version: '1.0'
+  description: 'Operations tagged Status across 2 of this provider''s published API definitions: nym-technologies-node-status-api-openapi.json, nym-technologies-nym-api-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: /
+  description: Default (direct nym-api)
+- url: /api
+  description: Main Nym Api Server
 tags:
 - name: Status
 paths:
@@ -23,6 +25,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BinaryBuildInformationOwned'
+      summary: Build information
+      x-summary-source: derived
   /v2/status/health:
     get:
       tags:
@@ -35,6 +39,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HealthInfo'
+      summary: Health
+      x-summary-source: derived
   /v1/status/config-score-details:
     get:
       tags:
@@ -61,6 +67,13 @@ paths:
             application/bincode:
               schema:
                 $ref: '#/components/schemas/ConfigScoreDataResponse'
+      summary: Config score details
+      x-summary-source: derived
+    servers:
+    - url: /
+      description: Default (direct nym-api)
+    - url: /api
+      description: Main Nym Api Server
   /v1/status/submit-gateway-monitoring-results:
     post:
       tags:
@@ -94,6 +107,13 @@ paths:
               schema:
                 type: string
       deprecated: true
+      summary: Submit gateway monitoring results
+      x-summary-source: derived
+    servers:
+    - url: /
+      description: Default (direct nym-api)
+    - url: /api
+      description: Main Nym Api Server
   /v1/status/submit-node-monitoring-results:
     post:
       tags:
@@ -127,97 +147,15 @@ paths:
               schema:
                 type: string
       deprecated: true
+      summary: Submit node monitoring results
+      x-summary-source: derived
+    servers:
+    - url: /
+      description: Default (direct nym-api)
+    - url: /api
+      description: Main Nym Api Server
 components:
   schemas:
-    VersionScoreFormulaParams:
-      type: object
-      description: 'Given the formula of version_score = penalty ^ (versions_behind_factor ^ penalty_scaling)
-
-        define the relevant parameters'
-      required:
-      - penalty
-      - penalty_scaling
-      properties:
-        penalty:
-          type: number
-          format: double
-        penalty_scaling:
-          type: number
-          format: double
-    MonitorMessage:
-      type: object
-      required:
-      - results
-      - signature
-      - signer
-      - timestamp
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/NodeResult'
-        signature:
-          type: string
-        signer:
-          type: string
-        timestamp:
-          type: integer
-          format: int64
-    Output:
-      type: string
-      enum:
-      - json
-      - yaml
-      - bincode
-    OutdatedVersionWeights:
-      type: object
-      description: Defines weights for calculating numbers of versions behind the current release.
-      required:
-      - major
-      - minor
-      - patch
-      - prerelease
-      properties:
-        major:
-          type: integer
-          format: int32
-          minimum: 0
-        minor:
-          type: integer
-          format: int32
-          minimum: 0
-        patch:
-          type: integer
-          format: int32
-          minimum: 0
-        prerelease:
-          type: integer
-          format: int32
-          minimum: 0
-    ConfigScoreDataResponse:
-      type: object
-      required:
-      - parameters
-      - version_history
-      properties:
-        parameters:
-          $ref: '#/components/schemas/ConfigScoreParams'
-        version_history:
-          type: array
-          items:
-            $ref: '#/components/schemas/HistoricalNymNodeVersionEntry'
-    ConfigScoreParams:
-      type: object
-      required:
-      - version_weights
-      - version_score_formula_params
-      properties:
-        version_score_formula_params:
-          $ref: '#/components/schemas/VersionScoreFormulaParams'
-          description: Defines the parameters of the formula for calculating the version score
-        version_weights:
-          $ref: '#/components/schemas/OutdatedVersionWeights'
-          description: Defines weights for calculating numbers of versions behind the current release.
     HealthInfo:
       type: object
       required:
@@ -226,23 +164,6 @@ components:
         uptime:
           type: integer
           format: int64
-    NodeResult:
-      type: object
-      required:
-      - node_id
-      - identity
-      - reliability
-      properties:
-        identity:
-          type: string
-        node_id:
-          type: integer
-          format: int32
-          minimum: 0
-        reliability:
-          type: integer
-          format: int32
-          minimum: 0
     BinaryBuildInformationOwned:
       type: object
       required:
@@ -286,20 +207,39 @@ components:
         rustc_version:
           type: string
           description: Provides the rustc version that was used for the build, for example `1.52.0-nightly`.
-    HistoricalNymNodeVersionEntry:
+    ConfigScoreParams:
       type: object
       required:
-      - id
-      - version_information
+      - version_weights
+      - version_score_formula_params
       properties:
-        id:
-          type: integer
-          format: int32
-          description: The unique, ordered, id of this particular entry
-          minimum: 0
-        version_information:
-          $ref: '#/components/schemas/HistoricalNymNodeVersion'
-          description: Data associated with this particular version
+        version_score_formula_params:
+          $ref: '#/components/schemas/VersionScoreFormulaParams'
+          description: Defines the parameters of the formula for calculating the version score
+        version_weights:
+          $ref: '#/components/schemas/OutdatedVersionWeights'
+          description: Defines weights for calculating numbers of versions behind the current release.
+    VersionScoreFormulaParams:
+      type: object
+      description: 'Given the formula of version_score = penalty ^ (versions_behind_factor ^ penalty_scaling)
+
+        define the relevant parameters'
+      required:
+      - penalty
+      - penalty_scaling
+      properties:
+        penalty:
+          type: number
+          format: double
+        penalty_scaling:
+          type: number
+          format: double
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
     HistoricalNymNodeVersion:
       type: object
       required:
@@ -316,3 +256,93 @@ components:
           description: 'Version of the nym node that is going to be used for determining the version score of a node.
 
             note: value stored here is pre-validated `semver::Version`'
+    HistoricalNymNodeVersionEntry:
+      type: object
+      required:
+      - id
+      - version_information
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: The unique, ordered, id of this particular entry
+          minimum: 0
+        version_information:
+          $ref: '#/components/schemas/HistoricalNymNodeVersion'
+          description: Data associated with this particular version
+    ConfigScoreDataResponse:
+      type: object
+      required:
+      - parameters
+      - version_history
+      properties:
+        parameters:
+          $ref: '#/components/schemas/ConfigScoreParams'
+        version_history:
+          type: array
+          items:
+            $ref: '#/components/schemas/HistoricalNymNodeVersionEntry'
+    OutdatedVersionWeights:
+      type: object
+      description: Defines weights for calculating numbers of versions behind the current release.
+      required:
+      - major
+      - minor
+      - patch
+      - prerelease
+      properties:
+        major:
+          type: integer
+          format: int32
+          minimum: 0
+        minor:
+          type: integer
+          format: int32
+          minimum: 0
+        patch:
+          type: integer
+          format: int32
+          minimum: 0
+        prerelease:
+          type: integer
+          format: int32
+          minimum: 0
+    MonitorMessage:
+      type: object
+      required:
+      - results
+      - signature
+      - signer
+      - timestamp
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/NodeResult'
+        signature:
+          type: string
+        signer:
+          type: string
+        timestamp:
+          type: integer
+          format: int64
+    NodeResult:
+      type: object
+      required:
+      - node_id
+      - identity
+      - reliability
+      properties:
+        identity:
+          type: string
+        node_id:
+          type: integer
+          format: int32
+          minimum: 0
+        reliability:
+          type: integer
+          format: int32
+          minimum: 0
+x-refined-from:
+- nym-technologies-node-status-api-openapi.json
+- nym-technologies-nym-api-openapi.json

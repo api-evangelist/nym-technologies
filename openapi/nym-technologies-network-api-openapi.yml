@@ -1,20 +1,25 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Node Status API Status network API
+  title: Nym Network API
   description: ''
   contact:
     name: Nym Technologies SA
   license:
-    name: Apache-2.0
-    identifier: Apache-2.0
-  version: 4.6.2
+    name: GPL-3.0
+    identifier: GPL-3.0
+  version: 1.1.83
+servers:
+- url: /
+  description: Default (direct nym-api)
+- url: /api
+  description: Main Nym Api Server
 tags:
-- name: network
+- name: Network
 paths:
   /v1/network/chain-blocks-status:
     get:
       tags:
-      - network
+      - Network
       operationId: chain_blocks_status
       parameters:
       - name: output
@@ -37,10 +42,12 @@ paths:
             application/bincode:
               schema:
                 $ref: '#/components/schemas/SignedMessage'
+      summary: Chain blocks status
+      x-summary-source: derived
   /v1/network/chain-status:
     get:
       tags:
-      - network
+      - Network
       operationId: chain_status
       parameters:
       - name: output
@@ -63,10 +70,12 @@ paths:
             application/bincode:
               schema:
                 $ref: '#/components/schemas/ChainStatusResponse'
+      summary: Chain status
+      x-summary-source: derived
   /v1/network/details:
     get:
       tags:
-      - network
+      - Network
       operationId: network_details
       parameters:
       - name: output
@@ -89,10 +98,12 @@ paths:
             application/bincode:
               schema:
                 $ref: '#/components/schemas/NetworkDetails'
+      summary: Network details
+      x-summary-source: derived
   /v1/network/nym-contracts:
     get:
       tags:
-      - network
+      - Network
       operationId: nym_contracts
       parameters:
       - name: output
@@ -127,10 +138,12 @@ paths:
                   $ref: '#/components/schemas/ContractInformationContractVersion'
                 propertyNames:
                   type: string
+      summary: Nym contracts
+      x-summary-source: derived
   /v1/network/nym-contracts-detailed:
     get:
       tags:
-      - network
+      - Network
       operationId: nym_contracts_detailed
       parameters:
       - name: output
@@ -165,10 +178,12 @@ paths:
                   $ref: '#/components/schemas/ContractInformationBuildInformation'
                 propertyNames:
                   type: string
+      summary: Nym contracts detailed
+      x-summary-source: derived
   /v1/network/signers/status:
     get:
       tags:
-      - network
+      - Network
       operationId: signers_status
       parameters:
       - name: output
@@ -191,10 +206,12 @@ paths:
             application/bincode:
               schema:
                 $ref: '#/components/schemas/SignedMessage'
+      summary: Signers status
+      x-summary-source: derived
   /v1/network/signers/status-detailed:
     get:
       tags:
-      - network
+      - Network
       operationId: signers_status_detailed
       parameters:
       - name: output
@@ -217,28 +234,163 @@ paths:
             application/bincode:
               schema:
                 $ref: '#/components/schemas/SignedMessage'
+      summary: Signers status detailed
+      x-summary-source: derived
 components:
   schemas:
-    ChainStatusResponse:
+    NymContracts:
+      type: object
+      properties:
+        coconut_dkg_contract_address:
+          type:
+          - string
+          - 'null'
+        ecash_contract_address:
+          type:
+          - string
+          - 'null'
+        group_contract_address:
+          type:
+          - string
+          - 'null'
+        mixnet_contract_address:
+          type:
+          - string
+          - 'null'
+        multisig_contract_address:
+          type:
+          - string
+          - 'null'
+        network_monitors_contract_address:
+          type:
+          - string
+          - 'null'
+        node_families_contract_address:
+          type:
+          - string
+          - 'null'
+        performance_contract_address:
+          type:
+          - string
+          - 'null'
+        vesting_contract_address:
+          type:
+          - string
+          - 'null'
+    ContractInformationContractVersion:
+      type: object
+      properties:
+        address:
+          type:
+          - string
+          - 'null'
+        details:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ContractVersionSchemaResponse'
+    DetailedChainStatus:
       type: object
       required:
-      - connected_nyxd
-      - status
+      - abci
+      - latest_block
       properties:
-        connected_nyxd:
+        abci:
+          $ref: '#/components/schemas/AbciInfo'
+        latest_block:
+          $ref: '#/components/schemas/BlockInfo'
+    NymNetworkDetails:
+      type: object
+      required:
+      - network_name
+      - chain_details
+      - endpoints
+      - contracts
+      properties:
+        chain_details:
+          $ref: '#/components/schemas/ChainDetails'
+        contracts:
+          $ref: '#/components/schemas/NymContracts'
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidatorDetails'
+        network_name:
           type: string
-        status:
-          $ref: '#/components/schemas/DetailedChainStatus'
-    BlockInfo:
+        nym_api_urls:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiUrl'
+        nym_vpn_api_url:
+          type:
+          - string
+          - 'null'
+        nym_vpn_api_urls:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiUrl'
+    BlockId:
       type: object
+      description: 'Block identifiers which contain two distinct Merkle roots of the block,
+
+        as well as the number of parts in the block.
+
+
+        <https://github.com/tendermint/spec/blob/d46cd7f573a2c6a2399fcab2cde981330aa63f37/spec/core/data_structures.md#blockid>
+
+
+        Default implementation is an empty Id as defined by the Go implementation in
+
+        <https://github.com/tendermint/tendermint/blob/1635d1339c73ae6a82e062cd2dc7191b029efa14/types/block.go#L1204>.
+
+
+        If the Hash is empty in BlockId, the BlockId should be empty (encoded to None).
+
+        This is implemented outside of this struct. Use the Default trait to check for an empty BlockId.
+
+        See: <https://github.com/informalsystems/tendermint-rs/issues/663>'
       required:
-      - block_id
-      - block
+      - hash
+      - part_set_header
       properties:
-        block:
-          $ref: '#/components/schemas/FullBlockInfo'
-        block_id:
-          $ref: '#/components/schemas/BlockId'
+        hash:
+          type: string
+          description: 'The block''s main hash is the Merkle root of all the fields in the
+
+            block header.'
+        part_set_header:
+          $ref: '#/components/schemas/PartSetHeader'
+          description: 'Parts header (if available) is used for secure gossipping of the block
+
+            during consensus. It is the Merkle root of the complete serialized block
+
+            cut into parts.
+
+
+            PartSet is used to split a byteslice of data into parts (pieces) for
+
+            transmission. By splitting data into smaller parts and computing a
+
+            Merkle root hash on the list, you can verify that a part is
+
+            legitimately part of the complete data, and the part can be forwarded
+
+            to other peers before all the parts are known. In short, it''s a fast
+
+            way to propagate a large file over a gossip network.
+
+
+            <https://github.com/tendermint/tendermint/wiki/Block-Structure#partset>
+
+
+            PartSetHeader in protobuf is defined as never nil using the gogoproto
+
+            annotations. This does not translate to Rust, but we can indicate this
+
+            in the domain type.'
     ContractInformationBuildInformation:
       type: object
       properties:
@@ -250,6 +402,69 @@ components:
           oneOf:
           - type: 'null'
           - $ref: '#/components/schemas/ContractBuildInformation'
+    SignedMessage:
+      type: object
+      required:
+      - body
+      - signature
+      properties:
+        body:
+          $ref: '#/components/schemas/ChainBlocksStatusResponseBody'
+        signature:
+          type: string
+    DenomDetailsOwned:
+      type: object
+      required:
+      - base
+      - display
+      - display_exponent
+      properties:
+        base:
+          type: string
+        display:
+          type: string
+        display_exponent:
+          type: integer
+          format: int32
+          minimum: 0
+    ChainDetails:
+      type: object
+      required:
+      - bech32_account_prefix
+      - mix_denom
+      - stake_denom
+      properties:
+        bech32_account_prefix:
+          type: string
+        mix_denom:
+          $ref: '#/components/schemas/DenomDetailsOwned'
+        stake_denom:
+          $ref: '#/components/schemas/DenomDetailsOwned'
+    ValidatorDetails:
+      type: object
+      required:
+      - nyxd_url
+      properties:
+        api_url:
+          type:
+          - string
+          - 'null'
+        nyxd_url:
+          type: string
+        websocket_url:
+          type:
+          - string
+          - 'null'
+    ChainStatusResponse:
+      type: object
+      required:
+      - connected_nyxd
+      - status
+      properties:
+        connected_nyxd:
+          type: string
+        status:
+          $ref: '#/components/schemas/DetailedChainStatus'
     AbciInfo:
       type: object
       required:
@@ -293,6 +508,66 @@ components:
           format: int32
           description: Number of parts in this block
           minimum: 0
+    ChainBlocksStatusResponseBody:
+      type: object
+      required:
+      - currentTime
+      - chainStatus
+      properties:
+        chainStatus:
+          $ref: '#/components/schemas/ChainStatus'
+        currentTime:
+          type: string
+        latestCachedBlock:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/DetailedChainStatus'
+    ChainStatus:
+      oneOf:
+      - type: string
+        enum:
+        - synced
+      - type: string
+        enum:
+        - unknown
+      - type: object
+        required:
+        - stalled
+        properties:
+          stalled:
+            type: object
+            required:
+            - approximate_amount
+            properties:
+              approximate_amount:
+                type: string
+    ApiUrl:
+      type: object
+      required:
+      - url
+      properties:
+        front_hosts:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: 'Optional alternative equivalent hostnames. Each entry must parse as valid Host
+
+
+            see https://docs.rs/url/latest/url/enum.Host.html'
+        url:
+          type: string
+          description: 'Expects a string formatted Url
+
+
+            see https://docs.rs/url/latest/url/struct.Url.html'
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
     HeaderVersion:
       type: object
       description: '`Version` contains the protocol version for the blockchain and the
@@ -390,45 +665,6 @@ components:
         version:
           $ref: '#/components/schemas/HeaderVersion'
           description: Header version
-    NymContracts:
-      type: object
-      properties:
-        coconut_dkg_contract_address:
-          type:
-          - string
-          - 'null'
-        ecash_contract_address:
-          type:
-          - string
-          - 'null'
-        group_contract_address:
-          type:
-          - string
-          - 'null'
-        mixnet_contract_address:
-          type:
-          - string
-          - 'null'
-        multisig_contract_address:
-          type:
-          - string
-          - 'null'
-        network_monitors_contract_address:
-          type:
-          - string
-          - 'null'
-        node_families_contract_address:
-          type:
-          - string
-          - 'null'
-        performance_contract_address:
-          type:
-          - string
-          - 'null'
-        vesting_contract_address:
-          type:
-          - string
-          - 'null'
     FullBlockInfo:
       type: object
       required:
@@ -436,43 +672,6 @@ components:
       properties:
         header:
           $ref: '#/components/schemas/BlockHeader'
-    DetailedChainStatus:
-      type: object
-      required:
-      - abci
-      - latest_block
-      properties:
-        abci:
-          $ref: '#/components/schemas/AbciInfo'
-        latest_block:
-          $ref: '#/components/schemas/BlockInfo'
-    ApiUrl:
-      type: object
-      required:
-      - url
-      properties:
-        front_hosts:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: 'Optional alternative equivalent hostnames. Each entry must parse as valid Host
-
-
-            see https://docs.rs/url/latest/url/enum.Host.html'
-        url:
-          type: string
-          description: 'Expects a string formatted Url
-
-
-            see https://docs.rs/url/latest/url/struct.Url.html'
-    Output:
-      type: string
-      enum:
-      - json
-      - yaml
-      - bincode
     NetworkDetails:
       type: object
       required:
@@ -483,93 +682,6 @@ components:
           type: string
         network:
           $ref: '#/components/schemas/NymNetworkDetails'
-    ChainBlocksStatusResponseBody:
-      type: object
-      required:
-      - currentTime
-      - chainStatus
-      properties:
-        chainStatus:
-          $ref: '#/components/schemas/ChainStatus'
-        currentTime:
-          type: string
-        latestCachedBlock:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/DetailedChainStatus'
-    ChainDetails:
-      type: object
-      required:
-      - bech32_account_prefix
-      - mix_denom
-      - stake_denom
-      properties:
-        bech32_account_prefix:
-          type: string
-        mix_denom:
-          $ref: '#/components/schemas/DenomDetailsOwned'
-        stake_denom:
-          $ref: '#/components/schemas/DenomDetailsOwned'
-    DenomDetailsOwned:
-      type: object
-      required:
-      - base
-      - display
-      - display_exponent
-      properties:
-        base:
-          type: string
-        display:
-          type: string
-        display_exponent:
-          type: integer
-          format: int32
-          minimum: 0
-    NymNetworkDetails:
-      type: object
-      required:
-      - network_name
-      - chain_details
-      - endpoints
-      - contracts
-      properties:
-        chain_details:
-          $ref: '#/components/schemas/ChainDetails'
-        contracts:
-          $ref: '#/components/schemas/NymContracts'
-        endpoints:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidatorDetails'
-        network_name:
-          type: string
-        nym_api_urls:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiUrl'
-        nym_vpn_api_url:
-          type:
-          - string
-          - 'null'
-        nym_vpn_api_urls:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiUrl'
-    ContractInformationContractVersion:
-      type: object
-      properties:
-        address:
-          type:
-          - string
-          - 'null'
-        details:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/ContractVersionSchemaResponse'
     ContractVersionSchemaResponse:
       type: object
       title: ContractVersion
@@ -591,65 +703,16 @@ components:
             the only code that needs to understand the version parsing is code that knows how to
 
             migrate from the given contract (and is tied to its implementation somehow)'
-    BlockId:
+    BlockInfo:
       type: object
-      description: 'Block identifiers which contain two distinct Merkle roots of the block,
-
-        as well as the number of parts in the block.
-
-
-        <https://github.com/tendermint/spec/blob/d46cd7f573a2c6a2399fcab2cde981330aa63f37/spec/core/data_structures.md#blockid>
-
-
-        Default implementation is an empty Id as defined by the Go implementation in
-
-        <https://github.com/tendermint/tendermint/blob/1635d1339c73ae6a82e062cd2dc7191b029efa14/types/block.go#L1204>.
-
-
-        If the Hash is empty in BlockId, the BlockId should be empty (encoded to None).
-
-        This is implemented outside of this struct. Use the Default trait to check for an empty BlockId.
-
-        See: <https://github.com/informalsystems/tendermint-rs/issues/663>'
       required:
-      - hash
-      - part_set_header
+      - block_id
+      - block
       properties:
-        hash:
-          type: string
-          description: 'The block''s main hash is the Merkle root of all the fields in the
-
-            block header.'
-        part_set_header:
-          $ref: '#/components/schemas/PartSetHeader'
-          description: 'Parts header (if available) is used for secure gossipping of the block
-
-            during consensus. It is the Merkle root of the complete serialized block
-
-            cut into parts.
-
-
-            PartSet is used to split a byteslice of data into parts (pieces) for
-
-            transmission. By splitting data into smaller parts and computing a
-
-            Merkle root hash on the list, you can verify that a part is
-
-            legitimately part of the complete data, and the part can be forwarded
-
-            to other peers before all the parts are known. In short, it''s a fast
-
-            way to propagate a large file over a gossip network.
-
-
-            <https://github.com/tendermint/tendermint/wiki/Block-Structure#partset>
-
-
-            PartSetHeader in protobuf is defined as never nil using the gogoproto
-
-            annotations. This does not translate to Rust, but we can indicate this
-
-            in the domain type.'
+        block:
+          $ref: '#/components/schemas/FullBlockInfo'
+        block_id:
+          $ref: '#/components/schemas/BlockId'
     ContractBuildInformation:
       type: object
       required:
@@ -687,47 +750,3 @@ components:
         rustc_version:
           type: string
           description: Provides the rustc version that was used for the build, for example `1.52.0-nightly`.
-    ValidatorDetails:
-      type: object
-      required:
-      - nyxd_url
-      properties:
-        api_url:
-          type:
-          - string
-          - 'null'
-        nyxd_url:
-          type: string
-        websocket_url:
-          type:
-          - string
-          - 'null'
-    SignedMessage:
-      type: object
-      required:
-      - body
-      - signature
-      properties:
-        body:
-          $ref: '#/components/schemas/ChainBlocksStatusResponseBody'
-        signature:
-          type: string
-    ChainStatus:
-      oneOf:
-      - type: string
-        enum:
-        - synced
-      - type: string
-        enum:
-        - unknown
-      - type: object
-        required:
-        - stalled
-        properties:
-          stalled:
-            type: object
-            required:
-            - approximate_amount
-            properties:
-              approximate_amount:
-                type: string

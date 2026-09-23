@@ -1,13 +1,18 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Node Status API Status circulating-supply API
+  title: Nym Circulating Supply API
   description: ''
   contact:
     name: Nym Technologies SA
   license:
-    name: Apache-2.0
-    identifier: Apache-2.0
-  version: 4.6.2
+    name: GPL-3.0
+    identifier: GPL-3.0
+  version: 1.1.83
+servers:
+- url: /
+  description: Default (direct nym-api)
+- url: /api
+  description: Main Nym Api Server
 tags:
 - name: circulating-supply
 paths:
@@ -37,6 +42,8 @@ paths:
             application/bincode:
               schema:
                 $ref: '#/components/schemas/CirculatingSupplyResponse'
+      summary: Get full circulating supply
+      x-summary-source: derived
   /v1/circulating-supply/circulating-supply-value:
     get:
       tags:
@@ -66,6 +73,8 @@ paths:
               schema:
                 type: number
                 format: double
+      summary: Get circulating supply
+      x-summary-source: derived
   /v1/circulating-supply/total-supply-value:
     get:
       tags:
@@ -95,24 +104,10 @@ paths:
               schema:
                 type: number
                 format: double
+      summary: Get total supply
+      x-summary-source: derived
 components:
   schemas:
-    CirculatingSupplyResponse:
-      type: object
-      required:
-      - total_supply
-      - mixmining_reserve
-      - vesting_tokens
-      - circulating_supply
-      properties:
-        circulating_supply:
-          $ref: '#/components/schemas/CoinSchema'
-        mixmining_reserve:
-          $ref: '#/components/schemas/CoinSchema'
-        total_supply:
-          $ref: '#/components/schemas/CoinSchema'
-        vesting_tokens:
-          $ref: '#/components/schemas/CoinSchema'
     CoinSchema:
       type: object
       title: Coin
@@ -131,3 +126,19 @@ components:
       - json
       - yaml
       - bincode
+    CirculatingSupplyResponse:
+      type: object
+      required:
+      - total_supply
+      - mixmining_reserve
+      - vesting_tokens
+      - circulating_supply
+      properties:
+        circulating_supply:
+          $ref: '#/components/schemas/CoinSchema'
+        mixmining_reserve:
+          $ref: '#/components/schemas/CoinSchema'
+        total_supply:
+          $ref: '#/components/schemas/CoinSchema'
+        vesting_tokens:
+          $ref: '#/components/schemas/CoinSchema'
