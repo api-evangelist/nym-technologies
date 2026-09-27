@@ -87,26 +87,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    NodeDescription:
-      type: object
-      required:
-      - moniker
-      - website
-      - security_contact
-      - details
-      properties:
-        details:
-          type: string
-          description: details define other optional details.
-        moniker:
-          type: string
-          description: moniker defines a human-readable name for the node.
-        security_contact:
-          type: string
-          description: security contact defines an optional email for security contact.
-        website:
-          type: string
-          description: website defines an optional website link.
     PagedResult_GatewaySkinny:
       type: object
       required:
@@ -134,72 +114,6 @@ components:
               gateway_identity_key:
                 type: string
               last_ports_check_utc:
-                type:
-                - string
-                - 'null'
-              last_probe_result: {}
-              last_testrun_utc:
-                type:
-                - string
-                - 'null'
-              last_updated_utc:
-                type: string
-              performance:
-                type: integer
-                format: int32
-                minimum: 0
-              ports_check: {}
-              routing_score:
-                type: number
-                format: float
-              self_described: {}
-        page:
-          type: integer
-          minimum: 0
-        size:
-          type: integer
-          minimum: 0
-        total:
-          type: integer
-          minimum: 0
-    PagedResult_Gateway:
-      type: object
-      required:
-      - page
-      - size
-      - total
-      - items
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            required:
-            - gateway_identity_key
-            - bonded
-            - performance
-            - description
-            - last_updated_utc
-            - routing_score
-            - config_score
-            properties:
-              bonded:
-                type: boolean
-              bridges: {}
-              config_score:
-                type: integer
-                format: int32
-                minimum: 0
-              description:
-                $ref: '#/components/schemas/NodeDescription'
-              explorer_pretty_bond: {}
-              gateway_identity_key:
-                type: string
-              last_ports_check_utc:
-                type:
-                - string
-                - 'null'
-              last_probe_log:
                 type:
                 - string
                 - 'null'
@@ -275,3 +189,89 @@ components:
           type: number
           format: float
         self_described: {}
+    NodeDescription:
+      type: object
+      required:
+      - moniker
+      - website
+      - security_contact
+      - details
+      properties:
+        details:
+          type: string
+          description: details define other optional details.
+        moniker:
+          type: string
+          description: moniker defines a human-readable name for the node.
+        security_contact:
+          type: string
+          description: security contact defines an optional email for security contact.
+        website:
+          type: string
+          description: website defines an optional website link.
+    PagedResult_Gateway:
+      type: object
+      required:
+      - page
+      - size
+      - total
+      - items
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            required:
+            - gateway_identity_key
+            - bonded
+            - performance
+            - description
+            - last_updated_utc
+            - routing_score
+            - config_score
+            properties:
+              bonded:
+                type: boolean
+              bridges: {}
+              config_score:
+                type: integer
+                format: int32
+                minimum: 0
+              description:
+                $ref: '#/components/schemas/NodeDescription'
+              explorer_pretty_bond: {}
+              gateway_identity_key:
+                type: string
+              last_ports_check_utc:
+                type:
+                - string
+                - 'null'
+              last_probe_log:
+                type:
+                - string
+                - 'null'
+              last_probe_result: {}
+              last_testrun_utc:
+                type:
+                - string
+                - 'null'
+              last_updated_utc:
+                type: string
+              performance:
+                type: integer
+                format: int32
+                minimum: 0
+              ports_check: {}
+              routing_score:
+                type: number
+                format: float
+              self_described: {}
+        page:
+          type: integer
+          minimum: 0
+        size:
+          type: integer
+          minimum: 0
+        total:
+          type: integer
+          minimum: 0

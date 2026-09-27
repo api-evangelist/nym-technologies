@@ -785,6 +785,15 @@ paths:
       deprecated: true
 components:
   schemas:
+    NodesByAddressesRequestBody:
+      type: object
+      required:
+      - addresses
+      properties:
+        addresses:
+          type: array
+          items:
+            type: string
     DeclaredRolesV1:
       type: object
       required:
@@ -801,40 +810,6 @@ components:
           type: boolean
         mixnode:
           type: boolean
-    BasicEntryInformation:
-      type: object
-      required:
-      - ws_port
-      properties:
-        hostname:
-          type:
-          - string
-          - 'null'
-        ws_port:
-          type: integer
-          format: int32
-          minimum: 0
-        wss_port:
-          type:
-          - integer
-          - 'null'
-          format: int32
-          minimum: 0
-    NodesByAddressesRequestBody:
-      type: object
-      required:
-      - addresses
-      properties:
-        addresses:
-          type: array
-          items:
-            type: string
-    Output:
-      type: string
-      enum:
-      - json
-      - yaml
-      - bincode
     NodeRole:
       oneOf:
       - type: object
@@ -862,35 +837,15 @@ components:
       - type: string
         enum:
         - Inactive
-    PaginatedCachedNodesResponseSchema:
-      type: object
-      title: PaginatedCachedNodesResponse
-      required:
-      - refreshed_at
-      - nodes
-      properties:
-        nodes:
-          $ref: '#/components/schemas/SkimmedNodeV1'
-        refreshed_at:
-          $ref: '#/components/schemas/OffsetDateTimeJsonSchemaWrapper'
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
     OffsetDateTimeJsonSchemaWrapper:
       type: string
       format: date-time
-    NodesByAddressesResponse:
-      type: object
-      required:
-      - existence
-      properties:
-        existence:
-          type: object
-          additionalProperties:
-            type:
-            - integer
-            - 'null'
-            format: int32
-            minimum: 0
-          propertyNames:
-            type: string
     SkimmedNodeV1:
       type: object
       required:
@@ -975,5 +930,50 @@ components:
                 $ref: '#/components/schemas/DeclaredRolesV1'
               x25519_sphinx_pubkey:
                 type: string
+        refreshed_at:
+          $ref: '#/components/schemas/OffsetDateTimeJsonSchemaWrapper'
+    BasicEntryInformation:
+      type: object
+      required:
+      - ws_port
+      properties:
+        hostname:
+          type:
+          - string
+          - 'null'
+        ws_port:
+          type: integer
+          format: int32
+          minimum: 0
+        wss_port:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+    NodesByAddressesResponse:
+      type: object
+      required:
+      - existence
+      properties:
+        existence:
+          type: object
+          additionalProperties:
+            type:
+            - integer
+            - 'null'
+            format: int32
+            minimum: 0
+          propertyNames:
+            type: string
+    PaginatedCachedNodesResponseSchema:
+      type: object
+      title: PaginatedCachedNodesResponse
+      required:
+      - refreshed_at
+      - nodes
+      properties:
+        nodes:
+          $ref: '#/components/schemas/SkimmedNodeV1'
         refreshed_at:
           $ref: '#/components/schemas/OffsetDateTimeJsonSchemaWrapper'

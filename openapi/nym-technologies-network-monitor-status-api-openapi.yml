@@ -162,24 +162,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Output:
-      type: string
-      enum:
-      - json
-      - yaml
-      - bincode
-    GatewayUptimeHistoryResponse:
-      type: object
-      required:
-      - identity
-      - history
-      properties:
-        history:
-          type: array
-          items:
-            $ref: '#/components/schemas/OldHistoricalUptimeResponse'
-        identity:
-          type: string
     OldHistoricalUptimeResponse:
       type: object
       required:
@@ -207,17 +189,24 @@ components:
           type: string
         mix_id:
           $ref: '#/components/schemas/u32'
-    MixnodeCoreStatusResponse:
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
+    GatewayUptimeHistoryResponse:
       type: object
       required:
-      - mix_id
-      - count
+      - identity
+      - history
       properties:
-        count:
-          type: integer
-          format: int64
-        mix_id:
-          $ref: '#/components/schemas/u32'
+        history:
+          type: array
+          items:
+            $ref: '#/components/schemas/OldHistoricalUptimeResponse'
+        identity:
+          type: string
     GatewayCoreStatusResponse:
       type: object
       required:
@@ -229,6 +218,17 @@ components:
           format: int64
         identity:
           type: string
+    MixnodeCoreStatusResponse:
+      type: object
+      required:
+      - mix_id
+      - count
+      properties:
+        count:
+          type: integer
+          format: int64
+        mix_id:
+          $ref: '#/components/schemas/u32'
     u32:
       type: integer
       format: int32

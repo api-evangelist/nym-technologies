@@ -38,44 +38,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    NyxAccountDelegationDetails:
-      type: object
-      required:
-      - node_id
-      - delegated
-      - height
-      - node_bonded
-      properties:
-        delegated:
-          $ref: '#/components/schemas/CoinSchema'
-        height:
-          type: integer
-          format: int64
-          minimum: 0
-        node_bonded:
-          type: boolean
-        node_id:
-          $ref: '#/components/schemas/u32'
-        proxy:
-          type:
-          - string
-          - 'null'
-    NyxAccountDelegationRewardDetails:
-      type: object
-      required:
-      - node_id
-      - rewards
-      - amount_staked
-      - node_still_fully_bonded
-      properties:
-        amount_staked:
-          type: string
-        node_id:
-          $ref: '#/components/schemas/u32'
-        node_still_fully_bonded:
-          type: boolean
-        rewards:
-          $ref: '#/components/schemas/CoinSchema'
     NyxAccountDetails:
       type: object
       required:
@@ -126,7 +88,45 @@ components:
           minimum: 0
         denom:
           type: string
+    NyxAccountDelegationDetails:
+      type: object
+      required:
+      - node_id
+      - delegated
+      - height
+      - node_bonded
+      properties:
+        delegated:
+          $ref: '#/components/schemas/CoinSchema'
+        height:
+          type: integer
+          format: int64
+          minimum: 0
+        node_bonded:
+          type: boolean
+        node_id:
+          $ref: '#/components/schemas/u32'
+        proxy:
+          type:
+          - string
+          - 'null'
     u32:
       type: integer
       format: int32
       minimum: 0
+    NyxAccountDelegationRewardDetails:
+      type: object
+      required:
+      - node_id
+      - rewards
+      - amount_staked
+      - node_still_fully_bonded
+      properties:
+        amount_staked:
+          type: string
+        node_id:
+          $ref: '#/components/schemas/u32'
+        node_still_fully_bonded:
+          type: boolean
+        rewards:
+          $ref: '#/components/schemas/CoinSchema'

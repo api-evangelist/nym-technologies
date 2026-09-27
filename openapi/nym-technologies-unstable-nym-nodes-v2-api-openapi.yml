@@ -400,6 +400,18 @@ paths:
                 $ref: '#/components/schemas/PaginatedCachedNodesResponseSchema'
 components:
   schemas:
+    VersionedNoiseKeyV1:
+      type: object
+      required:
+      - supported_version
+      - x25519_pubkey
+      properties:
+        supported_version:
+          type: integer
+          format: int32
+          minimum: 0
+        x25519_pubkey:
+          type: string
     DeclaredRolesV1:
       type: object
       required:
@@ -416,31 +428,6 @@ components:
           type: boolean
         mixnode:
           type: boolean
-    BasicEntryInformation:
-      type: object
-      required:
-      - ws_port
-      properties:
-        hostname:
-          type:
-          - string
-          - 'null'
-        ws_port:
-          type: integer
-          format: int32
-          minimum: 0
-        wss_port:
-          type:
-          - integer
-          - 'null'
-          format: int32
-          minimum: 0
-    Output:
-      type: string
-      enum:
-      - json
-      - yaml
-      - bincode
     NodeRole:
       oneOf:
       - type: object
@@ -468,51 +455,12 @@ components:
       - type: string
         enum:
         - Inactive
-    PaginatedCachedNodesExpandedV2ResponseSchema:
-      type: object
-      title: PaginatedCachedNodesExpandedV2ResponseSchema
-      required:
-      - refreshed_at
-      - nodes
-      properties:
-        nodes:
-          $ref: '#/components/schemas/SemiSkimmedNodeV1'
-        refreshed_at:
-          $ref: '#/components/schemas/OffsetDateTimeJsonSchemaWrapper'
-    SemiSkimmedNodeV1:
-      type: object
-      required:
-      - basic
-      properties:
-        basic:
-          $ref: '#/components/schemas/SkimmedNodeV1'
-        x25519_noise_versioned_key:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/VersionedNoiseKeyV1'
-    PaginatedCachedNodesResponseSchema:
-      type: object
-      title: PaginatedCachedNodesResponse
-      required:
-      - refreshed_at
-      - nodes
-      properties:
-        nodes:
-          $ref: '#/components/schemas/SkimmedNodeV1'
-        refreshed_at:
-          $ref: '#/components/schemas/OffsetDateTimeJsonSchemaWrapper'
-    VersionedNoiseKeyV1:
-      type: object
-      required:
-      - supported_version
-      - x25519_pubkey
-      properties:
-        supported_version:
-          type: integer
-          format: int32
-          minimum: 0
-        x25519_pubkey:
-          type: string
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
     OffsetDateTimeJsonSchemaWrapper:
       type: string
       format: date-time
@@ -554,3 +502,55 @@ components:
           $ref: '#/components/schemas/DeclaredRolesV1'
         x25519_sphinx_pubkey:
           type: string
+    BasicEntryInformation:
+      type: object
+      required:
+      - ws_port
+      properties:
+        hostname:
+          type:
+          - string
+          - 'null'
+        ws_port:
+          type: integer
+          format: int32
+          minimum: 0
+        wss_port:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+    SemiSkimmedNodeV1:
+      type: object
+      required:
+      - basic
+      properties:
+        basic:
+          $ref: '#/components/schemas/SkimmedNodeV1'
+        x25519_noise_versioned_key:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/VersionedNoiseKeyV1'
+    PaginatedCachedNodesResponseSchema:
+      type: object
+      title: PaginatedCachedNodesResponse
+      required:
+      - refreshed_at
+      - nodes
+      properties:
+        nodes:
+          $ref: '#/components/schemas/SkimmedNodeV1'
+        refreshed_at:
+          $ref: '#/components/schemas/OffsetDateTimeJsonSchemaWrapper'
+    PaginatedCachedNodesExpandedV2ResponseSchema:
+      type: object
+      title: PaginatedCachedNodesExpandedV2ResponseSchema
+      required:
+      - refreshed_at
+      - nodes
+      properties:
+        nodes:
+          $ref: '#/components/schemas/SemiSkimmedNodeV1'
+        refreshed_at:
+          $ref: '#/components/schemas/OffsetDateTimeJsonSchemaWrapper'

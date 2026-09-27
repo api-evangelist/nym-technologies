@@ -60,6 +60,17 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    CoinSchema:
+      type: object
+      title: Coin
+      required:
+      - denom
+      - amount
+      properties:
+        amount:
+          type: string
+        denom:
+          type: string
     NodeDescription:
       type: object
       required:
@@ -80,57 +91,49 @@ components:
         website:
           type: string
           description: website defines an optional website link.
-    AnnouncePortsV1:
-      type: object
-      properties:
-        mix_port:
-          type:
-          - integer
-          - 'null'
-          format: int32
-          minimum: 0
-        verloc_port:
-          type:
-          - integer
-          - 'null'
-          format: int32
-          minimum: 0
-    LewesProtocolDetailsV1:
+    u32:
+      type: integer
+      format: int32
+      minimum: 0
+    AuthenticatorDetailsV1:
       type: object
       required:
-      - content
-      - signature
+      - address
       properties:
-        content:
-          $ref: '#/components/schemas/LewesProtocolDetailsDataV1'
-        signature:
+        address:
           type: string
-    CoinSchema:
-      type: object
-      title: Coin
-      required:
-      - denom
-      - amount
-      properties:
-        amount:
-          type: string
-        denom:
-          type: string
-    WebSocketsV1:
+          description: address of the embedded authenticator
+    OffsetDateTimeJsonSchemaWrapper:
+      type: string
+      format: date-time
+    HostKeysV1:
       type: object
       required:
-      - ws_port
+      - ed25519
+      - x25519
+      - current_x25519_sphinx_key
       properties:
-        ws_port:
-          type: integer
-          format: int32
-          minimum: 0
-        wss_port:
-          type:
-          - integer
-          - 'null'
-          format: int32
-          minimum: 0
+        current_x25519_sphinx_key:
+          $ref: '#/components/schemas/SphinxKeyV1'
+        ed25519:
+          type: string
+        pre_announced_x25519_sphinx_key:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SphinxKeyV1'
+        x25519:
+          type: string
+          deprecated: true
+        x25519_versioned_noise:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/VersionedNoiseKeyV1'
+    DescribedNodeTypeV1:
+      type: string
+      enum:
+      - legacy_mixnode
+      - legacy_gateway
+      - nym_node
     BinaryBuildInformationOwned:
       type: object
       required:
@@ -174,6 +177,59 @@ components:
         rustc_version:
           type: string
           description: Provides the rustc version that was used for the build, for example `1.52.0-nightly`.
+    AnnouncePortsV1:
+      type: object
+      properties:
+        mix_port:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+        verloc_port:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+    NodeDelegation:
+      type: object
+      required:
+      - amount
+      - cumulative_reward_ratio
+      - block_height
+      - owner
+      properties:
+        amount:
+          $ref: '#/components/schemas/CoinSchema'
+        block_height:
+          type: integer
+          format: int64
+          minimum: 0
+        cumulative_reward_ratio:
+          type: string
+        owner:
+          type: string
+        proxy:
+          type:
+          - string
+          - 'null'
+    DeclaredRolesV1:
+      type: object
+      required:
+      - mixnode
+      - entry
+      - exit_nr
+      - exit_ipr
+      properties:
+        entry:
+          type: boolean
+        exit_ipr:
+          type: boolean
+        exit_nr:
+          type: boolean
+        mixnode:
+          type: boolean
     NodeCostParams:
       type: object
       description: 'The cost parameters, or the cost function, defined for the particular mixnode that influences
@@ -189,46 +245,22 @@ components:
         profit_margin_percent:
           type: string
           description: The profit margin of the associated node, i.e. the desired percent of the reward to be distributed to the operator.
-    DescribedNodeTypeV1:
-      type: string
-      enum:
-      - legacy_mixnode
-      - legacy_gateway
-      - nym_node
-    OffsetDateTimeJsonSchemaWrapper:
-      type: string
-      format: date-time
-    NodeFamilyInformation:
+    NymNodeAuxiliaryDetailsV1:
       type: object
-      required:
-      - id
-      - name
-      - description
-      - family_stake
-      - members
       properties:
-        description:
-          type: string
-        family_stake:
-          type: integer
-          minimum: 0
-        id:
-          type: integer
-          format: int32
-          minimum: 0
-        members:
-          type: integer
-          minimum: 0
-        name:
-          type: string
-    IpPacketRouterDetailsV1:
-      type: object
-      required:
-      - address
-      properties:
-        address:
-          type: string
-          description: address of the embedded ip packet router
+        accepted_operator_terms_and_conditions:
+          type: boolean
+          description: 'Specifies whether this node operator has agreed to the terms and conditions
+
+            as defined at <https://nymtech.net/terms-and-conditions/operators/v1.0.0>'
+        announce_ports:
+          $ref: '#/components/schemas/AnnouncePortsV1'
+        location:
+          type:
+          - string
+          - 'null'
+          description: Optional ISO 3166 alpha-2 two-letter country code of the node's **physical** location
+          example: PL
     NodeRewarding:
       type: object
       required:
@@ -264,161 +296,18 @@ components:
         unit_delegation:
           type: string
           description: Value of the theoretical "unit delegation" that has delegated to this node at block 0.
-    NodeDelegation:
+    SphinxKeyV1:
       type: object
       required:
-      - amount
-      - cumulative_reward_ratio
-      - block_height
-      - owner
+      - rotation_id
+      - public_key
       properties:
-        amount:
-          $ref: '#/components/schemas/CoinSchema'
-        block_height:
-          type: integer
-          format: int64
-          minimum: 0
-        cumulative_reward_ratio:
+        public_key:
           type: string
-        owner:
-          type: string
-        proxy:
-          type:
-          - string
-          - 'null'
-    NetworkRequesterDetailsV1:
-      type: object
-      required:
-      - address
-      - uses_exit_policy
-      properties:
-        address:
-          type: string
-          description: address of the embedded network requester
-        uses_exit_policy:
-          type: boolean
-          description: flag indicating whether this network requester uses the exit policy rather than the deprecated allow list
-    LewesProtocolDetailsDataV1:
-      type: object
-      required:
-      - enabled
-      - control_port
-      - data_port
-      - x25519
-      - kem_keys
-      properties:
-        control_port:
-          type: integer
-          format: int32
-          description: 'LP TCP control address (default: 41264) for establishing LP sessions'
-          minimum: 0
-        data_port:
-          type: integer
-          format: int32
-          description: 'LP UDP data address (default: 51264) for Sphinx packets wrapped in LP'
-          minimum: 0
-        enabled:
-          type: boolean
-          description: 'Helper field that specifies whether the LP listener(s) is enabled on this node.
-
-            It is directly controlled by the node''s role (i.e. it is enabled if it supports ''entry'' mode)'
-        kem_keys:
-          type: object
-          description: 'Digests of the KEM keys available to this node alongside hashing algorithms used
-
-            for their computation.
-
-            note: digests are hex encoded'
-          additionalProperties:
-            type: object
-            additionalProperties:
-              type: string
-            propertyNames:
-              type: string
-          propertyNames:
-            type: string
-        x25519:
-          type: string
-          description: LP public key
-    DeclaredRolesV1:
-      type: object
-      required:
-      - mixnode
-      - entry
-      - exit_nr
-      - exit_ipr
-      properties:
-        entry:
-          type: boolean
-        exit_ipr:
-          type: boolean
-        exit_nr:
-          type: boolean
-        mixnode:
-          type: boolean
-    VersionedNoiseKeyV1:
-      type: object
-      required:
-      - supported_version
-      - x25519_pubkey
-      properties:
-        supported_version:
+        rotation_id:
           type: integer
           format: int32
           minimum: 0
-        x25519_pubkey:
-          type: string
-    NymNodeAuxiliaryDetailsV1:
-      type: object
-      properties:
-        accepted_operator_terms_and_conditions:
-          type: boolean
-          description: 'Specifies whether this node operator has agreed to the terms and conditions
-
-            as defined at <https://nymtech.net/terms-and-conditions/operators/v1.0.0>'
-        announce_ports:
-          $ref: '#/components/schemas/AnnouncePortsV1'
-        location:
-          type:
-          - string
-          - 'null'
-          description: Optional ISO 3166 alpha-2 two-letter country code of the node's **physical** location
-          example: PL
-    NodeGeoData:
-      type: object
-      required:
-      - city
-      - country
-      - ip_address
-      - latitude
-      - longitude
-      - org
-      - postal
-      - region
-      - timezone
-      properties:
-        city:
-          type: string
-        country:
-          type: string
-        ip_address:
-          type: string
-        latitude:
-          type: string
-        longitude:
-          type: string
-        org:
-          type: string
-        postal:
-          type: string
-        region:
-          type: string
-        timezone:
-          type: string
-    u32:
-      type: integer
-      format: int32
-      minimum: 0
     PagedResult_ExtendedNymNode:
       type: object
       required:
@@ -493,26 +382,126 @@ components:
         total:
           type: integer
           minimum: 0
-    SphinxKeyV1:
-      type: object
-      required:
-      - rotation_id
-      - public_key
-      properties:
-        public_key:
-          type: string
-        rotation_id:
-          type: integer
-          format: int32
-          minimum: 0
-    AuthenticatorDetailsV1:
+    IpPacketRouterDetailsV1:
       type: object
       required:
       - address
       properties:
         address:
           type: string
-          description: address of the embedded authenticator
+          description: address of the embedded ip packet router
+    NodeFamilyInformation:
+      type: object
+      required:
+      - id
+      - name
+      - description
+      - family_stake
+      - members
+      properties:
+        description:
+          type: string
+        family_stake:
+          type: integer
+          minimum: 0
+        id:
+          type: integer
+          format: int32
+          minimum: 0
+        members:
+          type: integer
+          minimum: 0
+        name:
+          type: string
+    LewesProtocolDetailsDataV1:
+      type: object
+      required:
+      - enabled
+      - control_port
+      - data_port
+      - x25519
+      - kem_keys
+      properties:
+        control_port:
+          type: integer
+          format: int32
+          description: 'LP TCP control address (default: 41264) for establishing LP sessions'
+          minimum: 0
+        data_port:
+          type: integer
+          format: int32
+          description: 'LP UDP data address (default: 51264) for Sphinx packets wrapped in LP'
+          minimum: 0
+        enabled:
+          type: boolean
+          description: 'Helper field that specifies whether the LP listener(s) is enabled on this node.
+
+            It is directly controlled by the node''s role (i.e. it is enabled if it supports ''entry'' mode)'
+        kem_keys:
+          type: object
+          description: 'Digests of the KEM keys available to this node alongside hashing algorithms used
+
+            for their computation.
+
+            note: digests are hex encoded'
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: string
+            propertyNames:
+              type: string
+          propertyNames:
+            type: string
+        x25519:
+          type: string
+          description: LP public key
+    VersionedNoiseKeyV1:
+      type: object
+      required:
+      - supported_version
+      - x25519_pubkey
+      properties:
+        supported_version:
+          type: integer
+          format: int32
+          minimum: 0
+        x25519_pubkey:
+          type: string
+    WebSocketsV1:
+      type: object
+      required:
+      - ws_port
+      properties:
+        ws_port:
+          type: integer
+          format: int32
+          minimum: 0
+        wss_port:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+    WireguardDetailsV1:
+      type: object
+      required:
+      - port
+      - public_key
+      properties:
+        metadata_port:
+          type: integer
+          format: int32
+          minimum: 0
+        port:
+          type: integer
+          format: int32
+          minimum: 0
+        public_key:
+          type: string
+        tunnel_port:
+          type: integer
+          format: int32
+          minimum: 0
     NymNodeDataV2:
       type: object
       required:
@@ -552,48 +541,6 @@ components:
           oneOf:
           - type: 'null'
           - $ref: '#/components/schemas/WireguardDetailsV1'
-    WireguardDetailsV1:
-      type: object
-      required:
-      - port
-      - public_key
-      properties:
-        metadata_port:
-          type: integer
-          format: int32
-          minimum: 0
-        port:
-          type: integer
-          format: int32
-          minimum: 0
-        public_key:
-          type: string
-        tunnel_port:
-          type: integer
-          format: int32
-          minimum: 0
-    HostKeysV1:
-      type: object
-      required:
-      - ed25519
-      - x25519
-      - current_x25519_sphinx_key
-      properties:
-        current_x25519_sphinx_key:
-          $ref: '#/components/schemas/SphinxKeyV1'
-        ed25519:
-          type: string
-        pre_announced_x25519_sphinx_key:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/SphinxKeyV1'
-        x25519:
-          type: string
-          deprecated: true
-        x25519_versioned_noise:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/VersionedNoiseKeyV1'
     HostInformationV1:
       type: object
       required:
@@ -610,3 +557,56 @@ components:
             type: string
         keys:
           $ref: '#/components/schemas/HostKeysV1'
+    NetworkRequesterDetailsV1:
+      type: object
+      required:
+      - address
+      - uses_exit_policy
+      properties:
+        address:
+          type: string
+          description: address of the embedded network requester
+        uses_exit_policy:
+          type: boolean
+          description: flag indicating whether this network requester uses the exit policy rather than the deprecated allow list
+    LewesProtocolDetailsV1:
+      type: object
+      required:
+      - content
+      - signature
+      properties:
+        content:
+          $ref: '#/components/schemas/LewesProtocolDetailsDataV1'
+        signature:
+          type: string
+    NodeGeoData:
+      type: object
+      required:
+      - city
+      - country
+      - ip_address
+      - latitude
+      - longitude
+      - org
+      - postal
+      - region
+      - timezone
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+        ip_address:
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+        org:
+          type: string
+        postal:
+          type: string
+        region:
+          type: string
+        timezone:
+          type: string

@@ -78,7 +78,7 @@ apis:
   - type: OpenAPI
     url: openapi/nym-technologies-api-status-api-openapi.yml
 - aid: nym-technologies:nym-technologies-circulating-supply-api
-  name: Nym Technologies circulating-supply API
+  name: Nym Technologies Circulating Supply API
   description: >-
     The circulating-supply API from Nym Technologies — 3 operation(s) for circulating-supply.
   humanURL: https://nym.com/docs/apis/introduction
@@ -91,7 +91,7 @@ apis:
   - type: OpenAPI
     url: openapi/nym-technologies-circulating-supply-api-openapi.yml
 - aid: nym-technologies:nym-technologies-contract-cache-api
-  name: Nym Technologies contract-cache API
+  name: Nym Technologies Contract Cache API
   description: The contract-cache API from Nym Technologies — 5 operation(s) for contract-cache.
   humanURL: https://nym.com/docs/apis/introduction
   baseURL: https://validator.nymtech.net/api
@@ -152,7 +152,7 @@ apis:
   - type: OpenAPI
     url: openapi/nym-technologies-mixnodes-api-openapi.yml
 - aid: nym-technologies:nym-technologies-network-api
-  name: Nym Technologies network API
+  name: Nym Technologies Network API
   description: The network API from Nym Technologies — 7 operation(s) for network.
   humanURL: https://nym.com/docs/apis/introduction
   baseURL: https://validator.nymtech.net/api
@@ -164,7 +164,7 @@ apis:
   - type: OpenAPI
     url: openapi/nym-technologies-network-api-openapi.yml
 - aid: nym-technologies:nym-technologies-network-monitor-status-api
-  name: Nym Technologies network-monitor-status API
+  name: Nym Technologies Network Monitor Status API
   description: >-
     The network-monitor-status API from Nym Technologies — 4 operation(s) for network-monitor-status.
   humanURL: https://nym.com/docs/apis/introduction

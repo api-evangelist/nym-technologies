@@ -156,14 +156,6 @@ paths:
       description: Main Nym Api Server
 components:
   schemas:
-    HealthInfo:
-      type: object
-      required:
-      - uptime
-      properties:
-        uptime:
-          type: integer
-          format: int64
     BinaryBuildInformationOwned:
       type: object
       required:
@@ -207,18 +199,14 @@ components:
         rustc_version:
           type: string
           description: Provides the rustc version that was used for the build, for example `1.52.0-nightly`.
-    ConfigScoreParams:
+    HealthInfo:
       type: object
       required:
-      - version_weights
-      - version_score_formula_params
+      - uptime
       properties:
-        version_score_formula_params:
-          $ref: '#/components/schemas/VersionScoreFormulaParams'
-          description: Defines the parameters of the formula for calculating the version score
-        version_weights:
-          $ref: '#/components/schemas/OutdatedVersionWeights'
-          description: Defines weights for calculating numbers of versions behind the current release.
+        uptime:
+          type: integer
+          format: int64
     VersionScoreFormulaParams:
       type: object
       description: 'Given the formula of version_score = penalty ^ (versions_behind_factor ^ penalty_scaling)
@@ -240,6 +228,32 @@ components:
       - json
       - yaml
       - bincode
+    ConfigScoreDataResponse:
+      type: object
+      required:
+      - parameters
+      - version_history
+      properties:
+        parameters:
+          $ref: '#/components/schemas/ConfigScoreParams'
+        version_history:
+          type: array
+          items:
+            $ref: '#/components/schemas/HistoricalNymNodeVersionEntry'
+    HistoricalNymNodeVersionEntry:
+      type: object
+      required:
+      - id
+      - version_information
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: The unique, ordered, id of this particular entry
+          minimum: 0
+        version_information:
+          $ref: '#/components/schemas/HistoricalNymNodeVersion'
+          description: Data associated with this particular version
     HistoricalNymNodeVersion:
       type: object
       required:
@@ -256,32 +270,6 @@ components:
           description: 'Version of the nym node that is going to be used for determining the version score of a node.
 
             note: value stored here is pre-validated `semver::Version`'
-    HistoricalNymNodeVersionEntry:
-      type: object
-      required:
-      - id
-      - version_information
-      properties:
-        id:
-          type: integer
-          format: int32
-          description: The unique, ordered, id of this particular entry
-          minimum: 0
-        version_information:
-          $ref: '#/components/schemas/HistoricalNymNodeVersion'
-          description: Data associated with this particular version
-    ConfigScoreDataResponse:
-      type: object
-      required:
-      - parameters
-      - version_history
-      properties:
-        parameters:
-          $ref: '#/components/schemas/ConfigScoreParams'
-        version_history:
-          type: array
-          items:
-            $ref: '#/components/schemas/HistoricalNymNodeVersionEntry'
     OutdatedVersionWeights:
       type: object
       description: Defines weights for calculating numbers of versions behind the current release.
@@ -307,6 +295,35 @@ components:
           type: integer
           format: int32
           minimum: 0
+    ConfigScoreParams:
+      type: object
+      required:
+      - version_weights
+      - version_score_formula_params
+      properties:
+        version_score_formula_params:
+          $ref: '#/components/schemas/VersionScoreFormulaParams'
+          description: Defines the parameters of the formula for calculating the version score
+        version_weights:
+          $ref: '#/components/schemas/OutdatedVersionWeights'
+          description: Defines weights for calculating numbers of versions behind the current release.
+    NodeResult:
+      type: object
+      required:
+      - node_id
+      - identity
+      - reliability
+      properties:
+        identity:
+          type: string
+        node_id:
+          type: integer
+          format: int32
+          minimum: 0
+        reliability:
+          type: integer
+          format: int32
+          minimum: 0
     MonitorMessage:
       type: object
       required:
@@ -326,23 +343,6 @@ components:
         timestamp:
           type: integer
           format: int64
-    NodeResult:
-      type: object
-      required:
-      - node_id
-      - identity
-      - reliability
-      properties:
-        identity:
-          type: string
-        node_id:
-          type: integer
-          format: int32
-          minimum: 0
-        reliability:
-          type: integer
-          format: int32
-          minimum: 0
 x-refined-from:
 - nym-technologies-node-status-api-openapi.json
 - nym-technologies-nym-api-openapi.json
