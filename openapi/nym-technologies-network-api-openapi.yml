@@ -238,59 +238,35 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    HeaderVersion:
+    BlockInfo:
       type: object
-      description: '`Version` contains the protocol version for the blockchain and the
-
-        application.
-
-
-        <https://github.com/tendermint/spec/blob/d46cd7f573a2c6a2399fcab2cde981330aa63f37/spec/core/data_structures.md#version>'
       required:
+      - block_id
       - block
-      - app
       properties:
-        app:
-          type: integer
-          format: int64
-          description: App version
-          minimum: 0
         block:
-          type: integer
-          format: int64
-          description: Block version
-          minimum: 0
-    Output:
-      type: string
-      enum:
-      - json
-      - yaml
-      - bincode
-    ValidatorDetails:
-      type: object
-      required:
-      - nyxd_url
-      properties:
-        api_url:
-          type:
-          - string
-          - 'null'
-        nyxd_url:
-          type: string
-        websocket_url:
-          type:
-          - string
-          - 'null'
-    SignedMessage:
-      type: object
-      required:
-      - body
-      - signature
-      properties:
-        body:
-          $ref: '#/components/schemas/ChainBlocksStatusResponseBody'
-        signature:
-          type: string
+          $ref: '#/components/schemas/FullBlockInfo'
+        block_id:
+          $ref: '#/components/schemas/BlockId'
+    ChainStatus:
+      oneOf:
+      - type: string
+        enum:
+        - synced
+      - type: string
+        enum:
+        - unknown
+      - type: object
+        required:
+        - stalled
+        properties:
+          stalled:
+            type: object
+            required:
+            - approximate_amount
+            properties:
+              approximate_amount:
+                type: string
     FullBlockInfo:
       type: object
       required:
@@ -298,156 +274,17 @@ components:
       properties:
         header:
           $ref: '#/components/schemas/BlockHeader'
-    DetailedChainStatus:
-      type: object
-      required:
-      - abci
-      - latest_block
-      properties:
-        abci:
-          $ref: '#/components/schemas/AbciInfo'
-        latest_block:
-          $ref: '#/components/schemas/BlockInfo'
-    PartSetHeader:
-      type: object
-      description: Block parts header
-      required:
-      - total
-      - hash
-      properties:
-        hash:
-          type: string
-          description: Hash of the parts set header,
-        total:
-          type: integer
-          format: int32
-          description: Number of parts in this block
-          minimum: 0
-    ContractVersionSchemaResponse:
-      type: object
-      title: ContractVersion
-      required:
-      - contract
-      - version
-      properties:
-        contract:
-          type: string
-          description: 'contract is the crate name of the implementing contract, eg. `crate:cw20-base`
-
-            we will use other prefixes for other languages, and their standard global namespacing'
-        version:
-          type: string
-          description: 'version is any string that this implementation knows. It may be simple counter "1", "2".
-
-            or semantic version on release tags "v0.7.0", or some custom feature flag list.
-
-            the only code that needs to understand the version parsing is code that knows how to
-
-            migrate from the given contract (and is tied to its implementation somehow)'
-    ChainStatusResponse:
-      type: object
-      required:
-      - connected_nyxd
-      - status
-      properties:
-        connected_nyxd:
-          type: string
-        status:
-          $ref: '#/components/schemas/DetailedChainStatus'
-    NymNetworkDetails:
-      type: object
-      required:
-      - network_name
-      - chain_details
-      - endpoints
-      - contracts
-      properties:
-        chain_details:
-          $ref: '#/components/schemas/ChainDetails'
-        contracts:
-          $ref: '#/components/schemas/NymContracts'
-        endpoints:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidatorDetails'
-        network_name:
-          type: string
-        nym_api_urls:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiUrl'
-        nym_vpn_api_url:
-          type:
-          - string
-          - 'null'
-        nym_vpn_api_urls:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiUrl'
-    NymContracts:
+    ContractInformationBuildInformation:
       type: object
       properties:
-        coconut_dkg_contract_address:
+        address:
           type:
           - string
           - 'null'
-        ecash_contract_address:
-          type:
-          - string
-          - 'null'
-        group_contract_address:
-          type:
-          - string
-          - 'null'
-        mixnet_contract_address:
-          type:
-          - string
-          - 'null'
-        multisig_contract_address:
-          type:
-          - string
-          - 'null'
-        network_monitors_contract_address:
-          type:
-          - string
-          - 'null'
-        node_families_contract_address:
-          type:
-          - string
-          - 'null'
-        performance_contract_address:
-          type:
-          - string
-          - 'null'
-        vesting_contract_address:
-          type:
-          - string
-          - 'null'
-    ApiUrl:
-      type: object
-      required:
-      - url
-      properties:
-        front_hosts:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: 'Optional alternative equivalent hostnames. Each entry must parse as valid Host
-
-
-            see https://docs.rs/url/latest/url/enum.Host.html'
-        url:
-          type: string
-          description: 'Expects a string formatted Url
-
-
-            see https://docs.rs/url/latest/url/struct.Url.html'
+        details:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ContractBuildInformation'
     BlockHeader:
       type: object
       description: 'Block `Header` values contain metadata about the block and about the
@@ -523,25 +360,163 @@ components:
         version:
           $ref: '#/components/schemas/HeaderVersion'
           description: Header version
-    ChainStatus:
-      oneOf:
-      - type: string
-        enum:
-        - synced
-      - type: string
-        enum:
-        - unknown
-      - type: object
-        required:
-        - stalled
-        properties:
-          stalled:
-            type: object
-            required:
-            - approximate_amount
-            properties:
-              approximate_amount:
-                type: string
+    SignedMessage:
+      type: object
+      required:
+      - body
+      - signature
+      properties:
+        body:
+          $ref: '#/components/schemas/ChainBlocksStatusResponseBody'
+        signature:
+          type: string
+    ValidatorDetails:
+      type: object
+      required:
+      - nyxd_url
+      properties:
+        api_url:
+          type:
+          - string
+          - 'null'
+        nyxd_url:
+          type: string
+        websocket_url:
+          type:
+          - string
+          - 'null'
+    ChainBlocksStatusResponseBody:
+      type: object
+      required:
+      - currentTime
+      - chainStatus
+      properties:
+        chainStatus:
+          $ref: '#/components/schemas/ChainStatus'
+        currentTime:
+          type: string
+        latestCachedBlock:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/DetailedChainStatus'
+    ApiUrl:
+      type: object
+      required:
+      - url
+      properties:
+        front_hosts:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: 'Optional alternative equivalent hostnames. Each entry must parse as valid Host
+
+
+            see https://docs.rs/url/latest/url/enum.Host.html'
+        url:
+          type: string
+          description: 'Expects a string formatted Url
+
+
+            see https://docs.rs/url/latest/url/struct.Url.html'
+    HeaderVersion:
+      type: object
+      description: '`Version` contains the protocol version for the blockchain and the
+
+        application.
+
+
+        <https://github.com/tendermint/spec/blob/d46cd7f573a2c6a2399fcab2cde981330aa63f37/spec/core/data_structures.md#version>'
+      required:
+      - block
+      - app
+      properties:
+        app:
+          type: integer
+          format: int64
+          description: App version
+          minimum: 0
+        block:
+          type: integer
+          format: int64
+          description: Block version
+          minimum: 0
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
+    NymNetworkDetails:
+      type: object
+      required:
+      - network_name
+      - chain_details
+      - endpoints
+      - contracts
+      properties:
+        chain_details:
+          $ref: '#/components/schemas/ChainDetails'
+        contracts:
+          $ref: '#/components/schemas/NymContracts'
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidatorDetails'
+        network_name:
+          type: string
+        nym_api_urls:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiUrl'
+        nym_vpn_api_url:
+          type:
+          - string
+          - 'null'
+        nym_vpn_api_urls:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiUrl'
+    NetworkDetails:
+      type: object
+      required:
+      - connected_nyxd
+      - network
+      properties:
+        connected_nyxd:
+          type: string
+        network:
+          $ref: '#/components/schemas/NymNetworkDetails'
+    ChainStatusResponse:
+      type: object
+      required:
+      - connected_nyxd
+      - status
+      properties:
+        connected_nyxd:
+          type: string
+        status:
+          $ref: '#/components/schemas/DetailedChainStatus'
+    DenomDetailsOwned:
+      type: object
+      required:
+      - base
+      - display
+      - display_exponent
+      properties:
+        base:
+          type: string
+        display:
+          type: string
+        display_exponent:
+          type: integer
+          format: int32
+          minimum: 0
     AbciInfo:
       type: object
       required:
@@ -570,21 +545,7 @@ components:
         version:
           type: string
           description: The application software semantic version.
-    ChainBlocksStatusResponseBody:
-      type: object
-      required:
-      - currentTime
-      - chainStatus
-      properties:
-        chainStatus:
-          $ref: '#/components/schemas/ChainStatus'
-        currentTime:
-          type: string
-        latestCachedBlock:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/DetailedChainStatus'
-    ContractInformationBuildInformation:
+    ContractInformationContractVersion:
       type: object
       properties:
         address:
@@ -594,17 +555,7 @@ components:
         details:
           oneOf:
           - type: 'null'
-          - $ref: '#/components/schemas/ContractBuildInformation'
-    NetworkDetails:
-      type: object
-      required:
-      - connected_nyxd
-      - network
-      properties:
-        connected_nyxd:
-          type: string
-        network:
-          $ref: '#/components/schemas/NymNetworkDetails'
+          - $ref: '#/components/schemas/ContractVersionSchemaResponse'
     ContractBuildInformation:
       type: object
       required:
@@ -642,16 +593,6 @@ components:
         rustc_version:
           type: string
           description: Provides the rustc version that was used for the build, for example `1.52.0-nightly`.
-    BlockInfo:
-      type: object
-      required:
-      - block_id
-      - block
-      properties:
-        block:
-          $ref: '#/components/schemas/FullBlockInfo'
-        block_id:
-          $ref: '#/components/schemas/BlockId'
     BlockId:
       type: object
       description: 'Block identifiers which contain two distinct Merkle roots of the block,
@@ -711,32 +652,6 @@ components:
             annotations. This does not translate to Rust, but we can indicate this
 
             in the domain type.'
-    ContractInformationContractVersion:
-      type: object
-      properties:
-        address:
-          type:
-          - string
-          - 'null'
-        details:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/ContractVersionSchemaResponse'
-    DenomDetailsOwned:
-      type: object
-      required:
-      - base
-      - display
-      - display_exponent
-      properties:
-        base:
-          type: string
-        display:
-          type: string
-        display_exponent:
-          type: integer
-          format: int32
-          minimum: 0
     ChainDetails:
       type: object
       required:
@@ -750,3 +665,88 @@ components:
           $ref: '#/components/schemas/DenomDetailsOwned'
         stake_denom:
           $ref: '#/components/schemas/DenomDetailsOwned'
+    PartSetHeader:
+      type: object
+      description: Block parts header
+      required:
+      - total
+      - hash
+      properties:
+        hash:
+          type: string
+          description: Hash of the parts set header,
+        total:
+          type: integer
+          format: int32
+          description: Number of parts in this block
+          minimum: 0
+    DetailedChainStatus:
+      type: object
+      required:
+      - abci
+      - latest_block
+      properties:
+        abci:
+          $ref: '#/components/schemas/AbciInfo'
+        latest_block:
+          $ref: '#/components/schemas/BlockInfo'
+    ContractVersionSchemaResponse:
+      type: object
+      title: ContractVersion
+      required:
+      - contract
+      - version
+      properties:
+        contract:
+          type: string
+          description: 'contract is the crate name of the implementing contract, eg. `crate:cw20-base`
+
+            we will use other prefixes for other languages, and their standard global namespacing'
+        version:
+          type: string
+          description: 'version is any string that this implementation knows. It may be simple counter "1", "2".
+
+            or semantic version on release tags "v0.7.0", or some custom feature flag list.
+
+            the only code that needs to understand the version parsing is code that knows how to
+
+            migrate from the given contract (and is tied to its implementation somehow)'
+    NymContracts:
+      type: object
+      properties:
+        coconut_dkg_contract_address:
+          type:
+          - string
+          - 'null'
+        ecash_contract_address:
+          type:
+          - string
+          - 'null'
+        group_contract_address:
+          type:
+          - string
+          - 'null'
+        mixnet_contract_address:
+          type:
+          - string
+          - 'null'
+        multisig_contract_address:
+          type:
+          - string
+          - 'null'
+        network_monitors_contract_address:
+          type:
+          - string
+          - 'null'
+        node_families_contract_address:
+          type:
+          - string
+          - 'null'
+        performance_contract_address:
+          type:
+          - string
+          - 'null'
+        vesting_contract_address:
+          type:
+          - string
+          - 'null'

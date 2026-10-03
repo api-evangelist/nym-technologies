@@ -134,79 +134,12 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    VerificationKeyAuth:
-      type: object
-      required:
-      - alpha
-      - beta_g1
-      - beta_g2
-      properties:
-        alpha:
-          type: string
-        beta_g1:
-          type: array
-          items:
-            type: string
-        beta_g2:
-          type: array
-          items:
-            type: string
-    AggregatedCoinIndicesSignatureResponse:
-      type: object
-      required:
-      - epoch_id
-      - signatures
-      properties:
-        epoch_id:
-          type: integer
-          format: int64
-          minimum: 0
-        signatures:
-          $ref: '#/components/schemas/Signature'
-    AnnotatedExpirationDateSignature:
-      type: object
-      required:
-      - signature
-      - expiration_timestamp
-      - spending_timestamp
-      properties:
-        expiration_timestamp:
-          type: integer
-          format: int32
-          minimum: 0
-        signature:
-          $ref: '#/components/schemas/Signature'
-        spending_timestamp:
-          type: integer
-          format: int32
-          minimum: 0
     Output:
       type: string
       enum:
       - json
       - yaml
       - bincode
-    VerificationKeyResponse:
-      type: object
-      required:
-      - key
-      properties:
-        key:
-          $ref: '#/components/schemas/VerificationKeyAuth'
-    Signature:
-      type: object
-      required:
-      - h
-      - s
-      properties:
-        h:
-          type: string
-        s:
-          type: string
-    u64:
-      type: integer
-      format: int64
-      minimum: 0
     AggregatedExpirationDateSignatureResponse:
       type: object
       required:
@@ -225,3 +158,70 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AnnotatedExpirationDateSignature'
+    AggregatedCoinIndicesSignatureResponse:
+      type: object
+      required:
+      - epoch_id
+      - signatures
+      properties:
+        epoch_id:
+          type: integer
+          format: int64
+          minimum: 0
+        signatures:
+          $ref: '#/components/schemas/Signature'
+    VerificationKeyAuth:
+      type: object
+      required:
+      - alpha
+      - beta_g1
+      - beta_g2
+      properties:
+        alpha:
+          type: string
+        beta_g1:
+          type: array
+          items:
+            type: string
+        beta_g2:
+          type: array
+          items:
+            type: string
+    Signature:
+      type: object
+      required:
+      - h
+      - s
+      properties:
+        h:
+          type: string
+        s:
+          type: string
+    u64:
+      type: integer
+      format: int64
+      minimum: 0
+    VerificationKeyResponse:
+      type: object
+      required:
+      - key
+      properties:
+        key:
+          $ref: '#/components/schemas/VerificationKeyAuth'
+    AnnotatedExpirationDateSignature:
+      type: object
+      required:
+      - signature
+      - expiration_timestamp
+      - spending_timestamp
+      properties:
+        expiration_timestamp:
+          type: integer
+          format: int32
+          minimum: 0
+        signature:
+          $ref: '#/components/schemas/Signature'
+        spending_timestamp:
+          type: integer
+          format: int32
+          minimum: 0

@@ -507,119 +507,35 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    HeaderVersion:
+    BlockInfo:
       type: object
-      description: '`Version` contains the protocol version for the blockchain and the
-
-        application.
-
-
-        <https://github.com/tendermint/spec/blob/d46cd7f573a2c6a2399fcab2cde981330aa63f37/spec/core/data_structures.md#version>'
       required:
+      - block_id
       - block
-      - app
       properties:
-        app:
-          type: integer
-          format: int64
-          description: App version
-          minimum: 0
         block:
-          type: integer
-          format: int64
-          description: Block version
-          minimum: 0
-    SerialNumberWrapper:
-      type: array
-      items:
-        type: integer
-        format: int32
-        minimum: 0
-    Output:
-      type: string
-      enum:
-      - json
-      - yaml
-      - bincode
-    WithdrawalRequest:
-      type: object
-      required:
-      - joined_commitment_hash
-      - joined_commitment
-      - private_attributes_commitments
-      - zk_proof
-      properties:
-        joined_commitment:
-          type: string
-        joined_commitment_hash:
-          type: string
-        private_attributes_commitments:
-          type: array
-          items:
-            type: string
-        zk_proof:
-          $ref: '#/components/schemas/WithdrawalReqProof'
-    BlindedSignature:
-      type: object
-      required:
-      - h
-      - c
-      properties:
-        c:
-          type: string
-        h:
-          type: string
-    EcashTicketVerificationResult:
+          $ref: '#/components/schemas/FullBlockInfo'
+        block_id:
+          $ref: '#/components/schemas/BlockId'
+    ChainStatus:
       oneOf:
-      - type: object
-        required:
-        - Ok
-        properties:
-          Ok:
-            default: null
       - type: string
         enum:
-        - EcashTicketVerificationRejection
-      description: Used exclusively as part of OpenAPI docs
-    PartialExpirationDateSignatureResponse:
-      type: object
-      required:
-      - epoch_id
-      - expiration_date
-      - signatures
-      properties:
-        epoch_id:
-          type: integer
-          format: int64
-          minimum: 0
-        expiration_date:
-          type: string
-          example: '1970-01-01'
-        signatures:
-          $ref: '#/components/schemas/AnnotatedExpirationDateSignature'
-    IssuedTicketbooksForCount:
-      type: object
-      required:
-      - issuanceDate
-      - count
-      properties:
-        count:
-          type: integer
-          format: int32
-          minimum: 0
-        issuanceDate:
-          type: string
-          example: '1970-01-01'
-    SignedMessage:
-      type: object
-      required:
-      - body
-      - signature
-      properties:
-        body:
-          $ref: '#/components/schemas/ChainBlocksStatusResponseBody'
-        signature:
-          type: string
+        - synced
+      - type: string
+        enum:
+        - unknown
+      - type: object
+        required:
+        - stalled
+        properties:
+          stalled:
+            type: object
+            required:
+            - approximate_amount
+            properties:
+              approximate_amount:
+                type: string
     FullBlockInfo:
       type: object
       required:
@@ -627,77 +543,51 @@ components:
       properties:
         header:
           $ref: '#/components/schemas/BlockHeader'
-    DetailedChainStatus:
+    PartialCoinIndicesSignatureResponse:
       type: object
       required:
-      - abci
-      - latest_block
+      - epoch_id
+      - signatures
       properties:
-        abci:
-          $ref: '#/components/schemas/AbciInfo'
-        latest_block:
-          $ref: '#/components/schemas/BlockInfo'
-    PartSetHeader:
-      type: object
-      description: Block parts header
-      required:
-      - total
-      - hash
-      properties:
-        hash:
-          type: string
-          description: Hash of the parts set header,
-        total:
-          type: integer
-          format: int32
-          description: Number of parts in this block
-          minimum: 0
-    IssuedTicketbooksForCountResponse:
-      type: object
-      required:
-      - expirationDate
-      - total
-      - issued
-      properties:
-        expirationDate:
-          type: string
-          example: '1970-01-01'
-        issued:
-          type: array
-          items:
-            $ref: '#/components/schemas/IssuedTicketbooksForCount'
-        total:
-          type: integer
-          minimum: 0
-    IssuedTicketbooksOnCountResponse:
-      type: object
-      required:
-      - issuanceDate
-      - total
-      - issued
-      properties:
-        issuanceDate:
-          type: string
-          example: '1970-01-01'
-        issued:
-          type: array
-          items:
-            $ref: '#/components/schemas/IssuedTicketbooksOnCount'
-        total:
-          type: integer
-          minimum: 0
-    AnnotatedCoinIndexSignature:
-      type: object
-      required:
-      - signature
-      - index
-      properties:
-        index:
+        epoch_id:
           type: integer
           format: int64
           minimum: 0
-        signature:
-          $ref: '#/components/schemas/Signature'
+        signatures:
+          $ref: '#/components/schemas/AnnotatedCoinIndexSignature'
+    IssuedTicketbooksCountResponse:
+      type: object
+      required:
+      - issued
+      properties:
+        issued:
+          type: array
+          items:
+            $ref: '#/components/schemas/IssuedTicketbooksCount'
+    BatchRedeemTicketsBody:
+      type: object
+      required:
+      - digest
+      - included_serial_numbers
+      - proposal_id
+      - gateway_cosmos_addr
+      properties:
+        digest:
+          type: array
+          items:
+            type: integer
+            format: int32
+            minimum: 0
+        gateway_cosmos_addr:
+          type: string
+        included_serial_numbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/SerialNumberWrapper'
+        proposal_id:
+          type: integer
+          format: int64
+          minimum: 0
     BlockHeader:
       type: object
       description: 'Block `Header` values contain metadata about the block and about the
@@ -773,34 +663,13 @@ components:
         version:
           $ref: '#/components/schemas/HeaderVersion'
           description: Header version
-    IssuedTicketbooksCountResponse:
+    BlindedSignatureResponse:
       type: object
       required:
-      - issued
+      - blinded_signature
       properties:
-        issued:
-          type: array
-          items:
-            $ref: '#/components/schemas/IssuedTicketbooksCount'
-    ChainStatus:
-      oneOf:
-      - type: string
-        enum:
-        - synced
-      - type: string
-        enum:
-        - unknown
-      - type: object
-        required:
-        - stalled
-        properties:
-          stalled:
-            type: object
-            required:
-            - approximate_amount
-            properties:
-              approximate_amount:
-                type: string
+        blinded_signature:
+          $ref: '#/components/schemas/BlindedSignature'
     WithdrawalReqProof:
       type: object
       required:
@@ -821,6 +690,240 @@ components:
           type: array
           items:
             type: string
+    IssuedTicketbooksOnCountResponse:
+      type: object
+      required:
+      - issuanceDate
+      - total
+      - issued
+      properties:
+        issuanceDate:
+          type: string
+          example: '1970-01-01'
+        issued:
+          type: array
+          items:
+            $ref: '#/components/schemas/IssuedTicketbooksOnCount'
+        total:
+          type: integer
+          minimum: 0
+    SignedMessage:
+      type: object
+      required:
+      - body
+      - signature
+      properties:
+        body:
+          $ref: '#/components/schemas/ChainBlocksStatusResponseBody'
+        signature:
+          type: string
+    IssuedTicketbooksCount:
+      type: object
+      required:
+      - issuanceDate
+      - expirationDate
+      - count
+      properties:
+        count:
+          type: integer
+          format: int32
+          minimum: 0
+        expirationDate:
+          type: string
+          example: '1970-01-01'
+        issuanceDate:
+          type: string
+          example: '1970-01-01'
+    IssuedTicketbooksForCount:
+      type: object
+      required:
+      - issuanceDate
+      - count
+      properties:
+        count:
+          type: integer
+          format: int32
+          minimum: 0
+        issuanceDate:
+          type: string
+          example: '1970-01-01'
+    EcashTicketVerificationResponse:
+      type: object
+      required:
+      - verified
+      properties:
+        verified:
+          $ref: '#/components/schemas/EcashTicketVerificationResult'
+    PublicKeyUser:
+      type: object
+      required:
+      - pk
+      properties:
+        pk:
+          type: string
+    IssuedTicketbooksForCountResponse:
+      type: object
+      required:
+      - expirationDate
+      - total
+      - issued
+      properties:
+        expirationDate:
+          type: string
+          example: '1970-01-01'
+        issued:
+          type: array
+          items:
+            $ref: '#/components/schemas/IssuedTicketbooksForCount'
+        total:
+          type: integer
+          minimum: 0
+    AnnotatedCoinIndexSignature:
+      type: object
+      required:
+      - signature
+      - index
+      properties:
+        index:
+          type: integer
+          format: int64
+          minimum: 0
+        signature:
+          $ref: '#/components/schemas/Signature'
+    AnnotatedExpirationDateSignature:
+      type: object
+      required:
+      - signature
+      - expiration_timestamp
+      - spending_timestamp
+      properties:
+        expiration_timestamp:
+          type: integer
+          format: int32
+          minimum: 0
+        signature:
+          $ref: '#/components/schemas/Signature'
+        spending_timestamp:
+          type: integer
+          format: int32
+          minimum: 0
+    BlindSignRequestBody:
+      type: object
+      required:
+      - inner_sign_request
+      - deposit_id
+      - signature
+      - ecash_pubkey
+      - expiration_date
+      - ticketbook_type
+      properties:
+        deposit_id:
+          type: integer
+          format: int32
+          description: the id of the associated deposit
+          minimum: 0
+        ecash_pubkey:
+          $ref: '#/components/schemas/PublicKeyUser'
+        expiration_date:
+          type: string
+          example: '1970-01-01'
+        inner_sign_request:
+          $ref: '#/components/schemas/WithdrawalRequest'
+        signature:
+          type: string
+          description: Signature on the inner sign request and the tx hash
+        ticketbook_type:
+          type: string
+    HeaderVersion:
+      type: object
+      description: '`Version` contains the protocol version for the blockchain and the
+
+        application.
+
+
+        <https://github.com/tendermint/spec/blob/d46cd7f573a2c6a2399fcab2cde981330aa63f37/spec/core/data_structures.md#version>'
+      required:
+      - block
+      - app
+      properties:
+        app:
+          type: integer
+          format: int64
+          description: App version
+          minimum: 0
+        block:
+          type: integer
+          format: int64
+          description: Block version
+          minimum: 0
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
+    WithdrawalRequest:
+      type: object
+      required:
+      - joined_commitment_hash
+      - joined_commitment
+      - private_attributes_commitments
+      - zk_proof
+      properties:
+        joined_commitment:
+          type: string
+        joined_commitment_hash:
+          type: string
+        private_attributes_commitments:
+          type: array
+          items:
+            type: string
+        zk_proof:
+          $ref: '#/components/schemas/WithdrawalReqProof'
+    EcashTicketVerificationResult:
+      oneOf:
+      - type: object
+        required:
+        - Ok
+        properties:
+          Ok:
+            default: null
+      - type: string
+        enum:
+        - EcashTicketVerificationRejection
+      description: Used exclusively as part of OpenAPI docs
+    VerifyEcashTicketBody:
+      type: object
+      required:
+      - credential
+      - gateway_cosmos_addr
+      properties:
+        credential:
+          type: string
+          description: The cryptographic material required for spending the underlying credential.
+        gateway_cosmos_addr:
+          type: string
+          description: Cosmos address of the sender of the credential
+    u64:
+      type: integer
+      format: int64
+      minimum: 0
+    PartialExpirationDateSignatureResponse:
+      type: object
+      required:
+      - epoch_id
+      - expiration_date
+      - signatures
+      properties:
+        epoch_id:
+          type: integer
+          format: int64
+          minimum: 0
+        expiration_date:
+          type: string
+          example: '1970-01-01'
+        signatures:
+          $ref: '#/components/schemas/AnnotatedExpirationDateSignature'
     AbciInfo:
       type: object
       required:
@@ -849,78 +952,29 @@ components:
         version:
           type: string
           description: The application software semantic version.
-    ChainBlocksStatusResponseBody:
+    EcashBatchTicketRedemptionResponse:
       type: object
       required:
-      - currentTime
-      - chainStatus
+      - proposal_accepted
       properties:
-        chainStatus:
-          $ref: '#/components/schemas/ChainStatus'
-        currentTime:
+        proposal_accepted:
+          type: boolean
+    BlindedSignature:
+      type: object
+      required:
+      - h
+      - c
+      properties:
+        c:
           type: string
-        latestCachedBlock:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/DetailedChainStatus'
-    EcashTicketVerificationResponse:
-      type: object
-      required:
-      - verified
-      properties:
-        verified:
-          $ref: '#/components/schemas/EcashTicketVerificationResult'
-    IssuedTicketbooksCount:
-      type: object
-      required:
-      - issuanceDate
-      - expirationDate
-      - count
-      properties:
-        count:
-          type: integer
-          format: int32
-          minimum: 0
-        expirationDate:
+        h:
           type: string
-          example: '1970-01-01'
-        issuanceDate:
-          type: string
-          example: '1970-01-01'
-    PublicKeyUser:
-      type: object
-      required:
-      - pk
-      properties:
-        pk:
-          type: string
-    BlockInfo:
-      type: object
-      required:
-      - block_id
-      - block
-      properties:
-        block:
-          $ref: '#/components/schemas/FullBlockInfo'
-        block_id:
-          $ref: '#/components/schemas/BlockId'
-    AnnotatedExpirationDateSignature:
-      type: object
-      required:
-      - signature
-      - expiration_timestamp
-      - spending_timestamp
-      properties:
-        expiration_timestamp:
-          type: integer
-          format: int32
-          minimum: 0
-        signature:
-          $ref: '#/components/schemas/Signature'
-        spending_timestamp:
-          type: integer
-          format: int32
-          minimum: 0
+    SerialNumberWrapper:
+      type: array
+      items:
+        type: integer
+        format: int32
+        minimum: 0
     BlockId:
       type: object
       description: 'Block identifiers which contain two distinct Merkle roots of the block,
@@ -980,45 +1034,31 @@ components:
             annotations. This does not translate to Rust, but we can indicate this
 
             in the domain type.'
-    PartialCoinIndicesSignatureResponse:
+    PartSetHeader:
       type: object
+      description: Block parts header
       required:
-      - epoch_id
-      - signatures
+      - total
+      - hash
       properties:
-        epoch_id:
-          type: integer
-          format: int64
-          minimum: 0
-        signatures:
-          $ref: '#/components/schemas/AnnotatedCoinIndexSignature'
-    BlindSignRequestBody:
-      type: object
-      required:
-      - inner_sign_request
-      - deposit_id
-      - signature
-      - ecash_pubkey
-      - expiration_date
-      - ticketbook_type
-      properties:
-        deposit_id:
+        hash:
+          type: string
+          description: Hash of the parts set header,
+        total:
           type: integer
           format: int32
-          description: the id of the associated deposit
+          description: Number of parts in this block
           minimum: 0
-        ecash_pubkey:
-          $ref: '#/components/schemas/PublicKeyUser'
-        expiration_date:
-          type: string
-          example: '1970-01-01'
-        inner_sign_request:
-          $ref: '#/components/schemas/WithdrawalRequest'
-        signature:
-          type: string
-          description: Signature on the inner sign request and the tx hash
-        ticketbook_type:
-          type: string
+    DetailedChainStatus:
+      type: object
+      required:
+      - abci
+      - latest_block
+      properties:
+        abci:
+          $ref: '#/components/schemas/AbciInfo'
+        latest_block:
+          $ref: '#/components/schemas/BlockInfo'
     Signature:
       type: object
       required:
@@ -1029,60 +1069,6 @@ components:
           type: string
         s:
           type: string
-    EcashBatchTicketRedemptionResponse:
-      type: object
-      required:
-      - proposal_accepted
-      properties:
-        proposal_accepted:
-          type: boolean
-    BatchRedeemTicketsBody:
-      type: object
-      required:
-      - digest
-      - included_serial_numbers
-      - proposal_id
-      - gateway_cosmos_addr
-      properties:
-        digest:
-          type: array
-          items:
-            type: integer
-            format: int32
-            minimum: 0
-        gateway_cosmos_addr:
-          type: string
-        included_serial_numbers:
-          type: array
-          items:
-            $ref: '#/components/schemas/SerialNumberWrapper'
-        proposal_id:
-          type: integer
-          format: int64
-          minimum: 0
-    u64:
-      type: integer
-      format: int64
-      minimum: 0
-    BlindedSignatureResponse:
-      type: object
-      required:
-      - blinded_signature
-      properties:
-        blinded_signature:
-          $ref: '#/components/schemas/BlindedSignature'
-    VerifyEcashTicketBody:
-      type: object
-      required:
-      - credential
-      - gateway_cosmos_addr
-      properties:
-        credential:
-          type: string
-          description: The cryptographic material required for spending the underlying credential.
-        gateway_cosmos_addr:
-          type: string
-          description: Cosmos address of the sender of the credential
     IssuedTicketbooksOnCount:
       type: object
       required:
@@ -1096,3 +1082,17 @@ components:
         expirationDate:
           type: string
           example: '1970-01-01'
+    ChainBlocksStatusResponseBody:
+      type: object
+      required:
+      - currentTime
+      - chainStatus
+      properties:
+        chainStatus:
+          $ref: '#/components/schemas/ChainStatus'
+        currentTime:
+          type: string
+        latestCachedBlock:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/DetailedChainStatus'

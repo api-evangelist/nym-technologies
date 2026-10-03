@@ -38,6 +38,22 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    NyxAccountDelegationRewardDetails:
+      type: object
+      required:
+      - node_id
+      - rewards
+      - amount_staked
+      - node_still_fully_bonded
+      properties:
+        amount_staked:
+          type: string
+        node_id:
+          $ref: '#/components/schemas/u32'
+        node_still_fully_bonded:
+          type: boolean
+        rewards:
+          $ref: '#/components/schemas/CoinSchema'
     NyxAccountDetails:
       type: object
       required:
@@ -76,18 +92,6 @@ components:
           type: string
         total_value:
           $ref: '#/components/schemas/CoinSchema'
-    CoinSchema:
-      type: object
-      title: Coin
-      required:
-      - denom
-      - amount
-      properties:
-        amount:
-          type: integer
-          minimum: 0
-        denom:
-          type: string
     NyxAccountDelegationDetails:
       type: object
       required:
@@ -114,19 +118,15 @@ components:
       type: integer
       format: int32
       minimum: 0
-    NyxAccountDelegationRewardDetails:
+    CoinSchema:
       type: object
+      title: Coin
       required:
-      - node_id
-      - rewards
-      - amount_staked
-      - node_still_fully_bonded
+      - denom
+      - amount
       properties:
-        amount_staked:
+        amount:
+          type: integer
+          minimum: 0
+        denom:
           type: string
-        node_id:
-          $ref: '#/components/schemas/u32'
-        node_still_fully_bonded:
-          type: boolean
-        rewards:
-          $ref: '#/components/schemas/CoinSchema'

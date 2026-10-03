@@ -207,39 +207,12 @@ components:
         uptime:
           type: integer
           format: int64
-    VersionScoreFormulaParams:
-      type: object
-      description: 'Given the formula of version_score = penalty ^ (versions_behind_factor ^ penalty_scaling)
-
-        define the relevant parameters'
-      required:
-      - penalty
-      - penalty_scaling
-      properties:
-        penalty:
-          type: number
-          format: double
-        penalty_scaling:
-          type: number
-          format: double
     Output:
       type: string
       enum:
       - json
       - yaml
       - bincode
-    ConfigScoreDataResponse:
-      type: object
-      required:
-      - parameters
-      - version_history
-      properties:
-        parameters:
-          $ref: '#/components/schemas/ConfigScoreParams'
-        version_history:
-          type: array
-          items:
-            $ref: '#/components/schemas/HistoricalNymNodeVersionEntry'
     HistoricalNymNodeVersionEntry:
       type: object
       required:
@@ -254,22 +227,6 @@ components:
         version_information:
           $ref: '#/components/schemas/HistoricalNymNodeVersion'
           description: Data associated with this particular version
-    HistoricalNymNodeVersion:
-      type: object
-      required:
-      - semver
-      - introduced_at_height
-      properties:
-        introduced_at_height:
-          type: integer
-          format: int64
-          description: Block height of when this version has been added to the contract
-          minimum: 0
-        semver:
-          type: string
-          description: 'Version of the nym node that is going to be used for determining the version score of a node.
-
-            note: value stored here is pre-validated `semver::Version`'
     OutdatedVersionWeights:
       type: object
       description: Defines weights for calculating numbers of versions behind the current release.
@@ -295,6 +252,34 @@ components:
           type: integer
           format: int32
           minimum: 0
+    HistoricalNymNodeVersion:
+      type: object
+      required:
+      - semver
+      - introduced_at_height
+      properties:
+        introduced_at_height:
+          type: integer
+          format: int64
+          description: Block height of when this version has been added to the contract
+          minimum: 0
+        semver:
+          type: string
+          description: 'Version of the nym node that is going to be used for determining the version score of a node.
+
+            note: value stored here is pre-validated `semver::Version`'
+    ConfigScoreDataResponse:
+      type: object
+      required:
+      - parameters
+      - version_history
+      properties:
+        parameters:
+          $ref: '#/components/schemas/ConfigScoreParams'
+        version_history:
+          type: array
+          items:
+            $ref: '#/components/schemas/HistoricalNymNodeVersionEntry'
     ConfigScoreParams:
       type: object
       required:
@@ -307,23 +292,21 @@ components:
         version_weights:
           $ref: '#/components/schemas/OutdatedVersionWeights'
           description: Defines weights for calculating numbers of versions behind the current release.
-    NodeResult:
+    VersionScoreFormulaParams:
       type: object
+      description: 'Given the formula of version_score = penalty ^ (versions_behind_factor ^ penalty_scaling)
+
+        define the relevant parameters'
       required:
-      - node_id
-      - identity
-      - reliability
+      - penalty
+      - penalty_scaling
       properties:
-        identity:
-          type: string
-        node_id:
-          type: integer
-          format: int32
-          minimum: 0
-        reliability:
-          type: integer
-          format: int32
-          minimum: 0
+        penalty:
+          type: number
+          format: double
+        penalty_scaling:
+          type: number
+          format: double
     MonitorMessage:
       type: object
       required:
@@ -343,6 +326,23 @@ components:
         timestamp:
           type: integer
           format: int64
+    NodeResult:
+      type: object
+      required:
+      - node_id
+      - identity
+      - reliability
+      properties:
+        identity:
+          type: string
+        node_id:
+          type: integer
+          format: int32
+          minimum: 0
+        reliability:
+          type: integer
+          format: int32
+          minimum: 0
 x-refined-from:
 - nym-technologies-node-status-api-openapi.json
 - nym-technologies-nym-api-openapi.json

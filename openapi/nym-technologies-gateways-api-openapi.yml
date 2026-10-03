@@ -87,6 +87,26 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    NodeDescription:
+      type: object
+      required:
+      - moniker
+      - website
+      - security_contact
+      - details
+      properties:
+        details:
+          type: string
+          description: details define other optional details.
+        moniker:
+          type: string
+          description: moniker defines a human-readable name for the node.
+        security_contact:
+          type: string
+          description: security contact defines an optional email for security contact.
+        website:
+          type: string
+          description: website defines an optional website link.
     PagedResult_GatewaySkinny:
       type: object
       required:
@@ -189,26 +209,6 @@ components:
           type: number
           format: float
         self_described: {}
-    NodeDescription:
-      type: object
-      required:
-      - moniker
-      - website
-      - security_contact
-      - details
-      properties:
-        details:
-          type: string
-          description: details define other optional details.
-        moniker:
-          type: string
-          description: moniker defines a human-readable name for the node.
-        security_contact:
-          type: string
-          description: security contact defines an optional email for security contact.
-        website:
-          type: string
-          description: website defines an optional website link.
     PagedResult_Gateway:
       type: object
       required:

@@ -146,13 +146,16 @@ paths:
       - auth_token: []
 components:
   schemas:
-    MixnetContractCacheTimestampResponse:
+    RefreshNodeStatusCacheRequestBody:
       type: object
-      required:
-      - timestamp
-      properties:
-        timestamp:
-          type: string
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
+    RefreshMixnetContractCacheRequestBody:
+      type: object
     NodeStatusCacheTimestampResponse:
       type: object
       required:
@@ -160,19 +163,6 @@ components:
       properties:
         timestamp:
           type: string
-    RefreshMixnetContractCacheResponse:
-      type: object
-      required:
-      - success
-      properties:
-        success:
-          type: boolean
-    Output:
-      type: string
-      enum:
-      - json
-      - yaml
-      - bincode
     RefreshNodeStatusCacheResponse:
       type: object
       required:
@@ -180,7 +170,17 @@ components:
       properties:
         success:
           type: boolean
-    RefreshNodeStatusCacheRequestBody:
+    RefreshMixnetContractCacheResponse:
       type: object
-    RefreshMixnetContractCacheRequestBody:
+      required:
+      - success
+      properties:
+        success:
+          type: boolean
+    MixnetContractCacheTimestampResponse:
       type: object
+      required:
+      - timestamp
+      properties:
+        timestamp:
+          type: string

@@ -785,105 +785,12 @@ paths:
       deprecated: true
 components:
   schemas:
-    NodesByAddressesRequestBody:
-      type: object
-      required:
-      - addresses
-      properties:
-        addresses:
-          type: array
-          items:
-            type: string
-    DeclaredRolesV1:
-      type: object
-      required:
-      - mixnode
-      - entry
-      - exit_nr
-      - exit_ipr
-      properties:
-        entry:
-          type: boolean
-        exit_ipr:
-          type: boolean
-        exit_nr:
-          type: boolean
-        mixnode:
-          type: boolean
-    NodeRole:
-      oneOf:
-      - type: object
-        required:
-        - Mixnode
-        properties:
-          Mixnode:
-            type: object
-            required:
-            - layer
-            properties:
-              layer:
-                type: integer
-                format: int32
-                minimum: 0
-      - type: string
-        enum:
-        - EntryGateway
-      - type: string
-        enum:
-        - ExitGateway
-      - type: string
-        enum:
-        - Standby
-      - type: string
-        enum:
-        - Inactive
     Output:
       type: string
       enum:
       - json
       - yaml
       - bincode
-    OffsetDateTimeJsonSchemaWrapper:
-      type: string
-      format: date-time
-    SkimmedNodeV1:
-      type: object
-      required:
-      - node_id
-      - ed25519_identity_pubkey
-      - ip_addresses
-      - mix_port
-      - x25519_sphinx_pubkey
-      - role
-      - performance
-      properties:
-        ed25519_identity_pubkey:
-          type: string
-        entry:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/BasicEntryInformation'
-        ip_addresses:
-          type: array
-          items:
-            type: string
-        mix_port:
-          type: integer
-          format: int32
-          minimum: 0
-        node_id:
-          type: integer
-          format: int32
-          minimum: 0
-        performance:
-          type: string
-          description: Average node performance in last 24h period
-        role:
-          $ref: '#/components/schemas/NodeRole'
-        supported_roles:
-          $ref: '#/components/schemas/DeclaredRolesV1'
-        x25519_sphinx_pubkey:
-          type: string
     CachedNodesResponse_SkimmedNodeV1:
       type: object
       required:
@@ -932,25 +839,25 @@ components:
                 type: string
         refreshed_at:
           $ref: '#/components/schemas/OffsetDateTimeJsonSchemaWrapper'
-    BasicEntryInformation:
+    OffsetDateTimeJsonSchemaWrapper:
+      type: string
+      format: date-time
+    DeclaredRolesV1:
       type: object
       required:
-      - ws_port
+      - mixnode
+      - entry
+      - exit_nr
+      - exit_ipr
       properties:
-        hostname:
-          type:
-          - string
-          - 'null'
-        ws_port:
-          type: integer
-          format: int32
-          minimum: 0
-        wss_port:
-          type:
-          - integer
-          - 'null'
-          format: int32
-          minimum: 0
+        entry:
+          type: boolean
+        exit_ipr:
+          type: boolean
+        exit_nr:
+          type: boolean
+        mixnode:
+          type: boolean
     NodesByAddressesResponse:
       type: object
       required:
@@ -977,3 +884,96 @@ components:
           $ref: '#/components/schemas/SkimmedNodeV1'
         refreshed_at:
           $ref: '#/components/schemas/OffsetDateTimeJsonSchemaWrapper'
+    SkimmedNodeV1:
+      type: object
+      required:
+      - node_id
+      - ed25519_identity_pubkey
+      - ip_addresses
+      - mix_port
+      - x25519_sphinx_pubkey
+      - role
+      - performance
+      properties:
+        ed25519_identity_pubkey:
+          type: string
+        entry:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/BasicEntryInformation'
+        ip_addresses:
+          type: array
+          items:
+            type: string
+        mix_port:
+          type: integer
+          format: int32
+          minimum: 0
+        node_id:
+          type: integer
+          format: int32
+          minimum: 0
+        performance:
+          type: string
+          description: Average node performance in last 24h period
+        role:
+          $ref: '#/components/schemas/NodeRole'
+        supported_roles:
+          $ref: '#/components/schemas/DeclaredRolesV1'
+        x25519_sphinx_pubkey:
+          type: string
+    NodesByAddressesRequestBody:
+      type: object
+      required:
+      - addresses
+      properties:
+        addresses:
+          type: array
+          items:
+            type: string
+    NodeRole:
+      oneOf:
+      - type: object
+        required:
+        - Mixnode
+        properties:
+          Mixnode:
+            type: object
+            required:
+            - layer
+            properties:
+              layer:
+                type: integer
+                format: int32
+                minimum: 0
+      - type: string
+        enum:
+        - EntryGateway
+      - type: string
+        enum:
+        - ExitGateway
+      - type: string
+        enum:
+        - Standby
+      - type: string
+        enum:
+        - Inactive
+    BasicEntryInformation:
+      type: object
+      required:
+      - ws_port
+      properties:
+        hostname:
+          type:
+          - string
+          - 'null'
+        ws_port:
+          type: integer
+          format: int32
+          minimum: 0
+        wss_port:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
