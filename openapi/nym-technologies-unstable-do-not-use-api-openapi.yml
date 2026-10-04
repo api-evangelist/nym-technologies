@@ -170,37 +170,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    TestNode:
-      type: object
-      properties:
-        identity_key:
-          type:
-          - string
-          - 'null'
-        node_id:
-          type:
-          - integer
-          - 'null'
-          format: int32
-          minimum: 0
-    Output:
-      type: string
-      enum:
-      - json
-      - yaml
-      - bincode
-    PaginatedResponse:
-      type: object
-      required:
-      - pagination
-      - data
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/PartialTestResult'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     PartialTestResult:
       type: object
       required:
@@ -222,6 +191,29 @@ components:
         timestamp:
           type: integer
           format: int64
+    u32:
+      type: integer
+      format: int32
+      minimum: 0
+    TestNode:
+      type: object
+      properties:
+        identity_key:
+          type:
+          - string
+          - 'null'
+        node_id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
     Pagination:
       type: object
       required:
@@ -239,10 +231,22 @@ components:
         total:
           type: integer
           minimum: 0
-    u32:
-      type: integer
-      format: int32
-      minimum: 0
+    TestRoute:
+      type: object
+      required:
+      - gateway
+      - layer1
+      - layer2
+      - layer3
+      properties:
+        gateway:
+          $ref: '#/components/schemas/TestNode'
+        layer1:
+          $ref: '#/components/schemas/TestNode'
+        layer2:
+          $ref: '#/components/schemas/TestNode'
+        layer3:
+          $ref: '#/components/schemas/TestNode'
     NetworkMonitorRunDetailsResponse:
       type: object
       required:
@@ -283,19 +287,15 @@ components:
         total_sent:
           type: integer
           minimum: 0
-    TestRoute:
+    PaginatedResponse:
       type: object
       required:
-      - gateway
-      - layer1
-      - layer2
-      - layer3
+      - pagination
+      - data
       properties:
-        gateway:
-          $ref: '#/components/schemas/TestNode'
-        layer1:
-          $ref: '#/components/schemas/TestNode'
-        layer2:
-          $ref: '#/components/schemas/TestNode'
-        layer3:
-          $ref: '#/components/schemas/TestNode'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PartialTestResult'
+        pagination:
+          $ref: '#/components/schemas/Pagination'

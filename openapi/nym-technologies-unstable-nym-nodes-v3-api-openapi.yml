@@ -45,6 +45,107 @@ paths:
                 $ref: '#/components/schemas/PaginatedCachedNodesExpandedV3ResponseSchema'
 components:
   schemas:
+    PaginatedCachedNodesExpandedV3ResponseSchema:
+      type: object
+      title: PaginatedCachedNodesExpandedV3ResponseSchema
+      required:
+      - refreshed_at
+      - nodes
+      properties:
+        nodes:
+          $ref: '#/components/schemas/SemiSkimmedNodeV3'
+        refreshed_at:
+          $ref: '#/components/schemas/OffsetDateTimeJsonSchemaWrapper'
+    DeclaredRolesV1:
+      type: object
+      required:
+      - mixnode
+      - entry
+      - exit_nr
+      - exit_ipr
+      properties:
+        entry:
+          type: boolean
+        exit_ipr:
+          type: boolean
+        exit_nr:
+          type: boolean
+        mixnode:
+          type: boolean
+    VersionedNoiseKeyV1:
+      type: object
+      required:
+      - supported_version
+      - x25519_pubkey
+      properties:
+        supported_version:
+          type: integer
+          format: int32
+          minimum: 0
+        x25519_pubkey:
+          type: string
+    NodeRole:
+      oneOf:
+      - type: object
+        required:
+        - Mixnode
+        properties:
+          Mixnode:
+            type: object
+            required:
+            - layer
+            properties:
+              layer:
+                type: integer
+                format: int32
+                minimum: 0
+      - type: string
+        enum:
+        - EntryGateway
+      - type: string
+        enum:
+        - ExitGateway
+      - type: string
+        enum:
+        - Standby
+      - type: string
+        enum:
+        - Inactive
+    BasicEntryInformation:
+      type: object
+      required:
+      - ws_port
+      properties:
+        hostname:
+          type:
+          - string
+          - 'null'
+        ws_port:
+          type: integer
+          format: int32
+          minimum: 0
+        wss_port:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+    LewesProtocolDetailsV1:
+      type: object
+      required:
+      - content
+      - signature
+      properties:
+        content:
+          $ref: '#/components/schemas/LewesProtocolDetailsDataV1'
+        signature:
+          type: string
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
     SemiSkimmedNodeV3:
       type: object
       description: All the information required for sending packets between nodes (sphinx, noise, LP)
@@ -68,43 +169,9 @@ components:
           - type: 'null'
           - $ref: '#/components/schemas/VersionedNoiseKeyV1'
             description: Noise key of the node
-    Output:
-      type: string
-      enum:
-      - json
-      - yaml
-      - bincode
-    VersionedNoiseKeyV1:
-      type: object
-      required:
-      - supported_version
-      - x25519_pubkey
-      properties:
-        supported_version:
-          type: integer
-          format: int32
-          minimum: 0
-        x25519_pubkey:
-          type: string
     OffsetDateTimeJsonSchemaWrapper:
       type: string
       format: date-time
-    DeclaredRolesV1:
-      type: object
-      required:
-      - mixnode
-      - entry
-      - exit_nr
-      - exit_ipr
-      properties:
-        entry:
-          type: boolean
-        exit_ipr:
-          type: boolean
-        exit_nr:
-          type: boolean
-        mixnode:
-          type: boolean
     LewesProtocolDetailsDataV1:
       type: object
       required:
@@ -192,71 +259,4 @@ components:
         supported_roles:
           $ref: '#/components/schemas/DeclaredRolesV1'
         x25519_sphinx_pubkey:
-          type: string
-    NodeRole:
-      oneOf:
-      - type: object
-        required:
-        - Mixnode
-        properties:
-          Mixnode:
-            type: object
-            required:
-            - layer
-            properties:
-              layer:
-                type: integer
-                format: int32
-                minimum: 0
-      - type: string
-        enum:
-        - EntryGateway
-      - type: string
-        enum:
-        - ExitGateway
-      - type: string
-        enum:
-        - Standby
-      - type: string
-        enum:
-        - Inactive
-    BasicEntryInformation:
-      type: object
-      required:
-      - ws_port
-      properties:
-        hostname:
-          type:
-          - string
-          - 'null'
-        ws_port:
-          type: integer
-          format: int32
-          minimum: 0
-        wss_port:
-          type:
-          - integer
-          - 'null'
-          format: int32
-          minimum: 0
-    PaginatedCachedNodesExpandedV3ResponseSchema:
-      type: object
-      title: PaginatedCachedNodesExpandedV3ResponseSchema
-      required:
-      - refreshed_at
-      - nodes
-      properties:
-        nodes:
-          $ref: '#/components/schemas/SemiSkimmedNodeV3'
-        refreshed_at:
-          $ref: '#/components/schemas/OffsetDateTimeJsonSchemaWrapper'
-    LewesProtocolDetailsV1:
-      type: object
-      required:
-      - content
-      - signature
-      properties:
-        content:
-          $ref: '#/components/schemas/LewesProtocolDetailsDataV1'
-        signature:
           type: string

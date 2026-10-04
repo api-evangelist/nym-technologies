@@ -507,63 +507,191 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    BlockInfo:
-      type: object
-      required:
-      - block_id
-      - block
-      properties:
-        block:
-          $ref: '#/components/schemas/FullBlockInfo'
-        block_id:
-          $ref: '#/components/schemas/BlockId'
-    ChainStatus:
-      oneOf:
-      - type: string
-        enum:
-        - synced
-      - type: string
-        enum:
-        - unknown
-      - type: object
-        required:
-        - stalled
-        properties:
-          stalled:
-            type: object
-            required:
-            - approximate_amount
-            properties:
-              approximate_amount:
-                type: string
-    FullBlockInfo:
-      type: object
-      required:
-      - header
-      properties:
-        header:
-          $ref: '#/components/schemas/BlockHeader'
-    PartialCoinIndicesSignatureResponse:
+    PartialExpirationDateSignatureResponse:
       type: object
       required:
       - epoch_id
+      - expiration_date
       - signatures
       properties:
         epoch_id:
           type: integer
           format: int64
           minimum: 0
+        expiration_date:
+          type: string
+          example: '1970-01-01'
         signatures:
-          $ref: '#/components/schemas/AnnotatedCoinIndexSignature'
-    IssuedTicketbooksCountResponse:
+          $ref: '#/components/schemas/AnnotatedExpirationDateSignature'
+    Signature:
       type: object
       required:
+      - h
+      - s
+      properties:
+        h:
+          type: string
+        s:
+          type: string
+    PublicKeyUser:
+      type: object
+      required:
+      - pk
+      properties:
+        pk:
+          type: string
+    AnnotatedCoinIndexSignature:
+      type: object
+      required:
+      - signature
+      - index
+      properties:
+        index:
+          type: integer
+          format: int64
+          minimum: 0
+        signature:
+          $ref: '#/components/schemas/Signature'
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
+    BlockId:
+      type: object
+      description: 'Block identifiers which contain two distinct Merkle roots of the block,
+
+        as well as the number of parts in the block.
+
+
+        <https://github.com/tendermint/spec/blob/d46cd7f573a2c6a2399fcab2cde981330aa63f37/spec/core/data_structures.md#blockid>
+
+
+        Default implementation is an empty Id as defined by the Go implementation in
+
+        <https://github.com/tendermint/tendermint/blob/1635d1339c73ae6a82e062cd2dc7191b029efa14/types/block.go#L1204>.
+
+
+        If the Hash is empty in BlockId, the BlockId should be empty (encoded to None).
+
+        This is implemented outside of this struct. Use the Default trait to check for an empty BlockId.
+
+        See: <https://github.com/informalsystems/tendermint-rs/issues/663>'
+      required:
+      - hash
+      - part_set_header
+      properties:
+        hash:
+          type: string
+          description: 'The block''s main hash is the Merkle root of all the fields in the
+
+            block header.'
+        part_set_header:
+          $ref: '#/components/schemas/PartSetHeader'
+          description: 'Parts header (if available) is used for secure gossipping of the block
+
+            during consensus. It is the Merkle root of the complete serialized block
+
+            cut into parts.
+
+
+            PartSet is used to split a byteslice of data into parts (pieces) for
+
+            transmission. By splitting data into smaller parts and computing a
+
+            Merkle root hash on the list, you can verify that a part is
+
+            legitimately part of the complete data, and the part can be forwarded
+
+            to other peers before all the parts are known. In short, it''s a fast
+
+            way to propagate a large file over a gossip network.
+
+
+            <https://github.com/tendermint/tendermint/wiki/Block-Structure#partset>
+
+
+            PartSetHeader in protobuf is defined as never nil using the gogoproto
+
+            annotations. This does not translate to Rust, but we can indicate this
+
+            in the domain type.'
+    IssuedTicketbooksCount:
+      type: object
+      required:
+      - issuanceDate
+      - expirationDate
+      - count
+      properties:
+        count:
+          type: integer
+          format: int32
+          minimum: 0
+        expirationDate:
+          type: string
+          example: '1970-01-01'
+        issuanceDate:
+          type: string
+          example: '1970-01-01'
+    PartSetHeader:
+      type: object
+      description: Block parts header
+      required:
+      - total
+      - hash
+      properties:
+        hash:
+          type: string
+          description: Hash of the parts set header,
+        total:
+          type: integer
+          format: int32
+          description: Number of parts in this block
+          minimum: 0
+    EcashTicketVerificationResult:
+      oneOf:
+      - type: object
+        required:
+        - Ok
+        properties:
+          Ok:
+            default: null
+      - type: string
+        enum:
+        - EcashTicketVerificationRejection
+      description: Used exclusively as part of OpenAPI docs
+    BlindedSignatureResponse:
+      type: object
+      required:
+      - blinded_signature
+      properties:
+        blinded_signature:
+          $ref: '#/components/schemas/BlindedSignature'
+    IssuedTicketbooksOnCountResponse:
+      type: object
+      required:
+      - issuanceDate
+      - total
       - issued
       properties:
+        issuanceDate:
+          type: string
+          example: '1970-01-01'
         issued:
           type: array
           items:
-            $ref: '#/components/schemas/IssuedTicketbooksCount'
+            $ref: '#/components/schemas/IssuedTicketbooksOnCount'
+        total:
+          type: integer
+          minimum: 0
+    EcashTicketVerificationResponse:
+      type: object
+      required:
+      - verified
+      properties:
+        verified:
+          $ref: '#/components/schemas/EcashTicketVerificationResult'
     BatchRedeemTicketsBody:
       type: object
       required:
@@ -588,6 +716,86 @@ components:
           type: integer
           format: int64
           minimum: 0
+    WithdrawalReqProof:
+      type: object
+      required:
+      - challenge
+      - response_opening
+      - response_openings
+      - response_attributes
+      properties:
+        challenge:
+          type: string
+        response_attributes:
+          type: array
+          items:
+            type: string
+        response_opening:
+          type: string
+        response_openings:
+          type: array
+          items:
+            type: string
+    EcashBatchTicketRedemptionResponse:
+      type: object
+      required:
+      - proposal_accepted
+      properties:
+        proposal_accepted:
+          type: boolean
+    VerifyEcashTicketBody:
+      type: object
+      required:
+      - credential
+      - gateway_cosmos_addr
+      properties:
+        credential:
+          type: string
+          description: The cryptographic material required for spending the underlying credential.
+        gateway_cosmos_addr:
+          type: string
+          description: Cosmos address of the sender of the credential
+    BlindSignRequestBody:
+      type: object
+      required:
+      - inner_sign_request
+      - deposit_id
+      - signature
+      - ecash_pubkey
+      - expiration_date
+      - ticketbook_type
+      properties:
+        deposit_id:
+          type: integer
+          format: int32
+          description: the id of the associated deposit
+          minimum: 0
+        ecash_pubkey:
+          $ref: '#/components/schemas/PublicKeyUser'
+        expiration_date:
+          type: string
+          example: '1970-01-01'
+        inner_sign_request:
+          $ref: '#/components/schemas/WithdrawalRequest'
+        signature:
+          type: string
+          description: Signature on the inner sign request and the tx hash
+        ticketbook_type:
+          type: string
+    SignedMessage:
+      type: object
+      required:
+      - body
+      - signature
+      properties:
+        body:
+          $ref: '#/components/schemas/ChainBlocksStatusResponseBody'
+        signature:
+          type: string
+    u64:
+      type: integer
+      format: int64
+      minimum: 0
     BlockHeader:
       type: object
       description: 'Block `Header` values contain metadata about the block and about the
@@ -663,205 +871,16 @@ components:
         version:
           $ref: '#/components/schemas/HeaderVersion'
           description: Header version
-    BlindedSignatureResponse:
+    BlindedSignature:
       type: object
       required:
-      - blinded_signature
+      - h
+      - c
       properties:
-        blinded_signature:
-          $ref: '#/components/schemas/BlindedSignature'
-    WithdrawalReqProof:
-      type: object
-      required:
-      - challenge
-      - response_opening
-      - response_openings
-      - response_attributes
-      properties:
-        challenge:
+        c:
           type: string
-        response_attributes:
-          type: array
-          items:
-            type: string
-        response_opening:
+        h:
           type: string
-        response_openings:
-          type: array
-          items:
-            type: string
-    IssuedTicketbooksOnCountResponse:
-      type: object
-      required:
-      - issuanceDate
-      - total
-      - issued
-      properties:
-        issuanceDate:
-          type: string
-          example: '1970-01-01'
-        issued:
-          type: array
-          items:
-            $ref: '#/components/schemas/IssuedTicketbooksOnCount'
-        total:
-          type: integer
-          minimum: 0
-    SignedMessage:
-      type: object
-      required:
-      - body
-      - signature
-      properties:
-        body:
-          $ref: '#/components/schemas/ChainBlocksStatusResponseBody'
-        signature:
-          type: string
-    IssuedTicketbooksCount:
-      type: object
-      required:
-      - issuanceDate
-      - expirationDate
-      - count
-      properties:
-        count:
-          type: integer
-          format: int32
-          minimum: 0
-        expirationDate:
-          type: string
-          example: '1970-01-01'
-        issuanceDate:
-          type: string
-          example: '1970-01-01'
-    IssuedTicketbooksForCount:
-      type: object
-      required:
-      - issuanceDate
-      - count
-      properties:
-        count:
-          type: integer
-          format: int32
-          minimum: 0
-        issuanceDate:
-          type: string
-          example: '1970-01-01'
-    EcashTicketVerificationResponse:
-      type: object
-      required:
-      - verified
-      properties:
-        verified:
-          $ref: '#/components/schemas/EcashTicketVerificationResult'
-    PublicKeyUser:
-      type: object
-      required:
-      - pk
-      properties:
-        pk:
-          type: string
-    IssuedTicketbooksForCountResponse:
-      type: object
-      required:
-      - expirationDate
-      - total
-      - issued
-      properties:
-        expirationDate:
-          type: string
-          example: '1970-01-01'
-        issued:
-          type: array
-          items:
-            $ref: '#/components/schemas/IssuedTicketbooksForCount'
-        total:
-          type: integer
-          minimum: 0
-    AnnotatedCoinIndexSignature:
-      type: object
-      required:
-      - signature
-      - index
-      properties:
-        index:
-          type: integer
-          format: int64
-          minimum: 0
-        signature:
-          $ref: '#/components/schemas/Signature'
-    AnnotatedExpirationDateSignature:
-      type: object
-      required:
-      - signature
-      - expiration_timestamp
-      - spending_timestamp
-      properties:
-        expiration_timestamp:
-          type: integer
-          format: int32
-          minimum: 0
-        signature:
-          $ref: '#/components/schemas/Signature'
-        spending_timestamp:
-          type: integer
-          format: int32
-          minimum: 0
-    BlindSignRequestBody:
-      type: object
-      required:
-      - inner_sign_request
-      - deposit_id
-      - signature
-      - ecash_pubkey
-      - expiration_date
-      - ticketbook_type
-      properties:
-        deposit_id:
-          type: integer
-          format: int32
-          description: the id of the associated deposit
-          minimum: 0
-        ecash_pubkey:
-          $ref: '#/components/schemas/PublicKeyUser'
-        expiration_date:
-          type: string
-          example: '1970-01-01'
-        inner_sign_request:
-          $ref: '#/components/schemas/WithdrawalRequest'
-        signature:
-          type: string
-          description: Signature on the inner sign request and the tx hash
-        ticketbook_type:
-          type: string
-    HeaderVersion:
-      type: object
-      description: '`Version` contains the protocol version for the blockchain and the
-
-        application.
-
-
-        <https://github.com/tendermint/spec/blob/d46cd7f573a2c6a2399fcab2cde981330aa63f37/spec/core/data_structures.md#version>'
-      required:
-      - block
-      - app
-      properties:
-        app:
-          type: integer
-          format: int64
-          description: App version
-          minimum: 0
-        block:
-          type: integer
-          format: int64
-          description: Block version
-          minimum: 0
-    Output:
-      type: string
-      enum:
-      - json
-      - yaml
-      - bincode
     WithdrawalRequest:
       type: object
       required:
@@ -880,50 +899,77 @@ components:
             type: string
         zk_proof:
           $ref: '#/components/schemas/WithdrawalReqProof'
-    EcashTicketVerificationResult:
+    ChainStatus:
       oneOf:
-      - type: object
-        required:
-        - Ok
-        properties:
-          Ok:
-            default: null
       - type: string
         enum:
-        - EcashTicketVerificationRejection
-      description: Used exclusively as part of OpenAPI docs
-    VerifyEcashTicketBody:
-      type: object
-      required:
-      - credential
-      - gateway_cosmos_addr
-      properties:
-        credential:
-          type: string
-          description: The cryptographic material required for spending the underlying credential.
-        gateway_cosmos_addr:
-          type: string
-          description: Cosmos address of the sender of the credential
-    u64:
-      type: integer
-      format: int64
-      minimum: 0
-    PartialExpirationDateSignatureResponse:
+        - synced
+      - type: string
+        enum:
+        - unknown
+      - type: object
+        required:
+        - stalled
+        properties:
+          stalled:
+            type: object
+            required:
+            - approximate_amount
+            properties:
+              approximate_amount:
+                type: string
+    PartialCoinIndicesSignatureResponse:
       type: object
       required:
       - epoch_id
-      - expiration_date
       - signatures
       properties:
         epoch_id:
           type: integer
           format: int64
           minimum: 0
-        expiration_date:
+        signatures:
+          $ref: '#/components/schemas/AnnotatedCoinIndexSignature'
+    IssuedTicketbooksForCount:
+      type: object
+      required:
+      - issuanceDate
+      - count
+      properties:
+        count:
+          type: integer
+          format: int32
+          minimum: 0
+        issuanceDate:
           type: string
           example: '1970-01-01'
-        signatures:
-          $ref: '#/components/schemas/AnnotatedExpirationDateSignature'
+    DetailedChainStatus:
+      type: object
+      required:
+      - abci
+      - latest_block
+      properties:
+        abci:
+          $ref: '#/components/schemas/AbciInfo'
+        latest_block:
+          $ref: '#/components/schemas/BlockInfo'
+    IssuedTicketbooksForCountResponse:
+      type: object
+      required:
+      - expirationDate
+      - total
+      - issued
+      properties:
+        expirationDate:
+          type: string
+          example: '1970-01-01'
+        issued:
+          type: array
+          items:
+            $ref: '#/components/schemas/IssuedTicketbooksForCount'
+        total:
+          type: integer
+          minimum: 0
     AbciInfo:
       type: object
       required:
@@ -952,136 +998,77 @@ components:
         version:
           type: string
           description: The application software semantic version.
-    EcashBatchTicketRedemptionResponse:
+    FullBlockInfo:
       type: object
       required:
-      - proposal_accepted
+      - header
       properties:
-        proposal_accepted:
-          type: boolean
-    BlindedSignature:
-      type: object
-      required:
-      - h
-      - c
-      properties:
-        c:
-          type: string
-        h:
-          type: string
+        header:
+          $ref: '#/components/schemas/BlockHeader'
     SerialNumberWrapper:
       type: array
       items:
         type: integer
         format: int32
         minimum: 0
-    BlockId:
-      type: object
-      description: 'Block identifiers which contain two distinct Merkle roots of the block,
-
-        as well as the number of parts in the block.
-
-
-        <https://github.com/tendermint/spec/blob/d46cd7f573a2c6a2399fcab2cde981330aa63f37/spec/core/data_structures.md#blockid>
-
-
-        Default implementation is an empty Id as defined by the Go implementation in
-
-        <https://github.com/tendermint/tendermint/blob/1635d1339c73ae6a82e062cd2dc7191b029efa14/types/block.go#L1204>.
-
-
-        If the Hash is empty in BlockId, the BlockId should be empty (encoded to None).
-
-        This is implemented outside of this struct. Use the Default trait to check for an empty BlockId.
-
-        See: <https://github.com/informalsystems/tendermint-rs/issues/663>'
-      required:
-      - hash
-      - part_set_header
-      properties:
-        hash:
-          type: string
-          description: 'The block''s main hash is the Merkle root of all the fields in the
-
-            block header.'
-        part_set_header:
-          $ref: '#/components/schemas/PartSetHeader'
-          description: 'Parts header (if available) is used for secure gossipping of the block
-
-            during consensus. It is the Merkle root of the complete serialized block
-
-            cut into parts.
-
-
-            PartSet is used to split a byteslice of data into parts (pieces) for
-
-            transmission. By splitting data into smaller parts and computing a
-
-            Merkle root hash on the list, you can verify that a part is
-
-            legitimately part of the complete data, and the part can be forwarded
-
-            to other peers before all the parts are known. In short, it''s a fast
-
-            way to propagate a large file over a gossip network.
-
-
-            <https://github.com/tendermint/tendermint/wiki/Block-Structure#partset>
-
-
-            PartSetHeader in protobuf is defined as never nil using the gogoproto
-
-            annotations. This does not translate to Rust, but we can indicate this
-
-            in the domain type.'
-    PartSetHeader:
-      type: object
-      description: Block parts header
-      required:
-      - total
-      - hash
-      properties:
-        hash:
-          type: string
-          description: Hash of the parts set header,
-        total:
-          type: integer
-          format: int32
-          description: Number of parts in this block
-          minimum: 0
-    DetailedChainStatus:
+    IssuedTicketbooksCountResponse:
       type: object
       required:
-      - abci
-      - latest_block
+      - issued
       properties:
-        abci:
-          $ref: '#/components/schemas/AbciInfo'
-        latest_block:
-          $ref: '#/components/schemas/BlockInfo'
-    Signature:
+        issued:
+          type: array
+          items:
+            $ref: '#/components/schemas/IssuedTicketbooksCount'
+    AnnotatedExpirationDateSignature:
       type: object
       required:
-      - h
-      - s
+      - signature
+      - expiration_timestamp
+      - spending_timestamp
       properties:
-        h:
-          type: string
-        s:
-          type: string
-    IssuedTicketbooksOnCount:
-      type: object
-      required:
-      - expirationDate
-      - count
-      properties:
-        count:
+        expiration_timestamp:
           type: integer
           format: int32
           minimum: 0
-        expirationDate:
-          type: string
-          example: '1970-01-01'
+        signature:
+          $ref: '#/components/schemas/Signature'
+        spending_timestamp:
+          type: integer
+          format: int32
+          minimum: 0
+    HeaderVersion:
+      type: object
+      description: '`Version` contains the protocol version for the blockchain and the
+
+        application.
+
+
+        <https://github.com/tendermint/spec/blob/d46cd7f573a2c6a2399fcab2cde981330aa63f37/spec/core/data_structures.md#version>'
+      required:
+      - block
+      - app
+      properties:
+        app:
+          type: integer
+          format: int64
+          description: App version
+          minimum: 0
+        block:
+          type: integer
+          format: int64
+          description: Block version
+          minimum: 0
+    BlockInfo:
+      type: object
+      required:
+      - block_id
+      - block
+      properties:
+        block:
+          $ref: '#/components/schemas/FullBlockInfo'
+        block_id:
+          $ref: '#/components/schemas/BlockId'
     ChainBlocksStatusResponseBody:
       type: object
       required:
@@ -1096,3 +1083,16 @@ components:
           oneOf:
           - type: 'null'
           - $ref: '#/components/schemas/DetailedChainStatus'
+    IssuedTicketbooksOnCount:
+      type: object
+      required:
+      - expirationDate
+      - count
+      properties:
+        count:
+          type: integer
+          format: int32
+          minimum: 0
+        expirationDate:
+          type: string
+          example: '1970-01-01'

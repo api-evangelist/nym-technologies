@@ -121,10 +121,6 @@ components:
             properties:
               approximate_amount:
                 type: string
-    ApiStatus:
-      type: string
-      enum:
-      - up
     SignerInformationResponse:
       type: object
       required:
@@ -142,12 +138,6 @@ components:
           type:
           - string
           - 'null'
-    Output:
-      type: string
-      enum:
-      - json
-      - yaml
-      - bincode
     ApiHealthResponse:
       type: object
       required:
@@ -162,6 +152,16 @@ components:
           type: integer
           format: int64
           minimum: 0
+    ApiStatus:
+      type: string
+      enum:
+      - up
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
     BinaryBuildInformationOwned:
       type: object
       required:

@@ -38,6 +38,10 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    u32:
+      type: integer
+      format: int32
+      minimum: 0
     NyxAccountDelegationRewardDetails:
       type: object
       required:
@@ -54,6 +58,40 @@ components:
           type: boolean
         rewards:
           $ref: '#/components/schemas/CoinSchema'
+    CoinSchema:
+      type: object
+      title: Coin
+      required:
+      - denom
+      - amount
+      properties:
+        amount:
+          type: integer
+          minimum: 0
+        denom:
+          type: string
+    NyxAccountDelegationDetails:
+      type: object
+      required:
+      - node_id
+      - delegated
+      - height
+      - node_bonded
+      properties:
+        delegated:
+          $ref: '#/components/schemas/CoinSchema'
+        height:
+          type: integer
+          format: int64
+          minimum: 0
+        node_bonded:
+          type: boolean
+        node_id:
+          $ref: '#/components/schemas/u32'
+        proxy:
+          type:
+          - string
+          - 'null'
     NyxAccountDetails:
       type: object
       required:
@@ -92,41 +130,3 @@ components:
           type: string
         total_value:
           $ref: '#/components/schemas/CoinSchema'
-    NyxAccountDelegationDetails:
-      type: object
-      required:
-      - node_id
-      - delegated
-      - height
-      - node_bonded
-      properties:
-        delegated:
-          $ref: '#/components/schemas/CoinSchema'
-        height:
-          type: integer
-          format: int64
-          minimum: 0
-        node_bonded:
-          type: boolean
-        node_id:
-          $ref: '#/components/schemas/u32'
-        proxy:
-          type:
-          - string
-          - 'null'
-    u32:
-      type: integer
-      format: int32
-      minimum: 0
-    CoinSchema:
-      type: object
-      title: Coin
-      required:
-      - denom
-      - amount
-      properties:
-        amount:
-          type: integer
-          minimum: 0
-        denom:
-          type: string

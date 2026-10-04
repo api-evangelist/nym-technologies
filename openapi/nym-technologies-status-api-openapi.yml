@@ -156,6 +156,14 @@ paths:
       description: Main Nym Api Server
 components:
   schemas:
+    HealthInfo:
+      type: object
+      required:
+      - uptime
+      properties:
+        uptime:
+          type: integer
+          format: int64
     BinaryBuildInformationOwned:
       type: object
       required:
@@ -199,14 +207,49 @@ components:
         rustc_version:
           type: string
           description: Provides the rustc version that was used for the build, for example `1.52.0-nightly`.
-    HealthInfo:
+    ConfigScoreDataResponse:
       type: object
       required:
-      - uptime
+      - parameters
+      - version_history
       properties:
-        uptime:
+        parameters:
+          $ref: '#/components/schemas/ConfigScoreParams'
+        version_history:
+          type: array
+          items:
+            $ref: '#/components/schemas/HistoricalNymNodeVersionEntry'
+    HistoricalNymNodeVersion:
+      type: object
+      required:
+      - semver
+      - introduced_at_height
+      properties:
+        introduced_at_height:
           type: integer
           format: int64
+          description: Block height of when this version has been added to the contract
+          minimum: 0
+        semver:
+          type: string
+          description: 'Version of the nym node that is going to be used for determining the version score of a node.
+
+            note: value stored here is pre-validated `semver::Version`'
+    VersionScoreFormulaParams:
+      type: object
+      description: 'Given the formula of version_score = penalty ^ (versions_behind_factor ^ penalty_scaling)
+
+        define the relevant parameters'
+      required:
+      - penalty
+      - penalty_scaling
+      properties:
+        penalty:
+          type: number
+          format: double
+        penalty_scaling:
+          type: number
+          format: double
     Output:
       type: string
       enum:
@@ -227,6 +270,18 @@ components:
         version_information:
           $ref: '#/components/schemas/HistoricalNymNodeVersion'
           description: Data associated with this particular version
+    ConfigScoreParams:
+      type: object
+      required:
+      - version_weights
+      - version_score_formula_params
+      properties:
+        version_score_formula_params:
+          $ref: '#/components/schemas/VersionScoreFormulaParams'
+          description: Defines the parameters of the formula for calculating the version score
+        version_weights:
+          $ref: '#/components/schemas/OutdatedVersionWeights'
+          description: Defines weights for calculating numbers of versions behind the current release.
     OutdatedVersionWeights:
       type: object
       description: Defines weights for calculating numbers of versions behind the current release.
@@ -252,61 +307,23 @@ components:
           type: integer
           format: int32
           minimum: 0
-    HistoricalNymNodeVersion:
+    NodeResult:
       type: object
       required:
-      - semver
-      - introduced_at_height
+      - node_id
+      - identity
+      - reliability
       properties:
-        introduced_at_height:
-          type: integer
-          format: int64
-          description: Block height of when this version has been added to the contract
-          minimum: 0
-        semver:
+        identity:
           type: string
-          description: 'Version of the nym node that is going to be used for determining the version score of a node.
-
-            note: value stored here is pre-validated `semver::Version`'
-    ConfigScoreDataResponse:
-      type: object
-      required:
-      - parameters
-      - version_history
-      properties:
-        parameters:
-          $ref: '#/components/schemas/ConfigScoreParams'
-        version_history:
-          type: array
-          items:
-            $ref: '#/components/schemas/HistoricalNymNodeVersionEntry'
-    ConfigScoreParams:
-      type: object
-      required:
-      - version_weights
-      - version_score_formula_params
-      properties:
-        version_score_formula_params:
-          $ref: '#/components/schemas/VersionScoreFormulaParams'
-          description: Defines the parameters of the formula for calculating the version score
-        version_weights:
-          $ref: '#/components/schemas/OutdatedVersionWeights'
-          description: Defines weights for calculating numbers of versions behind the current release.
-    VersionScoreFormulaParams:
-      type: object
-      description: 'Given the formula of version_score = penalty ^ (versions_behind_factor ^ penalty_scaling)
-
-        define the relevant parameters'
-      required:
-      - penalty
-      - penalty_scaling
-      properties:
-        penalty:
-          type: number
-          format: double
-        penalty_scaling:
-          type: number
-          format: double
+        node_id:
+          type: integer
+          format: int32
+          minimum: 0
+        reliability:
+          type: integer
+          format: int32
+          minimum: 0
     MonitorMessage:
       type: object
       required:
@@ -326,23 +343,6 @@ components:
         timestamp:
           type: integer
           format: int64
-    NodeResult:
-      type: object
-      required:
-      - node_id
-      - identity
-      - reliability
-      properties:
-        identity:
-          type: string
-        node_id:
-          type: integer
-          format: int32
-          minimum: 0
-        reliability:
-          type: integer
-          format: int32
-          minimum: 0
 x-refined-from:
 - nym-technologies-node-status-api-openapi.json
 - nym-technologies-nym-api-openapi.json

@@ -43,16 +43,18 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    MixnodeSummary:
+    SummaryHistory:
       type: object
       required:
-      - bonded
-      - historical
+      - date
+      - value_json
+      - timestamp_utc
       properties:
-        bonded:
-          $ref: '#/components/schemas/MixingNodesSummary'
-        historical:
-          $ref: '#/components/schemas/MixnodeSummaryHistorical'
+        date:
+          type: string
+        timestamp_utc:
+          type: string
+        value_json: {}
     MixingNodesSummary:
       type: object
       required:
@@ -68,7 +70,7 @@ components:
         self_described:
           type: integer
           format: int32
-    GatewaySummaryHistorical:
+    MixnodeSummaryHistorical:
       type: object
       required:
       - count
@@ -79,18 +81,6 @@ components:
           format: int32
         last_updated_utc:
           type: string
-    SummaryHistory:
-      type: object
-      required:
-      - date
-      - value_json
-      - timestamp_utc
-      properties:
-        date:
-          type: string
-        timestamp_utc:
-          type: string
-        value_json: {}
     NetworkSummary:
       type: object
       required:
@@ -105,17 +95,6 @@ components:
         total_nodes:
           type: integer
           format: int32
-    MixnodeSummaryHistorical:
-      type: object
-      required:
-      - count
-      - last_updated_utc
-      properties:
-        count:
-          type: integer
-          format: int32
-        last_updated_utc:
-          type: string
     GatewaySummaryBonded:
       type: object
       required:
@@ -145,3 +124,24 @@ components:
           $ref: '#/components/schemas/GatewaySummaryBonded'
         historical:
           $ref: '#/components/schemas/GatewaySummaryHistorical'
+    MixnodeSummary:
+      type: object
+      required:
+      - bonded
+      - historical
+      properties:
+        bonded:
+          $ref: '#/components/schemas/MixingNodesSummary'
+        historical:
+          $ref: '#/components/schemas/MixnodeSummaryHistorical'
+    GatewaySummaryHistorical:
+      type: object
+      required:
+      - count
+      - last_updated_utc
+      properties:
+        count:
+          type: integer
+          format: int32
+        last_updated_utc:
+          type: string
