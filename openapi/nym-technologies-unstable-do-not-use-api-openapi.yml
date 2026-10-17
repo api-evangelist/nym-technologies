@@ -170,83 +170,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    PartialTestResult:
-      type: object
-      required:
-      - monitor_run_id
-      - timestamp
-      - test_routes
-      properties:
-        monitor_run_id:
-          type: integer
-          format: int64
-        overall_reliability_for_all_routes_in_monitor_run:
-          type:
-          - integer
-          - 'null'
-          format: int32
-          minimum: 0
-        test_routes:
-          $ref: '#/components/schemas/TestRoute'
-        timestamp:
-          type: integer
-          format: int64
-    u32:
-      type: integer
-      format: int32
-      minimum: 0
-    TestNode:
-      type: object
-      properties:
-        identity_key:
-          type:
-          - string
-          - 'null'
-        node_id:
-          type:
-          - integer
-          - 'null'
-          format: int32
-          minimum: 0
-    Output:
-      type: string
-      enum:
-      - json
-      - yaml
-      - bincode
-    Pagination:
-      type: object
-      required:
-      - total
-      - page
-      - size
-      properties:
-        page:
-          type: integer
-          format: int32
-          minimum: 0
-        size:
-          type: integer
-          minimum: 0
-        total:
-          type: integer
-          minimum: 0
-    TestRoute:
-      type: object
-      required:
-      - gateway
-      - layer1
-      - layer2
-      - layer3
-      properties:
-        gateway:
-          $ref: '#/components/schemas/TestNode'
-        layer1:
-          $ref: '#/components/schemas/TestNode'
-        layer2:
-          $ref: '#/components/schemas/TestNode'
-        layer3:
-          $ref: '#/components/schemas/TestNode'
     NetworkMonitorRunDetailsResponse:
       type: object
       required:
@@ -287,6 +210,62 @@ components:
         total_sent:
           type: integer
           minimum: 0
+    u32:
+      type: integer
+      format: int32
+      minimum: 0
+    TestRoute:
+      type: object
+      required:
+      - gateway
+      - layer1
+      - layer2
+      - layer3
+      properties:
+        gateway:
+          $ref: '#/components/schemas/TestNode'
+        layer1:
+          $ref: '#/components/schemas/TestNode'
+        layer2:
+          $ref: '#/components/schemas/TestNode'
+        layer3:
+          $ref: '#/components/schemas/TestNode'
+    Pagination:
+      type: object
+      required:
+      - total
+      - page
+      - size
+      properties:
+        page:
+          type: integer
+          format: int32
+          minimum: 0
+        size:
+          type: integer
+          minimum: 0
+        total:
+          type: integer
+          minimum: 0
+    TestNode:
+      type: object
+      properties:
+        identity_key:
+          type:
+          - string
+          - 'null'
+        node_id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
     PaginatedResponse:
       type: object
       required:
@@ -299,3 +278,24 @@ components:
             $ref: '#/components/schemas/PartialTestResult'
         pagination:
           $ref: '#/components/schemas/Pagination'
+    PartialTestResult:
+      type: object
+      required:
+      - monitor_run_id
+      - timestamp
+      - test_routes
+      properties:
+        monitor_run_id:
+          type: integer
+          format: int64
+        overall_reliability_for_all_routes_in_monitor_run:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+        test_routes:
+          $ref: '#/components/schemas/TestRoute'
+        timestamp:
+          type: integer
+          format: int64

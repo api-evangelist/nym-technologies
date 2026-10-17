@@ -43,18 +43,17 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    SummaryHistory:
+    MixnodeSummaryHistorical:
       type: object
       required:
-      - date
-      - value_json
-      - timestamp_utc
+      - count
+      - last_updated_utc
       properties:
-        date:
+        count:
+          type: integer
+          format: int32
+        last_updated_utc:
           type: string
-        timestamp_utc:
-          type: string
-        value_json: {}
     MixingNodesSummary:
       type: object
       required:
@@ -70,17 +69,16 @@ components:
         self_described:
           type: integer
           format: int32
-    MixnodeSummaryHistorical:
+    MixnodeSummary:
       type: object
       required:
-      - count
-      - last_updated_utc
+      - bonded
+      - historical
       properties:
-        count:
-          type: integer
-          format: int32
-        last_updated_utc:
-          type: string
+        bonded:
+          $ref: '#/components/schemas/MixingNodesSummary'
+        historical:
+          $ref: '#/components/schemas/MixnodeSummaryHistorical'
     NetworkSummary:
       type: object
       required:
@@ -95,6 +93,39 @@ components:
         total_nodes:
           type: integer
           format: int32
+    SummaryHistory:
+      type: object
+      required:
+      - date
+      - value_json
+      - timestamp_utc
+      properties:
+        date:
+          type: string
+        timestamp_utc:
+          type: string
+        value_json: {}
+    GatewaySummaryHistorical:
+      type: object
+      required:
+      - count
+      - last_updated_utc
+      properties:
+        count:
+          type: integer
+          format: int32
+        last_updated_utc:
+          type: string
+    GatewaySummary:
+      type: object
+      required:
+      - bonded
+      - historical
+      properties:
+        bonded:
+          $ref: '#/components/schemas/GatewaySummaryBonded'
+        historical:
+          $ref: '#/components/schemas/GatewaySummaryHistorical'
     GatewaySummaryBonded:
       type: object
       required:
@@ -110,37 +141,6 @@ components:
           type: integer
           format: int32
         exit:
-          type: integer
-          format: int32
-        last_updated_utc:
-          type: string
-    GatewaySummary:
-      type: object
-      required:
-      - bonded
-      - historical
-      properties:
-        bonded:
-          $ref: '#/components/schemas/GatewaySummaryBonded'
-        historical:
-          $ref: '#/components/schemas/GatewaySummaryHistorical'
-    MixnodeSummary:
-      type: object
-      required:
-      - bonded
-      - historical
-      properties:
-        bonded:
-          $ref: '#/components/schemas/MixingNodesSummary'
-        historical:
-          $ref: '#/components/schemas/MixnodeSummaryHistorical'
-    GatewaySummaryHistorical:
-      type: object
-      required:
-      - count
-      - last_updated_utc
-      properties:
-        count:
           type: integer
           format: int32
         last_updated_utc:

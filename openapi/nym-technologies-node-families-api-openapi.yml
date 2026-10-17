@@ -121,38 +121,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    NodeFamilyResponse:
-      type: object
-      description: 'Response wrapper for endpoints that look up a single family. `family` is
-
-        `None` when the lookup did not match (rather than returning a 404).'
-      properties:
-        family:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/NodeFamily'
-    u32:
-      type: integer
-      format: int32
-      minimum: 0
-    NodeFamilyForNodeResponse:
-      type: object
-      description: 'Response wrapper for endpoints that look up the family a given node
-
-        belongs to. `family` is `None` when the node is not currently a member of
-
-        any cached family.'
-      required:
-      - node_id
-      properties:
-        family:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/NodeFamily'
-            description: The family this node belongs to, if any.
-        node_id:
-          $ref: '#/components/schemas/u32'
-          description: The node the lookup was performed for.
     NodeFamily:
       type: object
       description: 'Family view as exposed by the nym-api node-families endpoints, carrying
@@ -203,25 +171,6 @@ components:
           - type: 'null'
           - $ref: '#/components/schemas/CoinSchema'
             description: Sum of member stakes; `None` when no member has reportable stake.
-    NodeFamilyMember:
-      type: object
-      description: Family member view as exposed by the nym-api node-families endpoints.
-      required:
-      - node_id
-      - joined_at
-      properties:
-        joined_at:
-          type: string
-          description: Block-time at which the node joined the family.
-        node_id:
-          $ref: '#/components/schemas/u32'
-        stake_information:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/NodeStakeInformation'
-            description: 'Stake/bond/delegation snapshot; `None` if the node was not in the
-
-              mixnet-contract cache at refresh time.'
     CoinSchema:
       type: object
       title: Coin
@@ -294,11 +243,55 @@ components:
                   description: Sum of member stakes; `None` when no member has reportable stake.
         pagination:
           $ref: '#/components/schemas/Pagination'
-    OutputV2:
-      type: string
-      enum:
-      - json
-      - yaml
+    u32:
+      type: integer
+      format: int32
+      minimum: 0
+    Pagination:
+      type: object
+      required:
+      - total
+      - page
+      - size
+      properties:
+        page:
+          type: integer
+          format: int32
+          minimum: 0
+        size:
+          type: integer
+          minimum: 0
+        total:
+          type: integer
+          minimum: 0
+    NodeFamilyResponse:
+      type: object
+      description: 'Response wrapper for endpoints that look up a single family. `family` is
+
+        `None` when the lookup did not match (rather than returning a 404).'
+      properties:
+        family:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/NodeFamily'
+    NodeFamilyForNodeResponse:
+      type: object
+      description: 'Response wrapper for endpoints that look up the family a given node
+
+        belongs to. `family` is `None` when the node is not currently a member of
+
+        any cached family.'
+      required:
+      - node_id
+      properties:
+        family:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/NodeFamily'
+            description: The family this node belongs to, if any.
+        node_id:
+          $ref: '#/components/schemas/u32'
+          description: The node the lookup was performed for.
     NodeStakeInformation:
       type: object
       description: Per-node stake snapshot derived from the mixnet contract's rewarding state.
@@ -321,23 +314,6 @@ components:
         stake:
           $ref: '#/components/schemas/CoinSchema'
           description: Operator bond + all delegations, with accrued rewards applied.
-    Pagination:
-      type: object
-      required:
-      - total
-      - page
-      - size
-      properties:
-        page:
-          type: integer
-          format: int32
-          minimum: 0
-        size:
-          type: integer
-          minimum: 0
-        total:
-          type: integer
-          minimum: 0
     PendingFamilyInvitation:
       type: object
       description: Pending family invitation as exposed by the nym-api node-families endpoints.
@@ -351,3 +327,27 @@ components:
         node_id:
           $ref: '#/components/schemas/u32'
           description: Node the invitation is addressed to.
+    NodeFamilyMember:
+      type: object
+      description: Family member view as exposed by the nym-api node-families endpoints.
+      required:
+      - node_id
+      - joined_at
+      properties:
+        joined_at:
+          type: string
+          description: Block-time at which the node joined the family.
+        node_id:
+          $ref: '#/components/schemas/u32'
+        stake_information:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/NodeStakeInformation'
+            description: 'Stake/bond/delegation snapshot; `None` if the node was not in the
+
+              mixnet-contract cache at refresh time.'
+    OutputV2:
+      type: string
+      enum:
+      - json
+      - yaml

@@ -178,58 +178,30 @@ paths:
                   $ref: '#/components/schemas/DVpnGateway'
 components:
   schemas:
-    EntryTestResult:
+    DvpnProbeOutcome:
       type: object
+      description: this structure is parsed on VPN API so it has some fields which must not be changed
       required:
-      - can_connect
-      - can_route
+      - as_entry
       properties:
-        can_connect:
-          type: boolean
-        can_route:
-          type: boolean
-    Location:
-      type: object
-      required:
-      - two_letter_iso_country_code
-      - latitude
-      - longitude
-      - city
-      - region
-      - org
-      - postal
-      - timezone
-      properties:
-        asn:
+        as_entry:
+          $ref: '#/components/schemas/Entry'
+        as_exit:
           oneOf:
           - type: 'null'
-          - $ref: '#/components/schemas/Asn'
-        city:
-          type: string
-        latitude:
-          type: number
-          format: double
-        longitude:
-          type: number
-          format: double
-        org:
-          type: string
-        postal:
-          type: string
-        region:
-          type: string
-        timezone:
-          type: string
-        two_letter_iso_country_code:
-          type: string
-    AuthenticatorDetailsV1:
-      type: object
-      required:
-      - address
-      properties:
-        address:
-          type: string
-          description: address of the embedded authenticator
+          - $ref: '#/components/schemas/Exit'
+        lp:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/LpProbeResults'
+        socks5:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Socks5'
+        wg:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/WgProbeResults'
     BridgeInformation:
       type: object
       required:
@@ -319,11 +291,6 @@ components:
           oneOf:
           - type: 'null'
           - $ref: '#/components/schemas/NodeStakeInformation'
-    AsnKind:
-      type: string
-      enum:
-      - residential
-      - other
     WgProbeResults:
       type: object
       required:
@@ -446,160 +413,6 @@ components:
           type: boolean
         can_route_ip_v6:
           type: boolean
-    LewesProtocolDetailsV1:
-      type: object
-      required:
-      - content
-      - signature
-      properties:
-        content:
-          $ref: '#/components/schemas/LewesProtocolDetailsDataV1'
-        signature:
-          type: string
-    LewesProtocolDetailsDataV1:
-      type: object
-      required:
-      - enabled
-      - control_port
-      - data_port
-      - x25519
-      - kem_keys
-      properties:
-        control_port:
-          type: integer
-          format: int32
-          description: 'LP TCP control address (default: 41264) for establishing LP sessions'
-          minimum: 0
-        data_port:
-          type: integer
-          format: int32
-          description: 'LP UDP data address (default: 51264) for Sphinx packets wrapped in LP'
-          minimum: 0
-        enabled:
-          type: boolean
-          description: 'Helper field that specifies whether the LP listener(s) is enabled on this node.
-
-            It is directly controlled by the node''s role (i.e. it is enabled if it supports ''entry'' mode)'
-        kem_keys:
-          type: object
-          description: 'Digests of the KEM keys available to this node alongside hashing algorithms used
-
-            for their computation.
-
-            note: digests are hex encoded'
-          additionalProperties:
-            type: object
-            additionalProperties:
-              type: string
-            propertyNames:
-              type: string
-          propertyNames:
-            type: string
-        x25519:
-          type: string
-          description: LP public key
-    Socks5:
-      type: object
-      required:
-      - can_proxy_https
-      - score
-      properties:
-        can_proxy_https:
-          type: boolean
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        score:
-          $ref: '#/components/schemas/ScoreValue'
-    ScoreValue:
-      type: string
-      enum:
-      - offline
-      - low
-      - medium
-      - high
-    IpPacketRouterDetailsV1:
-      type: object
-      required:
-      - address
-      properties:
-        address:
-          type: string
-          description: address of the embedded ip packet router
-    NodeRole:
-      oneOf:
-      - type: object
-        required:
-        - Mixnode
-        properties:
-          Mixnode:
-            type: object
-            required:
-            - layer
-            properties:
-              layer:
-                type: integer
-                format: int32
-                minimum: 0
-      - type: string
-        enum:
-        - EntryGateway
-      - type: string
-        enum:
-        - ExitGateway
-      - type: string
-        enum:
-        - Standby
-      - type: string
-        enum:
-        - Inactive
-    DvpnProbeOutcome:
-      type: object
-      description: this structure is parsed on VPN API so it has some fields which must not be changed
-      required:
-      - as_entry
-      properties:
-        as_entry:
-          $ref: '#/components/schemas/Entry'
-        as_exit:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/Exit'
-        lp:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/LpProbeResults'
-        socks5:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/Socks5'
-        wg:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/WgProbeResults'
-    DVpnGatewayPerformance:
-      type: object
-      required:
-      - last_updated_utc
-      - score
-      - mixnet_score
-      - load
-      - uptime_percentage_last_24_hours
-      properties:
-        last_updated_utc:
-          type: string
-        load:
-          $ref: '#/components/schemas/ScoreValue'
-        mixnet_score:
-          $ref: '#/components/schemas/ScoreValue'
-        score:
-          $ref: '#/components/schemas/ScoreValue'
-        uptime_percentage_last_24_hours:
-          type: number
-          format: float
     NodeStakeInformation:
       type: object
       required:
@@ -620,6 +433,32 @@ components:
         total_stake:
           type: integer
           minimum: 0
+    DvpnGwProbe:
+      type: object
+      description: gateway probe output returned on the API
+      required:
+      - last_updated_utc
+      - outcome
+      properties:
+        last_updated_utc:
+          type: string
+        outcome:
+          $ref: '#/components/schemas/DvpnProbeOutcome'
+    Entry:
+      oneOf:
+      - $ref: '#/components/schemas/EntryTestResult'
+      - type: 'null'
+        default: null
+      - type: 'null'
+        default: null
+    AuthenticatorDetailsV1:
+      type: object
+      required:
+      - address
+      properties:
+        address:
+          type: string
+          description: address of the embedded authenticator
     QuicClientOptions:
       type: object
       required:
@@ -636,13 +475,6 @@ components:
           - 'null'
         id_pubkey:
           type: string
-    Entry:
-      oneOf:
-      - $ref: '#/components/schemas/EntryTestResult'
-      - type: 'null'
-        default: null
-      - type: 'null'
-        default: null
     BinaryBuildInformationOwned:
       type: object
       required:
@@ -686,23 +518,34 @@ components:
         rustc_version:
           type: string
           description: Provides the rustc version that was used for the build, for example `1.52.0-nightly`.
-    LpProbeResults:
+    DVpnGatewayPerformance:
       type: object
       required:
-      - can_connect
-      - can_handshake
-      - can_register
+      - last_updated_utc
+      - score
+      - mixnet_score
+      - load
+      - uptime_percentage_last_24_hours
       properties:
-        can_connect:
-          type: boolean
-        can_handshake:
-          type: boolean
-        can_register:
-          type: boolean
-        error:
-          type:
-          - string
-          - 'null'
+        last_updated_utc:
+          type: string
+        load:
+          $ref: '#/components/schemas/ScoreValue'
+        mixnet_score:
+          $ref: '#/components/schemas/ScoreValue'
+        score:
+          $ref: '#/components/schemas/ScoreValue'
+        uptime_percentage_last_24_hours:
+          type: number
+          format: float
+    IpPacketRouterDetailsV1:
+      type: object
+      required:
+      - address
+      properties:
+        address:
+          type: string
+          description: address of the embedded ip packet router
     BridgeParameters:
       oneOf:
       - type: object
@@ -716,25 +559,22 @@ components:
             type: string
             enum:
             - quic_plain
-    BasicEntryInformation:
+    Socks5:
       type: object
       required:
-      - ws_port
+      - can_proxy_https
+      - score
       properties:
-        hostname:
+        can_proxy_https:
+          type: boolean
+        errors:
           type:
-          - string
+          - array
           - 'null'
-        ws_port:
-          type: integer
-          format: int32
-          minimum: 0
-        wss_port:
-          type:
-          - integer
-          - 'null'
-          format: int32
-          minimum: 0
+          items:
+            type: string
+        score:
+          $ref: '#/components/schemas/ScoreValue'
     NodeFamilyInformation:
       type: object
       required:
@@ -758,6 +598,101 @@ components:
           minimum: 0
         name:
           type: string
+    BasicEntryInformation:
+      type: object
+      required:
+      - ws_port
+      properties:
+        hostname:
+          type:
+          - string
+          - 'null'
+        ws_port:
+          type: integer
+          format: int32
+          minimum: 0
+        wss_port:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          minimum: 0
+    LewesProtocolDetailsDataV1:
+      type: object
+      required:
+      - enabled
+      - control_port
+      - data_port
+      - x25519
+      - kem_keys
+      properties:
+        control_port:
+          type: integer
+          format: int32
+          description: 'LP TCP control address (default: 41264) for establishing LP sessions'
+          minimum: 0
+        data_port:
+          type: integer
+          format: int32
+          description: 'LP UDP data address (default: 51264) for Sphinx packets wrapped in LP'
+          minimum: 0
+        enabled:
+          type: boolean
+          description: 'Helper field that specifies whether the LP listener(s) is enabled on this node.
+
+            It is directly controlled by the node''s role (i.e. it is enabled if it supports ''entry'' mode)'
+        kem_keys:
+          type: object
+          description: 'Digests of the KEM keys available to this node alongside hashing algorithms used
+
+            for their computation.
+
+            note: digests are hex encoded'
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: string
+            propertyNames:
+              type: string
+          propertyNames:
+            type: string
+        x25519:
+          type: string
+          description: LP public key
+    Location:
+      type: object
+      required:
+      - two_letter_iso_country_code
+      - latitude
+      - longitude
+      - city
+      - region
+      - org
+      - postal
+      - timezone
+      properties:
+        asn:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Asn'
+        city:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        org:
+          type: string
+        postal:
+          type: string
+        region:
+          type: string
+        timezone:
+          type: string
+        two_letter_iso_country_code:
+          type: string
     Asn:
       type: object
       required:
@@ -777,14 +712,79 @@ components:
           type: string
         route:
           type: string
-    DvpnGwProbe:
+    EntryTestResult:
       type: object
-      description: gateway probe output returned on the API
       required:
-      - last_updated_utc
-      - outcome
+      - can_connect
+      - can_route
       properties:
-        last_updated_utc:
+        can_connect:
+          type: boolean
+        can_route:
+          type: boolean
+    AsnKind:
+      type: string
+      enum:
+      - residential
+      - other
+    LpProbeResults:
+      type: object
+      required:
+      - can_connect
+      - can_handshake
+      - can_register
+      properties:
+        can_connect:
+          type: boolean
+        can_handshake:
+          type: boolean
+        can_register:
+          type: boolean
+        error:
+          type:
+          - string
+          - 'null'
+    NodeRole:
+      oneOf:
+      - type: object
+        required:
+        - Mixnode
+        properties:
+          Mixnode:
+            type: object
+            required:
+            - layer
+            properties:
+              layer:
+                type: integer
+                format: int32
+                minimum: 0
+      - type: string
+        enum:
+        - EntryGateway
+      - type: string
+        enum:
+        - ExitGateway
+      - type: string
+        enum:
+        - Standby
+      - type: string
+        enum:
+        - Inactive
+    LewesProtocolDetailsV1:
+      type: object
+      required:
+      - content
+      - signature
+      properties:
+        content:
+          $ref: '#/components/schemas/LewesProtocolDetailsDataV1'
+        signature:
           type: string
-        outcome:
-          $ref: '#/components/schemas/DvpnProbeOutcome'
+    ScoreValue:
+      type: string
+      enum:
+      - offline
+      - low
+      - medium
+      - high

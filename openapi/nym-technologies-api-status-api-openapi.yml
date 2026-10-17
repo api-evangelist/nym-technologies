@@ -102,66 +102,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ChainStatus:
-      oneOf:
-      - type: string
-        enum:
-        - synced
-      - type: string
-        enum:
-        - unknown
-      - type: object
-        required:
-        - stalled
-        properties:
-          stalled:
-            type: object
-            required:
-            - approximate_amount
-            properties:
-              approximate_amount:
-                type: string
-    SignerInformationResponse:
-      type: object
-      required:
-      - cosmos_address
-      - identity
-      - announce_address
-      properties:
-        announce_address:
-          type: string
-        cosmos_address:
-          type: string
-        identity:
-          type: string
-        verification_key:
-          type:
-          - string
-          - 'null'
-    ApiHealthResponse:
-      type: object
-      required:
-      - status
-      - uptime
-      properties:
-        chain_status:
-          $ref: '#/components/schemas/ChainStatus'
-        status:
-          $ref: '#/components/schemas/ApiStatus'
-        uptime:
-          type: integer
-          format: int64
-          minimum: 0
-    ApiStatus:
-      type: string
-      enum:
-      - up
-    Output:
-      type: string
-      enum:
-      - json
-      - yaml
-      - bincode
     BinaryBuildInformationOwned:
       type: object
       required:
@@ -205,3 +145,63 @@ components:
         rustc_version:
           type: string
           description: Provides the rustc version that was used for the build, for example `1.52.0-nightly`.
+    ApiHealthResponse:
+      type: object
+      required:
+      - status
+      - uptime
+      properties:
+        chain_status:
+          $ref: '#/components/schemas/ChainStatus'
+        status:
+          $ref: '#/components/schemas/ApiStatus'
+        uptime:
+          type: integer
+          format: int64
+          minimum: 0
+    ChainStatus:
+      oneOf:
+      - type: string
+        enum:
+        - synced
+      - type: string
+        enum:
+        - unknown
+      - type: object
+        required:
+        - stalled
+        properties:
+          stalled:
+            type: object
+            required:
+            - approximate_amount
+            properties:
+              approximate_amount:
+                type: string
+    SignerInformationResponse:
+      type: object
+      required:
+      - cosmos_address
+      - identity
+      - announce_address
+      properties:
+        announce_address:
+          type: string
+        cosmos_address:
+          type: string
+        identity:
+          type: string
+        verification_key:
+          type:
+          - string
+          - 'null'
+    ApiStatus:
+      type: string
+      enum:
+      - up
+    Output:
+      type: string
+      enum:
+      - json
+      - yaml
+      - bincode
