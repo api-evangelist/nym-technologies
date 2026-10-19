@@ -1,0 +1,12 @@
+{
+ "url": "https://validator.nymtech.net/api/api-docs/openapi.json",
+ "requested_url": "https://validator.nymtech.net/api/api-docs/openapi.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 184834,
+ "sha256": "7d951f633513a7267caf12094b8dd8dcb8df7ad8e99dbac5e8fd8d526e283781",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.917), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
