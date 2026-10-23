@@ -34,3 +34,50 @@
     detected: '2026-10-18'
   status: not-a-workflow
   arazzo: null
+- slug: nym-technologies-arch-user-repository-aur
+  label: Arch User Repository (AUR)
+  partner_name: Arch User Repository (AUR)
+  category: official CLI (Arch User Repository (AUR))
+  type: register
+  channel: package-registry
+  evidence: https://aur.archlinux.org/packages/nym-vpnc
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Arch User Repository (AUR) (public package index)
+    spec_file: null
+    packages:
+    - name: nym-vpnc
+      kind: aur
+      version: 2026.14.0-1
+      released: '2026-10-21'
+      released_field: AUR LastModified
+      out_of_date: false
+      lapsed: false
+      page: https://aur.archlinux.org/packages/nym-vpnc
+      upstream: https://github.com/nymtech/nym-vpn-client
+      cli: 'AUR description: NymVPN command-line client'
+      repo_leg: github-org:nymtech
+      publisher_leg: artifact-github-org:nymtech
+      matched_by: github-org
+    - name: nym-vpnc-bin
+      kind: aur
+      version: 2026.14.0-1
+      released: '2026-10-21'
+      released_field: AUR LastModified
+      out_of_date: false
+      lapsed: false
+      page: https://aur.archlinux.org/packages/nym-vpnc-bin
+      upstream: https://github.com/nymtech/nym-vpn-client
+      cli: 'AUR description: NymVPN command-line client'
+      repo_leg: github-org:nymtech
+      publisher_leg: artifact-github-org:nymtech
+      matched_by: github-org
+    current: true
+    signal_note: 'the provider''s own command-line tool packaged for Arch Linux (community-maintained PKGBUILD whose
+      upstream and source artifact are the provider''s): distribution, not an integration; lapsed = flagged out-of-date
+      or not updated in 24 months'
+    detected_by: sweep-aur-vendor-cli-packages.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null

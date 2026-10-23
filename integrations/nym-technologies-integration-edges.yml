@@ -29,6 +29,53 @@ edges:
     detected: '2026-10-18'
   detected_by: sweep-official-sdks.py
   first_seen: '2026-10-18'
+- partner_name: Arch User Repository (AUR)
+  partner: null
+  partner_match: null
+  type: register
+  direction: provider-built
+  category: official CLI (Arch User Repository (AUR))
+  evidence: https://aur.archlinux.org/packages/nym-vpnc
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Arch User Repository (AUR) (public package index)
+    spec_file: null
+    packages:
+    - name: nym-vpnc
+      kind: aur
+      version: 2026.14.0-1
+      released: '2026-10-21'
+      released_field: AUR LastModified
+      out_of_date: false
+      lapsed: false
+      page: https://aur.archlinux.org/packages/nym-vpnc
+      upstream: https://github.com/nymtech/nym-vpn-client
+      cli: 'AUR description: NymVPN command-line client'
+      repo_leg: github-org:nymtech
+      publisher_leg: artifact-github-org:nymtech
+      matched_by: github-org
+    - name: nym-vpnc-bin
+      kind: aur
+      version: 2026.14.0-1
+      released: '2026-10-21'
+      released_field: AUR LastModified
+      out_of_date: false
+      lapsed: false
+      page: https://aur.archlinux.org/packages/nym-vpnc-bin
+      upstream: https://github.com/nymtech/nym-vpn-client
+      cli: 'AUR description: NymVPN command-line client'
+      repo_leg: github-org:nymtech
+      publisher_leg: artifact-github-org:nymtech
+      matched_by: github-org
+    current: true
+    signal_note: 'the provider''s own command-line tool packaged for Arch Linux (community-maintained PKGBUILD whose
+      upstream and source artifact are the provider''s): distribution, not an integration; lapsed = flagged out-of-date
+      or not updated in 24 months'
+    detected_by: sweep-aur-vendor-cli-packages.py
+    detected: '2026-10-23'
+  detected_by: sweep-aur-vendor-cli-packages.py
+  first_seen: '2026-10-23'
 generated: '2026-10-18'
 method: searched
 source:
@@ -47,3 +94,6 @@ checked:
 - https://registry.npmjs.org
 - https://repo1.maven.org/maven2
 - https://rubygems.org/api/v1
+- https://aur.archlinux.org/cgit/aur.git/tree/.SRCINFO
+- https://aur.archlinux.org/packages-meta-ext-v1.json.gz
+- https://aur.archlinux.org/rpc/v5/info
